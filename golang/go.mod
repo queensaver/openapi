@@ -1,4 +1,4 @@
-module github.com/queensaver/gopenapi/golang
+module github.com/queensaver/openapi/golang
 
 go 1.13
 

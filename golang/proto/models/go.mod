@@ -1,4 +1,4 @@
-module github.com/queensaver/openapi/golang/protos/models
+module github.com/queensaver/openapi/golang/proto/models
 
 go 1.16
 
