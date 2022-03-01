@@ -1,4 +1,4 @@
-module github.com/queensaver/openapi/golang/protos/services
+module github.com/queensaver/openapi/golang/proto/services
 
 go 1.16
 
