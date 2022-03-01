@@ -11,8 +11,23 @@ package openapi
 
 type VarroaScanMetadata struct {
 
-	// class
+	// classification of the object - that could be a bee_wing, mite, wax_platelets, wax_moth_droppings, etc...
 	Class string `json:"class,omitempty"`
+
+	// how confident the AI is regarding the result
+	Confidence float32 `json:"confidence,omitempty"`
+
+	// center of the object on the x axis
+	XCenter float32 `json:"x_center,omitempty"`
+
+	// center of the object on the y axis
+	YCenter float32 `json:"y_center,omitempty"`
+
+	// width of the object
+	Width float32 `json:"width,omitempty"`
+
+	// height of the object
+	Height float32 `json:"height,omitempty"`
 }
 
 // AssertVarroaScanMetadataRequired checks if the required fields are not zero-ed

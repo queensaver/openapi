@@ -27,4 +27,7 @@ message VarroaScan {
 
   repeated VarroaScanMetadata metadata = 4;
 
+  // Unique Identifier for this scan
+  string uuid = 5;
+
 }

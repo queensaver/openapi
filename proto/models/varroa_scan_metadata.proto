@@ -15,7 +15,22 @@ package openapi;
 
 message VarroaScanMetadata {
 
-  // class
+  // classification of the object - that could be a bee_wing, mite, wax_platelets, wax_moth_droppings, etc...
   string class = 1;
+
+  // how confident the AI is regarding the result
+  float confidence = 2;
+
+  // center of the object on the x axis
+  float xUnderscorecenter = 3;
+
+  // center of the object on the y axis
+  float yUnderscorecenter = 4;
+
+  // width of the object
+  float width = 5;
+
+  // height of the object
+  float height = 6;
 
 }

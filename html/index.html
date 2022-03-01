@@ -1088,6 +1088,12 @@ ul.nav-tabs {
         "$ref" : "#/components/schemas/varroa-scan-metadata"
       },
       "x-protobuf-index" : 4
+    },
+    "uuid" : {
+      "type" : "string",
+      "description" : "Unique Identifier for this scan",
+      "example" : "41C0FE2F-EB0C-45B4-8842-C117E47C35E3",
+      "x-protobuf-index" : 5
     }
   }
 };
@@ -1096,9 +1102,44 @@ ul.nav-tabs {
   "properties" : {
     "class" : {
       "type" : "string",
-      "description" : "class",
-      "example" : "wing",
+      "description" : "classification of the object - that could be a bee_wing, mite, wax_platelets, wax_moth_droppings, etc...",
+      "example" : "mite",
       "x-protobuf-index" : 1
+    },
+    "confidence" : {
+      "type" : "number",
+      "description" : "how confident the AI is regarding the result",
+      "format" : "float",
+      "example" : 0.27206607659657794,
+      "x-protobuf-index" : 2
+    },
+    "x_center" : {
+      "type" : "number",
+      "description" : "center of the object on the x axis",
+      "format" : "float",
+      "example" : 0.27206607659657794,
+      "x-protobuf-index" : 3
+    },
+    "y_center" : {
+      "type" : "number",
+      "description" : "center of the object on the y axis",
+      "format" : "float",
+      "example" : 0.27206607659657794,
+      "x-protobuf-index" : 4
+    },
+    "width" : {
+      "type" : "number",
+      "description" : "width of the object",
+      "format" : "float",
+      "example" : 0.27206607659657794,
+      "x-protobuf-index" : 5
+    },
+    "height" : {
+      "type" : "number",
+      "description" : "height of the object",
+      "format" : "float",
+      "example" : 0.27206607659657794,
+      "x-protobuf-index" : 6
     }
   }
 };

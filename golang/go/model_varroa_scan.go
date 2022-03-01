@@ -21,6 +21,9 @@ type VarroaScan struct {
 	Epoch int64 `json:"epoch,omitempty"`
 
 	Metadata []VarroaScanMetadata `json:"metadata,omitempty"`
+
+	// Unique Identifier for this scan
+	Uuid string `json:"uuid,omitempty"`
 }
 
 // AssertVarroaScanRequired checks if the required fields are not zero-ed

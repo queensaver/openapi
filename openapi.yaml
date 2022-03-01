@@ -441,12 +441,41 @@ components:
     varroa-scan-metadata:
       type: object
       properties:
-        # TODO: more work needed here.
         class:
           type: string
-          description: class
-          example: "wing"
+          description: classification of the object - that could be a bee_wing, mite, wax_platelets, wax_moth_droppings, etc...
+          example: "mite"
           x-protobuf-index: 1
+        confidence:
+          type: number
+          format: float
+          description: how confident the AI is regarding the result
+          example: 0.27206607659657794
+          x-protobuf-index: 2
+        x_center:
+          type: number
+          format: float
+          description: center of the object on the x axis
+          example: 0.27206607659657794
+          x-protobuf-index: 3
+        y_center:
+          type: number
+          format: float
+          description: center of the object on the y axis
+          example: 0.27206607659657794
+          x-protobuf-index: 4
+        width:
+          type: number
+          format: float
+          description: width of the object
+          example: 0.27206607659657794
+          x-protobuf-index: 5
+        height:
+          type: number
+          format: float
+          description: height of the object
+          example: 0.27206607659657794
+          x-protobuf-index: 6
 
     varroa-scan:
       type: object
@@ -472,6 +501,11 @@ components:
           items:
             $ref: "#/components/schemas/varroa-scan-metadata"
           x-protobuf-index: 4
+        uuid:
+          type: string
+          example: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+          description: Unique Identifier for this scan
+          x-protobuf-index: 5
           
     getTemperature:
       type: object
