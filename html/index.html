@@ -1063,44 +1063,37 @@ ul.nav-tabs {
     defs["varroa-scan"] = {
   "type" : "object",
   "properties" : {
-    "userId" : {
-      "type" : "number",
-      "description" : "the internal user id of the authenticated user. Will be set internally in the cloud system and does not have an effect if set via the API call as it will be overridden. Don't set this value.",
-      "format" : "int64",
-      "example" : 4,
-      "x-protobuf-index" : 1
-    },
     "bhiveId" : {
       "type" : "string",
       "description" : "bhiveId to identify the data source. Might become empty in a future iteration as it's redundant with the query parameter.",
       "example" : "829898a53801",
-      "x-protobuf-index" : 2
+      "x-protobuf-index" : 1
     },
     "imageUrl" : {
       "type" : "string",
       "description" : "URL to the image of the varroa scan",
       "example" : "https://api.queensaver.com/images/1234.jpg",
-      "x-protobuf-index" : 3
+      "x-protobuf-index" : 2
     },
     "epoch" : {
       "type" : "integer",
       "description" : "timestamp of the measurement on one second precision",
       "format" : "int64",
       "example" : 1639169129,
-      "x-protobuf-index" : 4
+      "x-protobuf-index" : 3
     },
     "metadata" : {
       "type" : "array",
       "items" : {
         "$ref" : "#/components/schemas/varroa-scan-metadata"
       },
-      "x-protobuf-index" : 5
+      "x-protobuf-index" : 4
     },
     "uuid" : {
       "type" : "string",
       "description" : "Unique Identifier for this scan",
       "example" : "41C0FE2F-EB0C-45B4-8842-C117E47C35E3",
-      "x-protobuf-index" : 6
+      "x-protobuf-index" : 5
     }
   }
 };
@@ -5669,7 +5662,7 @@ $(document).ready(function() {
                             <pre class="prettyprint"><code class="language-bsh">curl -X GET \
  \
  -H "Accept: application/json" \
- "https://api.queensaver.com/v1/varroa-scan?bhiveId=829898a53801&epoch=1639170002&uuid=41C0FE2F-EB0C-45B4-8842-C117E47C35E3&secondsInThePast=7200"
+ "https://api.queensaver.com/v1/varroa-scan?bhiveId=829898a53801&epoch=1639170002&uuid=41C0FE2F-EB0C-45B4-8842-C117E47C35E3&userId=123&secondsInThePast=7200"
 </code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-varroaScanGet-0-java">
@@ -5698,10 +5691,11 @@ public class DefaultApiExample {
         String token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie or the Q-Token must be set to be authorized for the API call.
         Long epoch = 1639170002; // Long | The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter.
         String uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges.
+        Long userId = 123; // Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
         Long secondsInThePast = 7200; // Long | How many seconds we go to the past to get the data measurements.
 
         try {
-            array[varroa-scan] result = apiInstance.varroaScanGet(qToken, bhiveId, token, epoch, uuid, secondsInThePast);
+            array[varroa-scan] result = apiInstance.varroaScanGet(qToken, bhiveId, token, epoch, uuid, userId, secondsInThePast);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#varroaScanGet");
@@ -5723,10 +5717,11 @@ public class DefaultApiExample {
         String token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie or the Q-Token must be set to be authorized for the API call.
         Long epoch = 1639170002; // Long | The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter.
         String uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges.
+        Long userId = 123; // Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
         Long secondsInThePast = 7200; // Long | How many seconds we go to the past to get the data measurements.
 
         try {
-            array[varroa-scan] result = apiInstance.varroaScanGet(qToken, bhiveId, token, epoch, uuid, secondsInThePast);
+            array[varroa-scan] result = apiInstance.varroaScanGet(qToken, bhiveId, token, epoch, uuid, userId, secondsInThePast);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#varroaScanGet");
@@ -5755,6 +5750,7 @@ String *bhiveId = 829898a53801; // The Mac Address of the QBox client. You can g
 String *token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // Either this cookie or the Q-Token must be set to be authorized for the API call. (optional) (default to null)
 Long *epoch = 1639170002; // The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter. (optional) (default to null)
 String *uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges. (optional) (default to null)
+Long *userId = 123; // The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore. (optional) (default to null)
 Long *secondsInThePast = 7200; // How many seconds we go to the past to get the data measurements. (optional) (default to null)
 
 // Get Varroa Scan images and metadata
@@ -5763,6 +5759,7 @@ Long *secondsInThePast = 7200; // How many seconds we go to the past to get the 
     token:token
     epoch:epoch
     uuid:uuid
+    userId:userId
     secondsInThePast:secondsInThePast
               completionHandler: ^(array[varroa-scan] output, NSError* error) {
     if (output) {
@@ -5793,6 +5790,7 @@ var opts = {
   'token': 8B0FE5CF-C096-4B3E-8748-27906B4A9449, // {String} Either this cookie or the Q-Token must be set to be authorized for the API call.
   'epoch': 1639170002, // {Long} The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter.
   'uuid': 41C0FE2F-EB0C-45B4-8842-C117E47C35E3, // {String} The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges.
+  'userId': 123, // {Long} The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
   'secondsInThePast': 7200 // {Long} How many seconds we go to the past to get the data measurements.
 };
 
@@ -5835,11 +5833,12 @@ namespace Example
             var token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449;  // String | Either this cookie or the Q-Token must be set to be authorized for the API call. (optional)  (default to null)
             var epoch = 1639170002;  // Long | The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter. (optional)  (default to null)
             var uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3;  // String | The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges. (optional)  (default to null)
+            var userId = 123;  // Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore. (optional)  (default to null)
             var secondsInThePast = 7200;  // Long | How many seconds we go to the past to get the data measurements. (optional)  (default to null)
 
             try {
                 // Get Varroa Scan images and metadata
-                array[varroa-scan] result = apiInstance.varroaScanGet(qToken, bhiveId, token, epoch, uuid, secondsInThePast);
+                array[varroa-scan] result = apiInstance.varroaScanGet(qToken, bhiveId, token, epoch, uuid, userId, secondsInThePast);
                 Debug.WriteLine(result);
             } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.varroaScanGet: " + e.Message );
@@ -5866,10 +5865,11 @@ $bhiveId = 829898a53801; // String | The Mac Address of the QBox client. You can
 $token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie or the Q-Token must be set to be authorized for the API call.
 $epoch = 1639170002; // Long | The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter.
 $uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges.
+$userId = 123; // Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
 $secondsInThePast = 7200; // Long | How many seconds we go to the past to get the data measurements.
 
 try {
-    $result = $api_instance->varroaScanGet($qToken, $bhiveId, $token, $epoch, $uuid, $secondsInThePast);
+    $result = $api_instance->varroaScanGet($qToken, $bhiveId, $token, $epoch, $uuid, $userId, $secondsInThePast);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->varroaScanGet: ', $e->getMessage(), PHP_EOL;
@@ -5894,10 +5894,11 @@ my $bhiveId = 829898a53801; # String | The Mac Address of the QBox client. You c
 my $token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; # String | Either this cookie or the Q-Token must be set to be authorized for the API call.
 my $epoch = 1639170002; # Long | The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter.
 my $uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; # String | The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges.
+my $userId = 123; # Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
 my $secondsInThePast = 7200; # Long | How many seconds we go to the past to get the data measurements.
 
 eval {
-    my $result = $api_instance->varroaScanGet(qToken => $qToken, bhiveId => $bhiveId, token => $token, epoch => $epoch, uuid => $uuid, secondsInThePast => $secondsInThePast);
+    my $result = $api_instance->varroaScanGet(qToken => $qToken, bhiveId => $bhiveId, token => $token, epoch => $epoch, uuid => $uuid, userId => $userId, secondsInThePast => $secondsInThePast);
     print Dumper($result);
 };
 if ($@) {
@@ -5924,11 +5925,12 @@ bhiveId = 829898a53801 # String | The Mac Address of the QBox client. You can ge
 token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449 # String | Either this cookie or the Q-Token must be set to be authorized for the API call. (optional) (default to null)
 epoch = 1639170002 # Long | The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter. (optional) (default to null)
 uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3 # String | The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges. (optional) (default to null)
+userId = 123 # Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore. (optional) (default to null)
 secondsInThePast = 7200 # Long | How many seconds we go to the past to get the data measurements. (optional) (default to null)
 
 try:
     # Get Varroa Scan images and metadata
-    api_response = api_instance.varroa_scan_get(qToken, bhiveId, token=token, epoch=epoch, uuid=uuid, secondsInThePast=secondsInThePast)
+    api_response = api_instance.varroa_scan_get(qToken, bhiveId, token=token, epoch=epoch, uuid=uuid, userId=userId, secondsInThePast=secondsInThePast)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->varroaScanGet: %s\n" % e)</code></pre>
@@ -5943,10 +5945,11 @@ pub fn main() {
     let token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String
     let epoch = 1639170002; // Long
     let uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String
+    let userId = 123; // Long
     let secondsInThePast = 7200; // Long
 
     let mut context = DefaultApi::Context::default();
-    let result = client.varroaScanGet(qToken, bhiveId, token, epoch, uuid, secondsInThePast, &context).wait();
+    let result = client.varroaScanGet(qToken, bhiveId, token, epoch, uuid, userId, secondsInThePast, &context).wait();
 
     println!("{:?}", result);
 }
@@ -6060,6 +6063,29 @@ The Unix Time (epoch) that defines the end time of the varroa images. The beginn
 
                     <div class="inner description marked">
 The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges.
+                    </div>
+            </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                                <tr><td style="width:150px;">userId</td>
+<td>
+
+
+    <div id="d2e199_varroaScanGet_userId">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    Long
+                </span>
+                    <span class="format">
+                        (int64)
+                    </span>
+
+                    <div class="inner description marked">
+The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
                     </div>
             </div>
         </div>

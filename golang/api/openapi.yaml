@@ -415,6 +415,17 @@ paths:
         schema:
           type: string
         style: form
+      - description: The User ID. This is used internally and will be overwritten
+          if you send it to the api server. Ignore.
+        example: 123
+        explode: true
+        in: query
+        name: userId
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
       - description: How many seconds we go to the past to get the data measurements.
         example: 7200
         explode: true
@@ -516,44 +527,35 @@ components:
         bhiveId: 829898a53801
         imageUrl: https://api.queensaver.com/images/1234.jpg
         epoch: 1639169129
-        userId: 4
         uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
       properties:
-        userId:
-          description: the internal user id of the authenticated user. Will be set
-            internally in the cloud system and does not have an effect if set via
-            the API call as it will be overridden. Don't set this value.
-          example: 4
-          format: int64
-          type: number
-          x-protobuf-index: 1
         bhiveId:
           description: bhiveId to identify the data source. Might become empty in
             a future iteration as it's redundant with the query parameter.
           example: 829898a53801
           type: string
-          x-protobuf-index: 2
+          x-protobuf-index: 1
         imageUrl:
           description: URL to the image of the varroa scan
           example: https://api.queensaver.com/images/1234.jpg
           type: string
-          x-protobuf-index: 3
+          x-protobuf-index: 2
         epoch:
           description: timestamp of the measurement on one second precision
           example: 1639169129
           format: int64
           type: integer
-          x-protobuf-index: 4
+          x-protobuf-index: 3
         metadata:
           items:
             $ref: '#/components/schemas/varroa-scan-metadata'
           type: array
-          x-protobuf-index: 5
+          x-protobuf-index: 4
         uuid:
           description: Unique Identifier for this scan
           example: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
           type: string
-          x-protobuf-index: 6
+          x-protobuf-index: 5
       type: object
     getTemperature:
       example:

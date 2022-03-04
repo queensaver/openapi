@@ -143,8 +143,10 @@ message VarroaScanGetRequest {
   int64 epoch = 4;
   // The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges.
   string uuid = 5;
+  // The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
+  int64 userId = 6;
   // How many seconds we go to the past to get the data measurements.
-  int64 secondsInThePast = 6;
+  int64 secondsInThePast = 7;
 
 }
 

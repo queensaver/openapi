@@ -370,7 +370,14 @@ paths:
         example: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
         schema:
           type: string
-
+      - name: userId
+        in: query
+        description: The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
+        required: false 
+        example: 123
+        schema:
+          type: integer
+          format: int64
       - name: secondsInThePast
         in: query
         description: How many seconds we go to the past to get the data measurements. 
@@ -480,38 +487,32 @@ components:
     varroa-scan:
       type: object
       properties:
-        userId:
-          type: number
-          format: int64
-          description: the internal user id of the authenticated user. Will be set internally in the cloud system and does not have an effect if set via the API call as it will be overridden. Don't set this value.
-          example: 4
-          x-protobuf-index: 1
         bhiveId:
           type: string
           description: bhiveId to identify the data source. Might become empty in a future iteration as it's redundant with the query parameter.
           example: "829898a53801"
-          x-protobuf-index: 2
+          x-protobuf-index: 1
         imageUrl:
           type: string
           description: URL to the image of the varroa scan
           example: https://api.queensaver.com/images/1234.jpg
-          x-protobuf-index: 3
+          x-protobuf-index: 2
         epoch:
           type: integer
           format: int64
           description: timestamp of the measurement on one second precision
           example: 1639169129
-          x-protobuf-index: 4
+          x-protobuf-index: 3
         metadata:
           type: array
           items:
             $ref: "#/components/schemas/varroa-scan-metadata"
-          x-protobuf-index: 5
+          x-protobuf-index: 4
         uuid:
           type: string
           example: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
           description: Unique Identifier for this scan
-          x-protobuf-index: 6
+          x-protobuf-index: 5
           
     getTemperature:
       type: object
