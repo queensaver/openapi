@@ -16,18 +16,21 @@ import public "models/varroa_scan_metadata.proto";
 
 message VarroaScan {
 
+  // the internal user id of the authenticated user. Will be set internally in the cloud system and does not have an effect if set via the API call as it will be overridden. Don't set this value.
+  float userId = 1;
+
   // bhiveId to identify the data source. Might become empty in a future iteration as it's redundant with the query parameter.
-  string bhiveId = 1;
+  string bhiveId = 2;
 
   // URL to the image of the varroa scan
-  string imageUrl = 2;
+  string imageUrl = 3;
 
   // timestamp of the measurement on one second precision
-  int64 epoch = 3;
+  int64 epoch = 4;
 
-  repeated VarroaScanMetadata metadata = 4;
+  repeated VarroaScanMetadata metadata = 5;
 
   // Unique Identifier for this scan
-  string uuid = 5;
+  string uuid = 6;
 
 }
