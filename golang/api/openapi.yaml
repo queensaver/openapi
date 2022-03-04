@@ -524,6 +524,7 @@ components:
           y_center: 0.27206607659657794
           class: mite
           height: 0.27206607659657794
+        httpReponseCode: 409
         bhiveId: 829898a53801
         imageUrl: https://api.queensaver.com/images/1234.jpg
         epoch: 1639169129
@@ -556,6 +557,12 @@ components:
           example: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
           type: string
           x-protobuf-index: 5
+        httpReponseCode:
+          description: "HTTP response code. Used for internal purposes, will be sent\
+            \ out at the API."
+          example: 409
+          type: integer
+          x-protobuf-index: 6
       type: object
     getTemperature:
       example:

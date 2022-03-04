@@ -30,4 +30,7 @@ message VarroaScan {
   // Unique Identifier for this scan
   string uuid = 5;
 
+  // HTTP response code. Used for internal purposes, will be sent out at the API.
+  int32 httpReponseCode = 6;
+
 }

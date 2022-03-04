@@ -24,6 +24,9 @@ type VarroaScan struct {
 
 	// Unique Identifier for this scan
 	Uuid string `json:"uuid,omitempty"`
+
+	// HTTP response code. Used for internal purposes, will be sent out at the API.
+	HttpReponseCode int32 `json:"httpReponseCode,omitempty"`
 }
 
 // AssertVarroaScanRequired checks if the required fields are not zero-ed
