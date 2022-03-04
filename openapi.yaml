@@ -392,9 +392,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/varroa-scan"
+                $ref: "#/components/schemas/varroa-scan-response"
 
         "400":
           description: Client error
@@ -513,12 +511,21 @@ components:
           example: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
           description: Unique Identifier for this scan
           x-protobuf-index: 5
+
+    varroa-scan-response:
+      type: object
+      properties:
         httpReponseCode:
           type: integer
           example: 409
           description: HTTP response code. Used for internal purposes, will be sent out at the API.
-          x-protobuf-index: 6
- 
+          x-protobuf-index: 1
+        varroa-scans:
+          type: array
+          items:
+            $ref: "#/components/schemas/varroa-scan"
+          x-protobuf-index: 2
+
     getTemperature:
       type: object
       properties:

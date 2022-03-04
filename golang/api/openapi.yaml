@@ -441,9 +441,7 @@ paths:
           content:
             application/json:
               schema:
-                items:
-                  $ref: '#/components/schemas/varroa-scan'
-                type: array
+                $ref: '#/components/schemas/varroa-scan-response'
           description: Successfully returns a list of varroa scans
         "400":
           description: Client error
@@ -524,7 +522,6 @@ components:
           y_center: 0.27206607659657794
           class: mite
           height: 0.27206607659657794
-        httpReponseCode: 409
         bhiveId: 829898a53801
         imageUrl: https://api.queensaver.com/images/1234.jpg
         epoch: 1639169129
@@ -557,12 +554,57 @@ components:
           example: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
           type: string
           x-protobuf-index: 5
+      type: object
+    varroa-scan-response:
+      example:
+        httpReponseCode: 409
+        varroa-scans:
+        - metadata:
+          - x_center: 0.27206607659657794
+            confidence: 0.27206607659657794
+            width: 0.27206607659657794
+            y_center: 0.27206607659657794
+            class: mite
+            height: 0.27206607659657794
+          - x_center: 0.27206607659657794
+            confidence: 0.27206607659657794
+            width: 0.27206607659657794
+            y_center: 0.27206607659657794
+            class: mite
+            height: 0.27206607659657794
+          bhiveId: 829898a53801
+          imageUrl: https://api.queensaver.com/images/1234.jpg
+          epoch: 1639169129
+          uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+        - metadata:
+          - x_center: 0.27206607659657794
+            confidence: 0.27206607659657794
+            width: 0.27206607659657794
+            y_center: 0.27206607659657794
+            class: mite
+            height: 0.27206607659657794
+          - x_center: 0.27206607659657794
+            confidence: 0.27206607659657794
+            width: 0.27206607659657794
+            y_center: 0.27206607659657794
+            class: mite
+            height: 0.27206607659657794
+          bhiveId: 829898a53801
+          imageUrl: https://api.queensaver.com/images/1234.jpg
+          epoch: 1639169129
+          uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+      properties:
         httpReponseCode:
           description: "HTTP response code. Used for internal purposes, will be sent\
             \ out at the API."
           example: 409
           type: integer
-          x-protobuf-index: 6
+          x-protobuf-index: 1
+        varroa-scans:
+          items:
+            $ref: '#/components/schemas/varroa-scan'
+          type: array
+          x-protobuf-index: 2
       type: object
     getTemperature:
       example:

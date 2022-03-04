@@ -24,6 +24,7 @@ protos:
 		--go_opt=Mmodels/get_temperature.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/varroa_scan.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/varroa_scan_metadata.proto=github.com/queensaver/openapi/golang/proto/models \
+		--go_opt=Mmodels/varroa_scan_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		\
 		proto/models/hive.proto \
 		proto/models/bbox_bhive.proto \
@@ -35,7 +36,8 @@ protos:
 		proto/models/get_temperature.proto \
 		proto/models/new_temperature.proto \
 		proto/models/varroa_scan.proto \
-		proto/models/varroa_scan_metadata.proto
+		proto/models/varroa_scan_metadata.proto \
+		proto/models/varroa_scan_response.proto
 
 grpc:
 	~/bin/protoc --proto_path proto \
@@ -57,6 +59,7 @@ grpc:
 		--go_opt=Mmodels/get_temperature.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/varroa_scan.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/varroa_scan_metadata.proto=github.com/queensaver/openapi/golang/proto/models \
+		--go_opt=Mmodels/varroa_scan_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		\
 		--go_grpc_opt=Mservices/default_service.proto=github.com/queensaver/openapi/golang/proto/services \
 		--go_grpc_opt=Mmodels/hive.proto.proto=github.com/queensaver/openapi/golang/proto/models \
@@ -70,6 +73,7 @@ grpc:
 		--go_grpc_opt=Mmodels/get_temperature.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_grpc_opt=Mmodels/varroa_scan.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_grpc_opt=Mmodels/varroa_scan_metadata.proto=github.com/queensaver/openapi/golang/proto/models \
+		--go_grpc_opt=Mmodels/varroa_scan_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		\
 		proto/services/default_service.proto
 

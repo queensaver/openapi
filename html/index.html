@@ -1094,12 +1094,6 @@ ul.nav-tabs {
       "description" : "Unique Identifier for this scan",
       "example" : "41C0FE2F-EB0C-45B4-8842-C117E47C35E3",
       "x-protobuf-index" : 5
-    },
-    "httpReponseCode" : {
-      "type" : "integer",
-      "description" : "HTTP response code. Used for internal purposes, will be sent out at the API.",
-      "example" : 409,
-      "x-protobuf-index" : 6
     }
   }
 };
@@ -1146,6 +1140,24 @@ ul.nav-tabs {
       "format" : "float",
       "example" : 0.27206607659657794,
       "x-protobuf-index" : 6
+    }
+  }
+};
+    defs["varroa-scan-response"] = {
+  "type" : "object",
+  "properties" : {
+    "httpReponseCode" : {
+      "type" : "integer",
+      "description" : "HTTP response code. Used for internal purposes, will be sent out at the API.",
+      "example" : 409,
+      "x-protobuf-index" : 1
+    },
+    "varroa-scans" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/components/schemas/varroa-scan"
+      },
+      "x-protobuf-index" : 2
     }
   }
 };
@@ -5701,7 +5713,7 @@ public class DefaultApiExample {
         Long secondsInThePast = 7200; // Long | How many seconds we go to the past to get the data measurements.
 
         try {
-            array[varroa-scan] result = apiInstance.varroaScanGet(qToken, bhiveId, token, epoch, uuid, userId, secondsInThePast);
+            varroa-scan-response result = apiInstance.varroaScanGet(qToken, bhiveId, token, epoch, uuid, userId, secondsInThePast);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#varroaScanGet");
@@ -5727,7 +5739,7 @@ public class DefaultApiExample {
         Long secondsInThePast = 7200; // Long | How many seconds we go to the past to get the data measurements.
 
         try {
-            array[varroa-scan] result = apiInstance.varroaScanGet(qToken, bhiveId, token, epoch, uuid, userId, secondsInThePast);
+            varroa-scan-response result = apiInstance.varroaScanGet(qToken, bhiveId, token, epoch, uuid, userId, secondsInThePast);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#varroaScanGet");
@@ -5767,7 +5779,7 @@ Long *secondsInThePast = 7200; // How many seconds we go to the past to get the 
     uuid:uuid
     userId:userId
     secondsInThePast:secondsInThePast
-              completionHandler: ^(array[varroa-scan] output, NSError* error) {
+              completionHandler: ^(varroa-scan-response output, NSError* error) {
     if (output) {
         NSLog(@"%@", output);
     }
@@ -5844,7 +5856,7 @@ namespace Example
 
             try {
                 // Get Varroa Scan images and metadata
-                array[varroa-scan] result = apiInstance.varroaScanGet(qToken, bhiveId, token, epoch, uuid, userId, secondsInThePast);
+                varroa-scan-response result = apiInstance.varroaScanGet(qToken, bhiveId, token, epoch, uuid, userId, secondsInThePast);
                 Debug.WriteLine(result);
             } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.varroaScanGet: " + e.Message );
@@ -6160,10 +6172,7 @@ How many seconds we go to the past to get the data measurements.
   "content" : {
     "application/json" : {
       "schema" : {
-        "type" : "array",
-        "items" : {
-          "$ref" : "#/components/schemas/varroa-scan"
-        }
+        "$ref" : "#/components/schemas/varroa-scan-response"
       }
     }
   }

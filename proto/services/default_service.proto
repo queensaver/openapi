@@ -18,7 +18,7 @@ import public "models/get_temperature.proto";
 import public "models/hive.proto";
 import public "models/new_temperature.proto";
 import public "models/user.proto";
-import public "models/varroa_scan.proto";
+import public "models/varroa_scan_response.proto";
 import public "models/weight.proto";
 
 service DefaultService {
@@ -42,7 +42,7 @@ service DefaultService {
 
   rpc UserPost (UserPostRequest) returns (google.protobuf.Empty);
 
-  rpc VarroaScanGet (VarroaScanGetRequest) returns (VarroaScanGetResponse);
+  rpc VarroaScanGet (VarroaScanGetRequest) returns (VarroaScanResponse);
 
 }
 
@@ -148,9 +148,5 @@ message VarroaScanGetRequest {
   // How many seconds we go to the past to get the data measurements.
   int64 secondsInThePast = 7;
 
-}
-
-message VarroaScanGetResponse {
-  repeated VarroaScan data = 1;
 }
 

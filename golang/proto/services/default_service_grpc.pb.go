@@ -34,7 +34,7 @@ type DefaultServiceClient interface {
 	TemperatureGet(ctx context.Context, in *TemperatureGetRequest, opts ...grpc.CallOption) (*TemperatureGetResponse, error)
 	TemperaturePost(ctx context.Context, in *TemperaturePostRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	UserPost(ctx context.Context, in *UserPostRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	VarroaScanGet(ctx context.Context, in *VarroaScanGetRequest, opts ...grpc.CallOption) (*VarroaScanGetResponse, error)
+	VarroaScanGet(ctx context.Context, in *VarroaScanGetRequest, opts ...grpc.CallOption) (*models.VarroaScanResponse, error)
 }
 
 type defaultServiceClient struct {
@@ -135,8 +135,8 @@ func (c *defaultServiceClient) UserPost(ctx context.Context, in *UserPostRequest
 	return out, nil
 }
 
-func (c *defaultServiceClient) VarroaScanGet(ctx context.Context, in *VarroaScanGetRequest, opts ...grpc.CallOption) (*VarroaScanGetResponse, error) {
-	out := new(VarroaScanGetResponse)
+func (c *defaultServiceClient) VarroaScanGet(ctx context.Context, in *VarroaScanGetRequest, opts ...grpc.CallOption) (*models.VarroaScanResponse, error) {
+	out := new(models.VarroaScanResponse)
 	err := c.cc.Invoke(ctx, "/openapi.services.defaultservice.DefaultService/VarroaScanGet", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -158,7 +158,7 @@ type DefaultServiceServer interface {
 	TemperatureGet(context.Context, *TemperatureGetRequest) (*TemperatureGetResponse, error)
 	TemperaturePost(context.Context, *TemperaturePostRequest) (*emptypb.Empty, error)
 	UserPost(context.Context, *UserPostRequest) (*emptypb.Empty, error)
-	VarroaScanGet(context.Context, *VarroaScanGetRequest) (*VarroaScanGetResponse, error)
+	VarroaScanGet(context.Context, *VarroaScanGetRequest) (*models.VarroaScanResponse, error)
 	mustEmbedUnimplementedDefaultServiceServer()
 }
 
@@ -196,7 +196,7 @@ func (UnimplementedDefaultServiceServer) TemperaturePost(context.Context, *Tempe
 func (UnimplementedDefaultServiceServer) UserPost(context.Context, *UserPostRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UserPost not implemented")
 }
-func (UnimplementedDefaultServiceServer) VarroaScanGet(context.Context, *VarroaScanGetRequest) (*VarroaScanGetResponse, error) {
+func (UnimplementedDefaultServiceServer) VarroaScanGet(context.Context, *VarroaScanGetRequest) (*models.VarroaScanResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method VarroaScanGet not implemented")
 }
 func (UnimplementedDefaultServiceServer) mustEmbedUnimplementedDefaultServiceServer() {}
