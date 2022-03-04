@@ -12,7 +12,7 @@ package openapi
 type VarroaScanResponse struct {
 
 	// HTTP response code. Used for internal purposes, will be sent out at the API.
-	HttpReponseCode int32 `json:"httpReponseCode,omitempty"`
+	HttpResponseCode int32 `json:"httpResponseCode,omitempty"`
 
 	VarroaScans []VarroaScan `json:"varroaScans,omitempty"`
 }

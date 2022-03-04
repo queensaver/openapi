@@ -17,7 +17,7 @@ import public "models/varroa_scan.proto";
 message VarroaScanResponse {
 
   // HTTP response code. Used for internal purposes, will be sent out at the API.
-  int32 httpReponseCode = 1;
+  int32 httpResponseCode = 1;
 
   repeated VarroaScan varroaScans = 2;
 
