@@ -520,7 +520,7 @@ components:
           example: 409
           description: HTTP response code. Used for internal purposes, will be sent out at the API.
           x-protobuf-index: 1
-        varroa-scans:
+        varroaScans:
           type: array
           items:
             $ref: "#/components/schemas/varroa-scan"

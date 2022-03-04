@@ -14,7 +14,7 @@ type VarroaScanResponse struct {
 	// HTTP response code. Used for internal purposes, will be sent out at the API.
 	HttpReponseCode int32 `json:"httpReponseCode,omitempty"`
 
-	VarroaScans []VarroaScan `json:"varroa-scans,omitempty"`
+	VarroaScans []VarroaScan `json:"varroaScans,omitempty"`
 }
 
 // AssertVarroaScanResponseRequired checks if the required fields are not zero-ed

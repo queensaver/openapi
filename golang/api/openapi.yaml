@@ -558,7 +558,7 @@ components:
     varroa-scan-response:
       example:
         httpReponseCode: 409
-        varroa-scans:
+        varroaScans:
         - metadata:
           - x_center: 0.27206607659657794
             confidence: 0.27206607659657794
@@ -600,7 +600,7 @@ components:
           example: 409
           type: integer
           x-protobuf-index: 1
-        varroa-scans:
+        varroaScans:
           items:
             $ref: '#/components/schemas/varroa-scan'
           type: array

@@ -19,6 +19,6 @@ message VarroaScanResponse {
   // HTTP response code. Used for internal purposes, will be sent out at the API.
   int32 httpReponseCode = 1;
 
-  repeated VarroaScan varroaMinusscans = 2;
+  repeated VarroaScan varroaScans = 2;
 
 }
