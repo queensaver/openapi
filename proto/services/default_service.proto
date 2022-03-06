@@ -18,6 +18,7 @@ import public "models/get_temperature.proto";
 import public "models/hive.proto";
 import public "models/new_temperature.proto";
 import public "models/user.proto";
+import public "models/varroa_scan.proto";
 import public "models/varroa_scan_response.proto";
 import public "models/weight.proto";
 
@@ -43,6 +44,8 @@ service DefaultService {
   rpc UserPost (UserPostRequest) returns (google.protobuf.Empty);
 
   rpc VarroaScanGet (VarroaScanGetRequest) returns (VarroaScanResponse);
+
+  rpc VarroaScanPost (VarroaScanPostRequest) returns (google.protobuf.Empty);
 
 }
 
@@ -147,6 +150,19 @@ message VarroaScanGetRequest {
   int64 userId = 6;
   // How many seconds we go to the past to get the data measurements.
   int64 secondsInThePast = 7;
+
+}
+
+message VarroaScanPostRequest {
+  // The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call.
+  string bhiveId = 1;
+  // The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter.
+  int64 epoch = 2;
+  // The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges.
+  string uuid = 3;
+  // The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
+  int64 userId = 4;
+  VarroaScan varroaScan = 5;
 
 }
 

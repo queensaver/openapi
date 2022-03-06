@@ -35,6 +35,7 @@ type DefaultServiceClient interface {
 	TemperaturePost(ctx context.Context, in *TemperaturePostRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	UserPost(ctx context.Context, in *UserPostRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	VarroaScanGet(ctx context.Context, in *VarroaScanGetRequest, opts ...grpc.CallOption) (*models.VarroaScanResponse, error)
+	VarroaScanPost(ctx context.Context, in *VarroaScanPostRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type defaultServiceClient struct {
@@ -144,6 +145,15 @@ func (c *defaultServiceClient) VarroaScanGet(ctx context.Context, in *VarroaScan
 	return out, nil
 }
 
+func (c *defaultServiceClient) VarroaScanPost(ctx context.Context, in *VarroaScanPostRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, "/openapi.services.defaultservice.DefaultService/VarroaScanPost", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DefaultServiceServer is the server API for DefaultService service.
 // All implementations must embed UnimplementedDefaultServiceServer
 // for forward compatibility
@@ -159,6 +169,7 @@ type DefaultServiceServer interface {
 	TemperaturePost(context.Context, *TemperaturePostRequest) (*emptypb.Empty, error)
 	UserPost(context.Context, *UserPostRequest) (*emptypb.Empty, error)
 	VarroaScanGet(context.Context, *VarroaScanGetRequest) (*models.VarroaScanResponse, error)
+	VarroaScanPost(context.Context, *VarroaScanPostRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedDefaultServiceServer()
 }
 
@@ -198,6 +209,9 @@ func (UnimplementedDefaultServiceServer) UserPost(context.Context, *UserPostRequ
 }
 func (UnimplementedDefaultServiceServer) VarroaScanGet(context.Context, *VarroaScanGetRequest) (*models.VarroaScanResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method VarroaScanGet not implemented")
+}
+func (UnimplementedDefaultServiceServer) VarroaScanPost(context.Context, *VarroaScanPostRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method VarroaScanPost not implemented")
 }
 func (UnimplementedDefaultServiceServer) mustEmbedUnimplementedDefaultServiceServer() {}
 
@@ -410,6 +424,24 @@ func _DefaultService_VarroaScanGet_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DefaultService_VarroaScanPost_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(VarroaScanPostRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DefaultServiceServer).VarroaScanPost(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/openapi.services.defaultservice.DefaultService/VarroaScanPost",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DefaultServiceServer).VarroaScanPost(ctx, req.(*VarroaScanPostRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DefaultService_ServiceDesc is the grpc.ServiceDesc for DefaultService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -460,6 +492,10 @@ var DefaultService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "VarroaScanGet",
 			Handler:    _DefaultService_VarroaScanGet_Handler,
+		},
+		{
+			MethodName: "VarroaScanPost",
+			Handler:    _DefaultService_VarroaScanPost_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
