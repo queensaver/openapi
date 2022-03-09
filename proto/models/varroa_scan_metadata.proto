@@ -22,10 +22,10 @@ message VarroaScanMetadata {
   float confidence = 2;
 
   // center of the object on the x axis
-  float xUnderscorecenter = 3;
+  float xCenter = 3;
 
   // center of the object on the y axis
-  float yUnderscorecenter = 4;
+  float yCenter = 4;
 
   // width of the object
   float width = 5;

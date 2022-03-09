@@ -504,13 +504,13 @@ components:
           description: how confident the AI is regarding the result
           example: 0.27206607659657794
           x-protobuf-index: 2
-        x_center:
+        xCenter:
           type: number
           format: float
           description: center of the object on the x axis
           example: 0.27206607659657794
           x-protobuf-index: 3
-        y_center:
+        yCenter:
           type: number
           format: float
           description: center of the object on the y axis

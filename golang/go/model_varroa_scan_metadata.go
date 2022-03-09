@@ -18,10 +18,10 @@ type VarroaScanMetadata struct {
 	Confidence float32 `json:"confidence,omitempty"`
 
 	// center of the object on the x axis
-	XCenter float32 `json:"x_center,omitempty"`
+	XCenter float32 `json:"xCenter,omitempty"`
 
 	// center of the object on the y axis
-	YCenter float32 `json:"y_center,omitempty"`
+	YCenter float32 `json:"yCenter,omitempty"`
 
 	// width of the object
 	Width float32 `json:"width,omitempty"`

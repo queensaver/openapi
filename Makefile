@@ -79,4 +79,4 @@ grpc:
 
 update_and_push: all
 	git commit -am 'openapi updates'
-	it push
+	git push
