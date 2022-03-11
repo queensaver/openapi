@@ -208,7 +208,7 @@ func (s *DefaultApiService) VarroaScanGet(ctx context.Context, qToken string, bh
 }
 
 // VarroaScanPost - Save Varroa Scan metadata
-func (s *DefaultApiService) VarroaScanPost(ctx context.Context, bhiveId string, epoch int64, uuid string, userId int64, varroaScan VarroaScan) (ImplResponse, error) {
+func (s *DefaultApiService) VarroaScanPost(ctx context.Context, userId int64, varroaScan VarroaScan) (ImplResponse, error) {
 	// TODO - update VarroaScanPost with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 

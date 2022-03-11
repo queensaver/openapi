@@ -51,5 +51,5 @@ type DefaultApiServicer interface {
 	TemperaturePost(context.Context, NewTemperature) (ImplResponse, error)
 	UserPost(context.Context, User) (ImplResponse, error)
 	VarroaScanGet(context.Context, string, string, string, int64, string, int64, int64) (ImplResponse, error)
-	VarroaScanPost(context.Context, string, int64, string, int64, VarroaScan) (ImplResponse, error)
+	VarroaScanPost(context.Context, int64, VarroaScan) (ImplResponse, error)
 }

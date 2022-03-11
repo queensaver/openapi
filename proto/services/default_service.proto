@@ -154,15 +154,9 @@ message VarroaScanGetRequest {
 }
 
 message VarroaScanPostRequest {
-  // The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call.
-  string bhiveId = 1;
-  // The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter.
-  int64 epoch = 2;
-  // The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges.
-  string uuid = 3;
   // The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
-  int64 userId = 4;
-  VarroaScan varroaScan = 5;
+  int64 userId = 1;
+  VarroaScan varroaScan = 2;
 
 }
 

@@ -403,28 +403,6 @@ paths:
       summary: Save Varroa Scan metadata
       description: This saves varroa scan metadata. This is not callable from an external API.
       parameters:
-      - name: bhiveId
-        in: query
-        description: The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call.
-        required: true
-        example: 829898a53801
-        schema:
-          type: string
-      - name: epoch
-        in: query
-        description: The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter.
-        example: 1639170002
-        required: false
-        schema:
-          type: integer
-          format: int64
-      - name: uuid
-        in: query
-        description: The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges.
-        required: false
-        example: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
-        schema:
-          type: string
       - name: userId
         in: query
         description: The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
