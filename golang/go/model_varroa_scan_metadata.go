@@ -15,19 +15,19 @@ type VarroaScanMetadata struct {
 	Class string `json:"class,omitempty"`
 
 	// how confident the AI is regarding the result
-	Confidence float32 `json:"confidence,omitempty"`
+	Confidence float64 `json:"confidence,omitempty"`
 
 	// center of the object on the x axis
-	XCenter float32 `json:"xCenter,omitempty"`
+	XCenter float64 `json:"xCenter,omitempty"`
 
 	// center of the object on the y axis
-	YCenter float32 `json:"yCenter,omitempty"`
+	YCenter float64 `json:"yCenter,omitempty"`
 
 	// width of the object
-	Width float32 `json:"width,omitempty"`
+	Width float64 `json:"width,omitempty"`
 
 	// height of the object
-	Height float32 `json:"height,omitempty"`
+	Height float64 `json:"height,omitempty"`
 }
 
 // AssertVarroaScanMetadataRequired checks if the required fields are not zero-ed

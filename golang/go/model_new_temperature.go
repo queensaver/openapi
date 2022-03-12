@@ -12,7 +12,7 @@ package openapi
 type NewTemperature struct {
 
 	// the internal user id of the authenticated user. Will be set internally in the cloud system and does not have an effect if set via the API call as it will be overridden. Don't set this value.
-	UserId float32 `json:"userId,omitempty"`
+	UserId int64 `json:"userId,omitempty"`
 
 	Temperature Temperature `json:"temperature,omitempty"`
 }

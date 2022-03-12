@@ -507,31 +507,31 @@ components:
         confidence:
           description: how confident the AI is regarding the result
           example: 0.27206607659657794
-          format: float
+          format: double
           type: number
           x-protobuf-index: 2
         xCenter:
           description: center of the object on the x axis
           example: 0.27206607659657794
-          format: float
+          format: double
           type: number
           x-protobuf-index: 3
         yCenter:
           description: center of the object on the y axis
           example: 0.27206607659657794
-          format: float
+          format: double
           type: number
           x-protobuf-index: 4
         width:
           description: width of the object
           example: 0.27206607659657794
-          format: float
+          format: double
           type: number
           x-protobuf-index: 5
         height:
           description: height of the object
           example: 0.27206607659657794
-          format: float
+          format: double
           type: number
           x-protobuf-index: 6
       type: object
@@ -552,8 +552,8 @@ components:
           height: 0.27206607659657794
         bhiveId: 829898a53801
         imageUrl: https://api.queensaver.com/images/1234.jpg
+        mites: 3
         epoch: 1639169129
-        uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
       properties:
         bhiveId:
           description: bhiveId to identify the data source. Might become empty in
@@ -577,10 +577,11 @@ components:
             $ref: '#/components/schemas/varroa-scan-metadata'
           type: array
           x-protobuf-index: 4
-        uuid:
-          description: Unique Identifier for this scan
-          example: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
-          type: string
+        mites:
+          description: the number of varroa mites in a scan
+          example: 3
+          format: int64
+          type: integer
           x-protobuf-index: 5
       type: object
     varroa-scan-response:
@@ -602,8 +603,8 @@ components:
             height: 0.27206607659657794
           bhiveId: 829898a53801
           imageUrl: https://api.queensaver.com/images/1234.jpg
+          mites: 3
           epoch: 1639169129
-          uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
         - metadata:
           - confidence: 0.27206607659657794
             yCenter: 0.27206607659657794
@@ -619,8 +620,8 @@ components:
             height: 0.27206607659657794
           bhiveId: 829898a53801
           imageUrl: https://api.queensaver.com/images/1234.jpg
+          mites: 3
           epoch: 1639169129
-          uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
       properties:
         httpResponseCode:
           description: "HTTP response code. Used for internal purposes, will be sent\
@@ -655,7 +656,7 @@ components:
             the API call as it will be overridden. Don't set this value.
           example: 4
           format: int64
-          type: number
+          type: integer
           x-protobuf-index: 1
         temperatures:
           items:
@@ -681,7 +682,7 @@ components:
             the API call as it will be overridden. Don't set this value.
           example: 4
           format: int64
-          type: number
+          type: integer
           x-protobuf-index: 1
         temperature:
           $ref: '#/components/schemas/temperature'

@@ -478,31 +478,31 @@ components:
           x-protobuf-index: 1
         confidence:
           type: number
-          format: float
+          format: double
           description: how confident the AI is regarding the result
           example: 0.27206607659657794
           x-protobuf-index: 2
         xCenter:
           type: number
-          format: float
+          format: double
           description: center of the object on the x axis
           example: 0.27206607659657794
           x-protobuf-index: 3
         yCenter:
           type: number
-          format: float
+          format: double
           description: center of the object on the y axis
           example: 0.27206607659657794
           x-protobuf-index: 4
         width:
           type: number
-          format: float
+          format: double
           description: width of the object
           example: 0.27206607659657794
           x-protobuf-index: 5
         height:
           type: number
-          format: float
+          format: double
           description: height of the object
           example: 0.27206607659657794
           x-protobuf-index: 6
@@ -531,10 +531,11 @@ components:
           items:
             $ref: "#/components/schemas/varroa-scan-metadata"
           x-protobuf-index: 4
-        uuid:
-          type: string
-          example: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
-          description: Unique Identifier for this scan
+        mites:
+          type: integer
+          format: int64
+          description: the number of varroa mites in a scan
+          example: 3
           x-protobuf-index: 5
 
     varroa-scan-response:
@@ -555,7 +556,7 @@ components:
       type: object
       properties:
         userId:
-          type: number
+          type: integer
           format: int64
           description: the internal user id of the authenticated user. Will be set internally in the cloud system and does not have an effect if set via the API call as it will be overridden. Don't set this value.
           example: 4
@@ -579,7 +580,7 @@ components:
       type: object
       properties:
         userId:
-          type: number
+          type: integer
           format: int64
           description: the internal user id of the authenticated user. Will be set internally in the cloud system and does not have an effect if set via the API call as it will be overridden. Don't set this value.
           example: 4

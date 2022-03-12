@@ -895,7 +895,7 @@ ul.nav-tabs {
   "type" : "object",
   "properties" : {
     "userId" : {
-      "type" : "number",
+      "type" : "integer",
       "description" : "the internal user id of the authenticated user. Will be set internally in the cloud system and does not have an effect if set via the API call as it will be overridden. Don't set this value.",
       "format" : "int64",
       "example" : 4,
@@ -988,7 +988,7 @@ ul.nav-tabs {
   "type" : "object",
   "properties" : {
     "userId" : {
-      "type" : "number",
+      "type" : "integer",
       "description" : "the internal user id of the authenticated user. Will be set internally in the cloud system and does not have an effect if set via the API call as it will be overridden. Don't set this value.",
       "format" : "int64",
       "example" : 4,
@@ -1089,10 +1089,11 @@ ul.nav-tabs {
       },
       "x-protobuf-index" : 4
     },
-    "uuid" : {
-      "type" : "string",
-      "description" : "Unique Identifier for this scan",
-      "example" : "41C0FE2F-EB0C-45B4-8842-C117E47C35E3",
+    "mites" : {
+      "type" : "integer",
+      "description" : "the number of varroa mites in a scan",
+      "format" : "int64",
+      "example" : 3,
       "x-protobuf-index" : 5
     }
   }
@@ -1109,35 +1110,35 @@ ul.nav-tabs {
     "confidence" : {
       "type" : "number",
       "description" : "how confident the AI is regarding the result",
-      "format" : "float",
+      "format" : "double",
       "example" : 0.27206607659657794,
       "x-protobuf-index" : 2
     },
     "xCenter" : {
       "type" : "number",
       "description" : "center of the object on the x axis",
-      "format" : "float",
+      "format" : "double",
       "example" : 0.27206607659657794,
       "x-protobuf-index" : 3
     },
     "yCenter" : {
       "type" : "number",
       "description" : "center of the object on the y axis",
-      "format" : "float",
+      "format" : "double",
       "example" : 0.27206607659657794,
       "x-protobuf-index" : 4
     },
     "width" : {
       "type" : "number",
       "description" : "width of the object",
-      "format" : "float",
+      "format" : "double",
       "example" : 0.27206607659657794,
       "x-protobuf-index" : 5
     },
     "height" : {
       "type" : "number",
       "description" : "height of the object",
-      "format" : "float",
+      "format" : "double",
       "example" : 0.27206607659657794,
       "x-protobuf-index" : 6
     }

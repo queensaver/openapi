@@ -19,18 +19,18 @@ message VarroaScanMetadata {
   string class = 1;
 
   // how confident the AI is regarding the result
-  float confidence = 2;
+  double confidence = 2;
 
   // center of the object on the x axis
-  float xCenter = 3;
+  double xCenter = 3;
 
   // center of the object on the y axis
-  float yCenter = 4;
+  double yCenter = 4;
 
   // width of the object
-  float width = 5;
+  double width = 5;
 
   // height of the object
-  float height = 6;
+  double height = 6;
 
 }

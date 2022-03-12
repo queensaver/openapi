@@ -22,8 +22,8 @@ type VarroaScan struct {
 
 	Metadata []VarroaScanMetadata `json:"metadata,omitempty"`
 
-	// Unique Identifier for this scan
-	Uuid string `json:"uuid,omitempty"`
+	// the number of varroa mites in a scan
+	Mites int64 `json:"mites,omitempty"`
 }
 
 // AssertVarroaScanRequired checks if the required fields are not zero-ed
