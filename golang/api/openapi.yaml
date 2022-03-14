@@ -478,7 +478,67 @@ paths:
         "500":
           description: Internal error
       summary: Save Varroa Scan metadata
+  /varroa-scan-image:
+    post:
+      description: Upload a varroa scan image here. The file is attached via multipart/form-data.
+      parameters:
+      - description: Either the cookie or this Q-Token must be set to be authorized
+          for the API call.
+        example: 8B0FE5CF-C096-4B3E-8748-27906B4A9449
+        explode: false
+        in: header
+        name: Q-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Either this cookie or the Q-Token must be set to be authorized
+          for the API call.
+        example: 8B0FE5CF-C096-4B3E-8748-27906B4A9449
+        explode: true
+        in: cookie
+        name: token
+        required: false
+        schema:
+          type: string
+        style: form
+      requestBody:
+        $ref: '#/components/requestBodies/inline_object'
+        content:
+          multipart/form-data:
+            schema:
+              properties:
+                bhiveId:
+                  description: The Mac Address of the QBox client. You can get all
+                    QBox IDs and clients with the /config API call.
+                  example: 829898a53801
+                  type: string
+                epoch:
+                  description: The Unix Time (epoch) that defines the end time of
+                    the varroa images. The beginning is defined by the secondsInThePast
+                    parameter.
+                  example: 1639170002
+                  format: int64
+                  type: integer
+                scan:
+                  format: binary
+                  type: string
+              type: object
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Client error
+        "500":
+          description: Internal error
+      summary: Save Varroa Scan image
 components:
+  requestBodies:
+    inline_object:
+      content:
+        multipart/form-data:
+          schema:
+            $ref: '#/components/schemas/inline_object'
   schemas:
     errorMessage:
       description: A text message describing an error
@@ -885,6 +945,23 @@ components:
       - lastName
       - password
       - username
+      type: object
+    inline_object:
+      properties:
+        bhiveId:
+          description: The Mac Address of the QBox client. You can get all QBox IDs
+            and clients with the /config API call.
+          example: 829898a53801
+          type: string
+        epoch:
+          description: The Unix Time (epoch) that defines the end time of the varroa
+            images. The beginning is defined by the secondsInThePast parameter.
+          example: 1639170002
+          format: int64
+          type: integer
+        scan:
+          format: binary
+          type: string
       type: object
     bbox_bhive:
       example:

@@ -424,6 +424,51 @@ paths:
         "500":
           description: Internal error
 
+  /varroa-scan-image:
+    post:
+      summary: Save Varroa Scan image
+      description: Upload a varroa scan image here. The file is attached via multipart/form-data.
+      parameters:
+      - in: header
+        name: Q-Token
+        description: Either the cookie or this Q-Token must be set to be authorized for the API call.
+        schema:
+          type: string
+        example: 8B0FE5CF-C096-4B3E-8748-27906B4A9449
+        required: true
+      - in: cookie
+        name: token
+        description: Either this cookie or the Q-Token must be set to be authorized for the API call.
+        schema:
+          type: string
+        example: 8B0FE5CF-C096-4B3E-8748-27906B4A9449
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                bhiveId:
+                  description: The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call.
+                  example: 829898a53801
+                  type: string
+                epoch:
+                  description: The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter.
+                  example: 1639170002
+                  type: integer
+                  format: int64
+                scan:
+                  type: string
+                  format: binary
+      responses:
+        "200":
+          description: "OK"
+        "400":
+          description: Client error
+        "500":
+          description: Internal error
+
+
 components:
 
   securitySchemes:

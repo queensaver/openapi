@@ -13,6 +13,7 @@ import (
 	"context"
 	"net/http"
 	"errors"
+	"os"
 )
 
 // DefaultApiService is a service that implements the logic for the DefaultApiServicer
@@ -205,6 +206,23 @@ func (s *DefaultApiService) VarroaScanGet(ctx context.Context, qToken string, bh
 	//return Response(500, nil),nil
 
 	return Response(http.StatusNotImplemented, nil), errors.New("VarroaScanGet method not implemented")
+}
+
+// VarroaScanImagePost - Save Varroa Scan image
+func (s *DefaultApiService) VarroaScanImagePost(ctx context.Context, qToken string, token string, bhiveId string, epoch int64, scan *os.File) (ImplResponse, error) {
+	// TODO - update VarroaScanImagePost with the required logic for this service method.
+	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
+
+	//TODO: Uncomment the next line to return response Response(200, {}) or use other options such as http.Ok ...
+	//return Response(200, nil),nil
+
+	//TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
+	//return Response(400, nil),nil
+
+	//TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
+	//return Response(500, nil),nil
+
+	return Response(http.StatusNotImplemented, nil), errors.New("VarroaScanImagePost method not implemented")
 }
 
 // VarroaScanPost - Save Varroa Scan metadata
