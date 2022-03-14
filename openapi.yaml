@@ -473,7 +473,7 @@ components:
       properties:
         class:
           type: string
-          description: classification of the object - that could be a bee_wing, mite, wax_platelets, wax_moth_droppings, etc...
+          description: "classification of the object - we currently support: bee_leg,bee,mite,bee_wing,ant,wax_moth_droppings,wax_platelets,pollen,bee_droppings,cell_cover_grist"
           example: "mite"
           x-protobuf-index: 1
         confidence:

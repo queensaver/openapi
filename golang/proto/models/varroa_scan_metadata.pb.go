@@ -34,7 +34,7 @@ type VarroaScanMetadata struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// classification of the object - that could be a bee_wing, mite, wax_platelets, wax_moth_droppings, etc...
+	// classification of the object - we currently support: bee_leg,bee,mite,bee_wing,ant,wax_moth_droppings,wax_platelets,pollen,bee_droppings,cell_cover_grist
 	Class string `protobuf:"bytes,1,opt,name=class,proto3" json:"class,omitempty"`
 	// how confident the AI is regarding the result
 	Confidence float64 `protobuf:"fixed64,2,opt,name=confidence,proto3" json:"confidence,omitempty"`

@@ -144,7 +144,7 @@ message VarroaScanGetRequest {
   string token = 3;
   // The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter.
   int64 epoch = 4;
-  // The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges.
+  // The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges. This is currently not implemented.
   string uuid = 5;
   // The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
   int64 userId = 6;

@@ -406,7 +406,7 @@ paths:
         style: form
       - description: "The UUID of the varra-scan. If not set, the request will return\
           \ scans in the given time range. If this parameter is given we ignore all\
-          \ time ranges."
+          \ time ranges. This is currently not implemented."
         example: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
         explode: true
         in: query
@@ -499,8 +499,7 @@ components:
         height: 0.27206607659657794
       properties:
         class:
-          description: "classification of the object - that could be a bee_wing, mite,\
-            \ wax_platelets, wax_moth_droppings, etc..."
+          description: "classification of the object - we currently support: bee_leg,bee,mite,bee_wing,ant,wax_moth_droppings,wax_platelets,pollen,bee_droppings,cell_cover_grist"
           example: mite
           type: string
           x-protobuf-index: 1

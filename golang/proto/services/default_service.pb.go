@@ -790,7 +790,7 @@ type VarroaScanGetRequest struct {
 	Token string `protobuf:"bytes,3,opt,name=token,proto3" json:"token,omitempty"`
 	// The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter.
 	Epoch int64 `protobuf:"varint,4,opt,name=epoch,proto3" json:"epoch,omitempty"`
-	// The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges.
+	// The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges. This is currently not implemented.
 	Uuid string `protobuf:"bytes,5,opt,name=uuid,proto3" json:"uuid,omitempty"`
 	// The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
 	UserId int64 `protobuf:"varint,6,opt,name=userId,proto3" json:"userId,omitempty"`
