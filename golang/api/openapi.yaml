@@ -521,7 +521,7 @@ paths:
                   format: int64
                   type: integer
                 scan:
-                  format: binary
+                  format: byte
                   type: string
               type: object
       responses:
@@ -960,7 +960,7 @@ components:
           format: int64
           type: integer
         scan:
-          format: binary
+          format: byte
           type: string
       type: object
     bbox_bhive:

@@ -6321,7 +6321,7 @@ public class DefaultApiExample {
         String token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie or the Q-Token must be set to be authorized for the API call.
         String bhiveId = bhiveId_example; // String | The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call.
         Long epoch = 789; // Long | The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter.
-        File scan = BINARY_DATA_HERE; // File | 
+        byte[] scan = BYTE_ARRAY_DATA_HERE; // byte[] | 
 
         try {
             apiInstance.varroaScanImagePost(qToken, token, bhiveId, epoch, scan);
@@ -6344,7 +6344,7 @@ public class DefaultApiExample {
         String token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie or the Q-Token must be set to be authorized for the API call.
         String bhiveId = bhiveId_example; // String | The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call.
         Long epoch = 789; // Long | The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter.
-        File scan = BINARY_DATA_HERE; // File | 
+        byte[] scan = BYTE_ARRAY_DATA_HERE; // byte[] | 
 
         try {
             apiInstance.varroaScanImagePost(qToken, token, bhiveId, epoch, scan);
@@ -6374,7 +6374,7 @@ String *qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // Either the cookie or t
 String *token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // Either this cookie or the Q-Token must be set to be authorized for the API call. (optional) (default to null)
 String *bhiveId = bhiveId_example; // The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call. (optional) (default to null)
 Long *epoch = 789; // The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter. (optional) (default to null)
-File *scan = BINARY_DATA_HERE; //  (optional) (default to null)
+byte[] *scan = BYTE_ARRAY_DATA_HERE; //  (optional) (default to null)
 
 // Save Varroa Scan image
 [apiInstance varroaScanImagePostWith:qToken
@@ -6407,7 +6407,7 @@ var opts = {
   'token': 8B0FE5CF-C096-4B3E-8748-27906B4A9449, // {String} Either this cookie or the Q-Token must be set to be authorized for the API call.
   'bhiveId': bhiveId_example, // {String} The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call.
   'epoch': 789, // {Long} The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter.
-  'scan': BINARY_DATA_HERE // {File} 
+  'scan': BYTE_ARRAY_DATA_HERE // {byte[]} 
 };
 
 var callback = function(error, data, response) {
@@ -6448,7 +6448,7 @@ namespace Example
             var token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449;  // String | Either this cookie or the Q-Token must be set to be authorized for the API call. (optional)  (default to null)
             var bhiveId = bhiveId_example;  // String | The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call. (optional)  (default to null)
             var epoch = 789;  // Long | The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter. (optional)  (default to null)
-            var scan = BINARY_DATA_HERE;  // File |  (optional)  (default to null)
+            var scan = BYTE_ARRAY_DATA_HERE;  // byte[] |  (optional)  (default to null)
 
             try {
                 // Save Varroa Scan image
@@ -6477,7 +6477,7 @@ $qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either the cookie or
 $token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie or the Q-Token must be set to be authorized for the API call.
 $bhiveId = bhiveId_example; // String | The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call.
 $epoch = 789; // Long | The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter.
-$scan = BINARY_DATA_HERE; // File | 
+$scan = BYTE_ARRAY_DATA_HERE; // byte[] | 
 
 try {
     $api_instance->varroaScanImagePost($qToken, $token, $bhiveId, $epoch, $scan);
@@ -6503,7 +6503,7 @@ my $qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; # String | Either the cookie 
 my $token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; # String | Either this cookie or the Q-Token must be set to be authorized for the API call.
 my $bhiveId = bhiveId_example; # String | The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call.
 my $epoch = 789; # Long | The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter.
-my $scan = BINARY_DATA_HERE; # File | 
+my $scan = BYTE_ARRAY_DATA_HERE; # byte[] | 
 
 eval {
     $api_instance->varroaScanImagePost(qToken => $qToken, token => $token, bhiveId => $bhiveId, epoch => $epoch, scan => $scan);
@@ -6531,7 +6531,7 @@ qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449 # String | Either the cookie or th
 token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449 # String | Either this cookie or the Q-Token must be set to be authorized for the API call. (optional) (default to null)
 bhiveId = bhiveId_example # String | The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call. (optional) (default to null)
 epoch = 789 # Long | The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter. (optional) (default to null)
-scan = BINARY_DATA_HERE # File |  (optional) (default to null)
+scan = BYTE_ARRAY_DATA_HERE # byte[] |  (optional) (default to null)
 
 try:
     # Save Varroa Scan image
@@ -6548,7 +6548,7 @@ pub fn main() {
     let token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String
     let bhiveId = bhiveId_example; // String
     let epoch = 789; // Long
-    let scan = BINARY_DATA_HERE; // File
+    let scan = BYTE_ARRAY_DATA_HERE; // byte[]
 
     let mut context = DefaultApi::Context::default();
     let result = client.varroaScanImagePost(qToken, token, bhiveId, epoch, scan, &context).wait();
@@ -6656,10 +6656,10 @@ The Unix Time (epoch) that defines the end time of the varroa images. The beginn
         <div class="json-schema-view">
             <div class="primitive">
                 <span class="type">
-                    File
+                    byte[]
                 </span>
                     <span class="format">
-                        (binary)
+                        (byte)
                     </span>
 
             </div>

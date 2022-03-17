@@ -459,7 +459,7 @@ paths:
                   format: int64
                 scan:
                   type: string
-                  format: binary
+                  format: byte
       responses:
         "200":
           description: "OK"

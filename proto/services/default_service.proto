@@ -164,7 +164,7 @@ message VarroaScanImagePostRequest {
   string bhiveId = 3;
   // The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter.
   int64 epoch = 4;
-  string scan = 5;
+  bytes scan = 5;
 
 }
 
