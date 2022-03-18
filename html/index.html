@@ -6319,12 +6319,13 @@ public class DefaultApiExample {
         DefaultApi apiInstance = new DefaultApi();
         String qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either the cookie or this Q-Token must be set to be authorized for the API call.
         String token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie or the Q-Token must be set to be authorized for the API call.
+        Long userId = 789; // Long | the internal user id of the authenticated user. Will be set internally in the cloud system and does not have an effect if set via the API call as it will be overridden. Don't set this value.
         String bhiveId = bhiveId_example; // String | The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call.
         Long epoch = 789; // Long | The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter.
         byte[] scan = BYTE_ARRAY_DATA_HERE; // byte[] | 
 
         try {
-            apiInstance.varroaScanImagePost(qToken, token, bhiveId, epoch, scan);
+            apiInstance.varroaScanImagePost(qToken, token, userId, bhiveId, epoch, scan);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#varroaScanImagePost");
             e.printStackTrace();
@@ -6342,12 +6343,13 @@ public class DefaultApiExample {
         DefaultApi apiInstance = new DefaultApi();
         String qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either the cookie or this Q-Token must be set to be authorized for the API call.
         String token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie or the Q-Token must be set to be authorized for the API call.
+        Long userId = 789; // Long | the internal user id of the authenticated user. Will be set internally in the cloud system and does not have an effect if set via the API call as it will be overridden. Don't set this value.
         String bhiveId = bhiveId_example; // String | The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call.
         Long epoch = 789; // Long | The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter.
         byte[] scan = BYTE_ARRAY_DATA_HERE; // byte[] | 
 
         try {
-            apiInstance.varroaScanImagePost(qToken, token, bhiveId, epoch, scan);
+            apiInstance.varroaScanImagePost(qToken, token, userId, bhiveId, epoch, scan);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#varroaScanImagePost");
             e.printStackTrace();
@@ -6372,6 +6374,7 @@ public class DefaultApiExample {
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 String *qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // Either the cookie or this Q-Token must be set to be authorized for the API call. (default to null)
 String *token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // Either this cookie or the Q-Token must be set to be authorized for the API call. (optional) (default to null)
+Long *userId = 789; // the internal user id of the authenticated user. Will be set internally in the cloud system and does not have an effect if set via the API call as it will be overridden. Don't set this value. (optional) (default to null)
 String *bhiveId = bhiveId_example; // The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call. (optional) (default to null)
 Long *epoch = 789; // The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter. (optional) (default to null)
 byte[] *scan = BYTE_ARRAY_DATA_HERE; //  (optional) (default to null)
@@ -6379,6 +6382,7 @@ byte[] *scan = BYTE_ARRAY_DATA_HERE; //  (optional) (default to null)
 // Save Varroa Scan image
 [apiInstance varroaScanImagePostWith:qToken
     token:token
+    userId:userId
     bhiveId:bhiveId
     epoch:epoch
     scan:scan
@@ -6405,6 +6409,7 @@ var api = new QueensaverApi.DefaultApi()
 var qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // {String} Either the cookie or this Q-Token must be set to be authorized for the API call.
 var opts = {
   'token': 8B0FE5CF-C096-4B3E-8748-27906B4A9449, // {String} Either this cookie or the Q-Token must be set to be authorized for the API call.
+  'userId': 789, // {Long} the internal user id of the authenticated user. Will be set internally in the cloud system and does not have an effect if set via the API call as it will be overridden. Don't set this value.
   'bhiveId': bhiveId_example, // {String} The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call.
   'epoch': 789, // {Long} The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter.
   'scan': BYTE_ARRAY_DATA_HERE // {byte[]} 
@@ -6446,13 +6451,14 @@ namespace Example
             var apiInstance = new DefaultApi();
             var qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449;  // String | Either the cookie or this Q-Token must be set to be authorized for the API call. (default to null)
             var token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449;  // String | Either this cookie or the Q-Token must be set to be authorized for the API call. (optional)  (default to null)
+            var userId = 789;  // Long | the internal user id of the authenticated user. Will be set internally in the cloud system and does not have an effect if set via the API call as it will be overridden. Don't set this value. (optional)  (default to null)
             var bhiveId = bhiveId_example;  // String | The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call. (optional)  (default to null)
             var epoch = 789;  // Long | The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter. (optional)  (default to null)
             var scan = BYTE_ARRAY_DATA_HERE;  // byte[] |  (optional)  (default to null)
 
             try {
                 // Save Varroa Scan image
-                apiInstance.varroaScanImagePost(qToken, token, bhiveId, epoch, scan);
+                apiInstance.varroaScanImagePost(qToken, token, userId, bhiveId, epoch, scan);
             } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.varroaScanImagePost: " + e.Message );
             }
@@ -6475,12 +6481,13 @@ OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKey('token',
 $api_instance = new OpenAPITools\Client\Api\DefaultApi();
 $qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either the cookie or this Q-Token must be set to be authorized for the API call.
 $token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie or the Q-Token must be set to be authorized for the API call.
+$userId = 789; // Long | the internal user id of the authenticated user. Will be set internally in the cloud system and does not have an effect if set via the API call as it will be overridden. Don't set this value.
 $bhiveId = bhiveId_example; // String | The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call.
 $epoch = 789; // Long | The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter.
 $scan = BYTE_ARRAY_DATA_HERE; // byte[] | 
 
 try {
-    $api_instance->varroaScanImagePost($qToken, $token, $bhiveId, $epoch, $scan);
+    $api_instance->varroaScanImagePost($qToken, $token, $userId, $bhiveId, $epoch, $scan);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->varroaScanImagePost: ', $e->getMessage(), PHP_EOL;
 }
@@ -6501,12 +6508,13 @@ $WWW::OPenAPIClient::Configuration::api_key->{'token'} = 'YOUR_API_KEY';
 my $api_instance = WWW::OPenAPIClient::DefaultApi->new();
 my $qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; # String | Either the cookie or this Q-Token must be set to be authorized for the API call.
 my $token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; # String | Either this cookie or the Q-Token must be set to be authorized for the API call.
+my $userId = 789; # Long | the internal user id of the authenticated user. Will be set internally in the cloud system and does not have an effect if set via the API call as it will be overridden. Don't set this value.
 my $bhiveId = bhiveId_example; # String | The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call.
 my $epoch = 789; # Long | The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter.
 my $scan = BYTE_ARRAY_DATA_HERE; # byte[] | 
 
 eval {
-    $api_instance->varroaScanImagePost(qToken => $qToken, token => $token, bhiveId => $bhiveId, epoch => $epoch, scan => $scan);
+    $api_instance->varroaScanImagePost(qToken => $qToken, token => $token, userId => $userId, bhiveId => $bhiveId, epoch => $epoch, scan => $scan);
 };
 if ($@) {
     warn "Exception when calling DefaultApi->varroaScanImagePost: $@\n";
@@ -6529,13 +6537,14 @@ openapi_client.configuration.api_key['token'] = 'YOUR_API_KEY'
 api_instance = openapi_client.DefaultApi()
 qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449 # String | Either the cookie or this Q-Token must be set to be authorized for the API call. (default to null)
 token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449 # String | Either this cookie or the Q-Token must be set to be authorized for the API call. (optional) (default to null)
+userId = 789 # Long | the internal user id of the authenticated user. Will be set internally in the cloud system and does not have an effect if set via the API call as it will be overridden. Don't set this value. (optional) (default to null)
 bhiveId = bhiveId_example # String | The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call. (optional) (default to null)
 epoch = 789 # Long | The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter. (optional) (default to null)
 scan = BYTE_ARRAY_DATA_HERE # byte[] |  (optional) (default to null)
 
 try:
     # Save Varroa Scan image
-    api_instance.varroa_scan_image_post(qToken, token=token, bhiveId=bhiveId, epoch=epoch, scan=scan)
+    api_instance.varroa_scan_image_post(qToken, token=token, userId=userId, bhiveId=bhiveId, epoch=epoch, scan=scan)
 except ApiException as e:
     print("Exception when calling DefaultApi->varroaScanImagePost: %s\n" % e)</code></pre>
                             </div>
@@ -6546,12 +6555,13 @@ except ApiException as e:
 pub fn main() {
     let qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String
     let token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String
+    let userId = 789; // Long
     let bhiveId = bhiveId_example; // String
     let epoch = 789; // Long
     let scan = BYTE_ARRAY_DATA_HERE; // byte[]
 
     let mut context = DefaultApi::Context::default();
-    let result = client.varroaScanImagePost(qToken, token, bhiveId, epoch, scan, &context).wait();
+    let result = client.varroaScanImagePost(qToken, token, userId, bhiveId, epoch, scan, &context).wait();
 
     println!("{:?}", result);
 }
@@ -6605,6 +6615,29 @@ Either the cookie or this Q-Token must be set to be authorized for the API call.
                                 <th width="150px">Name</th>
                                 <th>Description</th>
                               </tr>
+                                  <tr><td style="width:150px;">userId</td>
+<td>
+
+
+    <div id="d2e199_varroaScanImagePost_userId">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    Long
+                </span>
+                    <span class="format">
+                        (int64)
+                    </span>
+
+                    <div class="inner description marked">
+the internal user id of the authenticated user. Will be set internally in the cloud system and does not have an effect if set via the API call as it will be overridden. Don&#39;t set this value.
+                    </div>
+            </div>
+        </div>
+    </div>
+</td>
+</tr>
+
                                   <tr><td style="width:150px;">bhiveId</td>
 <td>
 

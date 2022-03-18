@@ -508,6 +508,14 @@ paths:
           multipart/form-data:
             schema:
               properties:
+                userId:
+                  description: the internal user id of the authenticated user. Will
+                    be set internally in the cloud system and does not have an effect
+                    if set via the API call as it will be overridden. Don't set this
+                    value.
+                  example: 4
+                  format: int64
+                  type: integer
                 bhiveId:
                   description: The Mac Address of the QBox client. You can get all
                     QBox IDs and clients with the /config API call.
@@ -948,6 +956,13 @@ components:
       type: object
     inline_object:
       properties:
+        userId:
+          description: the internal user id of the authenticated user. Will be set
+            internally in the cloud system and does not have an effect if set via
+            the API call as it will be overridden. Don't set this value.
+          example: 4
+          format: int64
+          type: integer
         bhiveId:
           description: The Mac Address of the QBox client. You can get all QBox IDs
             and clients with the /config API call.

@@ -160,11 +160,13 @@ message VarroaScanImagePostRequest {
   string qToken = 1;
   // Either this cookie or the Q-Token must be set to be authorized for the API call.
   string token = 2;
+  // the internal user id of the authenticated user. Will be set internally in the cloud system and does not have an effect if set via the API call as it will be overridden. Don't set this value.
+  int64 userId = 3;
   // The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call.
-  string bhiveId = 3;
+  string bhiveId = 4;
   // The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter.
-  int64 epoch = 4;
-  bytes scan = 5;
+  int64 epoch = 5;
+  bytes scan = 6;
 
 }
 

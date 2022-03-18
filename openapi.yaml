@@ -448,6 +448,11 @@ paths:
             schema:
               type: object
               properties:
+                userId:
+                  type: integer
+                  format: int64
+                  description: the internal user id of the authenticated user. Will be set internally in the cloud system and does not have an effect if set via the API call as it will be overridden. Don't set this value.
+                  example: 4
                 bhiveId:
                   description: The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call.
                   example: 829898a53801
