@@ -587,6 +587,11 @@ components:
           description: the number of varroa mites in a scan
           example: 3
           x-protobuf-index: 5
+        scan:
+          type: string
+          format: byte
+          description: the scanned image data in binary format. this is used internally and won't surface at the API server (any data will be ignored).
+          x-protobuf-index: 6
 
     varroa-scan-response:
       type: object

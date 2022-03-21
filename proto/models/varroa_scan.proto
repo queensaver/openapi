@@ -30,4 +30,7 @@ message VarroaScan {
   // the number of varroa mites in a scan
   int64 mites = 5;
 
+  // the scanned image data in binary format. this is used internally and won't surface at the API server (any data will be ignored).
+  bytes scan = 6;
+
 }

@@ -24,6 +24,9 @@ type VarroaScan struct {
 
 	// the number of varroa mites in a scan
 	Mites int64 `json:"mites,omitempty"`
+
+	// the scanned image data in binary format. this is used internally and won't surface at the API server (any data will be ignored).
+	Scan string `json:"scan,omitempty"`
 }
 
 // AssertVarroaScanRequired checks if the required fields are not zero-ed

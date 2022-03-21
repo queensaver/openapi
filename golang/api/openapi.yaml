@@ -620,6 +620,7 @@ components:
         bhiveId: 829898a53801
         imageUrl: https://api.queensaver.com/images/1234.jpg
         mites: 3
+        scan: scan
         epoch: 1639169129
       properties:
         bhiveId:
@@ -650,6 +651,12 @@ components:
           format: int64
           type: integer
           x-protobuf-index: 5
+        scan:
+          description: the scanned image data in binary format. this is used internally
+            and won't surface at the API server (any data will be ignored).
+          format: byte
+          type: string
+          x-protobuf-index: 6
       type: object
     varroa-scan-response:
       example:
@@ -671,6 +678,7 @@ components:
           bhiveId: 829898a53801
           imageUrl: https://api.queensaver.com/images/1234.jpg
           mites: 3
+          scan: scan
           epoch: 1639169129
         - metadata:
           - confidence: 0.27206607659657794
@@ -688,6 +696,7 @@ components:
           bhiveId: 829898a53801
           imageUrl: https://api.queensaver.com/images/1234.jpg
           mites: 3
+          scan: scan
           epoch: 1639169129
       properties:
         httpResponseCode:
