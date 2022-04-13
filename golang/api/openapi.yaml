@@ -272,11 +272,23 @@ paths:
               $ref: '#/components/schemas/newTemperature'
       responses:
         "200":
-          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/generic-post-response'
+          description: Generic Response object
         "400":
-          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/generic-post-response'
+          description: Generic Response object
         "500":
-          description: Internal error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/generic-post-response'
+          description: Generic Response object
       security:
       - cookieAuth: []
       summary: Save a new temperature measurement
@@ -658,6 +670,16 @@ components:
           type: string
           x-protobuf-index: 6
       type: object
+    generic-post-response:
+      example:
+        httpResponseCode: 409
+      properties:
+        httpResponseCode:
+          description: HTTP response code.
+          example: 409
+          type: integer
+          x-protobuf-index: 1
+      type: object
     varroa-scan-response:
       example:
         httpResponseCode: 409
@@ -718,11 +740,9 @@ components:
         - bhiveId: 829898a53801
           temperature: 13.2345
           epoch: 1639169129
-          error: Sensor error
         - bhiveId: 829898a53801
           temperature: 13.2345
           epoch: 1639169129
-          error: Sensor error
         error: error
         userId: 4
       properties:
@@ -762,13 +782,18 @@ components:
           x-protobuf-index: 1
         temperature:
           $ref: '#/components/schemas/temperature'
+        httpReponseCode:
+          description: "HTTP response code. Used for internal purposes, will be revealed\
+            \ at the API level."
+          example: 409
+          type: integer
+          x-protobuf-index: 3
       type: object
     temperature:
       example:
         bhiveId: 829898a53801
         temperature: 13.2345
         epoch: 1639169129
-        error: Sensor error
       properties:
         bhiveId:
           description: bhiveId to identify the data source. Might become empty in
@@ -788,11 +813,6 @@ components:
           format: int64
           type: integer
           x-protobuf-index: 3
-        error:
-          description: error that the client received when creating a measurement
-          example: Sensor error
-          type: string
-          x-protobuf-index: 4
       required:
       - bhiveId
       - epoch

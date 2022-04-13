@@ -15,6 +15,9 @@ type NewTemperature struct {
 	UserId int64 `json:"userId,omitempty"`
 
 	Temperature Temperature `json:"temperature,omitempty"`
+
+	// HTTP response code. Used for internal purposes, will be revealed at the API level.
+	HttpReponseCode int32 `json:"httpReponseCode,omitempty"`
 }
 
 // AssertNewTemperatureRequired checks if the required fields are not zero-ed

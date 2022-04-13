@@ -19,9 +19,6 @@ type Temperature struct {
 
 	// timestamp of the measurement on one second precision
 	Epoch int64 `json:"epoch"`
-
-	// error that the client received when creating a measurement
-	Error string `json:"error,omitempty"`
 }
 
 // AssertTemperatureRequired checks if the required fields are not zero-ed

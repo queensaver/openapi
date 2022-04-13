@@ -14,6 +14,7 @@ package openapi.services.defaultservice;
 
 import "google/protobuf/empty.proto";
 import public "models/bbox.proto";
+import public "models/generic_post_response.proto";
 import public "models/get_temperature.proto";
 import public "models/hive.proto";
 import public "models/new_temperature.proto";
@@ -39,7 +40,7 @@ service DefaultService {
 
   rpc TemperatureGet (TemperatureGetRequest) returns (TemperatureGetResponse);
 
-  rpc TemperaturePost (TemperaturePostRequest) returns (google.protobuf.Empty);
+  rpc TemperaturePost (TemperaturePostRequest) returns (GenericPostResponse);
 
   rpc UserPost (UserPostRequest) returns (google.protobuf.Empty);
 

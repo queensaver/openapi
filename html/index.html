@@ -891,6 +891,17 @@ ul.nav-tabs {
     }
   }
 };
+    defs["generic-post-response"] = {
+  "type" : "object",
+  "properties" : {
+    "httpResponseCode" : {
+      "type" : "integer",
+      "description" : "HTTP response code.",
+      "example" : 409,
+      "x-protobuf-index" : 1
+    }
+  }
+};
     defs["getTemperature"] = {
   "type" : "object",
   "properties" : {
@@ -996,6 +1007,12 @@ ul.nav-tabs {
     },
     "temperature" : {
       "$ref" : "#/components/schemas/temperature"
+    },
+    "httpReponseCode" : {
+      "type" : "integer",
+      "description" : "HTTP response code. Used for internal purposes, will be revealed at the API level.",
+      "example" : 409,
+      "x-protobuf-index" : 3
     }
   }
 };
@@ -1022,12 +1039,6 @@ ul.nav-tabs {
       "format" : "int64",
       "example" : 1639169129,
       "x-protobuf-index" : 3
-    },
-    "error" : {
-      "type" : "string",
-      "description" : "error that the client received when creating a measurement",
-      "example" : "Sensor error",
-      "x-protobuf-index" : 4
     }
   }
 };
@@ -4924,6 +4935,7 @@ How many seconds we go to the past to get the data measurements.
                           <div class="tab-pane active" id="examples-Default-temperaturePost-0-curl">
                             <pre class="prettyprint"><code class="language-bsh">curl -X POST \
  \
+ -H "Accept: application/json" \
  -H "Content-Type: application/json" \
  "https://api.queensaver.com/v1/temperature" \
  -d ''
@@ -4953,7 +4965,8 @@ public class DefaultApiExample {
         NewTemperature newTemperature = ; // NewTemperature | 
 
         try {
-            apiInstance.temperaturePost(newTemperature);
+            generic-post-response result = apiInstance.temperaturePost(newTemperature);
+            System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#temperaturePost");
             e.printStackTrace();
@@ -4972,7 +4985,8 @@ public class DefaultApiExample {
         NewTemperature newTemperature = ; // NewTemperature | 
 
         try {
-            apiInstance.temperaturePost(newTemperature);
+            generic-post-response result = apiInstance.temperaturePost(newTemperature);
+            System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#temperaturePost");
             e.printStackTrace();
@@ -4999,7 +5013,10 @@ NewTemperature *newTemperature = ; //  (optional)
 
 // Save a new temperature measurement
 [apiInstance temperaturePostWith:newTemperature
-              completionHandler: ^(NSError* error) {
+              completionHandler: ^(generic-post-response output, NSError* error) {
+    if (output) {
+        NSLog(@"%@", output);
+    }
     if (error) {
         NSLog(@"Error: %@", error);
     }
@@ -5027,7 +5044,7 @@ var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
-    console.log('API called successfully.');
+    console.log('API called successfully. Returned data: ' + data);
   }
 };
 api.temperaturePost(opts, callback);
@@ -5061,7 +5078,8 @@ namespace Example
 
             try {
                 // Save a new temperature measurement
-                apiInstance.temperaturePost(newTemperature);
+                generic-post-response result = apiInstance.temperaturePost(newTemperature);
+                Debug.WriteLine(result);
             } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.temperaturePost: " + e.Message );
             }
@@ -5085,7 +5103,8 @@ $api_instance = new OpenAPITools\Client\Api\DefaultApi();
 $newTemperature = ; // NewTemperature | 
 
 try {
-    $api_instance->temperaturePost($newTemperature);
+    $result = $api_instance->temperaturePost($newTemperature);
+    print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->temperaturePost: ', $e->getMessage(), PHP_EOL;
 }
@@ -5107,7 +5126,8 @@ my $api_instance = WWW::OPenAPIClient::DefaultApi->new();
 my $newTemperature = WWW::OPenAPIClient::Object::NewTemperature->new(); # NewTemperature | 
 
 eval {
-    $api_instance->temperaturePost(newTemperature => $newTemperature);
+    my $result = $api_instance->temperaturePost(newTemperature => $newTemperature);
+    print Dumper($result);
 };
 if ($@) {
     warn "Exception when calling DefaultApi->temperaturePost: $@\n";
@@ -5132,7 +5152,8 @@ newTemperature =  # NewTemperature |  (optional)
 
 try:
     # Save a new temperature measurement
-    api_instance.temperature_post(newTemperature=newTemperature)
+    api_response = api_instance.temperature_post(newTemperature=newTemperature)
+    pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->temperaturePost: %s\n" % e)</code></pre>
                             </div>
@@ -5213,7 +5234,7 @@ $(document).ready(function() {
                             <h3 id="examples-Default-temperaturePost-title-200"></h3>
                             <p id="examples-Default-temperaturePost-description-200" class="marked"></p>
                             <script>
-                              var responseDefault200_description = `OK`;
+                              var responseDefault200_description = `Generic Response object`;
                               var responseDefault200_description_break = responseDefault200_description.indexOf('\n');
                               if (responseDefault200_description_break == -1) {
                                 $("#examples-Default-temperaturePost-title-200").text("Status: 200 - " + responseDefault200_description);
@@ -5225,17 +5246,61 @@ $(document).ready(function() {
 
 
                             <ul id="responses-detail-Default-temperaturePost-200" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Default-temperaturePost-200-schema">Schema</a>
+                                </li>
+
+
 
 
                             </ul>
 
 
                             <div class="tab-content" id="responses-Default-temperaturePost-200-wrapper" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-Default-temperaturePost-200-schema">
+                                  <div id="responses-Default-temperaturePost-schema-200" class="exampleStyle">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Generic Response object",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/generic-post-response"
+      }
+    }
+  }
+};
+                                        var schema = findNode('schema',schemaWrapper).schema;
+                                        if (!schema) {
+                                          schema = schemaWrapper.schema;
+                                        }
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else if (schema.items != null && schema.items.$ref != null) {
+                                            schema.items = defsParser.$refs.get(schema.items.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-Default-temperaturePost-200-schema-data').val(JSON.stringify(schema));
+                                        var result = $('#responses-Default-temperaturePost-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-Default-temperaturePost-200-schema-data' type='hidden' value=''></input>
+                                </div>
                             </div>
                             <h3 id="examples-Default-temperaturePost-title-400"></h3>
                             <p id="examples-Default-temperaturePost-description-400" class="marked"></p>
                             <script>
-                              var responseDefault400_description = `Client error`;
+                              var responseDefault400_description = `Generic Response object`;
                               var responseDefault400_description_break = responseDefault400_description.indexOf('\n');
                               if (responseDefault400_description_break == -1) {
                                 $("#examples-Default-temperaturePost-title-400").text("Status: 400 - " + responseDefault400_description);
@@ -5247,17 +5312,61 @@ $(document).ready(function() {
 
 
                             <ul id="responses-detail-Default-temperaturePost-400" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Default-temperaturePost-400-schema">Schema</a>
+                                </li>
+
+
 
 
                             </ul>
 
 
                             <div class="tab-content" id="responses-Default-temperaturePost-400-wrapper" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-Default-temperaturePost-400-schema">
+                                  <div id="responses-Default-temperaturePost-schema-400" class="exampleStyle">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Generic Response object",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/generic-post-response"
+      }
+    }
+  }
+};
+                                        var schema = findNode('schema',schemaWrapper).schema;
+                                        if (!schema) {
+                                          schema = schemaWrapper.schema;
+                                        }
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else if (schema.items != null && schema.items.$ref != null) {
+                                            schema.items = defsParser.$refs.get(schema.items.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-Default-temperaturePost-400-schema-data').val(JSON.stringify(schema));
+                                        var result = $('#responses-Default-temperaturePost-schema-400');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-Default-temperaturePost-400-schema-data' type='hidden' value=''></input>
+                                </div>
                             </div>
                             <h3 id="examples-Default-temperaturePost-title-500"></h3>
                             <p id="examples-Default-temperaturePost-description-500" class="marked"></p>
                             <script>
-                              var responseDefault500_description = `Internal error`;
+                              var responseDefault500_description = `Generic Response object`;
                               var responseDefault500_description_break = responseDefault500_description.indexOf('\n');
                               if (responseDefault500_description_break == -1) {
                                 $("#examples-Default-temperaturePost-title-500").text("Status: 500 - " + responseDefault500_description);
@@ -5269,12 +5378,56 @@ $(document).ready(function() {
 
 
                             <ul id="responses-detail-Default-temperaturePost-500" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Default-temperaturePost-500-schema">Schema</a>
+                                </li>
+
+
 
 
                             </ul>
 
 
                             <div class="tab-content" id="responses-Default-temperaturePost-500-wrapper" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-Default-temperaturePost-500-schema">
+                                  <div id="responses-Default-temperaturePost-schema-500" class="exampleStyle">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Generic Response object",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/generic-post-response"
+      }
+    }
+  }
+};
+                                        var schema = findNode('schema',schemaWrapper).schema;
+                                        if (!schema) {
+                                          schema = schemaWrapper.schema;
+                                        }
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else if (schema.items != null && schema.items.$ref != null) {
+                                            schema.items = defsParser.$refs.get(schema.items.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-Default-temperaturePost-500-schema-data').val(JSON.stringify(schema));
+                                        var result = $('#responses-Default-temperaturePost-schema-500');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-Default-temperaturePost-500-schema-data' type='hidden' value=''></input>
+                                </div>
                             </div>
                         </article>
                       </div>

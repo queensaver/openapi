@@ -261,11 +261,23 @@ paths:
               $ref: "#/components/schemas/newTemperature"
       responses:
         "200":
-          description: "OK"
+          description: "Generic Response object"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/generic-post-response"
         "400":
-          description: Client error
+          description: "Generic Response object"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/generic-post-response"
         "500":
-          description: Internal error
+          description: "Generic Response object"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/generic-post-response"
 
   /scale:
     get:
@@ -593,6 +605,15 @@ components:
           description: the scanned image data in binary format. this is used internally and won't surface at the API server (any data will be ignored).
           x-protobuf-index: 6
 
+    generic-post-response:
+      type: object
+      properties:
+        httpResponseCode:
+          type: integer
+          example: 409
+          description: HTTP response code.
+          x-protobuf-index: 1
+
     varroa-scan-response:
       type: object
       properties:
@@ -644,6 +665,12 @@ components:
           description: the temperature object
           $ref: "#/components/schemas/temperature"
           x-protobuf-index: 2
+        httpReponseCode:
+          type: integer
+          example: 409
+          description: HTTP response code. Used for internal purposes, will be revealed at the API level.
+          x-protobuf-index: 3
+ 
  
     temperature:
       type: object
@@ -665,11 +692,7 @@ components:
           description: timestamp of the measurement on one second precision
           example: 1639169129
           x-protobuf-index: 3
-        error:
-          type: string
-          description: error that the client received when creating a measurement
-          example: "Sensor error"
-          x-protobuf-index: 4
+
       required:
       - bhiveId
       - temperature
