@@ -19,6 +19,6 @@ message GetTemperatureResponse {
   repeated Temperature temperatures = 1;
 
   // HTTP response code. Used for internal purposes, will be sent out at the API.
-  int32 httpReponseCode = 2;
+  int32 httpResponseCode = 2;
 
 }

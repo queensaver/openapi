@@ -744,7 +744,6 @@ components:
       type: object
     get-temperature-response:
       example:
-        httpReponseCode: 409
         temperatures:
         - bhiveId: 829898a53801
           temperature: 13.2345
@@ -752,13 +751,14 @@ components:
         - bhiveId: 829898a53801
           temperature: 13.2345
           epoch: 1639169129
+        httpResponseCode: 409
       properties:
         temperatures:
           items:
             $ref: '#/components/schemas/temperature'
           type: array
           x-protobuf-index: 1
-        httpReponseCode:
+        httpResponseCode:
           description: "HTTP response code. Used for internal purposes, will be sent\
             \ out at the API."
           example: 409

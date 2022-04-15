@@ -643,7 +643,7 @@ components:
           items:
             $ref: "#/components/schemas/temperature"
           x-protobuf-index: 1
-        httpReponseCode:
+        httpResponseCode:
           type: integer
           example: 409
           description: HTTP response code. Used for internal purposes, will be sent out at the API.

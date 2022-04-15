@@ -14,7 +14,7 @@ type GetTemperatureResponse struct {
 	Temperatures []Temperature `json:"temperatures,omitempty"`
 
 	// HTTP response code. Used for internal purposes, will be sent out at the API.
-	HttpReponseCode int32 `json:"httpReponseCode,omitempty"`
+	HttpResponseCode int32 `json:"httpResponseCode,omitempty"`
 }
 
 // AssertGetTemperatureResponseRequired checks if the required fields are not zero-ed
