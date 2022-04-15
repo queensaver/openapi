@@ -240,9 +240,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/getTemperature"
+                $ref: "#/components/schemas/get-temperature-response"
 
         "400":
           description: Client error
@@ -258,6 +256,7 @@ paths:
         content:
           application/json:
             schema:
+              # TODO: this API is shit.
               $ref: "#/components/schemas/newTemperature"
       responses:
         "200":
@@ -628,29 +627,19 @@ components:
             $ref: "#/components/schemas/varroa-scan"
           x-protobuf-index: 2
 
-    getTemperature:
+    get-temperature-response:
       type: object
       properties:
-        userId:
-          type: integer
-          format: int64
-          description: the internal user id of the authenticated user. Will be set internally in the cloud system and does not have an effect if set via the API call as it will be overridden. Don't set this value.
-          example: 4
-          x-protobuf-index: 1
         temperatures:
           type: array
           items:
             $ref: "#/components/schemas/temperature"
-          x-protobuf-index: 2
-        error:
-          type: string
-          description: error
-          x-protobuf-index: 3
+          x-protobuf-index: 1
         httpReponseCode:
           type: integer
           example: 409
           description: HTTP response code. Used for internal purposes, will be sent out at the API.
-          x-protobuf-index: 4
+          x-protobuf-index: 2
             
     newTemperature:
       type: object

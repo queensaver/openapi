@@ -31,7 +31,7 @@ type DefaultServiceClient interface {
 	HivesPut(ctx context.Context, in *HivesPutRequest, opts ...grpc.CallOption) (*models.Hive, error)
 	LoginPost(ctx context.Context, in *LoginPostRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	ScaleGet(ctx context.Context, in *ScaleGetRequest, opts ...grpc.CallOption) (*ScaleGetResponse, error)
-	TemperatureGet(ctx context.Context, in *TemperatureGetRequest, opts ...grpc.CallOption) (*TemperatureGetResponse, error)
+	TemperatureGet(ctx context.Context, in *TemperatureGetRequest, opts ...grpc.CallOption) (*models.GetTemperatureResponse, error)
 	TemperaturePost(ctx context.Context, in *TemperaturePostRequest, opts ...grpc.CallOption) (*models.GenericPostResponse, error)
 	UserPost(ctx context.Context, in *UserPostRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	VarroaScanGet(ctx context.Context, in *VarroaScanGetRequest, opts ...grpc.CallOption) (*models.VarroaScanResponse, error)
@@ -110,8 +110,8 @@ func (c *defaultServiceClient) ScaleGet(ctx context.Context, in *ScaleGetRequest
 	return out, nil
 }
 
-func (c *defaultServiceClient) TemperatureGet(ctx context.Context, in *TemperatureGetRequest, opts ...grpc.CallOption) (*TemperatureGetResponse, error) {
-	out := new(TemperatureGetResponse)
+func (c *defaultServiceClient) TemperatureGet(ctx context.Context, in *TemperatureGetRequest, opts ...grpc.CallOption) (*models.GetTemperatureResponse, error) {
+	out := new(models.GetTemperatureResponse)
 	err := c.cc.Invoke(ctx, "/openapi.services.defaultservice.DefaultService/TemperatureGet", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -175,7 +175,7 @@ type DefaultServiceServer interface {
 	HivesPut(context.Context, *HivesPutRequest) (*models.Hive, error)
 	LoginPost(context.Context, *LoginPostRequest) (*emptypb.Empty, error)
 	ScaleGet(context.Context, *ScaleGetRequest) (*ScaleGetResponse, error)
-	TemperatureGet(context.Context, *TemperatureGetRequest) (*TemperatureGetResponse, error)
+	TemperatureGet(context.Context, *TemperatureGetRequest) (*models.GetTemperatureResponse, error)
 	TemperaturePost(context.Context, *TemperaturePostRequest) (*models.GenericPostResponse, error)
 	UserPost(context.Context, *UserPostRequest) (*emptypb.Empty, error)
 	VarroaScanGet(context.Context, *VarroaScanGetRequest) (*models.VarroaScanResponse, error)
@@ -209,7 +209,7 @@ func (UnimplementedDefaultServiceServer) LoginPost(context.Context, *LoginPostRe
 func (UnimplementedDefaultServiceServer) ScaleGet(context.Context, *ScaleGetRequest) (*ScaleGetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ScaleGet not implemented")
 }
-func (UnimplementedDefaultServiceServer) TemperatureGet(context.Context, *TemperatureGetRequest) (*TemperatureGetResponse, error) {
+func (UnimplementedDefaultServiceServer) TemperatureGet(context.Context, *TemperatureGetRequest) (*models.GetTemperatureResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TemperatureGet not implemented")
 }
 func (UnimplementedDefaultServiceServer) TemperaturePost(context.Context, *TemperaturePostRequest) (*models.GenericPostResponse, error) {

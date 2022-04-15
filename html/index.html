@@ -902,33 +902,21 @@ ul.nav-tabs {
     }
   }
 };
-    defs["getTemperature"] = {
+    defs["get-temperature-response"] = {
   "type" : "object",
   "properties" : {
-    "userId" : {
-      "type" : "integer",
-      "description" : "the internal user id of the authenticated user. Will be set internally in the cloud system and does not have an effect if set via the API call as it will be overridden. Don't set this value.",
-      "format" : "int64",
-      "example" : 4,
-      "x-protobuf-index" : 1
-    },
     "temperatures" : {
       "type" : "array",
       "items" : {
         "$ref" : "#/components/schemas/temperature"
       },
-      "x-protobuf-index" : 2
-    },
-    "error" : {
-      "type" : "string",
-      "description" : "error",
-      "x-protobuf-index" : 3
+      "x-protobuf-index" : 1
     },
     "httpReponseCode" : {
       "type" : "integer",
       "description" : "HTTP response code. Used for internal purposes, will be sent out at the API.",
       "example" : 409,
-      "x-protobuf-index" : 4
+      "x-protobuf-index" : 2
     }
   }
 };
@@ -4415,7 +4403,7 @@ public class DefaultApiExample {
         String token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie or the Q-Token must be set to be authorized for the API call.
 
         try {
-            array[getTemperature] result = apiInstance.temperatureGet(qToken, bhiveId, epoch, secondsInThePast, token);
+            get-temperature-response result = apiInstance.temperatureGet(qToken, bhiveId, epoch, secondsInThePast, token);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#temperatureGet");
@@ -4439,7 +4427,7 @@ public class DefaultApiExample {
         String token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie or the Q-Token must be set to be authorized for the API call.
 
         try {
-            array[getTemperature] result = apiInstance.temperatureGet(qToken, bhiveId, epoch, secondsInThePast, token);
+            get-temperature-response result = apiInstance.temperatureGet(qToken, bhiveId, epoch, secondsInThePast, token);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#temperatureGet");
@@ -4475,7 +4463,7 @@ String *token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // Either this cookie or t
     epoch:epoch
     secondsInThePast:secondsInThePast
     token:token
-              completionHandler: ^(array[getTemperature] output, NSError* error) {
+              completionHandler: ^(get-temperature-response output, NSError* error) {
     if (output) {
         NSLog(@"%@", output);
     }
@@ -4548,7 +4536,7 @@ namespace Example
 
             try {
                 // Get Temperature values
-                array[getTemperature] result = apiInstance.temperatureGet(qToken, bhiveId, epoch, secondsInThePast, token);
+                get-temperature-response result = apiInstance.temperatureGet(qToken, bhiveId, epoch, secondsInThePast, token);
                 Debug.WriteLine(result);
             } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.temperatureGet: " + e.Message );
@@ -4819,10 +4807,7 @@ How many seconds we go to the past to get the data measurements.
   "content" : {
     "application/json" : {
       "schema" : {
-        "type" : "array",
-        "items" : {
-          "$ref" : "#/components/schemas/getTemperature"
-        }
+        "$ref" : "#/components/schemas/get-temperature-response"
       }
     }
   }

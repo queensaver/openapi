@@ -251,9 +251,7 @@ paths:
           content:
             application/json:
               schema:
-                items:
-                  $ref: '#/components/schemas/getTemperature'
-                type: array
+                $ref: '#/components/schemas/get-temperature-response'
           description: Successfully returned a list of scale measurements
         "400":
           description: Client error
@@ -733,7 +731,7 @@ components:
           type: array
           x-protobuf-index: 2
       type: object
-    getTemperature:
+    get-temperature-response:
       example:
         httpReponseCode: 409
         temperatures:
@@ -743,32 +741,18 @@ components:
         - bhiveId: 829898a53801
           temperature: 13.2345
           epoch: 1639169129
-        error: error
-        userId: 4
       properties:
-        userId:
-          description: the internal user id of the authenticated user. Will be set
-            internally in the cloud system and does not have an effect if set via
-            the API call as it will be overridden. Don't set this value.
-          example: 4
-          format: int64
-          type: integer
-          x-protobuf-index: 1
         temperatures:
           items:
             $ref: '#/components/schemas/temperature'
           type: array
-          x-protobuf-index: 2
-        error:
-          description: error
-          type: string
-          x-protobuf-index: 3
+          x-protobuf-index: 1
         httpReponseCode:
           description: "HTTP response code. Used for internal purposes, will be sent\
             \ out at the API."
           example: 409
           type: integer
-          x-protobuf-index: 4
+          x-protobuf-index: 2
       type: object
     newTemperature:
       properties:
