@@ -143,7 +143,7 @@ func (s *DefaultApiService) ScaleGet(ctx context.Context, qToken string, bhiveId
 }
 
 // TemperatureGet - Get Temperature values
-func (s *DefaultApiService) TemperatureGet(ctx context.Context, qToken string, bhiveId string, epoch int64, secondsInThePast int64, token string) (ImplResponse, error) {
+func (s *DefaultApiService) TemperatureGet(ctx context.Context, qToken string, bhiveId string, epoch int64, secondsInThePast int64, token string, userId int64) (ImplResponse, error) {
 	// TODO - update TemperatureGet with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 

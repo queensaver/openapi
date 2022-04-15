@@ -121,6 +121,8 @@ message TemperatureGetRequest {
   int64 secondsInThePast = 4;
   // Either this cookie or the Q-Token must be set to be authorized for the API call.
   string token = 5;
+  // The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
+  int64 userId = 6;
 
 }
 

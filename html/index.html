@@ -4372,7 +4372,7 @@ How many seconds we go to the past to get the data measurements.
                             <pre class="prettyprint"><code class="language-bsh">curl -X GET \
  \
  -H "Accept: application/json" \
- "https://api.queensaver.com/v1/temperature?bhiveId=829898a53801&epoch=1639170002&secondsInThePast=7200"
+ "https://api.queensaver.com/v1/temperature?bhiveId=829898a53801&epoch=1639170002&secondsInThePast=7200&userId=123"
 </code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-temperatureGet-0-java">
@@ -4401,9 +4401,10 @@ public class DefaultApiExample {
         Long epoch = 1639170002; // Long | The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the secondsInThePast parameter.
         Long secondsInThePast = 7200; // Long | How many seconds we go to the past to get the data measurements.
         String token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie or the Q-Token must be set to be authorized for the API call.
+        Long userId = 123; // Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
 
         try {
-            get-temperature-response result = apiInstance.temperatureGet(qToken, bhiveId, epoch, secondsInThePast, token);
+            get-temperature-response result = apiInstance.temperatureGet(qToken, bhiveId, epoch, secondsInThePast, token, userId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#temperatureGet");
@@ -4425,9 +4426,10 @@ public class DefaultApiExample {
         Long epoch = 1639170002; // Long | The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the secondsInThePast parameter.
         Long secondsInThePast = 7200; // Long | How many seconds we go to the past to get the data measurements.
         String token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie or the Q-Token must be set to be authorized for the API call.
+        Long userId = 123; // Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
 
         try {
-            get-temperature-response result = apiInstance.temperatureGet(qToken, bhiveId, epoch, secondsInThePast, token);
+            get-temperature-response result = apiInstance.temperatureGet(qToken, bhiveId, epoch, secondsInThePast, token, userId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#temperatureGet");
@@ -4456,6 +4458,7 @@ String *bhiveId = 829898a53801; // The Mac Address of the QBox client. You can g
 Long *epoch = 1639170002; // The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the secondsInThePast parameter. (default to null)
 Long *secondsInThePast = 7200; // How many seconds we go to the past to get the data measurements. (default to null)
 String *token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // Either this cookie or the Q-Token must be set to be authorized for the API call. (optional) (default to null)
+Long *userId = 123; // The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore. (optional) (default to null)
 
 // Get Temperature values
 [apiInstance temperatureGetWith:qToken
@@ -4463,6 +4466,7 @@ String *token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // Either this cookie or t
     epoch:epoch
     secondsInThePast:secondsInThePast
     token:token
+    userId:userId
               completionHandler: ^(get-temperature-response output, NSError* error) {
     if (output) {
         NSLog(@"%@", output);
@@ -4491,7 +4495,8 @@ var bhiveId = 829898a53801; // {String} The Mac Address of the QBox client. You 
 var epoch = 1639170002; // {Long} The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the secondsInThePast parameter.
 var secondsInThePast = 7200; // {Long} How many seconds we go to the past to get the data measurements.
 var opts = {
-  'token': 8B0FE5CF-C096-4B3E-8748-27906B4A9449 // {String} Either this cookie or the Q-Token must be set to be authorized for the API call.
+  'token': 8B0FE5CF-C096-4B3E-8748-27906B4A9449, // {String} Either this cookie or the Q-Token must be set to be authorized for the API call.
+  'userId': 123 // {Long} The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
 };
 
 var callback = function(error, data, response) {
@@ -4533,10 +4538,11 @@ namespace Example
             var epoch = 1639170002;  // Long | The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the secondsInThePast parameter. (default to null)
             var secondsInThePast = 7200;  // Long | How many seconds we go to the past to get the data measurements. (default to null)
             var token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449;  // String | Either this cookie or the Q-Token must be set to be authorized for the API call. (optional)  (default to null)
+            var userId = 123;  // Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore. (optional)  (default to null)
 
             try {
                 // Get Temperature values
-                get-temperature-response result = apiInstance.temperatureGet(qToken, bhiveId, epoch, secondsInThePast, token);
+                get-temperature-response result = apiInstance.temperatureGet(qToken, bhiveId, epoch, secondsInThePast, token, userId);
                 Debug.WriteLine(result);
             } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.temperatureGet: " + e.Message );
@@ -4563,9 +4569,10 @@ $bhiveId = 829898a53801; // String | The Mac Address of the QBox client. You can
 $epoch = 1639170002; // Long | The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the secondsInThePast parameter.
 $secondsInThePast = 7200; // Long | How many seconds we go to the past to get the data measurements.
 $token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie or the Q-Token must be set to be authorized for the API call.
+$userId = 123; // Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
 
 try {
-    $result = $api_instance->temperatureGet($qToken, $bhiveId, $epoch, $secondsInThePast, $token);
+    $result = $api_instance->temperatureGet($qToken, $bhiveId, $epoch, $secondsInThePast, $token, $userId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->temperatureGet: ', $e->getMessage(), PHP_EOL;
@@ -4590,9 +4597,10 @@ my $bhiveId = 829898a53801; # String | The Mac Address of the QBox client. You c
 my $epoch = 1639170002; # Long | The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the secondsInThePast parameter.
 my $secondsInThePast = 7200; # Long | How many seconds we go to the past to get the data measurements.
 my $token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; # String | Either this cookie or the Q-Token must be set to be authorized for the API call.
+my $userId = 123; # Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
 
 eval {
-    my $result = $api_instance->temperatureGet(qToken => $qToken, bhiveId => $bhiveId, epoch => $epoch, secondsInThePast => $secondsInThePast, token => $token);
+    my $result = $api_instance->temperatureGet(qToken => $qToken, bhiveId => $bhiveId, epoch => $epoch, secondsInThePast => $secondsInThePast, token => $token, userId => $userId);
     print Dumper($result);
 };
 if ($@) {
@@ -4619,10 +4627,11 @@ bhiveId = 829898a53801 # String | The Mac Address of the QBox client. You can ge
 epoch = 1639170002 # Long | The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the secondsInThePast parameter. (default to null)
 secondsInThePast = 7200 # Long | How many seconds we go to the past to get the data measurements. (default to null)
 token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449 # String | Either this cookie or the Q-Token must be set to be authorized for the API call. (optional) (default to null)
+userId = 123 # Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore. (optional) (default to null)
 
 try:
     # Get Temperature values
-    api_response = api_instance.temperature_get(qToken, bhiveId, epoch, secondsInThePast, token=token)
+    api_response = api_instance.temperature_get(qToken, bhiveId, epoch, secondsInThePast, token=token, userId=userId)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->temperatureGet: %s\n" % e)</code></pre>
@@ -4637,9 +4646,10 @@ pub fn main() {
     let epoch = 1639170002; // Long
     let secondsInThePast = 7200; // Long
     let token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String
+    let userId = 123; // Long
 
     let mut context = DefaultApi::Context::default();
-    let result = client.temperatureGet(qToken, bhiveId, epoch, secondsInThePast, token, &context).wait();
+    let result = client.temperatureGet(qToken, bhiveId, epoch, secondsInThePast, token, userId, &context).wait();
 
     println!("{:?}", result);
 }
@@ -4764,6 +4774,29 @@ How many seconds we go to the past to get the data measurements.
                 <div class="inner required">
                     Required
                 </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                                <tr><td style="width:150px;">userId</td>
+<td>
+
+
+    <div id="d2e199_temperatureGet_userId">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    Long
+                </span>
+                    <span class="format">
+                        (int64)
+                    </span>
+
+                    <div class="inner description marked">
+The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
+                    </div>
+            </div>
         </div>
     </div>
 </td>

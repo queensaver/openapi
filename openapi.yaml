@@ -234,6 +234,14 @@ paths:
         schema:
           type: integer
           format: int64
+      - name: userId
+        in: query
+        description: The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
+        required: false 
+        example: 123
+        schema:
+          type: integer
+          format: int64
       responses:
         "200":
           description: "Successfully returned a list of scale measurements"
