@@ -17,7 +17,7 @@ import public "models/bbox.proto";
 import public "models/generic_post_response.proto";
 import public "models/get_temperature_response.proto";
 import public "models/hive.proto";
-import public "models/new_temperature.proto";
+import public "models/temperature.proto";
 import public "models/user.proto";
 import public "models/varroa_scan.proto";
 import public "models/varroa_scan_response.proto";
@@ -127,7 +127,9 @@ message TemperatureGetRequest {
 }
 
 message TemperaturePostRequest {
-  NewTemperature newTemperature = 1;
+  // The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
+  int64 userId = 1;
+  Temperature temperature = 2;
 
 }
 

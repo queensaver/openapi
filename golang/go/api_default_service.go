@@ -160,7 +160,7 @@ func (s *DefaultApiService) TemperatureGet(ctx context.Context, qToken string, b
 }
 
 // TemperaturePost - Save a new temperature measurement
-func (s *DefaultApiService) TemperaturePost(ctx context.Context, newTemperature NewTemperature) (ImplResponse, error) {
+func (s *DefaultApiService) TemperaturePost(ctx context.Context, userId int64, temperature Temperature) (ImplResponse, error) {
 	// TODO - update TemperaturePost with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 

@@ -274,11 +274,23 @@ paths:
     post:
       description: This stores a new temperature measurement in the database. Must
         be authorized wit ha cookie or a token.
+      parameters:
+      - description: The User ID. This is used internally and will be overwritten
+          if you send it to the api server. Ignore.
+        example: 123
+        explode: true
+        in: query
+        name: userId
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/newTemperature'
+              $ref: '#/components/schemas/temperature'
       responses:
         "200":
           content:
@@ -764,25 +776,6 @@ components:
           example: 409
           type: integer
           x-protobuf-index: 2
-      type: object
-    newTemperature:
-      properties:
-        userId:
-          description: the internal user id of the authenticated user. Will be set
-            internally in the cloud system and does not have an effect if set via
-            the API call as it will be overridden. Don't set this value.
-          example: 4
-          format: int64
-          type: integer
-          x-protobuf-index: 1
-        temperature:
-          $ref: '#/components/schemas/temperature'
-        httpReponseCode:
-          description: "HTTP response code. Used for internal purposes, will be revealed\
-            \ at the API level."
-          example: 409
-          type: integer
-          x-protobuf-index: 3
       type: object
     temperature:
       example:

@@ -983,27 +983,6 @@ ul.nav-tabs {
     }
   }
 };
-    defs["newTemperature"] = {
-  "type" : "object",
-  "properties" : {
-    "userId" : {
-      "type" : "integer",
-      "description" : "the internal user id of the authenticated user. Will be set internally in the cloud system and does not have an effect if set via the API call as it will be overridden. Don't set this value.",
-      "format" : "int64",
-      "example" : 4,
-      "x-protobuf-index" : 1
-    },
-    "temperature" : {
-      "$ref" : "#/components/schemas/temperature"
-    },
-    "httpReponseCode" : {
-      "type" : "integer",
-      "description" : "HTTP response code. Used for internal purposes, will be revealed at the API level.",
-      "example" : 409,
-      "x-protobuf-index" : 3
-    }
-  }
-};
     defs["temperature"] = {
   "required" : [ "bhiveId", "epoch", "temperature" ],
   "type" : "object",
@@ -4955,7 +4934,7 @@ The User ID. This is used internally and will be overwritten if you send it to t
  \
  -H "Accept: application/json" \
  -H "Content-Type: application/json" \
- "https://api.queensaver.com/v1/temperature" \
+ "https://api.queensaver.com/v1/temperature?userId=123" \
  -d ''
 </code></pre>
                           </div>
@@ -4980,10 +4959,11 @@ public class DefaultApiExample {
 
         // Create an instance of the API class
         DefaultApi apiInstance = new DefaultApi();
-        NewTemperature newTemperature = ; // NewTemperature | 
+        Long userId = 123; // Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
+        Temperature temperature = ; // Temperature | 
 
         try {
-            generic-post-response result = apiInstance.temperaturePost(newTemperature);
+            generic-post-response result = apiInstance.temperaturePost(userId, temperature);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#temperaturePost");
@@ -5000,10 +4980,11 @@ public class DefaultApiExample {
 public class DefaultApiExample {
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
-        NewTemperature newTemperature = ; // NewTemperature | 
+        Long userId = 123; // Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
+        Temperature temperature = ; // Temperature | 
 
         try {
-            generic-post-response result = apiInstance.temperaturePost(newTemperature);
+            generic-post-response result = apiInstance.temperaturePost(userId, temperature);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#temperaturePost");
@@ -5027,10 +5008,12 @@ public class DefaultApiExample {
 
 // Create an instance of the API class
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
-NewTemperature *newTemperature = ; //  (optional)
+Long *userId = 123; // The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore. (optional) (default to null)
+Temperature *temperature = ; //  (optional)
 
 // Save a new temperature measurement
-[apiInstance temperaturePostWith:newTemperature
+[apiInstance temperaturePostWith:userId
+    temperature:temperature
               completionHandler: ^(generic-post-response output, NSError* error) {
     if (output) {
         NSLog(@"%@", output);
@@ -5055,7 +5038,8 @@ cookieAuth.apiKey = "YOUR API KEY";
 // Create an instance of the API class
 var api = new QueensaverApi.DefaultApi()
 var opts = {
-  'newTemperature':  // {NewTemperature} 
+  'userId': 123, // {Long} The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
+  'temperature':  // {Temperature} 
 };
 
 var callback = function(error, data, response) {
@@ -5092,11 +5076,12 @@ namespace Example
 
             // Create an instance of the API class
             var apiInstance = new DefaultApi();
-            var newTemperature = new NewTemperature(); // NewTemperature |  (optional) 
+            var userId = 123;  // Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore. (optional)  (default to null)
+            var temperature = new Temperature(); // Temperature |  (optional) 
 
             try {
                 // Save a new temperature measurement
-                generic-post-response result = apiInstance.temperaturePost(newTemperature);
+                generic-post-response result = apiInstance.temperaturePost(userId, temperature);
                 Debug.WriteLine(result);
             } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.temperaturePost: " + e.Message );
@@ -5118,10 +5103,11 @@ OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKey('token',
 
 // Create an instance of the API class
 $api_instance = new OpenAPITools\Client\Api\DefaultApi();
-$newTemperature = ; // NewTemperature | 
+$userId = 123; // Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
+$temperature = ; // Temperature | 
 
 try {
-    $result = $api_instance->temperaturePost($newTemperature);
+    $result = $api_instance->temperaturePost($userId, $temperature);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->temperaturePost: ', $e->getMessage(), PHP_EOL;
@@ -5141,10 +5127,11 @@ $WWW::OPenAPIClient::Configuration::api_key->{'token'} = 'YOUR_API_KEY';
 
 # Create an instance of the API class
 my $api_instance = WWW::OPenAPIClient::DefaultApi->new();
-my $newTemperature = WWW::OPenAPIClient::Object::NewTemperature->new(); # NewTemperature | 
+my $userId = 123; # Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
+my $temperature = WWW::OPenAPIClient::Object::Temperature->new(); # Temperature | 
 
 eval {
-    my $result = $api_instance->temperaturePost(newTemperature => $newTemperature);
+    my $result = $api_instance->temperaturePost(userId => $userId, temperature => $temperature);
     print Dumper($result);
 };
 if ($@) {
@@ -5166,11 +5153,12 @@ openapi_client.configuration.api_key['token'] = 'YOUR_API_KEY'
 
 # Create an instance of the API class
 api_instance = openapi_client.DefaultApi()
-newTemperature =  # NewTemperature |  (optional)
+userId = 123 # Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore. (optional) (default to null)
+temperature =  # Temperature |  (optional)
 
 try:
     # Save a new temperature measurement
-    api_response = api_instance.temperature_post(newTemperature=newTemperature)
+    api_response = api_instance.temperature_post(userId=userId, temperature=temperature)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->temperaturePost: %s\n" % e)</code></pre>
@@ -5180,10 +5168,11 @@ except ApiException as e:
                               <pre class="prettyprint"><code class="language-rust">extern crate DefaultApi;
 
 pub fn main() {
-    let newTemperature = ; // NewTemperature
+    let userId = 123; // Long
+    let temperature = ; // Temperature
 
     let mut context = DefaultApi::Context::default();
-    let result = client.temperaturePost(newTemperature, &context).wait();
+    let result = client.temperaturePost(userId, temperature, &context).wait();
 
     println!("{:?}", result);
 }
@@ -5206,7 +5195,7 @@ pub fn main() {
                                 <th width="150px">Name</th>
                                 <th>Description</th>
                               </tr>
-                                <tr><td style="width:150px;">newTemperature </td>
+                                <tr><td style="width:150px;">temperature </td>
 <td>
 <p class="marked"></p>
 <script>
@@ -5215,7 +5204,7 @@ $(document).ready(function() {
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/newTemperature"
+        "$ref" : "#/components/schemas/temperature"
       }
     }
   }
@@ -5235,18 +5224,48 @@ $(document).ready(function() {
   }
 
   var view = new JSONSchemaView(schema,2,{isBodyParam: true});
-  var result = $('#d2e199_temperaturePost_newTemperature');
+  var result = $('#d2e199_temperaturePost_temperature');
   result.empty();
   result.append(view.render());
 });
 </script>
-<div id="d2e199_temperaturePost_newTemperature"></div>
+<div id="d2e199_temperaturePost_temperature"></div>
 </td>
 </tr>
 
                             </table>
 
 
+                            <div class="methodsubtabletitle">Query parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">userId</td>
+<td>
+
+
+    <div id="d2e199_temperaturePost_userId">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    Long
+                </span>
+                    <span class="format">
+                        (int64)
+                    </span>
+
+                    <div class="inner description marked">
+The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
+                    </div>
+            </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                            </table>
 
                           <h2>Responses</h2>
                             <h3 id="examples-Default-temperaturePost-title-200"></h3>

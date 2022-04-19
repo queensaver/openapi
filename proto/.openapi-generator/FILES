@@ -5,7 +5,6 @@ models/bhive.proto
 models/generic_post_response.proto
 models/get_temperature_response.proto
 models/hive.proto
-models/new_temperature.proto
 models/temperature.proto
 models/user.proto
 models/varroa_scan.proto
