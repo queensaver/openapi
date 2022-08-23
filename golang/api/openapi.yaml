@@ -1002,8 +1002,9 @@ components:
         hives:
           description: "A stand can have many hives. However, when sending POST or\
             \ PUT requests you can only update the stand metadata, any hives attached\
-            \ to it will be ignored. You will have to do the hive call instead to\
-            \ update hives. This data will only be populated with GET requests."
+            \ to this array will be ignored. You will have to do the /hives API call\
+            \ instead to create / update hives with the correct stand UUID. This array\
+            \ will only be populated with GET requests."
           items:
             $ref: '#/components/schemas/hive'
           type: array

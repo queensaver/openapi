@@ -5,6 +5,7 @@ all: openapi protos grpc
 openapi: 
 	docker run --rm -v "${PWD}:/local" --user ${UID} openapitools/openapi-generator-cli generate -i /local/openapi.yaml -g html2 -o /local/html
 	docker run --rm -v "${PWD}:/local" --user ${UID} openapitools/openapi-generator-cli generate -i /local/openapi.yaml -g protobuf-schema -o /local/proto --package-name=openapi
+	docker run --rm -v "${PWD}:/local" --user ${UID} openapitools/openapi-generator-cli generate -i /local/openapi.yaml -g typescript-angular -o /local/angular
 	docker run --rm -v "${PWD}:/local" --user ${UID} openapitools/openapi-generator-cli generate -i /local/openapi.yaml -g go-server -o /local/golang --git-user-id queensaver --git-repo-id openapi/golang
 	# TODO: this is generated as root - we can't do that.
 	rm golang/go/api_default.go
