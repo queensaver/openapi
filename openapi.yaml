@@ -64,10 +64,121 @@ paths:
                 $ref: "#/components/schemas/errorMessage"
 
 
+  /stands:
+    get:
+      summary: Get Stand metadata
+      description: This returns all hive stand for the currently logged in user. Important to understand is that a user can go back into the past at any point in time (how did my stand look like a month or a year ago), so the cloud stores multiple versions of stand metadata. Any PUT request will create a new version.
+      security:
+      - cookieAuth: []
+      parameters:
+      - name: uuid
+        in: query
+        description: The UUID of the stand. If not set, the request will return all stands.
+        required: false
+        example: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+        schema:
+          type: string
+      - name: epoch
+        in: query
+        description: The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW()
+        example: 1639170002
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: secondsInThePast
+        in: query
+        description: How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version.
+        required: true
+        example: 7200
+        schema:
+          type: integer
+          format: int64
+
+      responses:
+        "200":
+          description: "Stands"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/stand"
+        "400":
+          description: Client error
+        "500":
+          description: Internal error
+
+    put:
+      summary: Update stand metadata
+      description: This updates stand metadata. Note that internaly we will actally create a new version of the data.
+      security:
+      - cookieAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/stand"
+      responses:
+        "200":
+          description: "Returns the updated hive"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/stand"
+        "400":
+          description: Client error
+        "500":
+          description: Internal error
+
+
+    post:
+      summary: Create stand metadata
+      description: This creates a new stand. A stand is a logical representation of a location of bee hives.
+      security:
+      - cookieAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/stand"
+      responses:
+        "200":
+          description: "Returns the created stand"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/stand"
+        "400":
+          description: Client error
+        "500":
+          description: Internal error
+
+    delete:
+      summary: Delete a stand
+      description: This deletes a stand.
+      security:
+      - cookieAuth: []
+      parameters:
+      - name: uuid
+        in: query
+        description: The UUID of the stand.
+        required: true
+        example: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "Returns 200 if the delete was successful"
+        "400":
+          description: Client error
+        "500":
+          description: Internal error
+
   /hives:
     get:
       summary: Get Hive metadata
-      description: This returns all hive metadata for the currently logged in user.
+      description: This returns all hive metadata for the currently logged in user. Important to understand is that a user can go back into the past at any point in time (how did my bee hive look like a month or a year ago), so the cloud stores multiple versions of hive metadata. Any PUT request will create a new version. W
       security:
       - cookieAuth: []
       parameters:
@@ -78,13 +189,23 @@ paths:
         example: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
         schema:
           type: string
-      - name: bhiveId
+      - name: epoch
         in: query
-        description: The Unique ID (Mac Address) of the QBox client. If set, the query will only return the Hive that sits on the QBox client (or nothing if there is no hive associated).
-        required: false
-        example: 829898a53801
+        description: The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW()
+        example: 1639170002
+        required: true
         schema:
-          type: string
+          type: integer
+          format: int64
+      - name: secondsInThePast
+        in: query
+        description: How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version.
+        required: true
+        example: 7200
+        schema:
+          type: integer
+          format: int64
+
       responses:
         "200":
           description: "Hives"
@@ -101,7 +222,7 @@ paths:
 
     put:
       summary: Update Hive metadata
-      description: This updates new hive.
+      description: This updates hive metadata. Note that internaly we will actally create a new version of the data.
       security:
       - cookieAuth: []
       requestBody:
@@ -143,7 +264,6 @@ paths:
           description: Client error
         "500":
           description: Internal error
-
 
     delete:
       summary: Delete a Hive
@@ -730,6 +850,58 @@ components:
           description: The ID of a beehive. Is unique for that user.
           example: "829898a53801"
 
+    stand:
+      type: object
+      properties:
+        hives:
+          type: array
+          items: 
+            $ref: "#/components/schemas/hive"
+          description: A stand can have many hives. However, when sending POST or PUT requests you can only update the stand metadata, any hives attached to it will be ignored. You will have to do the hive call instead to update hives. This data will only be populated with GET requests.
+          x-protobuf-index: 1
+        name:
+          type: string
+          example: "B"
+          description: Name of the stand. Can be chosen by the user. A stand is a collection of bee hives.
+          x-protobuf-index: 2
+        latitude:
+          type: number
+          format: double
+          description: latitude of the stand
+          x-protobuf-index: 3
+        longitude:
+          type: number
+          format: double
+          description: longitude of the stand
+          x-protobuf-index: 4
+        httpReponseCode:
+          type: integer
+          example: 409
+          description: HTTP response code. Used for internal purposes, will be let out at the API level.
+          x-protobuf-index: 6
+        epoch:
+          type: integer
+          format: int64
+          example: 1639170002
+          description: Epoch when the data was last updated. This will be set internally, no need to add this with PUT or POST calls.
+          x-protobuf-index: 7
+      required:
+      - name
+
+    alerts:
+      type: object
+      properties:
+        alertType:
+          enum:
+          - VarroaHigh
+          - WeightLow
+          - QueenLess
+          description: Various alerts a bee hive can have.
+          example: "VarroaHigh"
+          x-protobuf-index: 1
+      required:
+      - alertType
+
     hive:
       type: object
       properties:
@@ -743,23 +915,28 @@ components:
           description: If the hive can be viewed by other users in the queensaver system
           example: true
           x-protobuf-index: 2
+        standUuid:
+          type: string
+          example: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+          description: Unique Identifier of the stand that this hive is part of. Must be defined.
+          x-protobuf-index: 3
         uuid:
           type: string
           example: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
           description: Unique Identifier for this hive
-          x-protobuf-index: 7
+          x-protobuf-index: 4
         comment:
           type: string
           example: "This hive needs to be replaced next year"
           description: Random note or user comment
-          x-protobuf-index: 3
+          x-protobuf-index: 5
         capacity:
           type: integer
           minimum: 1
           maximum: 50
           example: 10
           description: How many honeycombs a frame can load
-          x-protobuf-index: 4
+          x-protobuf-index: 6
         format:
           type: string
           enum:
@@ -767,24 +944,17 @@ components:
           - Dadant
           description: The format of the frame
           example: "Dadant"
-          x-protobuf-index: 5
+          x-protobuf-index: 7
         frames:
           type: integer
-          x-protobuf-index: 6
+          x-protobuf-index: 8
           description: The number of frames the bee hive has
           example: 3
-#          items:
-#            type: object
-#            properties:
-#              function:
-#                type: string
-#                enum:
-#                - Breed
-#                - Honey
-#                - Unspecified 
-#                description: The format of the frame
-#                example: "Dadant"
-#                x-protobuf-index: 7
+        alerts:
+          x-protobuf-index: 9
+          type: array
+          items:
+            $ref: "#/components/schemas/alerts"
         bhiveId:
           type: string
           maxLength: 256
@@ -796,6 +966,16 @@ components:
           example: 409
           description: HTTP response code. Used for internal purposes, will be let out at the API level.
           x-protobuf-index: 9
+        epoch:
+          type: integer
+          format: int64
+          example: 1639170002
+          description: Epoch when the data was last updated. This will be set internally, no need to add this with PUT or POST calls.
+          x-protobuf-index: 10
+
+      required:
+      - standUuid
+      - name
  
     bbox:
       type: object

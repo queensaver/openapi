@@ -846,6 +846,19 @@ ul.nav-tabs {
   <script>
     // Script section to load models into a JS Var
     var defs = {}
+    defs["alerts"] = {
+  "required" : [ "alertType" ],
+  "type" : "object",
+  "properties" : {
+    "alertType" : {
+      "type" : "string",
+      "description" : "Various alerts a bee hive can have.",
+      "example" : "VarroaHigh",
+      "enum" : [ "VarroaHigh", "WeightLow", "QueenLess" ],
+      "x-protobuf-index" : 1
+    }
+  }
+};
     defs["bbox"] = {
   "type" : "object",
   "properties" : {
@@ -864,12 +877,12 @@ ul.nav-tabs {
     "bhive" : {
       "type" : "array",
       "items" : {
-        "$ref" : "#/components/schemas/bbox_bhive"
+        "$ref" : "#/components/schemas/bbox_bhive_inner"
       }
     }
   }
 };
-    defs["bbox_bhive"] = {
+    defs["bbox_bhive_inner"] = {
   "type" : "object",
   "properties" : {
     "bhiveId" : {
@@ -921,6 +934,7 @@ ul.nav-tabs {
   }
 };
     defs["hive"] = {
+  "required" : [ "name", "standUuid" ],
   "type" : "object",
   "properties" : {
     "name" : {
@@ -935,17 +949,23 @@ ul.nav-tabs {
       "example" : true,
       "x-protobuf-index" : 2
     },
+    "standUuid" : {
+      "type" : "string",
+      "description" : "Unique Identifier of the stand that this hive is part of. Must be defined.",
+      "example" : "41C0FE2F-EB0C-45B4-8842-C117E47C35E3",
+      "x-protobuf-index" : 3
+    },
     "uuid" : {
       "type" : "string",
       "description" : "Unique Identifier for this hive",
       "example" : "41C0FE2F-EB0C-45B4-8842-C117E47C35E3",
-      "x-protobuf-index" : 7
+      "x-protobuf-index" : 4
     },
     "comment" : {
       "type" : "string",
       "description" : "Random note or user comment",
       "example" : "This hive needs to be replaced next year",
-      "x-protobuf-index" : 3
+      "x-protobuf-index" : 5
     },
     "capacity" : {
       "maximum" : 50,
@@ -953,20 +973,27 @@ ul.nav-tabs {
       "type" : "integer",
       "description" : "How many honeycombs a frame can load",
       "example" : 10,
-      "x-protobuf-index" : 4
+      "x-protobuf-index" : 6
     },
     "format" : {
       "type" : "string",
       "description" : "The format of the frame",
       "example" : "Dadant",
       "enum" : [ "Zander", "Dadant" ],
-      "x-protobuf-index" : 5
+      "x-protobuf-index" : 7
     },
     "frames" : {
       "type" : "integer",
       "description" : "The number of frames the bee hive has",
       "example" : 3,
-      "x-protobuf-index" : 6
+      "x-protobuf-index" : 8
+    },
+    "alerts" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/components/schemas/alerts"
+      },
+      "x-protobuf-index" : 9
     },
     "bhiveId" : {
       "maxLength" : 256,
@@ -980,6 +1007,58 @@ ul.nav-tabs {
       "description" : "HTTP response code. Used for internal purposes, will be let out at the API level.",
       "example" : 409,
       "x-protobuf-index" : 9
+    },
+    "epoch" : {
+      "type" : "integer",
+      "description" : "Epoch when the data was last updated. This will be set internally, no need to add this with PUT or POST calls.",
+      "format" : "int64",
+      "example" : 1639170002,
+      "x-protobuf-index" : 10
+    }
+  }
+};
+    defs["stand"] = {
+  "required" : [ "name" ],
+  "type" : "object",
+  "properties" : {
+    "hives" : {
+      "type" : "array",
+      "description" : "A stand can have many hives. However, when sending POST or PUT requests you can only update the stand metadata, any hives attached to it will be ignored. You will have to do the hive call instead to update hives. This data will only be populated with GET requests.",
+      "items" : {
+        "$ref" : "#/components/schemas/hive"
+      },
+      "x-protobuf-index" : 1
+    },
+    "name" : {
+      "type" : "string",
+      "description" : "Name of the stand. Can be chosen by the user. A stand is a collection of bee hives.",
+      "example" : "B",
+      "x-protobuf-index" : 2
+    },
+    "latitude" : {
+      "type" : "number",
+      "description" : "latitude of the stand",
+      "format" : "double",
+      "x-protobuf-index" : 3
+    },
+    "longitude" : {
+      "type" : "number",
+      "description" : "longitude of the stand",
+      "format" : "double",
+      "x-protobuf-index" : 4
+    },
+    "httpReponseCode" : {
+      "type" : "integer",
+      "description" : "HTTP response code. Used for internal purposes, will be let out at the API level.",
+      "example" : 409,
+      "x-protobuf-index" : 6
+    },
+    "epoch" : {
+      "type" : "integer",
+      "description" : "Epoch when the data was last updated. This will be set internally, no need to add this with PUT or POST calls.",
+      "format" : "int64",
+      "example" : 1639170002,
+      "x-protobuf-index" : 7
     }
   }
 };
@@ -1207,6 +1286,18 @@ ul.nav-tabs {
                     </li>
                     <li data-group="Default" data-name="scaleGet" class="">
                       <a href="#api-Default-scaleGet">scaleGet</a>
+                    </li>
+                    <li data-group="Default" data-name="standsDelete" class="">
+                      <a href="#api-Default-standsDelete">standsDelete</a>
+                    </li>
+                    <li data-group="Default" data-name="standsGet" class="">
+                      <a href="#api-Default-standsGet">standsGet</a>
+                    </li>
+                    <li data-group="Default" data-name="standsPost" class="">
+                      <a href="#api-Default-standsPost">standsPost</a>
+                    </li>
+                    <li data-group="Default" data-name="standsPut" class="">
+                      <a href="#api-Default-standsPut">standsPut</a>
                     </li>
                     <li data-group="Default" data-name="temperatureGet" class="">
                       <a href="#api-Default-temperatureGet">temperatureGet</a>
@@ -2017,7 +2108,7 @@ The UUID of the hive.
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">This returns all hive metadata for the currently logged in user.</p>
+                        <p class="marked">This returns all hive metadata for the currently logged in user. Important to understand is that a user can go back into the past at any point in time (how did my bee hive look like a month or a year ago), so the cloud stores multiple versions of hive metadata. Any PUT request will create a new version. W</p>
                         <p></p>
                         <br />
                         <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/hives</span></code></pre>
@@ -2044,7 +2135,7 @@ The UUID of the hive.
                             <pre class="prettyprint"><code class="language-bsh">curl -X GET \
  \
  -H "Accept: application/json" \
- "https://api.queensaver.com/v1/hives?uuid=41C0FE2F-EB0C-45B4-8842-C117E47C35E3&bhiveId=829898a53801"
+ "https://api.queensaver.com/v1/hives?uuid=41C0FE2F-EB0C-45B4-8842-C117E47C35E3&epoch=1639170002&secondsInThePast=7200"
 </code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-hivesGet-0-java">
@@ -2068,11 +2159,12 @@ public class DefaultApiExample {
 
         // Create an instance of the API class
         DefaultApi apiInstance = new DefaultApi();
+        Long epoch = 1639170002; // Long | The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW()
+        Long secondsInThePast = 7200; // Long | How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version.
         String uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | The UUID of the hive. If not set, the request will return all hives.
-        String bhiveId = 829898a53801; // String | The Unique ID (Mac Address) of the QBox client. If set, the query will only return the Hive that sits on the QBox client (or nothing if there is no hive associated).
 
         try {
-            array[hive] result = apiInstance.hivesGet(uuid, bhiveId);
+            array[hive] result = apiInstance.hivesGet(epoch, secondsInThePast, uuid);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#hivesGet");
@@ -2089,11 +2181,12 @@ public class DefaultApiExample {
 public class DefaultApiExample {
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
+        Long epoch = 1639170002; // Long | The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW()
+        Long secondsInThePast = 7200; // Long | How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version.
         String uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | The UUID of the hive. If not set, the request will return all hives.
-        String bhiveId = 829898a53801; // String | The Unique ID (Mac Address) of the QBox client. If set, the query will only return the Hive that sits on the QBox client (or nothing if there is no hive associated).
 
         try {
-            array[hive] result = apiInstance.hivesGet(uuid, bhiveId);
+            array[hive] result = apiInstance.hivesGet(epoch, secondsInThePast, uuid);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#hivesGet");
@@ -2117,12 +2210,14 @@ public class DefaultApiExample {
 
 // Create an instance of the API class
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
+Long *epoch = 1639170002; // The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW() (default to null)
+Long *secondsInThePast = 7200; // How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version. (default to null)
 String *uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // The UUID of the hive. If not set, the request will return all hives. (optional) (default to null)
-String *bhiveId = 829898a53801; // The Unique ID (Mac Address) of the QBox client. If set, the query will only return the Hive that sits on the QBox client (or nothing if there is no hive associated). (optional) (default to null)
 
 // Get Hive metadata
-[apiInstance hivesGetWith:uuid
-    bhiveId:bhiveId
+[apiInstance hivesGetWith:epoch
+    secondsInThePast:secondsInThePast
+    uuid:uuid
               completionHandler: ^(array[hive] output, NSError* error) {
     if (output) {
         NSLog(@"%@", output);
@@ -2146,9 +2241,10 @@ cookieAuth.apiKey = "YOUR API KEY";
 
 // Create an instance of the API class
 var api = new QueensaverApi.DefaultApi()
+var epoch = 1639170002; // {Long} The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW()
+var secondsInThePast = 7200; // {Long} How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version.
 var opts = {
-  'uuid': 41C0FE2F-EB0C-45B4-8842-C117E47C35E3, // {String} The UUID of the hive. If not set, the request will return all hives.
-  'bhiveId': 829898a53801 // {String} The Unique ID (Mac Address) of the QBox client. If set, the query will only return the Hive that sits on the QBox client (or nothing if there is no hive associated).
+  'uuid': 41C0FE2F-EB0C-45B4-8842-C117E47C35E3 // {String} The UUID of the hive. If not set, the request will return all hives.
 };
 
 var callback = function(error, data, response) {
@@ -2158,7 +2254,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.hivesGet(opts, callback);
+api.hivesGet(epoch, secondsInThePast, opts, callback);
 </code></pre>
                             </div>
 
@@ -2185,12 +2281,13 @@ namespace Example
 
             // Create an instance of the API class
             var apiInstance = new DefaultApi();
+            var epoch = 1639170002;  // Long | The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW() (default to null)
+            var secondsInThePast = 7200;  // Long | How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version. (default to null)
             var uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3;  // String | The UUID of the hive. If not set, the request will return all hives. (optional)  (default to null)
-            var bhiveId = 829898a53801;  // String | The Unique ID (Mac Address) of the QBox client. If set, the query will only return the Hive that sits on the QBox client (or nothing if there is no hive associated). (optional)  (default to null)
 
             try {
                 // Get Hive metadata
-                array[hive] result = apiInstance.hivesGet(uuid, bhiveId);
+                array[hive] result = apiInstance.hivesGet(epoch, secondsInThePast, uuid);
                 Debug.WriteLine(result);
             } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.hivesGet: " + e.Message );
@@ -2212,11 +2309,12 @@ OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKey('token',
 
 // Create an instance of the API class
 $api_instance = new OpenAPITools\Client\Api\DefaultApi();
+$epoch = 1639170002; // Long | The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW()
+$secondsInThePast = 7200; // Long | How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version.
 $uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | The UUID of the hive. If not set, the request will return all hives.
-$bhiveId = 829898a53801; // String | The Unique ID (Mac Address) of the QBox client. If set, the query will only return the Hive that sits on the QBox client (or nothing if there is no hive associated).
 
 try {
-    $result = $api_instance->hivesGet($uuid, $bhiveId);
+    $result = $api_instance->hivesGet($epoch, $secondsInThePast, $uuid);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->hivesGet: ', $e->getMessage(), PHP_EOL;
@@ -2236,11 +2334,12 @@ $WWW::OPenAPIClient::Configuration::api_key->{'token'} = 'YOUR_API_KEY';
 
 # Create an instance of the API class
 my $api_instance = WWW::OPenAPIClient::DefaultApi->new();
+my $epoch = 1639170002; # Long | The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW()
+my $secondsInThePast = 7200; # Long | How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version.
 my $uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; # String | The UUID of the hive. If not set, the request will return all hives.
-my $bhiveId = 829898a53801; # String | The Unique ID (Mac Address) of the QBox client. If set, the query will only return the Hive that sits on the QBox client (or nothing if there is no hive associated).
 
 eval {
-    my $result = $api_instance->hivesGet(uuid => $uuid, bhiveId => $bhiveId);
+    my $result = $api_instance->hivesGet(epoch => $epoch, secondsInThePast => $secondsInThePast, uuid => $uuid);
     print Dumper($result);
 };
 if ($@) {
@@ -2262,12 +2361,13 @@ openapi_client.configuration.api_key['token'] = 'YOUR_API_KEY'
 
 # Create an instance of the API class
 api_instance = openapi_client.DefaultApi()
+epoch = 1639170002 # Long | The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW() (default to null)
+secondsInThePast = 7200 # Long | How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version. (default to null)
 uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3 # String | The UUID of the hive. If not set, the request will return all hives. (optional) (default to null)
-bhiveId = 829898a53801 # String | The Unique ID (Mac Address) of the QBox client. If set, the query will only return the Hive that sits on the QBox client (or nothing if there is no hive associated). (optional) (default to null)
 
 try:
     # Get Hive metadata
-    api_response = api_instance.hives_get(uuid=uuid, bhiveId=bhiveId)
+    api_response = api_instance.hives_get(epoch, secondsInThePast, uuid=uuid)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->hivesGet: %s\n" % e)</code></pre>
@@ -2277,11 +2377,12 @@ except ApiException as e:
                               <pre class="prettyprint"><code class="language-rust">extern crate DefaultApi;
 
 pub fn main() {
+    let epoch = 1639170002; // Long
+    let secondsInThePast = 7200; // Long
     let uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String
-    let bhiveId = 829898a53801; // String
 
     let mut context = DefaultApi::Context::default();
-    let result = client.hivesGet(uuid, bhiveId, &context).wait();
+    let result = client.hivesGet(epoch, secondsInThePast, uuid, &context).wait();
 
     println!("{:?}", result);
 }
@@ -2326,21 +2427,53 @@ The UUID of the hive. If not set, the request will return all hives.
 </td>
 </tr>
 
-                                <tr><td style="width:150px;">bhiveId</td>
+                                <tr><td style="width:150px;">epoch*</td>
 <td>
 
 
-    <div id="d2e199_hivesGet_bhiveId">
+    <div id="d2e199_hivesGet_epoch">
         <div class="json-schema-view">
             <div class="primitive">
                 <span class="type">
-                    String
+                    Long
                 </span>
+                    <span class="format">
+                        (int64)
+                    </span>
 
                     <div class="inner description marked">
-The Unique ID (Mac Address) of the QBox client. If set, the query will only return the Hive that sits on the QBox client (or nothing if there is no hive associated).
+The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW()
                     </div>
             </div>
+                <div class="inner required">
+                    Required
+                </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                                <tr><td style="width:150px;">secondsInThePast*</td>
+<td>
+
+
+    <div id="d2e199_hivesGet_secondsInThePast">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    Long
+                </span>
+                    <span class="format">
+                        (int64)
+                    </span>
+
+                    <div class="inner description marked">
+How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version.
+                    </div>
+            </div>
+                <div class="inner required">
+                    Required
+                </div>
         </div>
     </div>
 </td>
@@ -2918,7 +3051,7 @@ $(document).ready(function() {
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">This updates new hive.</p>
+                        <p class="marked">This updates hive metadata. Note that internaly we will actally create a new version of the data.</p>
                         <p></p>
                         <br />
                         <pre class="prettyprint language-html prettyprinted" data-type="put"><code><span class="pln">/hives</span></code></pre>
@@ -4311,6 +4444,1764 @@ How many seconds we go to the past to get the data measurements.
 
 
                             <div class="tab-content" id="responses-Default-scaleGet-500-wrapper" style='margin-bottom: 10px;'>
+                            </div>
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Default-standsDelete">
+                      <article id="api-Default-standsDelete-0" data-group="User" data-name="standsDelete" data-version="0">
+                        <div class="pull-left">
+                          <h1>standsDelete</h1>
+                          <p>Delete a stand</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">This deletes a stand.</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="delete"><code><span class="pln">/stands</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-standsDelete-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-standsDelete-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-standsDelete-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-standsDelete-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-standsDelete-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-standsDelete-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-standsDelete-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-standsDelete-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-standsDelete-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-standsDelete-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-standsDelete-0-python">Python</a></li>
+                          <li class=""><a href="#examples-Default-standsDelete-0-rust">Rust</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-standsDelete-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X DELETE \
+ \
+ "https://api.queensaver.com/v1/stands?uuid=41C0FE2F-EB0C-45B4-8842-C117E47C35E3"
+</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-standsDelete-0-java">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.model.*;
+import org.openapitools.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        
+        // Configure API key authorization: cookieAuth
+        ApiKeyAuth cookieAuth = (ApiKeyAuth) defaultClient.getAuthentication("cookieAuth");
+        cookieAuth.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cookieAuth.setApiKeyPrefix("Token");
+
+        // Create an instance of the API class
+        DefaultApi apiInstance = new DefaultApi();
+        String uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | The UUID of the stand.
+
+        try {
+            apiInstance.standsDelete(uuid);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#standsDelete");
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-standsDelete-0-android">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.DefaultApi;
+
+public class DefaultApiExample {
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+        String uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | The UUID of the stand.
+
+        try {
+            apiInstance.standsDelete(uuid);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#standsDelete");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-standsDelete-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-standsDelete-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: cookieAuth)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"token"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"token"];
+
+
+// Create an instance of the API class
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+String *uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // The UUID of the stand. (default to null)
+
+// Delete a stand
+[apiInstance standsDeleteWith:uuid
+              completionHandler: ^(NSError* error) {
+    if (error) {
+        NSLog(@"Error: %@", error);
+    }
+}];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-standsDelete-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var QueensaverApi = require('queensaver_api');
+var defaultClient = QueensaverApi.ApiClient.instance;
+
+// Configure API key authorization: cookieAuth
+var cookieAuth = defaultClient.authentications['cookieAuth'];
+cookieAuth.apiKey = "YOUR API KEY";
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//cookieAuth.apiKeyPrefix['token'] = "Token";
+
+// Create an instance of the API class
+var api = new QueensaverApi.DefaultApi()
+var uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // {String} The UUID of the stand.
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+};
+api.standsDelete(uuid, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-standsDelete-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-standsDelete-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using Org.OpenAPITools.Api;
+using Org.OpenAPITools.Client;
+using Org.OpenAPITools.Model;
+
+namespace Example
+{
+    public class standsDeleteExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: cookieAuth
+            Configuration.Default.ApiKey.Add("token", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.ApiKeyPrefix.Add("token", "Bearer");
+
+            // Create an instance of the API class
+            var apiInstance = new DefaultApi();
+            var uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3;  // String | The UUID of the stand. (default to null)
+
+            try {
+                // Delete a stand
+                apiInstance.standsDelete(uuid);
+            } catch (Exception e) {
+                Debug.Print("Exception when calling DefaultApi.standsDelete: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-standsDelete-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure API key authorization: cookieAuth
+OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+
+// Create an instance of the API class
+$api_instance = new OpenAPITools\Client\Api\DefaultApi();
+$uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | The UUID of the stand.
+
+try {
+    $api_instance->standsDelete($uuid);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->standsDelete: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-standsDelete-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::OPenAPIClient::Configuration;
+use WWW::OPenAPIClient::DefaultApi;
+
+# Configure API key authorization: cookieAuth
+$WWW::OPenAPIClient::Configuration::api_key->{'token'} = 'YOUR_API_KEY';
+# uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+#$WWW::OPenAPIClient::Configuration::api_key_prefix->{'token'} = "Bearer";
+
+# Create an instance of the API class
+my $api_instance = WWW::OPenAPIClient::DefaultApi->new();
+my $uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; # String | The UUID of the stand.
+
+eval {
+    $api_instance->standsDelete(uuid => $uuid);
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->standsDelete: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-standsDelete-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import openapi_client
+from openapi_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: cookieAuth
+openapi_client.configuration.api_key['token'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# openapi_client.configuration.api_key_prefix['token'] = 'Bearer'
+
+# Create an instance of the API class
+api_instance = openapi_client.DefaultApi()
+uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3 # String | The UUID of the stand. (default to null)
+
+try:
+    # Delete a stand
+    api_instance.stands_delete(uuid)
+except ApiException as e:
+    print("Exception when calling DefaultApi->standsDelete: %s\n" % e)</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-standsDelete-0-rust">
+                              <pre class="prettyprint"><code class="language-rust">extern crate DefaultApi;
+
+pub fn main() {
+    let uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String
+
+    let mut context = DefaultApi::Context::default();
+    let result = client.standsDelete(uuid, &context).wait();
+
+    println!("{:?}", result);
+}
+</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Scopes</h2>
+                          <table>
+                            
+                          </table>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+                            <div class="methodsubtabletitle">Query parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">uuid*</td>
+<td>
+
+
+    <div id="d2e199_standsDelete_uuid">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    String
+                </span>
+
+                    <div class="inner description marked">
+The UUID of the stand.
+                    </div>
+            </div>
+                <div class="inner required">
+                    Required
+                </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                            </table>
+
+                          <h2>Responses</h2>
+                            <h3 id="examples-Default-standsDelete-title-200"></h3>
+                            <p id="examples-Default-standsDelete-description-200" class="marked"></p>
+                            <script>
+                              var responseDefault200_description = `Returns 200 if the delete was successful`;
+                              var responseDefault200_description_break = responseDefault200_description.indexOf('\n');
+                              if (responseDefault200_description_break == -1) {
+                                $("#examples-Default-standsDelete-title-200").text("Status: 200 - " + responseDefault200_description);
+                              } else {
+                                $("#examples-Default-standsDelete-title-200").text("Status: 200 - " + responseDefault200_description.substring(0, responseDefault200_description_break));
+                                $("#examples-Default-standsDelete-description-200").html(responseDefault200_description.substring(responseDefault200_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Default-standsDelete-200" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Default-standsDelete-200-wrapper" style='margin-bottom: 10px;'>
+                            </div>
+                            <h3 id="examples-Default-standsDelete-title-400"></h3>
+                            <p id="examples-Default-standsDelete-description-400" class="marked"></p>
+                            <script>
+                              var responseDefault400_description = `Client error`;
+                              var responseDefault400_description_break = responseDefault400_description.indexOf('\n');
+                              if (responseDefault400_description_break == -1) {
+                                $("#examples-Default-standsDelete-title-400").text("Status: 400 - " + responseDefault400_description);
+                              } else {
+                                $("#examples-Default-standsDelete-title-400").text("Status: 400 - " + responseDefault400_description.substring(0, responseDefault400_description_break));
+                                $("#examples-Default-standsDelete-description-400").html(responseDefault400_description.substring(responseDefault400_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Default-standsDelete-400" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Default-standsDelete-400-wrapper" style='margin-bottom: 10px;'>
+                            </div>
+                            <h3 id="examples-Default-standsDelete-title-500"></h3>
+                            <p id="examples-Default-standsDelete-description-500" class="marked"></p>
+                            <script>
+                              var responseDefault500_description = `Internal error`;
+                              var responseDefault500_description_break = responseDefault500_description.indexOf('\n');
+                              if (responseDefault500_description_break == -1) {
+                                $("#examples-Default-standsDelete-title-500").text("Status: 500 - " + responseDefault500_description);
+                              } else {
+                                $("#examples-Default-standsDelete-title-500").text("Status: 500 - " + responseDefault500_description.substring(0, responseDefault500_description_break));
+                                $("#examples-Default-standsDelete-description-500").html(responseDefault500_description.substring(responseDefault500_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Default-standsDelete-500" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Default-standsDelete-500-wrapper" style='margin-bottom: 10px;'>
+                            </div>
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Default-standsGet">
+                      <article id="api-Default-standsGet-0" data-group="User" data-name="standsGet" data-version="0">
+                        <div class="pull-left">
+                          <h1>standsGet</h1>
+                          <p>Get Stand metadata</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">This returns all hive stand for the currently logged in user. Important to understand is that a user can go back into the past at any point in time (how did my stand look like a month or a year ago), so the cloud stores multiple versions of stand metadata. Any PUT request will create a new version.</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/stands</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-standsGet-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-standsGet-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-standsGet-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-standsGet-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-standsGet-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-standsGet-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-standsGet-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-standsGet-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-standsGet-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-standsGet-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-standsGet-0-python">Python</a></li>
+                          <li class=""><a href="#examples-Default-standsGet-0-rust">Rust</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-standsGet-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X GET \
+ \
+ -H "Accept: application/json" \
+ "https://api.queensaver.com/v1/stands?uuid=41C0FE2F-EB0C-45B4-8842-C117E47C35E3&epoch=1639170002&secondsInThePast=7200"
+</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-standsGet-0-java">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.model.*;
+import org.openapitools.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        
+        // Configure API key authorization: cookieAuth
+        ApiKeyAuth cookieAuth = (ApiKeyAuth) defaultClient.getAuthentication("cookieAuth");
+        cookieAuth.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cookieAuth.setApiKeyPrefix("Token");
+
+        // Create an instance of the API class
+        DefaultApi apiInstance = new DefaultApi();
+        Long epoch = 1639170002; // Long | The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW()
+        Long secondsInThePast = 7200; // Long | How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version.
+        String uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | The UUID of the stand. If not set, the request will return all stands.
+
+        try {
+            array[stand] result = apiInstance.standsGet(epoch, secondsInThePast, uuid);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#standsGet");
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-standsGet-0-android">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.DefaultApi;
+
+public class DefaultApiExample {
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+        Long epoch = 1639170002; // Long | The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW()
+        Long secondsInThePast = 7200; // Long | How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version.
+        String uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | The UUID of the stand. If not set, the request will return all stands.
+
+        try {
+            array[stand] result = apiInstance.standsGet(epoch, secondsInThePast, uuid);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#standsGet");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-standsGet-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-standsGet-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: cookieAuth)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"token"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"token"];
+
+
+// Create an instance of the API class
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+Long *epoch = 1639170002; // The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW() (default to null)
+Long *secondsInThePast = 7200; // How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version. (default to null)
+String *uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // The UUID of the stand. If not set, the request will return all stands. (optional) (default to null)
+
+// Get Stand metadata
+[apiInstance standsGetWith:epoch
+    secondsInThePast:secondsInThePast
+    uuid:uuid
+              completionHandler: ^(array[stand] output, NSError* error) {
+    if (output) {
+        NSLog(@"%@", output);
+    }
+    if (error) {
+        NSLog(@"Error: %@", error);
+    }
+}];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-standsGet-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var QueensaverApi = require('queensaver_api');
+var defaultClient = QueensaverApi.ApiClient.instance;
+
+// Configure API key authorization: cookieAuth
+var cookieAuth = defaultClient.authentications['cookieAuth'];
+cookieAuth.apiKey = "YOUR API KEY";
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//cookieAuth.apiKeyPrefix['token'] = "Token";
+
+// Create an instance of the API class
+var api = new QueensaverApi.DefaultApi()
+var epoch = 1639170002; // {Long} The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW()
+var secondsInThePast = 7200; // {Long} How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version.
+var opts = {
+  'uuid': 41C0FE2F-EB0C-45B4-8842-C117E47C35E3 // {String} The UUID of the stand. If not set, the request will return all stands.
+};
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.standsGet(epoch, secondsInThePast, opts, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-standsGet-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-standsGet-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using Org.OpenAPITools.Api;
+using Org.OpenAPITools.Client;
+using Org.OpenAPITools.Model;
+
+namespace Example
+{
+    public class standsGetExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: cookieAuth
+            Configuration.Default.ApiKey.Add("token", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.ApiKeyPrefix.Add("token", "Bearer");
+
+            // Create an instance of the API class
+            var apiInstance = new DefaultApi();
+            var epoch = 1639170002;  // Long | The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW() (default to null)
+            var secondsInThePast = 7200;  // Long | How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version. (default to null)
+            var uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3;  // String | The UUID of the stand. If not set, the request will return all stands. (optional)  (default to null)
+
+            try {
+                // Get Stand metadata
+                array[stand] result = apiInstance.standsGet(epoch, secondsInThePast, uuid);
+                Debug.WriteLine(result);
+            } catch (Exception e) {
+                Debug.Print("Exception when calling DefaultApi.standsGet: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-standsGet-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure API key authorization: cookieAuth
+OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+
+// Create an instance of the API class
+$api_instance = new OpenAPITools\Client\Api\DefaultApi();
+$epoch = 1639170002; // Long | The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW()
+$secondsInThePast = 7200; // Long | How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version.
+$uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | The UUID of the stand. If not set, the request will return all stands.
+
+try {
+    $result = $api_instance->standsGet($epoch, $secondsInThePast, $uuid);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->standsGet: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-standsGet-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::OPenAPIClient::Configuration;
+use WWW::OPenAPIClient::DefaultApi;
+
+# Configure API key authorization: cookieAuth
+$WWW::OPenAPIClient::Configuration::api_key->{'token'} = 'YOUR_API_KEY';
+# uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+#$WWW::OPenAPIClient::Configuration::api_key_prefix->{'token'} = "Bearer";
+
+# Create an instance of the API class
+my $api_instance = WWW::OPenAPIClient::DefaultApi->new();
+my $epoch = 1639170002; # Long | The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW()
+my $secondsInThePast = 7200; # Long | How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version.
+my $uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; # String | The UUID of the stand. If not set, the request will return all stands.
+
+eval {
+    my $result = $api_instance->standsGet(epoch => $epoch, secondsInThePast => $secondsInThePast, uuid => $uuid);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->standsGet: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-standsGet-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import openapi_client
+from openapi_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: cookieAuth
+openapi_client.configuration.api_key['token'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# openapi_client.configuration.api_key_prefix['token'] = 'Bearer'
+
+# Create an instance of the API class
+api_instance = openapi_client.DefaultApi()
+epoch = 1639170002 # Long | The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW() (default to null)
+secondsInThePast = 7200 # Long | How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version. (default to null)
+uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3 # String | The UUID of the stand. If not set, the request will return all stands. (optional) (default to null)
+
+try:
+    # Get Stand metadata
+    api_response = api_instance.stands_get(epoch, secondsInThePast, uuid=uuid)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->standsGet: %s\n" % e)</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-standsGet-0-rust">
+                              <pre class="prettyprint"><code class="language-rust">extern crate DefaultApi;
+
+pub fn main() {
+    let epoch = 1639170002; // Long
+    let secondsInThePast = 7200; // Long
+    let uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String
+
+    let mut context = DefaultApi::Context::default();
+    let result = client.standsGet(epoch, secondsInThePast, uuid, &context).wait();
+
+    println!("{:?}", result);
+}
+</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Scopes</h2>
+                          <table>
+                            
+                          </table>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+                            <div class="methodsubtabletitle">Query parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">uuid</td>
+<td>
+
+
+    <div id="d2e199_standsGet_uuid">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    String
+                </span>
+
+                    <div class="inner description marked">
+The UUID of the stand. If not set, the request will return all stands.
+                    </div>
+            </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                                <tr><td style="width:150px;">epoch*</td>
+<td>
+
+
+    <div id="d2e199_standsGet_epoch">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    Long
+                </span>
+                    <span class="format">
+                        (int64)
+                    </span>
+
+                    <div class="inner description marked">
+The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW()
+                    </div>
+            </div>
+                <div class="inner required">
+                    Required
+                </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                                <tr><td style="width:150px;">secondsInThePast*</td>
+<td>
+
+
+    <div id="d2e199_standsGet_secondsInThePast">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    Long
+                </span>
+                    <span class="format">
+                        (int64)
+                    </span>
+
+                    <div class="inner description marked">
+How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version.
+                    </div>
+            </div>
+                <div class="inner required">
+                    Required
+                </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                            </table>
+
+                          <h2>Responses</h2>
+                            <h3 id="examples-Default-standsGet-title-200"></h3>
+                            <p id="examples-Default-standsGet-description-200" class="marked"></p>
+                            <script>
+                              var responseDefault200_description = `Stands`;
+                              var responseDefault200_description_break = responseDefault200_description.indexOf('\n');
+                              if (responseDefault200_description_break == -1) {
+                                $("#examples-Default-standsGet-title-200").text("Status: 200 - " + responseDefault200_description);
+                              } else {
+                                $("#examples-Default-standsGet-title-200").text("Status: 200 - " + responseDefault200_description.substring(0, responseDefault200_description_break));
+                                $("#examples-Default-standsGet-description-200").html(responseDefault200_description.substring(responseDefault200_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Default-standsGet-200" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Default-standsGet-200-schema">Schema</a>
+                                </li>
+
+
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Default-standsGet-200-wrapper" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-Default-standsGet-200-schema">
+                                  <div id="responses-Default-standsGet-schema-200" class="exampleStyle">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Stands",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/stand"
+        }
+      }
+    }
+  }
+};
+                                        var schema = findNode('schema',schemaWrapper).schema;
+                                        if (!schema) {
+                                          schema = schemaWrapper.schema;
+                                        }
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else if (schema.items != null && schema.items.$ref != null) {
+                                            schema.items = defsParser.$refs.get(schema.items.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-Default-standsGet-200-schema-data').val(JSON.stringify(schema));
+                                        var result = $('#responses-Default-standsGet-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-Default-standsGet-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+                            <h3 id="examples-Default-standsGet-title-400"></h3>
+                            <p id="examples-Default-standsGet-description-400" class="marked"></p>
+                            <script>
+                              var responseDefault400_description = `Client error`;
+                              var responseDefault400_description_break = responseDefault400_description.indexOf('\n');
+                              if (responseDefault400_description_break == -1) {
+                                $("#examples-Default-standsGet-title-400").text("Status: 400 - " + responseDefault400_description);
+                              } else {
+                                $("#examples-Default-standsGet-title-400").text("Status: 400 - " + responseDefault400_description.substring(0, responseDefault400_description_break));
+                                $("#examples-Default-standsGet-description-400").html(responseDefault400_description.substring(responseDefault400_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Default-standsGet-400" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Default-standsGet-400-wrapper" style='margin-bottom: 10px;'>
+                            </div>
+                            <h3 id="examples-Default-standsGet-title-500"></h3>
+                            <p id="examples-Default-standsGet-description-500" class="marked"></p>
+                            <script>
+                              var responseDefault500_description = `Internal error`;
+                              var responseDefault500_description_break = responseDefault500_description.indexOf('\n');
+                              if (responseDefault500_description_break == -1) {
+                                $("#examples-Default-standsGet-title-500").text("Status: 500 - " + responseDefault500_description);
+                              } else {
+                                $("#examples-Default-standsGet-title-500").text("Status: 500 - " + responseDefault500_description.substring(0, responseDefault500_description_break));
+                                $("#examples-Default-standsGet-description-500").html(responseDefault500_description.substring(responseDefault500_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Default-standsGet-500" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Default-standsGet-500-wrapper" style='margin-bottom: 10px;'>
+                            </div>
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Default-standsPost">
+                      <article id="api-Default-standsPost-0" data-group="User" data-name="standsPost" data-version="0">
+                        <div class="pull-left">
+                          <h1>standsPost</h1>
+                          <p>Create stand metadata</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">This creates a new stand. A stand is a logical representation of a location of bee hives.</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/stands</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-standsPost-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-standsPost-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-standsPost-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-standsPost-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-standsPost-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-standsPost-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-standsPost-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-standsPost-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-standsPost-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-standsPost-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-standsPost-0-python">Python</a></li>
+                          <li class=""><a href="#examples-Default-standsPost-0-rust">Rust</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-standsPost-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X POST \
+ \
+ -H "Accept: application/json" \
+ -H "Content-Type: application/json" \
+ "https://api.queensaver.com/v1/stands" \
+ -d ''
+</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-standsPost-0-java">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.model.*;
+import org.openapitools.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        
+        // Configure API key authorization: cookieAuth
+        ApiKeyAuth cookieAuth = (ApiKeyAuth) defaultClient.getAuthentication("cookieAuth");
+        cookieAuth.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cookieAuth.setApiKeyPrefix("Token");
+
+        // Create an instance of the API class
+        DefaultApi apiInstance = new DefaultApi();
+        Stand stand = ; // Stand | 
+
+        try {
+            stand result = apiInstance.standsPost(stand);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#standsPost");
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-standsPost-0-android">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.DefaultApi;
+
+public class DefaultApiExample {
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+        Stand stand = ; // Stand | 
+
+        try {
+            stand result = apiInstance.standsPost(stand);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#standsPost");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-standsPost-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-standsPost-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: cookieAuth)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"token"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"token"];
+
+
+// Create an instance of the API class
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+Stand *stand = ; //  (optional)
+
+// Create stand metadata
+[apiInstance standsPostWith:stand
+              completionHandler: ^(stand output, NSError* error) {
+    if (output) {
+        NSLog(@"%@", output);
+    }
+    if (error) {
+        NSLog(@"Error: %@", error);
+    }
+}];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-standsPost-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var QueensaverApi = require('queensaver_api');
+var defaultClient = QueensaverApi.ApiClient.instance;
+
+// Configure API key authorization: cookieAuth
+var cookieAuth = defaultClient.authentications['cookieAuth'];
+cookieAuth.apiKey = "YOUR API KEY";
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//cookieAuth.apiKeyPrefix['token'] = "Token";
+
+// Create an instance of the API class
+var api = new QueensaverApi.DefaultApi()
+var opts = {
+  'stand':  // {Stand} 
+};
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.standsPost(opts, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-standsPost-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-standsPost-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using Org.OpenAPITools.Api;
+using Org.OpenAPITools.Client;
+using Org.OpenAPITools.Model;
+
+namespace Example
+{
+    public class standsPostExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: cookieAuth
+            Configuration.Default.ApiKey.Add("token", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.ApiKeyPrefix.Add("token", "Bearer");
+
+            // Create an instance of the API class
+            var apiInstance = new DefaultApi();
+            var stand = new Stand(); // Stand |  (optional) 
+
+            try {
+                // Create stand metadata
+                stand result = apiInstance.standsPost(stand);
+                Debug.WriteLine(result);
+            } catch (Exception e) {
+                Debug.Print("Exception when calling DefaultApi.standsPost: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-standsPost-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure API key authorization: cookieAuth
+OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+
+// Create an instance of the API class
+$api_instance = new OpenAPITools\Client\Api\DefaultApi();
+$stand = ; // Stand | 
+
+try {
+    $result = $api_instance->standsPost($stand);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->standsPost: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-standsPost-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::OPenAPIClient::Configuration;
+use WWW::OPenAPIClient::DefaultApi;
+
+# Configure API key authorization: cookieAuth
+$WWW::OPenAPIClient::Configuration::api_key->{'token'} = 'YOUR_API_KEY';
+# uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+#$WWW::OPenAPIClient::Configuration::api_key_prefix->{'token'} = "Bearer";
+
+# Create an instance of the API class
+my $api_instance = WWW::OPenAPIClient::DefaultApi->new();
+my $stand = WWW::OPenAPIClient::Object::Stand->new(); # Stand | 
+
+eval {
+    my $result = $api_instance->standsPost(stand => $stand);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->standsPost: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-standsPost-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import openapi_client
+from openapi_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: cookieAuth
+openapi_client.configuration.api_key['token'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# openapi_client.configuration.api_key_prefix['token'] = 'Bearer'
+
+# Create an instance of the API class
+api_instance = openapi_client.DefaultApi()
+stand =  # Stand |  (optional)
+
+try:
+    # Create stand metadata
+    api_response = api_instance.stands_post(stand=stand)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->standsPost: %s\n" % e)</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-standsPost-0-rust">
+                              <pre class="prettyprint"><code class="language-rust">extern crate DefaultApi;
+
+pub fn main() {
+    let stand = ; // Stand
+
+    let mut context = DefaultApi::Context::default();
+    let result = client.standsPost(stand, &context).wait();
+
+    println!("{:?}", result);
+}
+</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Scopes</h2>
+                          <table>
+                            
+                          </table>
+
+                          <h2>Parameters</h2>
+
+
+
+                            <div class="methodsubtabletitle">Body parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">stand </td>
+<td>
+<p class="marked"></p>
+<script>
+$(document).ready(function() {
+  var schemaWrapper = {
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/stand"
+      }
+    }
+  }
+};
+
+  var schema = findNode('schema',schemaWrapper).schema;
+  if (!schema) {
+    schema = schemaWrapper.schema;
+  }
+  if (schema.$ref != null) {
+    schema = defsParser.$refs.get(schema.$ref);
+  } else {
+    schemaWrapper.definitions = Object.assign({}, defs);
+    $RefParser.dereference(schemaWrapper).catch(function(err) {
+      console.log(err);
+    });
+  }
+
+  var view = new JSONSchemaView(schema,2,{isBodyParam: true});
+  var result = $('#d2e199_standsPost_stand');
+  result.empty();
+  result.append(view.render());
+});
+</script>
+<div id="d2e199_standsPost_stand"></div>
+</td>
+</tr>
+
+                            </table>
+
+
+
+                          <h2>Responses</h2>
+                            <h3 id="examples-Default-standsPost-title-200"></h3>
+                            <p id="examples-Default-standsPost-description-200" class="marked"></p>
+                            <script>
+                              var responseDefault200_description = `Returns the created stand`;
+                              var responseDefault200_description_break = responseDefault200_description.indexOf('\n');
+                              if (responseDefault200_description_break == -1) {
+                                $("#examples-Default-standsPost-title-200").text("Status: 200 - " + responseDefault200_description);
+                              } else {
+                                $("#examples-Default-standsPost-title-200").text("Status: 200 - " + responseDefault200_description.substring(0, responseDefault200_description_break));
+                                $("#examples-Default-standsPost-description-200").html(responseDefault200_description.substring(responseDefault200_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Default-standsPost-200" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Default-standsPost-200-schema">Schema</a>
+                                </li>
+
+
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Default-standsPost-200-wrapper" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-Default-standsPost-200-schema">
+                                  <div id="responses-Default-standsPost-schema-200" class="exampleStyle">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Returns the created stand",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/stand"
+      }
+    }
+  }
+};
+                                        var schema = findNode('schema',schemaWrapper).schema;
+                                        if (!schema) {
+                                          schema = schemaWrapper.schema;
+                                        }
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else if (schema.items != null && schema.items.$ref != null) {
+                                            schema.items = defsParser.$refs.get(schema.items.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-Default-standsPost-200-schema-data').val(JSON.stringify(schema));
+                                        var result = $('#responses-Default-standsPost-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-Default-standsPost-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+                            <h3 id="examples-Default-standsPost-title-400"></h3>
+                            <p id="examples-Default-standsPost-description-400" class="marked"></p>
+                            <script>
+                              var responseDefault400_description = `Client error`;
+                              var responseDefault400_description_break = responseDefault400_description.indexOf('\n');
+                              if (responseDefault400_description_break == -1) {
+                                $("#examples-Default-standsPost-title-400").text("Status: 400 - " + responseDefault400_description);
+                              } else {
+                                $("#examples-Default-standsPost-title-400").text("Status: 400 - " + responseDefault400_description.substring(0, responseDefault400_description_break));
+                                $("#examples-Default-standsPost-description-400").html(responseDefault400_description.substring(responseDefault400_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Default-standsPost-400" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Default-standsPost-400-wrapper" style='margin-bottom: 10px;'>
+                            </div>
+                            <h3 id="examples-Default-standsPost-title-500"></h3>
+                            <p id="examples-Default-standsPost-description-500" class="marked"></p>
+                            <script>
+                              var responseDefault500_description = `Internal error`;
+                              var responseDefault500_description_break = responseDefault500_description.indexOf('\n');
+                              if (responseDefault500_description_break == -1) {
+                                $("#examples-Default-standsPost-title-500").text("Status: 500 - " + responseDefault500_description);
+                              } else {
+                                $("#examples-Default-standsPost-title-500").text("Status: 500 - " + responseDefault500_description.substring(0, responseDefault500_description_break));
+                                $("#examples-Default-standsPost-description-500").html(responseDefault500_description.substring(responseDefault500_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Default-standsPost-500" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Default-standsPost-500-wrapper" style='margin-bottom: 10px;'>
+                            </div>
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Default-standsPut">
+                      <article id="api-Default-standsPut-0" data-group="User" data-name="standsPut" data-version="0">
+                        <div class="pull-left">
+                          <h1>standsPut</h1>
+                          <p>Update stand metadata</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">This updates stand metadata. Note that internaly we will actally create a new version of the data.</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="put"><code><span class="pln">/stands</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-standsPut-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-standsPut-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-standsPut-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-standsPut-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-standsPut-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-standsPut-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-standsPut-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-standsPut-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-standsPut-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-standsPut-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-standsPut-0-python">Python</a></li>
+                          <li class=""><a href="#examples-Default-standsPut-0-rust">Rust</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-standsPut-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X PUT \
+ \
+ -H "Accept: application/json" \
+ -H "Content-Type: application/json" \
+ "https://api.queensaver.com/v1/stands" \
+ -d ''
+</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-standsPut-0-java">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.model.*;
+import org.openapitools.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        
+        // Configure API key authorization: cookieAuth
+        ApiKeyAuth cookieAuth = (ApiKeyAuth) defaultClient.getAuthentication("cookieAuth");
+        cookieAuth.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cookieAuth.setApiKeyPrefix("Token");
+
+        // Create an instance of the API class
+        DefaultApi apiInstance = new DefaultApi();
+        Stand stand = ; // Stand | 
+
+        try {
+            stand result = apiInstance.standsPut(stand);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#standsPut");
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-standsPut-0-android">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.DefaultApi;
+
+public class DefaultApiExample {
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+        Stand stand = ; // Stand | 
+
+        try {
+            stand result = apiInstance.standsPut(stand);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#standsPut");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-standsPut-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-standsPut-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: cookieAuth)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"token"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"token"];
+
+
+// Create an instance of the API class
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+Stand *stand = ; //  (optional)
+
+// Update stand metadata
+[apiInstance standsPutWith:stand
+              completionHandler: ^(stand output, NSError* error) {
+    if (output) {
+        NSLog(@"%@", output);
+    }
+    if (error) {
+        NSLog(@"Error: %@", error);
+    }
+}];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-standsPut-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var QueensaverApi = require('queensaver_api');
+var defaultClient = QueensaverApi.ApiClient.instance;
+
+// Configure API key authorization: cookieAuth
+var cookieAuth = defaultClient.authentications['cookieAuth'];
+cookieAuth.apiKey = "YOUR API KEY";
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//cookieAuth.apiKeyPrefix['token'] = "Token";
+
+// Create an instance of the API class
+var api = new QueensaverApi.DefaultApi()
+var opts = {
+  'stand':  // {Stand} 
+};
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.standsPut(opts, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-standsPut-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-standsPut-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using Org.OpenAPITools.Api;
+using Org.OpenAPITools.Client;
+using Org.OpenAPITools.Model;
+
+namespace Example
+{
+    public class standsPutExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: cookieAuth
+            Configuration.Default.ApiKey.Add("token", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.ApiKeyPrefix.Add("token", "Bearer");
+
+            // Create an instance of the API class
+            var apiInstance = new DefaultApi();
+            var stand = new Stand(); // Stand |  (optional) 
+
+            try {
+                // Update stand metadata
+                stand result = apiInstance.standsPut(stand);
+                Debug.WriteLine(result);
+            } catch (Exception e) {
+                Debug.Print("Exception when calling DefaultApi.standsPut: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-standsPut-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure API key authorization: cookieAuth
+OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+
+// Create an instance of the API class
+$api_instance = new OpenAPITools\Client\Api\DefaultApi();
+$stand = ; // Stand | 
+
+try {
+    $result = $api_instance->standsPut($stand);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->standsPut: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-standsPut-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::OPenAPIClient::Configuration;
+use WWW::OPenAPIClient::DefaultApi;
+
+# Configure API key authorization: cookieAuth
+$WWW::OPenAPIClient::Configuration::api_key->{'token'} = 'YOUR_API_KEY';
+# uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+#$WWW::OPenAPIClient::Configuration::api_key_prefix->{'token'} = "Bearer";
+
+# Create an instance of the API class
+my $api_instance = WWW::OPenAPIClient::DefaultApi->new();
+my $stand = WWW::OPenAPIClient::Object::Stand->new(); # Stand | 
+
+eval {
+    my $result = $api_instance->standsPut(stand => $stand);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->standsPut: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-standsPut-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import openapi_client
+from openapi_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: cookieAuth
+openapi_client.configuration.api_key['token'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# openapi_client.configuration.api_key_prefix['token'] = 'Bearer'
+
+# Create an instance of the API class
+api_instance = openapi_client.DefaultApi()
+stand =  # Stand |  (optional)
+
+try:
+    # Update stand metadata
+    api_response = api_instance.stands_put(stand=stand)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->standsPut: %s\n" % e)</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-standsPut-0-rust">
+                              <pre class="prettyprint"><code class="language-rust">extern crate DefaultApi;
+
+pub fn main() {
+    let stand = ; // Stand
+
+    let mut context = DefaultApi::Context::default();
+    let result = client.standsPut(stand, &context).wait();
+
+    println!("{:?}", result);
+}
+</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Scopes</h2>
+                          <table>
+                            
+                          </table>
+
+                          <h2>Parameters</h2>
+
+
+
+                            <div class="methodsubtabletitle">Body parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">stand </td>
+<td>
+<p class="marked"></p>
+<script>
+$(document).ready(function() {
+  var schemaWrapper = {
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/stand"
+      }
+    }
+  }
+};
+
+  var schema = findNode('schema',schemaWrapper).schema;
+  if (!schema) {
+    schema = schemaWrapper.schema;
+  }
+  if (schema.$ref != null) {
+    schema = defsParser.$refs.get(schema.$ref);
+  } else {
+    schemaWrapper.definitions = Object.assign({}, defs);
+    $RefParser.dereference(schemaWrapper).catch(function(err) {
+      console.log(err);
+    });
+  }
+
+  var view = new JSONSchemaView(schema,2,{isBodyParam: true});
+  var result = $('#d2e199_standsPut_stand');
+  result.empty();
+  result.append(view.render());
+});
+</script>
+<div id="d2e199_standsPut_stand"></div>
+</td>
+</tr>
+
+                            </table>
+
+
+
+                          <h2>Responses</h2>
+                            <h3 id="examples-Default-standsPut-title-200"></h3>
+                            <p id="examples-Default-standsPut-description-200" class="marked"></p>
+                            <script>
+                              var responseDefault200_description = `Returns the updated hive`;
+                              var responseDefault200_description_break = responseDefault200_description.indexOf('\n');
+                              if (responseDefault200_description_break == -1) {
+                                $("#examples-Default-standsPut-title-200").text("Status: 200 - " + responseDefault200_description);
+                              } else {
+                                $("#examples-Default-standsPut-title-200").text("Status: 200 - " + responseDefault200_description.substring(0, responseDefault200_description_break));
+                                $("#examples-Default-standsPut-description-200").html(responseDefault200_description.substring(responseDefault200_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Default-standsPut-200" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Default-standsPut-200-schema">Schema</a>
+                                </li>
+
+
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Default-standsPut-200-wrapper" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-Default-standsPut-200-schema">
+                                  <div id="responses-Default-standsPut-schema-200" class="exampleStyle">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Returns the updated hive",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/stand"
+      }
+    }
+  }
+};
+                                        var schema = findNode('schema',schemaWrapper).schema;
+                                        if (!schema) {
+                                          schema = schemaWrapper.schema;
+                                        }
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else if (schema.items != null && schema.items.$ref != null) {
+                                            schema.items = defsParser.$refs.get(schema.items.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-Default-standsPut-200-schema-data').val(JSON.stringify(schema));
+                                        var result = $('#responses-Default-standsPut-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-Default-standsPut-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+                            <h3 id="examples-Default-standsPut-title-400"></h3>
+                            <p id="examples-Default-standsPut-description-400" class="marked"></p>
+                            <script>
+                              var responseDefault400_description = `Client error`;
+                              var responseDefault400_description_break = responseDefault400_description.indexOf('\n');
+                              if (responseDefault400_description_break == -1) {
+                                $("#examples-Default-standsPut-title-400").text("Status: 400 - " + responseDefault400_description);
+                              } else {
+                                $("#examples-Default-standsPut-title-400").text("Status: 400 - " + responseDefault400_description.substring(0, responseDefault400_description_break));
+                                $("#examples-Default-standsPut-description-400").html(responseDefault400_description.substring(responseDefault400_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Default-standsPut-400" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Default-standsPut-400-wrapper" style='margin-bottom: 10px;'>
+                            </div>
+                            <h3 id="examples-Default-standsPut-title-500"></h3>
+                            <p id="examples-Default-standsPut-description-500" class="marked"></p>
+                            <script>
+                              var responseDefault500_description = `Internal error`;
+                              var responseDefault500_description_break = responseDefault500_description.indexOf('\n');
+                              if (responseDefault500_description_break == -1) {
+                                $("#examples-Default-standsPut-title-500").text("Status: 500 - " + responseDefault500_description);
+                              } else {
+                                $("#examples-Default-standsPut-title-500").text("Status: 500 - " + responseDefault500_description.substring(0, responseDefault500_description_break));
+                                $("#examples-Default-standsPut-description-500").html(responseDefault500_description.substring(responseDefault500_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Default-standsPut-500" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Default-standsPut-500-wrapper" style='margin-bottom: 10px;'>
                             </div>
                         </article>
                       </div>

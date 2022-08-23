@@ -60,6 +60,129 @@ paths:
           description: The provided parameters are incorrect
       security: []
       summary: Authenticate a user against the system.
+  /stands:
+    delete:
+      description: This deletes a stand.
+      parameters:
+      - description: The UUID of the stand.
+        example: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+        explode: true
+        in: query
+        name: uuid
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          description: Returns 200 if the delete was successful
+        "400":
+          description: Client error
+        "500":
+          description: Internal error
+      security:
+      - cookieAuth: []
+      summary: Delete a stand
+    get:
+      description: "This returns all hive stand for the currently logged in user.\
+        \ Important to understand is that a user can go back into the past at any\
+        \ point in time (how did my stand look like a month or a year ago), so the\
+        \ cloud stores multiple versions of stand metadata. Any PUT request will create\
+        \ a new version."
+      parameters:
+      - description: "The UUID of the stand. If not set, the request will return all\
+          \ stands."
+        example: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+        explode: true
+        in: query
+        name: uuid
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "The Unix Time (epoch) that defines the end time of the query.\
+          \ The beginning is defined by the secondsInThePast parameter. If unset,\
+          \ the epoch will be set to NOW()"
+        example: 1639170002
+        explode: true
+        in: query
+        name: epoch
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: "How many seconds we go to the past to return data versions.\
+          \ If set to zero, we will return exactly one version."
+        example: 7200
+        explode: true
+        in: query
+        name: secondsInThePast
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/stand'
+                type: array
+          description: Stands
+        "400":
+          description: Client error
+        "500":
+          description: Internal error
+      security:
+      - cookieAuth: []
+      summary: Get Stand metadata
+    post:
+      description: This creates a new stand. A stand is a logical representation of
+        a location of bee hives.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/stand'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/stand'
+          description: Returns the created stand
+        "400":
+          description: Client error
+        "500":
+          description: Internal error
+      security:
+      - cookieAuth: []
+      summary: Create stand metadata
+    put:
+      description: This updates stand metadata. Note that internaly we will actally
+        create a new version of the data.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/stand'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/stand'
+          description: Returns the updated hive
+        "400":
+          description: Client error
+        "500":
+          description: Internal error
+      security:
+      - cookieAuth: []
+      summary: Update stand metadata
   /hives:
     delete:
       description: This deletes a hive.
@@ -84,7 +207,11 @@ paths:
       - cookieAuth: []
       summary: Delete a Hive
     get:
-      description: This returns all hive metadata for the currently logged in user.
+      description: "This returns all hive metadata for the currently logged in user.\
+        \ Important to understand is that a user can go back into the past at any\
+        \ point in time (how did my bee hive look like a month or a year ago), so\
+        \ the cloud stores multiple versions of hive metadata. Any PUT request will\
+        \ create a new version. W"
       parameters:
       - description: "The UUID of the hive. If not set, the request will return all\
           \ hives."
@@ -96,16 +223,28 @@ paths:
         schema:
           type: string
         style: form
-      - description: "The Unique ID (Mac Address) of the QBox client. If set, the\
-          \ query will only return the Hive that sits on the QBox client (or nothing\
-          \ if there is no hive associated)."
-        example: 829898a53801
+      - description: "The Unix Time (epoch) that defines the end time of the query.\
+          \ The beginning is defined by the secondsInThePast parameter. If unset,\
+          \ the epoch will be set to NOW()"
+        example: 1639170002
         explode: true
         in: query
-        name: bhiveId
-        required: false
+        name: epoch
+        required: true
         schema:
-          type: string
+          format: int64
+          type: integer
+        style: form
+      - description: "How many seconds we go to the past to return data versions.\
+          \ If set to zero, we will return exactly one version."
+        example: 7200
+        explode: true
+        in: query
+        name: secondsInThePast
+        required: true
+        schema:
+          format: int64
+          type: integer
         style: form
       responses:
         "200":
@@ -146,7 +285,8 @@ paths:
       - cookieAuth: []
       summary: Create Hive metadata
     put:
-      description: This updates new hive.
+      description: This updates hive metadata. Note that internaly we will actally
+        create a new version of the data.
       requestBody:
         content:
           application/json:
@@ -536,35 +676,10 @@ paths:
           type: string
         style: form
       requestBody:
-        $ref: '#/components/requestBodies/inline_object'
         content:
           multipart/form-data:
             schema:
-              properties:
-                userId:
-                  description: the internal user id of the authenticated user. Will
-                    be set internally in the cloud system and does not have an effect
-                    if set via the API call as it will be overridden. Don't set this
-                    value.
-                  example: 4
-                  format: int64
-                  type: integer
-                bhiveId:
-                  description: The Mac Address of the QBox client. You can get all
-                    QBox IDs and clients with the /config API call.
-                  example: 829898a53801
-                  type: string
-                epoch:
-                  description: The Unix Time (epoch) that defines the end time of
-                    the varroa images. The beginning is defined by the secondsInThePast
-                    parameter.
-                  example: 1639170002
-                  format: int64
-                  type: integer
-                scan:
-                  format: byte
-                  type: string
-              type: object
+              $ref: '#/components/schemas/_varroa_scan_image_post_request'
       responses:
         "200":
           description: OK
@@ -574,12 +689,6 @@ paths:
           description: Internal error
       summary: Save Varroa Scan image
 components:
-  requestBodies:
-    inline_object:
-      content:
-        multipart/form-data:
-          schema:
-            $ref: '#/components/schemas/inline_object'
   schemas:
     errorMessage:
       description: A text message describing an error
@@ -853,8 +962,106 @@ components:
           maxLength: 256
           type: string
       type: object
+    stand:
+      example:
+        httpReponseCode: 409
+        latitude: 0.8008281904610115
+        hives:
+        - standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+          alerts:
+          - alertType: VarroaHigh
+          - alertType: VarroaHigh
+          httpReponseCode: 409
+          public: true
+          frames: 3
+          bhiveId: 829898a53801
+          name: B25
+          format: Dadant
+          comment: This hive needs to be replaced next year
+          epoch: 1639170002
+          uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+          capacity: 10
+        - standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+          alerts:
+          - alertType: VarroaHigh
+          - alertType: VarroaHigh
+          httpReponseCode: 409
+          public: true
+          frames: 3
+          bhiveId: 829898a53801
+          name: B25
+          format: Dadant
+          comment: This hive needs to be replaced next year
+          epoch: 1639170002
+          uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+          capacity: 10
+        name: B
+        epoch: 1639170002
+        longitude: 6.027456183070403
+      properties:
+        hives:
+          description: "A stand can have many hives. However, when sending POST or\
+            \ PUT requests you can only update the stand metadata, any hives attached\
+            \ to it will be ignored. You will have to do the hive call instead to\
+            \ update hives. This data will only be populated with GET requests."
+          items:
+            $ref: '#/components/schemas/hive'
+          type: array
+          x-protobuf-index: 1
+        name:
+          description: Name of the stand. Can be chosen by the user. A stand is a
+            collection of bee hives.
+          example: B
+          type: string
+          x-protobuf-index: 2
+        latitude:
+          description: latitude of the stand
+          format: double
+          type: number
+          x-protobuf-index: 3
+        longitude:
+          description: longitude of the stand
+          format: double
+          type: number
+          x-protobuf-index: 4
+        httpReponseCode:
+          description: "HTTP response code. Used for internal purposes, will be let\
+            \ out at the API level."
+          example: 409
+          type: integer
+          x-protobuf-index: 6
+        epoch:
+          description: "Epoch when the data was last updated. This will be set internally,\
+            \ no need to add this with PUT or POST calls."
+          example: 1639170002
+          format: int64
+          type: integer
+          x-protobuf-index: 7
+      required:
+      - name
+      type: object
+    alerts:
+      example:
+        alertType: VarroaHigh
+      properties:
+        alertType:
+          description: Various alerts a bee hive can have.
+          enum:
+          - VarroaHigh
+          - WeightLow
+          - QueenLess
+          example: VarroaHigh
+          type: string
+          x-protobuf-index: 1
+      required:
+      - alertType
+      type: object
     hive:
       example:
+        standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+        alerts:
+        - alertType: VarroaHigh
+        - alertType: VarroaHigh
         httpReponseCode: 409
         public: true
         frames: 3
@@ -862,6 +1069,7 @@ components:
         name: B25
         format: Dadant
         comment: This hive needs to be replaced next year
+        epoch: 1639170002
         uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
         capacity: 10
       properties:
@@ -876,23 +1084,29 @@ components:
           example: true
           type: boolean
           x-protobuf-index: 2
+        standUuid:
+          description: Unique Identifier of the stand that this hive is part of. Must
+            be defined.
+          example: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+          type: string
+          x-protobuf-index: 3
         uuid:
           description: Unique Identifier for this hive
           example: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
           type: string
-          x-protobuf-index: 7
+          x-protobuf-index: 4
         comment:
           description: Random note or user comment
           example: This hive needs to be replaced next year
           type: string
-          x-protobuf-index: 3
+          x-protobuf-index: 5
         capacity:
           description: How many honeycombs a frame can load
           example: 10
           maximum: 50
           minimum: 1
           type: integer
-          x-protobuf-index: 4
+          x-protobuf-index: 6
         format:
           description: The format of the frame
           enum:
@@ -900,12 +1114,17 @@ components:
           - Dadant
           example: Dadant
           type: string
-          x-protobuf-index: 5
+          x-protobuf-index: 7
         frames:
           description: The number of frames the bee hive has
           example: 3
           type: integer
-          x-protobuf-index: 6
+          x-protobuf-index: 8
+        alerts:
+          items:
+            $ref: '#/components/schemas/alerts'
+          type: array
+          x-protobuf-index: 9
         bhiveId:
           description: The ID of beehive electronics (QBox client).
           example: 829898a53801
@@ -918,6 +1137,16 @@ components:
           example: 409
           type: integer
           x-protobuf-index: 9
+        epoch:
+          description: "Epoch when the data was last updated. This will be set internally,\
+            \ no need to add this with PUT or POST calls."
+          example: 1639170002
+          format: int64
+          type: integer
+          x-protobuf-index: 10
+      required:
+      - name
+      - standUuid
       type: object
     bbox:
       example:
@@ -940,7 +1169,7 @@ components:
           type: string
         bhive:
           items:
-            $ref: '#/components/schemas/bbox_bhive'
+            $ref: '#/components/schemas/bbox_bhive_inner'
           type: array
       type: object
     user:
@@ -971,7 +1200,7 @@ components:
       - password
       - username
       type: object
-    inline_object:
+    _varroa_scan_image_post_request:
       properties:
         userId:
           description: the internal user id of the authenticated user. Will be set
@@ -995,7 +1224,7 @@ components:
           format: byte
           type: string
       type: object
-    bbox_bhive:
+    bbox_bhive_inner:
       example:
         bhiveId: 829898a53801
       properties:

@@ -17,6 +17,7 @@ import public "models/bbox.proto";
 import public "models/generic_post_response.proto";
 import public "models/get_temperature_response.proto";
 import public "models/hive.proto";
+import public "models/stand.proto";
 import public "models/temperature.proto";
 import public "models/user.proto";
 import public "models/varroa_scan.proto";
@@ -37,6 +38,14 @@ service DefaultService {
   rpc LoginPost (LoginPostRequest) returns (google.protobuf.Empty);
 
   rpc ScaleGet (ScaleGetRequest) returns (ScaleGetResponse);
+
+  rpc StandsDelete (StandsDeleteRequest) returns (google.protobuf.Empty);
+
+  rpc StandsGet (StandsGetRequest) returns (StandsGetResponse);
+
+  rpc StandsPost (StandsPostRequest) returns (Stand);
+
+  rpc StandsPut (StandsPutRequest) returns (Stand);
 
   rpc TemperatureGet (TemperatureGetRequest) returns (GetTemperatureResponse);
 
@@ -63,10 +72,12 @@ message HivesDeleteRequest {
 }
 
 message HivesGetRequest {
+  // The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW()
+  int64 epoch = 1;
+  // How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version.
+  int64 secondsInThePast = 2;
   // The UUID of the hive. If not set, the request will return all hives.
-  string uuid = 1;
-  // The Unique ID (Mac Address) of the QBox client. If set, the query will only return the Hive that sits on the QBox client (or nothing if there is no hive associated).
-  string bhiveId = 2;
+  string uuid = 3;
 
 }
 
@@ -108,6 +119,36 @@ message ScaleGetRequest {
 
 message ScaleGetResponse {
   repeated Weight data = 1;
+}
+
+message StandsDeleteRequest {
+  // The UUID of the stand.
+  string uuid = 1;
+
+}
+
+message StandsGetRequest {
+  // The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW()
+  int64 epoch = 1;
+  // How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version.
+  int64 secondsInThePast = 2;
+  // The UUID of the stand. If not set, the request will return all stands.
+  string uuid = 3;
+
+}
+
+message StandsGetResponse {
+  repeated Stand data = 1;
+}
+
+message StandsPostRequest {
+  Stand stand = 1;
+
+}
+
+message StandsPutRequest {
+  Stand stand = 1;
+
 }
 
 message TemperatureGetRequest {

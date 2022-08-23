@@ -12,10 +12,13 @@ package openapi
 type Hive struct {
 
 	// Name of the hive. Can be chosen by the user.
-	Name string `json:"name,omitempty"`
+	Name string `json:"name"`
 
 	// If the hive can be viewed by other users in the queensaver system
 	Public bool `json:"public,omitempty"`
+
+	// Unique Identifier of the stand that this hive is part of. Must be defined.
+	StandUuid string `json:"standUuid"`
 
 	// Unique Identifier for this hive
 	Uuid string `json:"uuid,omitempty"`
@@ -32,15 +35,35 @@ type Hive struct {
 	// The number of frames the bee hive has
 	Frames int32 `json:"frames,omitempty"`
 
+	Alerts []Alerts `json:"alerts,omitempty"`
+
 	// The ID of beehive electronics (QBox client).
 	BhiveId string `json:"bhiveId,omitempty"`
 
 	// HTTP response code. Used for internal purposes, will be let out at the API level.
 	HttpReponseCode int32 `json:"httpReponseCode,omitempty"`
+
+	// Epoch when the data was last updated. This will be set internally, no need to add this with PUT or POST calls.
+	Epoch int64 `json:"epoch,omitempty"`
 }
 
 // AssertHiveRequired checks if the required fields are not zero-ed
 func AssertHiveRequired(obj Hive) error {
+	elements := map[string]interface{}{
+		"name": obj.Name,
+		"standUuid": obj.StandUuid,
+	}
+	for name, el := range elements {
+		if isZero := IsZeroValue(el); isZero {
+			return &RequiredError{Field: name}
+		}
+	}
+
+	for _, el := range obj.Alerts {
+		if err := AssertAlertsRequired(el); err != nil {
+			return err
+		}
+	}
 	return nil
 }
 

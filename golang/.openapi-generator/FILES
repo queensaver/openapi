@@ -9,12 +9,14 @@ go/error.go
 go/helpers.go
 go/impl.go
 go/logger.go
+go/model_alerts.go
 go/model_bbox.go
-go/model_bbox_bhive.go
+go/model_bbox_bhive_inner.go
 go/model_bhive.go
 go/model_generic_post_response.go
 go/model_get_temperature_response.go
 go/model_hive.go
+go/model_stand.go
 go/model_temperature.go
 go/model_user.go
 go/model_varroa_scan.go

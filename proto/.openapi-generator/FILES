@@ -1,10 +1,12 @@
 README.md
+models/alerts.proto
 models/bbox.proto
-models/bbox_bhive.proto
+models/bbox_bhive_inner.proto
 models/bhive.proto
 models/generic_post_response.proto
 models/get_temperature_response.proto
 models/hive.proto
+models/stand.proto
 models/temperature.proto
 models/user.proto
 models/varroa_scan.proto

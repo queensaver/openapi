@@ -61,7 +61,7 @@ func (s *DefaultApiService) HivesDelete(ctx context.Context, uuid string) (ImplR
 }
 
 // HivesGet - Get Hive metadata
-func (s *DefaultApiService) HivesGet(ctx context.Context, uuid string, bhiveId string) (ImplResponse, error) {
+func (s *DefaultApiService) HivesGet(ctx context.Context, epoch int64, secondsInThePast int64, uuid string) (ImplResponse, error) {
 	// TODO - update HivesGet with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
@@ -140,6 +140,74 @@ func (s *DefaultApiService) ScaleGet(ctx context.Context, qToken string, bhiveId
 	//return Response(500, nil),nil
 
 	return Response(http.StatusNotImplemented, nil), errors.New("ScaleGet method not implemented")
+}
+
+// StandsDelete - Delete a stand
+func (s *DefaultApiService) StandsDelete(ctx context.Context, uuid string) (ImplResponse, error) {
+	// TODO - update StandsDelete with the required logic for this service method.
+	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
+
+	//TODO: Uncomment the next line to return response Response(200, {}) or use other options such as http.Ok ...
+	//return Response(200, nil),nil
+
+	//TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
+	//return Response(400, nil),nil
+
+	//TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
+	//return Response(500, nil),nil
+
+	return Response(http.StatusNotImplemented, nil), errors.New("StandsDelete method not implemented")
+}
+
+// StandsGet - Get Stand metadata
+func (s *DefaultApiService) StandsGet(ctx context.Context, epoch int64, secondsInThePast int64, uuid string) (ImplResponse, error) {
+	// TODO - update StandsGet with the required logic for this service method.
+	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
+
+	//TODO: Uncomment the next line to return response Response(200, []Stand{}) or use other options such as http.Ok ...
+	//return Response(200, []Stand{}), nil
+
+	//TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
+	//return Response(400, nil),nil
+
+	//TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
+	//return Response(500, nil),nil
+
+	return Response(http.StatusNotImplemented, nil), errors.New("StandsGet method not implemented")
+}
+
+// StandsPost - Create stand metadata
+func (s *DefaultApiService) StandsPost(ctx context.Context, stand Stand) (ImplResponse, error) {
+	// TODO - update StandsPost with the required logic for this service method.
+	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
+
+	//TODO: Uncomment the next line to return response Response(200, Stand{}) or use other options such as http.Ok ...
+	//return Response(200, Stand{}), nil
+
+	//TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
+	//return Response(400, nil),nil
+
+	//TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
+	//return Response(500, nil),nil
+
+	return Response(http.StatusNotImplemented, nil), errors.New("StandsPost method not implemented")
+}
+
+// StandsPut - Update stand metadata
+func (s *DefaultApiService) StandsPut(ctx context.Context, stand Stand) (ImplResponse, error) {
+	// TODO - update StandsPut with the required logic for this service method.
+	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
+
+	//TODO: Uncomment the next line to return response Response(200, Stand{}) or use other options such as http.Ok ...
+	//return Response(200, Stand{}), nil
+
+	//TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
+	//return Response(400, nil),nil
+
+	//TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
+	//return Response(500, nil),nil
+
+	return Response(http.StatusNotImplemented, nil), errors.New("StandsPut method not implemented")
 }
 
 // TemperatureGet - Get Temperature values
