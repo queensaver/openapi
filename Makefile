@@ -18,6 +18,9 @@ protos:
 		--go_opt=Mmodels/bbox_bhive.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/bbox.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/hive.proto=github.com/queensaver/openapi/golang/proto/models \
+		--go_opt=Mmodels/stand.proto=github.com/queensaver/openapi/golang/proto/models \
+		--go_opt=Mmodels/alerts.proto=github.com/queensaver/openapi/golang/proto/models \
+		--go_opt=Mmodels/bbox_bhive_inner.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/user.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/weight.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/temperature.proto=github.com/queensaver/openapi/golang/proto/models \
@@ -31,6 +34,9 @@ protos:
 		proto/models/bbox_bhive.proto \
 		proto/models/bbox.proto \
 		proto/models/hive.proto \
+		proto/models/stand.proto \
+		proto/models/alerts.proto \
+		proto/models/bbox_bhive_inner.proto \
 		proto/models/user.proto \
 		proto/models/weight.proto \
 		proto/models/temperature.proto \
@@ -53,6 +59,9 @@ grpc:
 		--go_opt=Mmodels/bbox_bhive.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/bbox.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/hive.proto=github.com/queensaver/openapi/golang/proto/models \
+		--go_opt=Mmodels/stand.proto=github.com/queensaver/openapi/golang/proto/models \
+		--go_opt=Mmodels/alerts.proto=github.com/queensaver/openapi/golang/proto/models \
+		--go_opt=Mmodels/bbox_bhive_inner.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/user.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/weight.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/temperature.proto=github.com/queensaver/openapi/golang/proto/models \
@@ -67,6 +76,9 @@ grpc:
 		--go_grpc_opt=Mmodels/bbox_bhive.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_grpc_opt=Mmodels/bbox.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_grpc_opt=Mmodels/hive.proto=github.com/queensaver/openapi/golang/proto/models \
+		--go_grpc_opt=Mmodels/stand.proto=github.com/queensaver/openapi/golang/proto/models \
+		--go_grpc_opt=Mmodels/alerts.proto=github.com/queensaver/openapi/golang/proto/models \
+		--go_grpc_opt=Mmodels/bbox_bhive_inner.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_grpc_opt=Mmodels/user.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_grpc_opt=Mmodels/weight.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_grpc_opt=Mmodels/temperature.proto=github.com/queensaver/openapi/golang/proto/models \

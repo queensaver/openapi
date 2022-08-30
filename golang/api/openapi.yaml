@@ -1131,20 +1131,20 @@ components:
           example: 829898a53801
           maxLength: 256
           type: string
-          x-protobuf-index: 8
+          x-protobuf-index: 10
         httpReponseCode:
           description: "HTTP response code. Used for internal purposes, will be let\
             \ out at the API level."
           example: 409
           type: integer
-          x-protobuf-index: 9
+          x-protobuf-index: 11
         epoch:
           description: "Epoch when the data was last updated. This will be set internally,\
             \ no need to add this with PUT or POST calls."
           example: 1639170002
           format: int64
           type: integer
-          x-protobuf-index: 10
+          x-protobuf-index: 12
       required:
       - name
       - standUuid

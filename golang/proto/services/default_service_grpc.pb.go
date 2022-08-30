@@ -31,6 +31,10 @@ type DefaultServiceClient interface {
 	HivesPut(ctx context.Context, in *HivesPutRequest, opts ...grpc.CallOption) (*models.Hive, error)
 	LoginPost(ctx context.Context, in *LoginPostRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	ScaleGet(ctx context.Context, in *ScaleGetRequest, opts ...grpc.CallOption) (*ScaleGetResponse, error)
+	StandsDelete(ctx context.Context, in *StandsDeleteRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	StandsGet(ctx context.Context, in *StandsGetRequest, opts ...grpc.CallOption) (*StandsGetResponse, error)
+	StandsPost(ctx context.Context, in *StandsPostRequest, opts ...grpc.CallOption) (*models.Stand, error)
+	StandsPut(ctx context.Context, in *StandsPutRequest, opts ...grpc.CallOption) (*models.Stand, error)
 	TemperatureGet(ctx context.Context, in *TemperatureGetRequest, opts ...grpc.CallOption) (*models.GetTemperatureResponse, error)
 	TemperaturePost(ctx context.Context, in *TemperaturePostRequest, opts ...grpc.CallOption) (*models.GenericPostResponse, error)
 	UserPost(ctx context.Context, in *UserPostRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -110,6 +114,42 @@ func (c *defaultServiceClient) ScaleGet(ctx context.Context, in *ScaleGetRequest
 	return out, nil
 }
 
+func (c *defaultServiceClient) StandsDelete(ctx context.Context, in *StandsDeleteRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, "/openapi.services.defaultservice.DefaultService/StandsDelete", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *defaultServiceClient) StandsGet(ctx context.Context, in *StandsGetRequest, opts ...grpc.CallOption) (*StandsGetResponse, error) {
+	out := new(StandsGetResponse)
+	err := c.cc.Invoke(ctx, "/openapi.services.defaultservice.DefaultService/StandsGet", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *defaultServiceClient) StandsPost(ctx context.Context, in *StandsPostRequest, opts ...grpc.CallOption) (*models.Stand, error) {
+	out := new(models.Stand)
+	err := c.cc.Invoke(ctx, "/openapi.services.defaultservice.DefaultService/StandsPost", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *defaultServiceClient) StandsPut(ctx context.Context, in *StandsPutRequest, opts ...grpc.CallOption) (*models.Stand, error) {
+	out := new(models.Stand)
+	err := c.cc.Invoke(ctx, "/openapi.services.defaultservice.DefaultService/StandsPut", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *defaultServiceClient) TemperatureGet(ctx context.Context, in *TemperatureGetRequest, opts ...grpc.CallOption) (*models.GetTemperatureResponse, error) {
 	out := new(models.GetTemperatureResponse)
 	err := c.cc.Invoke(ctx, "/openapi.services.defaultservice.DefaultService/TemperatureGet", in, out, opts...)
@@ -175,6 +215,10 @@ type DefaultServiceServer interface {
 	HivesPut(context.Context, *HivesPutRequest) (*models.Hive, error)
 	LoginPost(context.Context, *LoginPostRequest) (*emptypb.Empty, error)
 	ScaleGet(context.Context, *ScaleGetRequest) (*ScaleGetResponse, error)
+	StandsDelete(context.Context, *StandsDeleteRequest) (*emptypb.Empty, error)
+	StandsGet(context.Context, *StandsGetRequest) (*StandsGetResponse, error)
+	StandsPost(context.Context, *StandsPostRequest) (*models.Stand, error)
+	StandsPut(context.Context, *StandsPutRequest) (*models.Stand, error)
 	TemperatureGet(context.Context, *TemperatureGetRequest) (*models.GetTemperatureResponse, error)
 	TemperaturePost(context.Context, *TemperaturePostRequest) (*models.GenericPostResponse, error)
 	UserPost(context.Context, *UserPostRequest) (*emptypb.Empty, error)
@@ -208,6 +252,18 @@ func (UnimplementedDefaultServiceServer) LoginPost(context.Context, *LoginPostRe
 }
 func (UnimplementedDefaultServiceServer) ScaleGet(context.Context, *ScaleGetRequest) (*ScaleGetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ScaleGet not implemented")
+}
+func (UnimplementedDefaultServiceServer) StandsDelete(context.Context, *StandsDeleteRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StandsDelete not implemented")
+}
+func (UnimplementedDefaultServiceServer) StandsGet(context.Context, *StandsGetRequest) (*StandsGetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StandsGet not implemented")
+}
+func (UnimplementedDefaultServiceServer) StandsPost(context.Context, *StandsPostRequest) (*models.Stand, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StandsPost not implemented")
+}
+func (UnimplementedDefaultServiceServer) StandsPut(context.Context, *StandsPutRequest) (*models.Stand, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StandsPut not implemented")
 }
 func (UnimplementedDefaultServiceServer) TemperatureGet(context.Context, *TemperatureGetRequest) (*models.GetTemperatureResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TemperatureGet not implemented")
@@ -366,6 +422,78 @@ func _DefaultService_ScaleGet_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DefaultService_StandsDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(StandsDeleteRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DefaultServiceServer).StandsDelete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/openapi.services.defaultservice.DefaultService/StandsDelete",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DefaultServiceServer).StandsDelete(ctx, req.(*StandsDeleteRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DefaultService_StandsGet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(StandsGetRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DefaultServiceServer).StandsGet(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/openapi.services.defaultservice.DefaultService/StandsGet",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DefaultServiceServer).StandsGet(ctx, req.(*StandsGetRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DefaultService_StandsPost_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(StandsPostRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DefaultServiceServer).StandsPost(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/openapi.services.defaultservice.DefaultService/StandsPost",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DefaultServiceServer).StandsPost(ctx, req.(*StandsPostRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DefaultService_StandsPut_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(StandsPutRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DefaultServiceServer).StandsPut(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/openapi.services.defaultservice.DefaultService/StandsPut",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DefaultServiceServer).StandsPut(ctx, req.(*StandsPutRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DefaultService_TemperatureGet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(TemperatureGetRequest)
 	if err := dec(in); err != nil {
@@ -508,6 +636,22 @@ var DefaultService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ScaleGet",
 			Handler:    _DefaultService_ScaleGet_Handler,
+		},
+		{
+			MethodName: "StandsDelete",
+			Handler:    _DefaultService_StandsDelete_Handler,
+		},
+		{
+			MethodName: "StandsGet",
+			Handler:    _DefaultService_StandsGet_Handler,
+		},
+		{
+			MethodName: "StandsPost",
+			Handler:    _DefaultService_StandsPost_Handler,
+		},
+		{
+			MethodName: "StandsPut",
+			Handler:    _DefaultService_StandsPut_Handler,
 		},
 		{
 			MethodName: "TemperatureGet",
