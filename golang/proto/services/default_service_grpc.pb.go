@@ -33,7 +33,7 @@ type DefaultServiceClient interface {
 	ScaleGet(ctx context.Context, in *ScaleGetRequest, opts ...grpc.CallOption) (*ScaleGetResponse, error)
 	StandsDelete(ctx context.Context, in *StandsDeleteRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	StandsGet(ctx context.Context, in *StandsGetRequest, opts ...grpc.CallOption) (*models.GetStandsResponse, error)
-	StandsPost(ctx context.Context, in *StandsPostRequest, opts ...grpc.CallOption) (*models.Stand, error)
+	StandsPost(ctx context.Context, in *StandsPostRequest, opts ...grpc.CallOption) (*models.PostStandsResponse, error)
 	StandsPut(ctx context.Context, in *StandsPutRequest, opts ...grpc.CallOption) (*models.Stand, error)
 	TemperatureGet(ctx context.Context, in *TemperatureGetRequest, opts ...grpc.CallOption) (*models.GetTemperatureResponse, error)
 	TemperaturePost(ctx context.Context, in *TemperaturePostRequest, opts ...grpc.CallOption) (*models.GenericPostResponse, error)
@@ -132,8 +132,8 @@ func (c *defaultServiceClient) StandsGet(ctx context.Context, in *StandsGetReque
 	return out, nil
 }
 
-func (c *defaultServiceClient) StandsPost(ctx context.Context, in *StandsPostRequest, opts ...grpc.CallOption) (*models.Stand, error) {
-	out := new(models.Stand)
+func (c *defaultServiceClient) StandsPost(ctx context.Context, in *StandsPostRequest, opts ...grpc.CallOption) (*models.PostStandsResponse, error) {
+	out := new(models.PostStandsResponse)
 	err := c.cc.Invoke(ctx, "/openapi.services.defaultservice.DefaultService/StandsPost", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -217,7 +217,7 @@ type DefaultServiceServer interface {
 	ScaleGet(context.Context, *ScaleGetRequest) (*ScaleGetResponse, error)
 	StandsDelete(context.Context, *StandsDeleteRequest) (*emptypb.Empty, error)
 	StandsGet(context.Context, *StandsGetRequest) (*models.GetStandsResponse, error)
-	StandsPost(context.Context, *StandsPostRequest) (*models.Stand, error)
+	StandsPost(context.Context, *StandsPostRequest) (*models.PostStandsResponse, error)
 	StandsPut(context.Context, *StandsPutRequest) (*models.Stand, error)
 	TemperatureGet(context.Context, *TemperatureGetRequest) (*models.GetTemperatureResponse, error)
 	TemperaturePost(context.Context, *TemperaturePostRequest) (*models.GenericPostResponse, error)
@@ -259,7 +259,7 @@ func (UnimplementedDefaultServiceServer) StandsDelete(context.Context, *StandsDe
 func (UnimplementedDefaultServiceServer) StandsGet(context.Context, *StandsGetRequest) (*models.GetStandsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method StandsGet not implemented")
 }
-func (UnimplementedDefaultServiceServer) StandsPost(context.Context, *StandsPostRequest) (*models.Stand, error) {
+func (UnimplementedDefaultServiceServer) StandsPost(context.Context, *StandsPostRequest) (*models.PostStandsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method StandsPost not implemented")
 }
 func (UnimplementedDefaultServiceServer) StandsPut(context.Context, *StandsPutRequest) (*models.Stand, error) {

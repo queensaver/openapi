@@ -29,6 +29,8 @@ import { GetTemperatureResponse } from '../model/getTemperatureResponse';
 // @ts-ignore
 import { Hive } from '../model/hive';
 // @ts-ignore
+import { PostStandsResponse } from '../model/postStandsResponse';
+// @ts-ignore
 import { Stand } from '../model/stand';
 // @ts-ignore
 import { Temperature } from '../model/temperature';
@@ -832,9 +834,9 @@ export class DefaultService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public standsPost(qToken: string, token?: string, userId?: number, stand?: Stand, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<Stand>;
-    public standsPost(qToken: string, token?: string, userId?: number, stand?: Stand, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<Stand>>;
-    public standsPost(qToken: string, token?: string, userId?: number, stand?: Stand, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<Stand>>;
+    public standsPost(qToken: string, token?: string, userId?: number, stand?: Stand, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<PostStandsResponse>;
+    public standsPost(qToken: string, token?: string, userId?: number, stand?: Stand, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<PostStandsResponse>>;
+    public standsPost(qToken: string, token?: string, userId?: number, stand?: Stand, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<PostStandsResponse>>;
     public standsPost(qToken: string, token?: string, userId?: number, stand?: Stand, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
         if (qToken === null || qToken === undefined) {
             throw new Error('Required parameter qToken was null or undefined when calling standsPost.');
@@ -895,7 +897,7 @@ export class DefaultService {
             }
         }
 
-        return this.httpClient.post<Stand>(`${this.configuration.basePath}/stands`,
+        return this.httpClient.post<PostStandsResponse>(`${this.configuration.basePath}/stands`,
             stand,
             {
                 context: localVarHttpContext,

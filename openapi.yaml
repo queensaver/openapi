@@ -186,11 +186,11 @@ paths:
               $ref: "#/components/schemas/stand"
       responses:
         "200":
-          description: "Returns the created stand"
+          description: "Returns the created stand and the http error code"
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/stand"
+                $ref: "#/components/schemas/post-stands-response"
         "400":
           description: Client error
         "500":

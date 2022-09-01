@@ -213,8 +213,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/stand'
-          description: Returns the created stand
+                $ref: '#/components/schemas/post-stands-response'
+          description: Returns the created stand and the http error code
         "400":
           description: Client error
         "500":
@@ -925,6 +925,43 @@ components:
           x-protobuf-index: 2
       type: object
     post-stands-response:
+      example:
+        httpResponseCode: 409
+        stand:
+          httpReponseCode: 409
+          latitude: 0.8008281904610115
+          hives:
+          - standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+            alerts:
+            - alertType: VarroaHigh
+            - alertType: VarroaHigh
+            httpReponseCode: 409
+            public: true
+            frames: 3
+            bhiveId: 829898a53801
+            name: B25
+            format: Dadant
+            comment: This hive needs to be replaced next year
+            epoch: 1639170002
+            uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+            capacity: 10
+          - standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+            alerts:
+            - alertType: VarroaHigh
+            - alertType: VarroaHigh
+            httpReponseCode: 409
+            public: true
+            frames: 3
+            bhiveId: 829898a53801
+            name: B25
+            format: Dadant
+            comment: This hive needs to be replaced next year
+            epoch: 1639170002
+            uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+            capacity: 10
+          name: B
+          epoch: 1639170002
+          longitude: 6.027456183070403
       properties:
         httpResponseCode:
           description: "HTTP response code. Used for internal purposes, will be sent\

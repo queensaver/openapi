@@ -5498,7 +5498,7 @@ public class DefaultApiExample {
         Stand stand = ; // Stand | 
 
         try {
-            stand result = apiInstance.standsPost(qToken, token, userId, stand);
+            post-stands-response result = apiInstance.standsPost(qToken, token, userId, stand);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#standsPost");
@@ -5521,7 +5521,7 @@ public class DefaultApiExample {
         Stand stand = ; // Stand | 
 
         try {
-            stand result = apiInstance.standsPost(qToken, token, userId, stand);
+            post-stands-response result = apiInstance.standsPost(qToken, token, userId, stand);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#standsPost");
@@ -5555,7 +5555,7 @@ Stand *stand = ; //  (optional)
     token:token
     userId:userId
     stand:stand
-              completionHandler: ^(stand output, NSError* error) {
+              completionHandler: ^(post-stands-response output, NSError* error) {
     if (output) {
         NSLog(@"%@", output);
     }
@@ -5626,7 +5626,7 @@ namespace Example
 
             try {
                 // Create stand metadata
-                stand result = apiInstance.standsPost(qToken, token, userId, stand);
+                post-stands-response result = apiInstance.standsPost(qToken, token, userId, stand);
                 Debug.WriteLine(result);
             } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.standsPost: " + e.Message );
@@ -5854,7 +5854,7 @@ The UserID is set internally and can not set or be overridden with the API reque
                             <h3 id="examples-Default-standsPost-title-200"></h3>
                             <p id="examples-Default-standsPost-description-200" class="marked"></p>
                             <script>
-                              var responseDefault200_description = `Returns the created stand`;
+                              var responseDefault200_description = `Returns the created stand and the http error code`;
                               var responseDefault200_description_break = responseDefault200_description.indexOf('\n');
                               if (responseDefault200_description_break == -1) {
                                 $("#examples-Default-standsPost-title-200").text("Status: 200 - " + responseDefault200_description);
@@ -5882,11 +5882,11 @@ The UserID is set internally and can not set or be overridden with the API reque
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
-  "description" : "Returns the created stand",
+  "description" : "Returns the created stand and the http error code",
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/stand"
+        "$ref" : "#/components/schemas/post-stands-response"
       }
     }
   }
