@@ -23,6 +23,8 @@ import { Bbox } from '../model/bbox';
 // @ts-ignore
 import { GenericPostResponse } from '../model/genericPostResponse';
 // @ts-ignore
+import { GetStandsResponse } from '../model/getStandsResponse';
+// @ts-ignore
 import { GetTemperatureResponse } from '../model/getTemperatureResponse';
 // @ts-ignore
 import { Hive } from '../model/hive';
@@ -726,17 +728,22 @@ export class DefaultService {
     /**
      * Get Stand metadata
      * This returns all hive stand for the currently logged in user. Important to understand is that a user can go back into the past at any point in time (how did my stand look like a month or a year ago), so the cloud stores multiple versions of stand metadata. Any PUT request will create a new version.
+     * @param qToken Either the cookie or this Q-Token must be set to be authorized for the API call.
      * @param epoch The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW()
      * @param secondsInThePast How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version.
+     * @param token Either this cookie or the Q-Token must be set to be authorized for the API call.
      * @param uuid The UUID of the stand. If not set, the request will return all stands.
      * @param userId The UserID is set internally and can not set or be overridden with the API request. Please ignore.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public standsGet(epoch: number, secondsInThePast: number, uuid?: string, userId?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<Array<Stand>>;
-    public standsGet(epoch: number, secondsInThePast: number, uuid?: string, userId?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<Array<Stand>>>;
-    public standsGet(epoch: number, secondsInThePast: number, uuid?: string, userId?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<Array<Stand>>>;
-    public standsGet(epoch: number, secondsInThePast: number, uuid?: string, userId?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+    public standsGet(qToken: string, epoch: number, secondsInThePast: number, token?: string, uuid?: string, userId?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<GetStandsResponse>;
+    public standsGet(qToken: string, epoch: number, secondsInThePast: number, token?: string, uuid?: string, userId?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<GetStandsResponse>>;
+    public standsGet(qToken: string, epoch: number, secondsInThePast: number, token?: string, uuid?: string, userId?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<GetStandsResponse>>;
+    public standsGet(qToken: string, epoch: number, secondsInThePast: number, token?: string, uuid?: string, userId?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+        if (qToken === null || qToken === undefined) {
+            throw new Error('Required parameter qToken was null or undefined when calling standsGet.');
+        }
         if (epoch === null || epoch === undefined) {
             throw new Error('Required parameter epoch was null or undefined when calling standsGet.');
         }
@@ -763,6 +770,9 @@ export class DefaultService {
         }
 
         let localVarHeaders = this.defaultHeaders;
+        if (qToken !== undefined && qToken !== null) {
+            localVarHeaders = localVarHeaders.set('Q-Token', String(qToken));
+        }
 
         let localVarCredential: string | undefined;
         // authentication (cookieAuth) required
@@ -799,7 +809,7 @@ export class DefaultService {
             }
         }
 
-        return this.httpClient.get<Array<Stand>>(`${this.configuration.basePath}/stands`,
+        return this.httpClient.get<GetStandsResponse>(`${this.configuration.basePath}/stands`,
             {
                 context: localVarHttpContext,
                 params: localVarQueryParameters,

@@ -15,6 +15,7 @@ package openapi.services.defaultservice;
 import "google/protobuf/empty.proto";
 import public "models/bbox.proto";
 import public "models/generic_post_response.proto";
+import public "models/get_stands_response.proto";
 import public "models/get_temperature_response.proto";
 import public "models/hive.proto";
 import public "models/stand.proto";
@@ -41,7 +42,7 @@ service DefaultService {
 
   rpc StandsDelete (StandsDeleteRequest) returns (google.protobuf.Empty);
 
-  rpc StandsGet (StandsGetRequest) returns (StandsGetResponse);
+  rpc StandsGet (StandsGetRequest) returns (GetStandsResponse);
 
   rpc StandsPost (StandsPostRequest) returns (Stand);
 
@@ -128,19 +129,19 @@ message StandsDeleteRequest {
 }
 
 message StandsGetRequest {
+  // Either the cookie or this Q-Token must be set to be authorized for the API call.
+  string qToken = 1;
   // The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW()
-  int64 epoch = 1;
+  int64 epoch = 2;
   // How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version.
-  int64 secondsInThePast = 2;
+  int64 secondsInThePast = 3;
+  // Either this cookie or the Q-Token must be set to be authorized for the API call.
+  string token = 4;
   // The UUID of the stand. If not set, the request will return all stands.
-  string uuid = 3;
+  string uuid = 5;
   // The UserID is set internally and can not set or be overridden with the API request. Please ignore.
-  int64 userId = 4;
+  int64 userId = 6;
 
-}
-
-message StandsGetResponse {
-  repeated Stand data = 1;
 }
 
 message StandsPostRequest {

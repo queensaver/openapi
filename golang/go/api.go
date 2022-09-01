@@ -53,7 +53,7 @@ type DefaultApiServicer interface {
 	LoginPost(context.Context, string, string) (ImplResponse, error)
 	ScaleGet(context.Context, string, string, int64, int64, string) (ImplResponse, error)
 	StandsDelete(context.Context, string) (ImplResponse, error)
-	StandsGet(context.Context, int64, int64, string, int64) (ImplResponse, error)
+	StandsGet(context.Context, string, int64, int64, string, string, int64) (ImplResponse, error)
 	StandsPost(context.Context, Stand) (ImplResponse, error)
 	StandsPut(context.Context, Stand) (ImplResponse, error)
 	TemperatureGet(context.Context, string, string, int64, int64, string, int64) (ImplResponse, error)

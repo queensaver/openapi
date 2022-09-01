@@ -71,6 +71,19 @@ paths:
       security:
       - cookieAuth: []
       parameters:
+      - in: header
+        name: Q-Token
+        description: Either the cookie or this Q-Token must be set to be authorized for the API call.
+        schema:
+          type: string
+        example: 8B0FE5CF-C096-4B3E-8748-27906B4A9449
+        required: true
+      - in: cookie
+        name: token
+        description: Either this cookie or the Q-Token must be set to be authorized for the API call.
+        schema:
+          type: string
+        example: 8B0FE5CF-C096-4B3E-8748-27906B4A9449
       - name: uuid
         in: query
         description: The UUID of the stand. If not set, the request will return all stands.
@@ -109,9 +122,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/stand"
+                $ref: "#/components/schemas/get-stands-response"
         "400":
           description: Client error
         "500":
@@ -771,6 +782,20 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/varroa-scan"
+          x-protobuf-index: 2
+
+    get-stands-response:
+      type: object
+      properties:
+        stands:
+          type: array
+          items:
+            $ref: "#/components/schemas/stand"
+          x-protobuf-index: 1
+        httpResponseCode:
+          type: integer
+          example: 409
+          description: HTTP response code. Used for internal purposes, will be sent out at the API.
           x-protobuf-index: 2
 
     get-temperature-response:

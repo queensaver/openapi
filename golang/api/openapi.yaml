@@ -90,6 +90,26 @@ paths:
         \ cloud stores multiple versions of stand metadata. Any PUT request will create\
         \ a new version."
       parameters:
+      - description: Either the cookie or this Q-Token must be set to be authorized
+          for the API call.
+        example: 8B0FE5CF-C096-4B3E-8748-27906B4A9449
+        explode: false
+        in: header
+        name: Q-Token
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Either this cookie or the Q-Token must be set to be authorized
+          for the API call.
+        example: 8B0FE5CF-C096-4B3E-8748-27906B4A9449
+        explode: true
+        in: cookie
+        name: token
+        required: false
+        schema:
+          type: string
+        style: form
       - description: "The UUID of the stand. If not set, the request will return all\
           \ stands."
         example: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
@@ -139,9 +159,7 @@ paths:
           content:
             application/json:
               schema:
-                items:
-                  $ref: '#/components/schemas/stand'
-                type: array
+                $ref: '#/components/schemas/get-stands-response'
           description: Stands
         "400":
           description: Client error
@@ -872,6 +890,91 @@ components:
           items:
             $ref: '#/components/schemas/varroa-scan'
           type: array
+          x-protobuf-index: 2
+      type: object
+    get-stands-response:
+      example:
+        stands:
+        - httpReponseCode: 409
+          latitude: 0.8008281904610115
+          hives:
+          - standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+            alerts:
+            - alertType: VarroaHigh
+            - alertType: VarroaHigh
+            httpReponseCode: 409
+            public: true
+            frames: 3
+            bhiveId: 829898a53801
+            name: B25
+            format: Dadant
+            comment: This hive needs to be replaced next year
+            epoch: 1639170002
+            uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+            capacity: 10
+          - standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+            alerts:
+            - alertType: VarroaHigh
+            - alertType: VarroaHigh
+            httpReponseCode: 409
+            public: true
+            frames: 3
+            bhiveId: 829898a53801
+            name: B25
+            format: Dadant
+            comment: This hive needs to be replaced next year
+            epoch: 1639170002
+            uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+            capacity: 10
+          name: B
+          epoch: 1639170002
+          longitude: 6.027456183070403
+        - httpReponseCode: 409
+          latitude: 0.8008281904610115
+          hives:
+          - standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+            alerts:
+            - alertType: VarroaHigh
+            - alertType: VarroaHigh
+            httpReponseCode: 409
+            public: true
+            frames: 3
+            bhiveId: 829898a53801
+            name: B25
+            format: Dadant
+            comment: This hive needs to be replaced next year
+            epoch: 1639170002
+            uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+            capacity: 10
+          - standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+            alerts:
+            - alertType: VarroaHigh
+            - alertType: VarroaHigh
+            httpReponseCode: 409
+            public: true
+            frames: 3
+            bhiveId: 829898a53801
+            name: B25
+            format: Dadant
+            comment: This hive needs to be replaced next year
+            epoch: 1639170002
+            uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+            capacity: 10
+          name: B
+          epoch: 1639170002
+          longitude: 6.027456183070403
+        httpResponseCode: 409
+      properties:
+        stands:
+          items:
+            $ref: '#/components/schemas/stand'
+          type: array
+          x-protobuf-index: 1
+        httpResponseCode:
+          description: "HTTP response code. Used for internal purposes, will be sent\
+            \ out at the API."
+          example: 409
+          type: integer
           x-protobuf-index: 2
       type: object
     get-temperature-response:

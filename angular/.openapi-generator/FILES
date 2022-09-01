@@ -12,6 +12,7 @@ model/bbox.ts
 model/bboxBhiveInner.ts
 model/bhive.ts
 model/genericPostResponse.ts
+model/getStandsResponse.ts
 model/getTemperatureResponse.ts
 model/hive.ts
 model/models.ts
