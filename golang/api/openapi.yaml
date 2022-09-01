@@ -924,6 +924,17 @@ components:
           type: array
           x-protobuf-index: 2
       type: object
+    post-stands-response:
+      properties:
+        httpResponseCode:
+          description: "HTTP response code. Used for internal purposes, will be sent\
+            \ out at the API."
+          example: 409
+          type: integer
+          x-protobuf-index: 1
+        stand:
+          $ref: '#/components/schemas/stand'
+      type: object
     get-stands-response:
       example:
         stands:

@@ -807,6 +807,18 @@ components:
             $ref: "#/components/schemas/varroa-scan"
           x-protobuf-index: 2
 
+    post-stands-response:
+      type: object
+      properties:
+        httpResponseCode:
+          type: integer
+          example: 409
+          description: HTTP response code. Used for internal purposes, will be sent out at the API.
+          x-protobuf-index: 1
+        stand:
+          $ref: "#/components/schemas/stand"
+          x-protobuf-index: 2
+
     get-stands-response:
       type: object
       properties:

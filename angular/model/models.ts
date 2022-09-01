@@ -6,6 +6,7 @@ export * from './genericPostResponse';
 export * from './getStandsResponse';
 export * from './getTemperatureResponse';
 export * from './hive';
+export * from './postStandsResponse';
 export * from './stand';
 export * from './temperature';
 export * from './user';

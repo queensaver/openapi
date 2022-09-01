@@ -16,6 +16,7 @@ model/getStandsResponse.ts
 model/getTemperatureResponse.ts
 model/hive.ts
 model/models.ts
+model/postStandsResponse.ts
 model/stand.ts
 model/temperature.ts
 model/user.ts

@@ -17,6 +17,7 @@ go/model_generic_post_response.go
 go/model_get_stands_response.go
 go/model_get_temperature_response.go
 go/model_hive.go
+go/model_post_stands_response.go
 go/model_stand.go
 go/model_temperature.go
 go/model_user.go
