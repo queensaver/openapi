@@ -4855,7 +4855,7 @@ The UUID of the stand.
                             <pre class="prettyprint"><code class="language-bsh">curl -X GET \
  \
  -H "Accept: application/json" \
- "https://api.queensaver.com/v1/stands?uuid=41C0FE2F-EB0C-45B4-8842-C117E47C35E3&epoch=1639170002&secondsInThePast=7200"
+ "https://api.queensaver.com/v1/stands?uuid=41C0FE2F-EB0C-45B4-8842-C117E47C35E3&epoch=1639170002&secondsInThePast=7200&userId=1234"
 </code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-standsGet-0-java">
@@ -4882,9 +4882,10 @@ public class DefaultApiExample {
         Long epoch = 1639170002; // Long | The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW()
         Long secondsInThePast = 7200; // Long | How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version.
         String uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | The UUID of the stand. If not set, the request will return all stands.
+        Long userId = 1234; // Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore.
 
         try {
-            array[stand] result = apiInstance.standsGet(epoch, secondsInThePast, uuid);
+            array[stand] result = apiInstance.standsGet(epoch, secondsInThePast, uuid, userId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#standsGet");
@@ -4904,9 +4905,10 @@ public class DefaultApiExample {
         Long epoch = 1639170002; // Long | The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW()
         Long secondsInThePast = 7200; // Long | How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version.
         String uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | The UUID of the stand. If not set, the request will return all stands.
+        Long userId = 1234; // Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore.
 
         try {
-            array[stand] result = apiInstance.standsGet(epoch, secondsInThePast, uuid);
+            array[stand] result = apiInstance.standsGet(epoch, secondsInThePast, uuid, userId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#standsGet");
@@ -4933,11 +4935,13 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
 Long *epoch = 1639170002; // The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW() (default to null)
 Long *secondsInThePast = 7200; // How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version. (default to null)
 String *uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // The UUID of the stand. If not set, the request will return all stands. (optional) (default to null)
+Long *userId = 1234; // The UserID is set internally and can not set or be overridden with the API request. Please ignore. (optional) (default to null)
 
 // Get Stand metadata
 [apiInstance standsGetWith:epoch
     secondsInThePast:secondsInThePast
     uuid:uuid
+    userId:userId
               completionHandler: ^(array[stand] output, NSError* error) {
     if (output) {
         NSLog(@"%@", output);
@@ -4964,7 +4968,8 @@ var api = new QueensaverApi.DefaultApi()
 var epoch = 1639170002; // {Long} The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW()
 var secondsInThePast = 7200; // {Long} How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version.
 var opts = {
-  'uuid': 41C0FE2F-EB0C-45B4-8842-C117E47C35E3 // {String} The UUID of the stand. If not set, the request will return all stands.
+  'uuid': 41C0FE2F-EB0C-45B4-8842-C117E47C35E3, // {String} The UUID of the stand. If not set, the request will return all stands.
+  'userId': 1234 // {Long} The UserID is set internally and can not set or be overridden with the API request. Please ignore.
 };
 
 var callback = function(error, data, response) {
@@ -5004,10 +5009,11 @@ namespace Example
             var epoch = 1639170002;  // Long | The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW() (default to null)
             var secondsInThePast = 7200;  // Long | How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version. (default to null)
             var uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3;  // String | The UUID of the stand. If not set, the request will return all stands. (optional)  (default to null)
+            var userId = 1234;  // Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore. (optional)  (default to null)
 
             try {
                 // Get Stand metadata
-                array[stand] result = apiInstance.standsGet(epoch, secondsInThePast, uuid);
+                array[stand] result = apiInstance.standsGet(epoch, secondsInThePast, uuid, userId);
                 Debug.WriteLine(result);
             } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.standsGet: " + e.Message );
@@ -5032,9 +5038,10 @@ $api_instance = new OpenAPITools\Client\Api\DefaultApi();
 $epoch = 1639170002; // Long | The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW()
 $secondsInThePast = 7200; // Long | How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version.
 $uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | The UUID of the stand. If not set, the request will return all stands.
+$userId = 1234; // Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore.
 
 try {
-    $result = $api_instance->standsGet($epoch, $secondsInThePast, $uuid);
+    $result = $api_instance->standsGet($epoch, $secondsInThePast, $uuid, $userId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->standsGet: ', $e->getMessage(), PHP_EOL;
@@ -5057,9 +5064,10 @@ my $api_instance = WWW::OPenAPIClient::DefaultApi->new();
 my $epoch = 1639170002; # Long | The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW()
 my $secondsInThePast = 7200; # Long | How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version.
 my $uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; # String | The UUID of the stand. If not set, the request will return all stands.
+my $userId = 1234; # Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore.
 
 eval {
-    my $result = $api_instance->standsGet(epoch => $epoch, secondsInThePast => $secondsInThePast, uuid => $uuid);
+    my $result = $api_instance->standsGet(epoch => $epoch, secondsInThePast => $secondsInThePast, uuid => $uuid, userId => $userId);
     print Dumper($result);
 };
 if ($@) {
@@ -5084,10 +5092,11 @@ api_instance = openapi_client.DefaultApi()
 epoch = 1639170002 # Long | The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW() (default to null)
 secondsInThePast = 7200 # Long | How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version. (default to null)
 uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3 # String | The UUID of the stand. If not set, the request will return all stands. (optional) (default to null)
+userId = 1234 # Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore. (optional) (default to null)
 
 try:
     # Get Stand metadata
-    api_response = api_instance.stands_get(epoch, secondsInThePast, uuid=uuid)
+    api_response = api_instance.stands_get(epoch, secondsInThePast, uuid=uuid, userId=userId)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->standsGet: %s\n" % e)</code></pre>
@@ -5100,9 +5109,10 @@ pub fn main() {
     let epoch = 1639170002; // Long
     let secondsInThePast = 7200; // Long
     let uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String
+    let userId = 1234; // Long
 
     let mut context = DefaultApi::Context::default();
-    let result = client.standsGet(epoch, secondsInThePast, uuid, &context).wait();
+    let result = client.standsGet(epoch, secondsInThePast, uuid, userId, &context).wait();
 
     println!("{:?}", result);
 }
@@ -5194,6 +5204,29 @@ How many seconds we go to the past to return data versions. If set to zero, we w
                 <div class="inner required">
                     Required
                 </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                                <tr><td style="width:150px;">userId</td>
+<td>
+
+
+    <div id="d2e199_standsGet_userId">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    Long
+                </span>
+                    <span class="format">
+                        (int64)
+                    </span>
+
+                    <div class="inner description marked">
+The UserID is set internally and can not set or be overridden with the API request. Please ignore.
+                    </div>
+            </div>
         </div>
     </div>
 </td>

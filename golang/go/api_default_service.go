@@ -160,7 +160,7 @@ func (s *DefaultApiService) StandsDelete(ctx context.Context, uuid string) (Impl
 }
 
 // StandsGet - Get Stand metadata
-func (s *DefaultApiService) StandsGet(ctx context.Context, epoch int64, secondsInThePast int64, uuid string) (ImplResponse, error) {
+func (s *DefaultApiService) StandsGet(ctx context.Context, epoch int64, secondsInThePast int64, uuid string, userId int64) (ImplResponse, error) {
 	// TODO - update StandsGet with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 

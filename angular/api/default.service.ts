@@ -729,13 +729,14 @@ export class DefaultService {
      * @param epoch The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW()
      * @param secondsInThePast How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version.
      * @param uuid The UUID of the stand. If not set, the request will return all stands.
+     * @param userId The UserID is set internally and can not set or be overridden with the API request. Please ignore.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public standsGet(epoch: number, secondsInThePast: number, uuid?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<Array<Stand>>;
-    public standsGet(epoch: number, secondsInThePast: number, uuid?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<Array<Stand>>>;
-    public standsGet(epoch: number, secondsInThePast: number, uuid?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<Array<Stand>>>;
-    public standsGet(epoch: number, secondsInThePast: number, uuid?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+    public standsGet(epoch: number, secondsInThePast: number, uuid?: string, userId?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<Array<Stand>>;
+    public standsGet(epoch: number, secondsInThePast: number, uuid?: string, userId?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<Array<Stand>>>;
+    public standsGet(epoch: number, secondsInThePast: number, uuid?: string, userId?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<Array<Stand>>>;
+    public standsGet(epoch: number, secondsInThePast: number, uuid?: string, userId?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
         if (epoch === null || epoch === undefined) {
             throw new Error('Required parameter epoch was null or undefined when calling standsGet.');
         }
@@ -755,6 +756,10 @@ export class DefaultService {
         if (secondsInThePast !== undefined && secondsInThePast !== null) {
           localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
             <any>secondsInThePast, 'secondsInThePast');
+        }
+        if (userId !== undefined && userId !== null) {
+          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+            <any>userId, 'userId');
         }
 
         let localVarHeaders = this.defaultHeaders;

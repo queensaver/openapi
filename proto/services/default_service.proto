@@ -134,6 +134,8 @@ message StandsGetRequest {
   int64 secondsInThePast = 2;
   // The UUID of the stand. If not set, the request will return all stands.
   string uuid = 3;
+  // The UserID is set internally and can not set or be overridden with the API request. Please ignore.
+  int64 userId = 4;
 
 }
 

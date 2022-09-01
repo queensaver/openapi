@@ -97,7 +97,7 @@ paths:
       - name: userId
         in: query
         description: The UserID is set internally and can not set or be overridden with the API request. Please ignore.
-        required: true
+        required: false
         example: 1234
         schema:
           type: integer
