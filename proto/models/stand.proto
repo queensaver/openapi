@@ -34,4 +34,7 @@ message Stand {
   // Epoch when the data was last updated. This will be set internally, no need to add this with PUT or POST calls.
   int64 epoch = 7;
 
+  // Unique Identifier for this stand
+  string uuid = 8;
+
 }

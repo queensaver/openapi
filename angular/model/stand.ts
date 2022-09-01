@@ -37,5 +37,9 @@ export interface Stand {
      * Epoch when the data was last updated. This will be set internally, no need to add this with PUT or POST calls.
      */
     epoch?: number;
+    /**
+     * Unique Identifier for this stand
+     */
+    uuid?: string;
 }
 

@@ -961,6 +961,7 @@ components:
             capacity: 10
           name: B
           epoch: 1639170002
+          uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
           longitude: 6.027456183070403
       properties:
         httpResponseCode:
@@ -1008,6 +1009,7 @@ components:
             capacity: 10
           name: B
           epoch: 1639170002
+          uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
           longitude: 6.027456183070403
         - httpReponseCode: 409
           latitude: 0.8008281904610115
@@ -1042,6 +1044,7 @@ components:
             capacity: 10
           name: B
           epoch: 1639170002
+          uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
           longitude: 6.027456183070403
         httpResponseCode: 409
       properties:
@@ -1191,6 +1194,7 @@ components:
           capacity: 10
         name: B
         epoch: 1639170002
+        uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
         longitude: 6.027456183070403
       properties:
         hives:
@@ -1232,6 +1236,11 @@ components:
           format: int64
           type: integer
           x-protobuf-index: 7
+        uuid:
+          description: Unique Identifier for this stand
+          example: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+          type: string
+          x-protobuf-index: 8
       required:
       - name
       type: object

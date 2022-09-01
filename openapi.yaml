@@ -953,6 +953,12 @@ components:
           example: 1639170002
           description: Epoch when the data was last updated. This will be set internally, no need to add this with PUT or POST calls.
           x-protobuf-index: 7
+        uuid:
+          type: string
+          example: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+          description: Unique Identifier for this stand
+          x-protobuf-index: 8
+
       required:
       - name
 

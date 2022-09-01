@@ -28,6 +28,9 @@ type Stand struct {
 
 	// Epoch when the data was last updated. This will be set internally, no need to add this with PUT or POST calls.
 	Epoch int64 `json:"epoch,omitempty"`
+
+	// Unique Identifier for this stand
+	Uuid string `json:"uuid,omitempty"`
 }
 
 // AssertStandRequired checks if the required fields are not zero-ed
