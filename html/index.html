@@ -5453,7 +5453,7 @@ The UserID is set internally and can not set or be overridden with the API reque
  \
  -H "Accept: application/json" \
  -H "Content-Type: application/json" \
- "https://api.queensaver.com/v1/stands" \
+ "https://api.queensaver.com/v1/stands?userId=1234" \
  -d ''
 </code></pre>
                           </div>
@@ -5478,10 +5478,13 @@ public class DefaultApiExample {
 
         // Create an instance of the API class
         DefaultApi apiInstance = new DefaultApi();
+        String qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either the cookie or this Q-Token must be set to be authorized for the API call.
+        String token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie or the Q-Token must be set to be authorized for the API call.
+        Long userId = 1234; // Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore.
         Stand stand = ; // Stand | 
 
         try {
-            stand result = apiInstance.standsPost(stand);
+            stand result = apiInstance.standsPost(qToken, token, userId, stand);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#standsPost");
@@ -5498,10 +5501,13 @@ public class DefaultApiExample {
 public class DefaultApiExample {
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
+        String qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either the cookie or this Q-Token must be set to be authorized for the API call.
+        String token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie or the Q-Token must be set to be authorized for the API call.
+        Long userId = 1234; // Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore.
         Stand stand = ; // Stand | 
 
         try {
-            stand result = apiInstance.standsPost(stand);
+            stand result = apiInstance.standsPost(qToken, token, userId, stand);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#standsPost");
@@ -5525,10 +5531,16 @@ public class DefaultApiExample {
 
 // Create an instance of the API class
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
+String *qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // Either the cookie or this Q-Token must be set to be authorized for the API call. (default to null)
+String *token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // Either this cookie or the Q-Token must be set to be authorized for the API call. (optional) (default to null)
+Long *userId = 1234; // The UserID is set internally and can not set or be overridden with the API request. Please ignore. (optional) (default to null)
 Stand *stand = ; //  (optional)
 
 // Create stand metadata
-[apiInstance standsPostWith:stand
+[apiInstance standsPostWith:qToken
+    token:token
+    userId:userId
+    stand:stand
               completionHandler: ^(stand output, NSError* error) {
     if (output) {
         NSLog(@"%@", output);
@@ -5552,7 +5564,10 @@ cookieAuth.apiKey = "YOUR API KEY";
 
 // Create an instance of the API class
 var api = new QueensaverApi.DefaultApi()
+var qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // {String} Either the cookie or this Q-Token must be set to be authorized for the API call.
 var opts = {
+  'token': 8B0FE5CF-C096-4B3E-8748-27906B4A9449, // {String} Either this cookie or the Q-Token must be set to be authorized for the API call.
+  'userId': 1234, // {Long} The UserID is set internally and can not set or be overridden with the API request. Please ignore.
   'stand':  // {Stand} 
 };
 
@@ -5563,7 +5578,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.standsPost(opts, callback);
+api.standsPost(qToken, opts, callback);
 </code></pre>
                             </div>
 
@@ -5590,11 +5605,14 @@ namespace Example
 
             // Create an instance of the API class
             var apiInstance = new DefaultApi();
+            var qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449;  // String | Either the cookie or this Q-Token must be set to be authorized for the API call. (default to null)
+            var token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449;  // String | Either this cookie or the Q-Token must be set to be authorized for the API call. (optional)  (default to null)
+            var userId = 1234;  // Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore. (optional)  (default to null)
             var stand = new Stand(); // Stand |  (optional) 
 
             try {
                 // Create stand metadata
-                stand result = apiInstance.standsPost(stand);
+                stand result = apiInstance.standsPost(qToken, token, userId, stand);
                 Debug.WriteLine(result);
             } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.standsPost: " + e.Message );
@@ -5616,10 +5634,13 @@ OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKey('token',
 
 // Create an instance of the API class
 $api_instance = new OpenAPITools\Client\Api\DefaultApi();
+$qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either the cookie or this Q-Token must be set to be authorized for the API call.
+$token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie or the Q-Token must be set to be authorized for the API call.
+$userId = 1234; // Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore.
 $stand = ; // Stand | 
 
 try {
-    $result = $api_instance->standsPost($stand);
+    $result = $api_instance->standsPost($qToken, $token, $userId, $stand);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->standsPost: ', $e->getMessage(), PHP_EOL;
@@ -5639,10 +5660,13 @@ $WWW::OPenAPIClient::Configuration::api_key->{'token'} = 'YOUR_API_KEY';
 
 # Create an instance of the API class
 my $api_instance = WWW::OPenAPIClient::DefaultApi->new();
+my $qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; # String | Either the cookie or this Q-Token must be set to be authorized for the API call.
+my $token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; # String | Either this cookie or the Q-Token must be set to be authorized for the API call.
+my $userId = 1234; # Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore.
 my $stand = WWW::OPenAPIClient::Object::Stand->new(); # Stand | 
 
 eval {
-    my $result = $api_instance->standsPost(stand => $stand);
+    my $result = $api_instance->standsPost(qToken => $qToken, token => $token, userId => $userId, stand => $stand);
     print Dumper($result);
 };
 if ($@) {
@@ -5664,11 +5688,14 @@ openapi_client.configuration.api_key['token'] = 'YOUR_API_KEY'
 
 # Create an instance of the API class
 api_instance = openapi_client.DefaultApi()
+qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449 # String | Either the cookie or this Q-Token must be set to be authorized for the API call. (default to null)
+token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449 # String | Either this cookie or the Q-Token must be set to be authorized for the API call. (optional) (default to null)
+userId = 1234 # Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore. (optional) (default to null)
 stand =  # Stand |  (optional)
 
 try:
     # Create stand metadata
-    api_response = api_instance.stands_post(stand=stand)
+    api_response = api_instance.stands_post(qToken, token=token, userId=userId, stand=stand)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->standsPost: %s\n" % e)</code></pre>
@@ -5678,10 +5705,13 @@ except ApiException as e:
                               <pre class="prettyprint"><code class="language-rust">extern crate DefaultApi;
 
 pub fn main() {
+    let qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String
+    let token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String
+    let userId = 1234; // Long
     let stand = ; // Stand
 
     let mut context = DefaultApi::Context::default();
-    let result = client.standsPost(stand, &context).wait();
+    let result = client.standsPost(qToken, token, userId, stand, &context).wait();
 
     println!("{:?}", result);
 }
@@ -5697,6 +5727,36 @@ pub fn main() {
                           <h2>Parameters</h2>
 
 
+                            <div class="methodsubtabletitle">Header parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                  <tr><td style="width:150px;">Q-Token*</td>
+<td>
+
+
+    <div id="d2e199_standsPost_qToken">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    String
+                </span>
+
+                    <div class="inner description marked">
+Either the cookie or this Q-Token must be set to be authorized for the API call.
+                    </div>
+            </div>
+                <div class="inner required">
+                    Required
+                </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                            </table>
 
                             <div class="methodsubtabletitle">Body parameters</div>
                             <table id="methodsubtable">
@@ -5745,6 +5805,36 @@ $(document).ready(function() {
                             </table>
 
 
+                            <div class="methodsubtabletitle">Query parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">userId</td>
+<td>
+
+
+    <div id="d2e199_standsPost_userId">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    Long
+                </span>
+                    <span class="format">
+                        (int64)
+                    </span>
+
+                    <div class="inner description marked">
+The UserID is set internally and can not set or be overridden with the API request. Please ignore.
+                    </div>
+            </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                            </table>
 
                           <h2>Responses</h2>
                             <h3 id="examples-Default-standsPost-title-200"></h3>

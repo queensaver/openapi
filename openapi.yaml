@@ -156,6 +156,29 @@ paths:
       description: This creates a new stand. A stand is a logical representation of a location of bee hives.
       security:
       - cookieAuth: []
+      parameters:
+      - in: header
+        name: Q-Token
+        description: Either the cookie or this Q-Token must be set to be authorized for the API call.
+        schema:
+          type: string
+        example: 8B0FE5CF-C096-4B3E-8748-27906B4A9449
+        required: true
+      - in: cookie
+        name: token
+        description: Either this cookie or the Q-Token must be set to be authorized for the API call.
+        schema:
+          type: string
+        example: 8B0FE5CF-C096-4B3E-8748-27906B4A9449
+      - name: userId
+        in: query
+        description: The UserID is set internally and can not set or be overridden with the API request. Please ignore.
+        required: false
+        example: 1234
+        schema:
+          type: integer
+          format: int64
+
       requestBody:
         content:
           application/json:

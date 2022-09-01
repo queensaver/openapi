@@ -177,7 +177,7 @@ func (s *DefaultApiService) StandsGet(ctx context.Context, qToken string, epoch 
 }
 
 // StandsPost - Create stand metadata
-func (s *DefaultApiService) StandsPost(ctx context.Context, stand Stand) (ImplResponse, error) {
+func (s *DefaultApiService) StandsPost(ctx context.Context, qToken string, token string, userId int64, stand Stand) (ImplResponse, error) {
 	// TODO - update StandsPost with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 

@@ -825,16 +825,31 @@ export class DefaultService {
     /**
      * Create stand metadata
      * This creates a new stand. A stand is a logical representation of a location of bee hives.
+     * @param qToken Either the cookie or this Q-Token must be set to be authorized for the API call.
+     * @param token Either this cookie or the Q-Token must be set to be authorized for the API call.
+     * @param userId The UserID is set internally and can not set or be overridden with the API request. Please ignore.
      * @param stand 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public standsPost(stand?: Stand, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<Stand>;
-    public standsPost(stand?: Stand, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<Stand>>;
-    public standsPost(stand?: Stand, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<Stand>>;
-    public standsPost(stand?: Stand, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+    public standsPost(qToken: string, token?: string, userId?: number, stand?: Stand, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<Stand>;
+    public standsPost(qToken: string, token?: string, userId?: number, stand?: Stand, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<Stand>>;
+    public standsPost(qToken: string, token?: string, userId?: number, stand?: Stand, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<Stand>>;
+    public standsPost(qToken: string, token?: string, userId?: number, stand?: Stand, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+        if (qToken === null || qToken === undefined) {
+            throw new Error('Required parameter qToken was null or undefined when calling standsPost.');
+        }
+
+        let localVarQueryParameters = new HttpParams({encoder: this.encoder});
+        if (userId !== undefined && userId !== null) {
+          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+            <any>userId, 'userId');
+        }
 
         let localVarHeaders = this.defaultHeaders;
+        if (qToken !== undefined && qToken !== null) {
+            localVarHeaders = localVarHeaders.set('Q-Token', String(qToken));
+        }
 
         let localVarCredential: string | undefined;
         // authentication (cookieAuth) required
@@ -884,6 +899,7 @@ export class DefaultService {
             stand,
             {
                 context: localVarHttpContext,
+                params: localVarQueryParameters,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,
