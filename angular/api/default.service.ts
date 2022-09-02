@@ -659,26 +659,39 @@ export class DefaultService {
 
     /**
      * Delete a stand
-     * This deletes a stand.
+     * This deletes a stand. If a stand is deleted, it will only get its deleted field set to true. It will not actually be deleted, because we need to always be able to go back in time.
+     * @param qToken Either the cookie or this Q-Token must be set to be authorized for the API call.
      * @param uuid The UUID of the stand.
+     * @param token Either this cookie or the Q-Token must be set to be authorized for the API call.
+     * @param userId The UserID is set internally and can not set or be overridden with the API request. Please ignore.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public standsDelete(uuid: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any>;
-    public standsDelete(uuid: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpResponse<any>>;
-    public standsDelete(uuid: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpEvent<any>>;
-    public standsDelete(uuid: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any> {
+    public standsDelete(qToken: string, uuid: string, token?: string, userId?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any>;
+    public standsDelete(qToken: string, uuid: string, token?: string, userId?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpResponse<any>>;
+    public standsDelete(qToken: string, uuid: string, token?: string, userId?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpEvent<any>>;
+    public standsDelete(qToken: string, uuid: string, token?: string, userId?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any> {
+        if (qToken === null || qToken === undefined) {
+            throw new Error('Required parameter qToken was null or undefined when calling standsDelete.');
+        }
         if (uuid === null || uuid === undefined) {
             throw new Error('Required parameter uuid was null or undefined when calling standsDelete.');
         }
 
         let localVarQueryParameters = new HttpParams({encoder: this.encoder});
+        if (userId !== undefined && userId !== null) {
+          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+            <any>userId, 'userId');
+        }
         if (uuid !== undefined && uuid !== null) {
           localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
             <any>uuid, 'uuid');
         }
 
         let localVarHeaders = this.defaultHeaders;
+        if (qToken !== undefined && qToken !== null) {
+            localVarHeaders = localVarHeaders.set('Q-Token', String(qToken));
+        }
 
         let localVarCredential: string | undefined;
         // authentication (cookieAuth) required
@@ -914,16 +927,31 @@ export class DefaultService {
     /**
      * Update stand metadata
      * This updates stand metadata. Note that internaly we will actally create a new version of the data.
+     * @param qToken Either the cookie or this Q-Token must be set to be authorized for the API call.
+     * @param token Either this cookie or the Q-Token must be set to be authorized for the API call.
+     * @param userId The UserID is set internally and can not set or be overridden with the API request. Please ignore.
      * @param stand 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public standsPut(stand?: Stand, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<Stand>;
-    public standsPut(stand?: Stand, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<Stand>>;
-    public standsPut(stand?: Stand, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<Stand>>;
-    public standsPut(stand?: Stand, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+    public standsPut(qToken: string, token?: string, userId?: number, stand?: Stand, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<Stand>;
+    public standsPut(qToken: string, token?: string, userId?: number, stand?: Stand, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<Stand>>;
+    public standsPut(qToken: string, token?: string, userId?: number, stand?: Stand, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<Stand>>;
+    public standsPut(qToken: string, token?: string, userId?: number, stand?: Stand, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+        if (qToken === null || qToken === undefined) {
+            throw new Error('Required parameter qToken was null or undefined when calling standsPut.');
+        }
+
+        let localVarQueryParameters = new HttpParams({encoder: this.encoder});
+        if (userId !== undefined && userId !== null) {
+          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+            <any>userId, 'userId');
+        }
 
         let localVarHeaders = this.defaultHeaders;
+        if (qToken !== undefined && qToken !== null) {
+            localVarHeaders = localVarHeaders.set('Q-Token', String(qToken));
+        }
 
         let localVarCredential: string | undefined;
         // authentication (cookieAuth) required
@@ -973,6 +1001,7 @@ export class DefaultService {
             stand,
             {
                 context: localVarHttpContext,
+                params: localVarQueryParameters,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,

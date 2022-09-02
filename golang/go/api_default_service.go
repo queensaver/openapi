@@ -143,7 +143,7 @@ func (s *DefaultApiService) ScaleGet(ctx context.Context, qToken string, bhiveId
 }
 
 // StandsDelete - Delete a stand
-func (s *DefaultApiService) StandsDelete(ctx context.Context, uuid string) (ImplResponse, error) {
+func (s *DefaultApiService) StandsDelete(ctx context.Context, qToken string, uuid string, token string, userId int64) (ImplResponse, error) {
 	// TODO - update StandsDelete with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
@@ -194,7 +194,7 @@ func (s *DefaultApiService) StandsPost(ctx context.Context, qToken string, token
 }
 
 // StandsPut - Update stand metadata
-func (s *DefaultApiService) StandsPut(ctx context.Context, stand Stand) (ImplResponse, error) {
+func (s *DefaultApiService) StandsPut(ctx context.Context, qToken string, token string, userId int64, stand Stand) (ImplResponse, error) {
 	// TODO - update StandsPut with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 

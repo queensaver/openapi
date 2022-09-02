@@ -133,6 +133,28 @@ paths:
       description: This updates stand metadata. Note that internaly we will actally create a new version of the data.
       security:
       - cookieAuth: []
+      parameters:
+      - in: header
+        name: Q-Token
+        description: Either the cookie or this Q-Token must be set to be authorized for the API call.
+        schema:
+          type: string
+        example: 8B0FE5CF-C096-4B3E-8748-27906B4A9449
+        required: true
+      - in: cookie
+        name: token
+        description: Either this cookie or the Q-Token must be set to be authorized for the API call.
+        schema:
+          type: string
+        example: 8B0FE5CF-C096-4B3E-8748-27906B4A9449
+      - name: userId
+        in: query
+        description: The UserID is set internally and can not set or be overridden with the API request. Please ignore.
+        required: false
+        example: 1234
+        schema:
+          type: integer
+          format: int64
       requestBody:
         content:
           application/json:
@@ -140,7 +162,7 @@ paths:
               $ref: "#/components/schemas/stand"
       responses:
         "200":
-          description: "Returns the updated hive"
+          description: "Returns the updated stand"
           content:
             application/json:
               schema:
@@ -198,10 +220,31 @@ paths:
 
     delete:
       summary: Delete a stand
-      description: This deletes a stand.
+      description: This deletes a stand. If a stand is deleted, it will only get its deleted field set to true. It will not actually be deleted, because we need to always be able to go back in time.
       security:
       - cookieAuth: []
       parameters:
+      - in: header
+        name: Q-Token
+        description: Either the cookie or this Q-Token must be set to be authorized for the API call.
+        schema:
+          type: string
+        example: 8B0FE5CF-C096-4B3E-8748-27906B4A9449
+        required: true
+      - in: cookie
+        name: token
+        description: Either this cookie or the Q-Token must be set to be authorized for the API call.
+        schema:
+          type: string
+        example: 8B0FE5CF-C096-4B3E-8748-27906B4A9449
+      - name: userId
+        in: query
+        description: The UserID is set internally and can not set or be overridden with the API request. Please ignore.
+        required: false
+        example: 1234
+        schema:
+          type: integer
+          format: int64
       - name: uuid
         in: query
         description: The UUID of the stand.
