@@ -31,6 +31,8 @@ import { Hive } from '../model/hive';
 // @ts-ignore
 import { PostStandsResponse } from '../model/postStandsResponse';
 // @ts-ignore
+import { PutStandResponse } from '../model/putStandResponse';
+// @ts-ignore
 import { Stand } from '../model/stand';
 // @ts-ignore
 import { Temperature } from '../model/temperature';
@@ -926,7 +928,7 @@ export class DefaultService {
 
     /**
      * Update stand metadata
-     * This updates stand metadata. Note that internaly we will actally create a new version of the data.
+     * This updates stand metadata. Note that internaly we will actally create a new version of the stand (not the hives). When you issue this call you will have to provide the UUID, otherwise we don\&#39;t know which stand to update. Also any hives attached to the stand will be ignored, you can only update a single stand at any time.
      * @param qToken Either the cookie or this Q-Token must be set to be authorized for the API call.
      * @param token Either this cookie or the Q-Token must be set to be authorized for the API call.
      * @param userId The UserID is set internally and can not set or be overridden with the API request. Please ignore.
@@ -934,9 +936,9 @@ export class DefaultService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public standsPut(qToken: string, token?: string, userId?: number, stand?: Stand, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<Stand>;
-    public standsPut(qToken: string, token?: string, userId?: number, stand?: Stand, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<Stand>>;
-    public standsPut(qToken: string, token?: string, userId?: number, stand?: Stand, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<Stand>>;
+    public standsPut(qToken: string, token?: string, userId?: number, stand?: Stand, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<PutStandResponse>;
+    public standsPut(qToken: string, token?: string, userId?: number, stand?: Stand, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<PutStandResponse>>;
+    public standsPut(qToken: string, token?: string, userId?: number, stand?: Stand, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<PutStandResponse>>;
     public standsPut(qToken: string, token?: string, userId?: number, stand?: Stand, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
         if (qToken === null || qToken === undefined) {
             throw new Error('Required parameter qToken was null or undefined when calling standsPut.');
@@ -997,7 +999,7 @@ export class DefaultService {
             }
         }
 
-        return this.httpClient.put<Stand>(`${this.configuration.basePath}/stands`,
+        return this.httpClient.put<PutStandResponse>(`${this.configuration.basePath}/stands`,
             stand,
             {
                 context: localVarHttpContext,

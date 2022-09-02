@@ -130,7 +130,7 @@ paths:
 
     put:
       summary: Update stand metadata
-      description: This updates stand metadata. Note that internaly we will actally create a new version of the data.
+      description: This updates stand metadata. Note that internaly we will actally create a new version of the stand (not the hives). When you issue this call you will have to provide the UUID, otherwise we don't know which stand to update. Also any hives attached to the stand will be ignored, you can only update a single stand at any time.
       security:
       - cookieAuth: []
       parameters:
@@ -166,7 +166,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/stand"
+                $ref: "#/components/schemas/put-stand-response"
         "400":
           description: Client error
         "500":
@@ -848,6 +848,18 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/varroa-scan"
+          x-protobuf-index: 2
+
+    put-stand-response:
+      type: object
+      properties:
+        httpResponseCode:
+          type: integer
+          example: 409
+          description: HTTP response code. Used for internal purposes, will be sent out at the API.
+          x-protobuf-index: 1
+        stand:
+          $ref: "#/components/schemas/stand"
           x-protobuf-index: 2
 
     post-stands-response:

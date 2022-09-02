@@ -19,6 +19,7 @@ import public "models/get_stands_response.proto";
 import public "models/get_temperature_response.proto";
 import public "models/hive.proto";
 import public "models/post_stands_response.proto";
+import public "models/put_stand_response.proto";
 import public "models/stand.proto";
 import public "models/temperature.proto";
 import public "models/user.proto";
@@ -47,7 +48,7 @@ service DefaultService {
 
   rpc StandsPost (StandsPostRequest) returns (PostStandsResponse);
 
-  rpc StandsPut (StandsPutRequest) returns (Stand);
+  rpc StandsPut (StandsPutRequest) returns (PutStandResponse);
 
   rpc TemperatureGet (TemperatureGetRequest) returns (GetTemperatureResponse);
 

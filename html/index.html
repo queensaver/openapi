@@ -1049,6 +1049,20 @@ ul.nav-tabs {
     }
   }
 };
+    defs["put-stand-response"] = {
+  "type" : "object",
+  "properties" : {
+    "httpResponseCode" : {
+      "type" : "integer",
+      "description" : "HTTP response code. Used for internal purposes, will be sent out at the API.",
+      "example" : 409,
+      "x-protobuf-index" : 1
+    },
+    "stand" : {
+      "$ref" : "#/components/schemas/stand"
+    }
+  }
+};
     defs["stand"] = {
   "required" : [ "name" ],
   "type" : "object",
@@ -6070,7 +6084,7 @@ The UserID is set internally and can not set or be overridden with the API reque
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">This updates stand metadata. Note that internaly we will actally create a new version of the data.</p>
+                        <p class="marked">This updates stand metadata. Note that internaly we will actally create a new version of the stand (not the hives). When you issue this call you will have to provide the UUID, otherwise we don&#39;t know which stand to update. Also any hives attached to the stand will be ignored, you can only update a single stand at any time.</p>
                         <p></p>
                         <br />
                         <pre class="prettyprint language-html prettyprinted" data-type="put"><code><span class="pln">/stands</span></code></pre>
@@ -6129,7 +6143,7 @@ public class DefaultApiExample {
         Stand stand = ; // Stand | 
 
         try {
-            stand result = apiInstance.standsPut(qToken, token, userId, stand);
+            put-stand-response result = apiInstance.standsPut(qToken, token, userId, stand);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#standsPut");
@@ -6152,7 +6166,7 @@ public class DefaultApiExample {
         Stand stand = ; // Stand | 
 
         try {
-            stand result = apiInstance.standsPut(qToken, token, userId, stand);
+            put-stand-response result = apiInstance.standsPut(qToken, token, userId, stand);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#standsPut");
@@ -6186,7 +6200,7 @@ Stand *stand = ; //  (optional)
     token:token
     userId:userId
     stand:stand
-              completionHandler: ^(stand output, NSError* error) {
+              completionHandler: ^(put-stand-response output, NSError* error) {
     if (output) {
         NSLog(@"%@", output);
     }
@@ -6257,7 +6271,7 @@ namespace Example
 
             try {
                 // Update stand metadata
-                stand result = apiInstance.standsPut(qToken, token, userId, stand);
+                put-stand-response result = apiInstance.standsPut(qToken, token, userId, stand);
                 Debug.WriteLine(result);
             } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.standsPut: " + e.Message );
@@ -6517,7 +6531,7 @@ The UserID is set internally and can not set or be overridden with the API reque
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/stand"
+        "$ref" : "#/components/schemas/put-stand-response"
       }
     }
   }

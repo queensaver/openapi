@@ -257,8 +257,11 @@ paths:
       - cookieAuth: []
       summary: Create stand metadata
     put:
-      description: This updates stand metadata. Note that internaly we will actally
-        create a new version of the data.
+      description: "This updates stand metadata. Note that internaly we will actally\
+        \ create a new version of the stand (not the hives). When you issue this call\
+        \ you will have to provide the UUID, otherwise we don't know which stand to\
+        \ update. Also any hives attached to the stand will be ignored, you can only\
+        \ update a single stand at any time."
       parameters:
       - description: Either the cookie or this Q-Token must be set to be authorized
           for the API call.
@@ -301,7 +304,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/stand'
+                $ref: '#/components/schemas/put-stand-response'
           description: Returns the updated stand
         "400":
           description: Client error
@@ -989,6 +992,56 @@ components:
             $ref: '#/components/schemas/varroa-scan'
           type: array
           x-protobuf-index: 2
+      type: object
+    put-stand-response:
+      example:
+        httpResponseCode: 409
+        stand:
+          httpReponseCode: 409
+          deleted: true
+          latitude: 0.8008281904610115
+          hives:
+          - standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+            alerts:
+            - alertType: VarroaHigh
+            - alertType: VarroaHigh
+            httpReponseCode: 409
+            public: true
+            frames: 3
+            bhiveId: 829898a53801
+            name: B25
+            format: Dadant
+            comment: This hive needs to be replaced next year
+            epoch: 1639170002
+            uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+            capacity: 10
+          - standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+            alerts:
+            - alertType: VarroaHigh
+            - alertType: VarroaHigh
+            httpReponseCode: 409
+            public: true
+            frames: 3
+            bhiveId: 829898a53801
+            name: B25
+            format: Dadant
+            comment: This hive needs to be replaced next year
+            epoch: 1639170002
+            uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+            capacity: 10
+          name: B
+          epoch: 1639170002
+          uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+          longitude: 6.027456183070403
+      properties:
+        httpResponseCode:
+          description: "HTTP response code. Used for internal purposes, will be sent\
+            \ out at the API."
+          example: 409
+          type: integer
+          x-protobuf-index: 1
+        stand:
+          $ref: '#/components/schemas/stand'
       type: object
     post-stands-response:
       example:
