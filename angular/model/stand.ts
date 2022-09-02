@@ -41,5 +41,9 @@ export interface Stand {
      * Unique Identifier for this stand
      */
     uuid?: string;
+    /**
+     * if set to true, the hive has been deleted at this epoch.
+     */
+    deleted?: boolean;
 }
 

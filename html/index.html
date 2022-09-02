@@ -1097,6 +1097,12 @@ ul.nav-tabs {
       "description" : "Unique Identifier for this stand",
       "example" : "41C0FE2F-EB0C-45B4-8842-C117E47C35E3",
       "x-protobuf-index" : 8
+    },
+    "deleted" : {
+      "type" : "boolean",
+      "description" : "if set to true, the hive has been deleted at this epoch.",
+      "example" : true,
+      "x-protobuf-index" : 9
     }
   }
 };
@@ -4919,7 +4925,7 @@ public class DefaultApiExample {
         DefaultApi apiInstance = new DefaultApi();
         String qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either the cookie or this Q-Token must be set to be authorized for the API call.
         Long epoch = 1639170002; // Long | The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW()
-        Long secondsInThePast = 7200; // Long | How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version.
+        Long secondsInThePast = 7200; // Long | How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version. If set to non-zero, we will return all results from the past as well, up to 100 values.
         String token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie or the Q-Token must be set to be authorized for the API call.
         String uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | The UUID of the stand. If not set, the request will return all stands.
         Long userId = 1234; // Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore.
@@ -4944,7 +4950,7 @@ public class DefaultApiExample {
         DefaultApi apiInstance = new DefaultApi();
         String qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either the cookie or this Q-Token must be set to be authorized for the API call.
         Long epoch = 1639170002; // Long | The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW()
-        Long secondsInThePast = 7200; // Long | How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version.
+        Long secondsInThePast = 7200; // Long | How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version. If set to non-zero, we will return all results from the past as well, up to 100 values.
         String token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie or the Q-Token must be set to be authorized for the API call.
         String uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | The UUID of the stand. If not set, the request will return all stands.
         Long userId = 1234; // Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore.
@@ -4976,7 +4982,7 @@ public class DefaultApiExample {
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 String *qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // Either the cookie or this Q-Token must be set to be authorized for the API call. (default to null)
 Long *epoch = 1639170002; // The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW() (default to null)
-Long *secondsInThePast = 7200; // How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version. (default to null)
+Long *secondsInThePast = 7200; // How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version. If set to non-zero, we will return all results from the past as well, up to 100 values. (default to null)
 String *token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // Either this cookie or the Q-Token must be set to be authorized for the API call. (optional) (default to null)
 String *uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // The UUID of the stand. If not set, the request will return all stands. (optional) (default to null)
 Long *userId = 1234; // The UserID is set internally and can not set or be overridden with the API request. Please ignore. (optional) (default to null)
@@ -5013,7 +5019,7 @@ cookieAuth.apiKey = "YOUR API KEY";
 var api = new QueensaverApi.DefaultApi()
 var qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // {String} Either the cookie or this Q-Token must be set to be authorized for the API call.
 var epoch = 1639170002; // {Long} The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW()
-var secondsInThePast = 7200; // {Long} How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version.
+var secondsInThePast = 7200; // {Long} How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version. If set to non-zero, we will return all results from the past as well, up to 100 values.
 var opts = {
   'token': 8B0FE5CF-C096-4B3E-8748-27906B4A9449, // {String} Either this cookie or the Q-Token must be set to be authorized for the API call.
   'uuid': 41C0FE2F-EB0C-45B4-8842-C117E47C35E3, // {String} The UUID of the stand. If not set, the request will return all stands.
@@ -5056,7 +5062,7 @@ namespace Example
             var apiInstance = new DefaultApi();
             var qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449;  // String | Either the cookie or this Q-Token must be set to be authorized for the API call. (default to null)
             var epoch = 1639170002;  // Long | The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW() (default to null)
-            var secondsInThePast = 7200;  // Long | How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version. (default to null)
+            var secondsInThePast = 7200;  // Long | How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version. If set to non-zero, we will return all results from the past as well, up to 100 values. (default to null)
             var token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449;  // String | Either this cookie or the Q-Token must be set to be authorized for the API call. (optional)  (default to null)
             var uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3;  // String | The UUID of the stand. If not set, the request will return all stands. (optional)  (default to null)
             var userId = 1234;  // Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore. (optional)  (default to null)
@@ -5087,7 +5093,7 @@ OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKey('token',
 $api_instance = new OpenAPITools\Client\Api\DefaultApi();
 $qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either the cookie or this Q-Token must be set to be authorized for the API call.
 $epoch = 1639170002; // Long | The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW()
-$secondsInThePast = 7200; // Long | How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version.
+$secondsInThePast = 7200; // Long | How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version. If set to non-zero, we will return all results from the past as well, up to 100 values.
 $token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie or the Q-Token must be set to be authorized for the API call.
 $uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | The UUID of the stand. If not set, the request will return all stands.
 $userId = 1234; // Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore.
@@ -5115,7 +5121,7 @@ $WWW::OPenAPIClient::Configuration::api_key->{'token'} = 'YOUR_API_KEY';
 my $api_instance = WWW::OPenAPIClient::DefaultApi->new();
 my $qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; # String | Either the cookie or this Q-Token must be set to be authorized for the API call.
 my $epoch = 1639170002; # Long | The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW()
-my $secondsInThePast = 7200; # Long | How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version.
+my $secondsInThePast = 7200; # Long | How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version. If set to non-zero, we will return all results from the past as well, up to 100 values.
 my $token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; # String | Either this cookie or the Q-Token must be set to be authorized for the API call.
 my $uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; # String | The UUID of the stand. If not set, the request will return all stands.
 my $userId = 1234; # Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore.
@@ -5145,7 +5151,7 @@ openapi_client.configuration.api_key['token'] = 'YOUR_API_KEY'
 api_instance = openapi_client.DefaultApi()
 qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449 # String | Either the cookie or this Q-Token must be set to be authorized for the API call. (default to null)
 epoch = 1639170002 # Long | The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW() (default to null)
-secondsInThePast = 7200 # Long | How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version. (default to null)
+secondsInThePast = 7200 # Long | How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version. If set to non-zero, we will return all results from the past as well, up to 100 values. (default to null)
 token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449 # String | Either this cookie or the Q-Token must be set to be authorized for the API call. (optional) (default to null)
 uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3 # String | The UUID of the stand. If not set, the request will return all stands. (optional) (default to null)
 userId = 1234 # Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore. (optional) (default to null)
@@ -5286,7 +5292,7 @@ The Unix Time (epoch) that defines the end time of the query. The beginning is d
                     </span>
 
                     <div class="inner description marked">
-How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version.
+How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version. If set to non-zero, we will return all results from the past as well, up to 100 values.
                     </div>
             </div>
                 <div class="inner required">

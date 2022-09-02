@@ -31,6 +31,9 @@ type Stand struct {
 
 	// Unique Identifier for this stand
 	Uuid string `json:"uuid,omitempty"`
+
+	// if set to true, the hive has been deleted at this epoch.
+	Deleted bool `json:"deleted,omitempty"`
 }
 
 // AssertStandRequired checks if the required fields are not zero-ed

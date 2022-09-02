@@ -634,7 +634,7 @@ type StandsGetRequest struct {
 	QToken string `protobuf:"bytes,1,opt,name=qToken,proto3" json:"qToken,omitempty"`
 	// The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW()
 	Epoch int64 `protobuf:"varint,2,opt,name=epoch,proto3" json:"epoch,omitempty"`
-	// How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version.
+	// How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version. If set to non-zero, we will return all results from the past as well, up to 100 values.
 	SecondsInThePast int64 `protobuf:"varint,3,opt,name=secondsInThePast,proto3" json:"secondsInThePast,omitempty"`
 	// Either this cookie or the Q-Token must be set to be authorized for the API call.
 	Token string `protobuf:"bytes,4,opt,name=token,proto3" json:"token,omitempty"`

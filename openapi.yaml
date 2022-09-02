@@ -101,7 +101,7 @@ paths:
           format: int64
       - name: secondsInThePast
         in: query
-        description: How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version.
+        description: How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version. If set to non-zero, we will return all results from the past as well, up to 100 values.
         required: true
         example: 7200
         schema:
@@ -958,6 +958,12 @@ components:
           example: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
           description: Unique Identifier for this stand
           x-protobuf-index: 8
+        deleted:
+          type: boolean
+          example: true
+          description: "if set to true, the hive has been deleted at this epoch."
+          x-protobuf-index: 9
+
 
       required:
       - name

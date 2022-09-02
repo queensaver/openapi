@@ -732,7 +732,7 @@ export class DefaultService {
      * This returns all hive stand for the currently logged in user. Important to understand is that a user can go back into the past at any point in time (how did my stand look like a month or a year ago), so the cloud stores multiple versions of stand metadata. Any PUT request will create a new version.
      * @param qToken Either the cookie or this Q-Token must be set to be authorized for the API call.
      * @param epoch The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW()
-     * @param secondsInThePast How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version.
+     * @param secondsInThePast How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version. If set to non-zero, we will return all results from the past as well, up to 100 values.
      * @param token Either this cookie or the Q-Token must be set to be authorized for the API call.
      * @param uuid The UUID of the stand. If not set, the request will return all stands.
      * @param userId The UserID is set internally and can not set or be overridden with the API request. Please ignore.

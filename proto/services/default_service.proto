@@ -134,7 +134,7 @@ message StandsGetRequest {
   string qToken = 1;
   // The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW()
   int64 epoch = 2;
-  // How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version.
+  // How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version. If set to non-zero, we will return all results from the past as well, up to 100 values.
   int64 secondsInThePast = 3;
   // Either this cookie or the Q-Token must be set to be authorized for the API call.
   string token = 4;

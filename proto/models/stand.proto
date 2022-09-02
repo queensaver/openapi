@@ -37,4 +37,7 @@ message Stand {
   // Unique Identifier for this stand
   string uuid = 8;
 
+  // if set to true, the hive has been deleted at this epoch.
+  bool deleted = 9;
+
 }

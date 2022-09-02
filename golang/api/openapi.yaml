@@ -133,7 +133,8 @@ paths:
           type: integer
         style: form
       - description: "How many seconds we go to the past to return data versions.\
-          \ If set to zero, we will return exactly one version."
+          \ If set to zero, we will return exactly one version. If set to non-zero,\
+          \ we will return all results from the past as well, up to 100 values."
         example: 7200
         explode: true
         in: query
@@ -929,6 +930,7 @@ components:
         httpResponseCode: 409
         stand:
           httpReponseCode: 409
+          deleted: true
           latitude: 0.8008281904610115
           hives:
           - standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
@@ -977,6 +979,7 @@ components:
       example:
         stands:
         - httpReponseCode: 409
+          deleted: true
           latitude: 0.8008281904610115
           hives:
           - standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
@@ -1012,6 +1015,7 @@ components:
           uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
           longitude: 6.027456183070403
         - httpReponseCode: 409
+          deleted: true
           latitude: 0.8008281904610115
           hives:
           - standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
@@ -1162,6 +1166,7 @@ components:
     stand:
       example:
         httpReponseCode: 409
+        deleted: true
         latitude: 0.8008281904610115
         hives:
         - standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
@@ -1241,6 +1246,11 @@ components:
           example: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
           type: string
           x-protobuf-index: 8
+        deleted:
+          description: "if set to true, the hive has been deleted at this epoch."
+          example: true
+          type: boolean
+          x-protobuf-index: 9
       required:
       - name
       type: object
