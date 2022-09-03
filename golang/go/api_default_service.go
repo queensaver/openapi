@@ -181,8 +181,8 @@ func (s *DefaultApiService) StandsPost(ctx context.Context, qToken string, token
 	// TODO - update StandsPost with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
-	//TODO: Uncomment the next line to return response Response(200, PostStandsResponse{}) or use other options such as http.Ok ...
-	//return Response(200, PostStandsResponse{}), nil
+	//TODO: Uncomment the next line to return response Response(201, PostStandsResponse{}) or use other options such as http.Ok ...
+	//return Response(201, PostStandsResponse{}), nil
 
 	//TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
 	//return Response(400, nil),nil
@@ -198,8 +198,8 @@ func (s *DefaultApiService) StandsPut(ctx context.Context, qToken string, token 
 	// TODO - update StandsPut with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
-	//TODO: Uncomment the next line to return response Response(200, PutStandResponse{}) or use other options such as http.Ok ...
-	//return Response(200, PutStandResponse{}), nil
+	//TODO: Uncomment the next line to return response Response(201, PutStandResponse{}) or use other options such as http.Ok ...
+	//return Response(201, PutStandResponse{}), nil
 
 	//TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
 	//return Response(400, nil),nil
