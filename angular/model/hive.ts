@@ -58,6 +58,10 @@ export interface Hive {
      * Epoch when the data was last updated. This will be set internally, no need to add this with PUT or POST calls.
      */
     epoch?: number;
+    /**
+     * if set to true, the hive has been deleted at this epoch.
+     */
+    deleted?: boolean;
 }
 export namespace Hive {
     export type FormatEnum = 'Zander' | 'Dadant';

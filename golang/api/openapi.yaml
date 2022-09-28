@@ -1100,20 +1100,21 @@ components:
     put-hive-response:
       example:
         hive:
+          frames: 3
+          format: Dadant
+          epoch: 1639170002
+          uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+          capacity: 10
           standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
           alerts:
           - alertType: VarroaHigh
           - alertType: VarroaHigh
           httpReponseCode: 409
+          deleted: true
           public: true
-          frames: 3
           bhiveId: 829898a53801
           name: B25
-          format: Dadant
           comment: This hive needs to be replaced next year
-          epoch: 1639170002
-          uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
-          capacity: 10
         httpResponseCode: 409
       properties:
         httpResponseCode:
@@ -1128,20 +1129,21 @@ components:
     post-hives-response:
       example:
         hive:
+          frames: 3
+          format: Dadant
+          epoch: 1639170002
+          uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+          capacity: 10
           standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
           alerts:
           - alertType: VarroaHigh
           - alertType: VarroaHigh
           httpReponseCode: 409
+          deleted: true
           public: true
-          frames: 3
           bhiveId: 829898a53801
           name: B25
-          format: Dadant
           comment: This hive needs to be replaced next year
-          epoch: 1639170002
-          uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
-          capacity: 10
         httpResponseCode: 409
       properties:
         httpResponseCode:
@@ -1161,34 +1163,36 @@ components:
           deleted: true
           latitude: 0.8008281904610115
           hives:
-          - standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+          - frames: 3
+            format: Dadant
+            epoch: 1639170002
+            uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+            capacity: 10
+            standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
             alerts:
             - alertType: VarroaHigh
             - alertType: VarroaHigh
             httpReponseCode: 409
+            deleted: true
             public: true
-            frames: 3
             bhiveId: 829898a53801
             name: B25
-            format: Dadant
             comment: This hive needs to be replaced next year
+          - frames: 3
+            format: Dadant
             epoch: 1639170002
             uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
             capacity: 10
-          - standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+            standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
             alerts:
             - alertType: VarroaHigh
             - alertType: VarroaHigh
             httpReponseCode: 409
+            deleted: true
             public: true
-            frames: 3
             bhiveId: 829898a53801
             name: B25
-            format: Dadant
             comment: This hive needs to be replaced next year
-            epoch: 1639170002
-            uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
-            capacity: 10
           name: B
           epoch: 1639170002
           uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
@@ -1211,34 +1215,36 @@ components:
           deleted: true
           latitude: 0.8008281904610115
           hives:
-          - standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+          - frames: 3
+            format: Dadant
+            epoch: 1639170002
+            uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+            capacity: 10
+            standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
             alerts:
             - alertType: VarroaHigh
             - alertType: VarroaHigh
             httpReponseCode: 409
+            deleted: true
             public: true
-            frames: 3
             bhiveId: 829898a53801
             name: B25
-            format: Dadant
             comment: This hive needs to be replaced next year
+          - frames: 3
+            format: Dadant
             epoch: 1639170002
             uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
             capacity: 10
-          - standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+            standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
             alerts:
             - alertType: VarroaHigh
             - alertType: VarroaHigh
             httpReponseCode: 409
+            deleted: true
             public: true
-            frames: 3
             bhiveId: 829898a53801
             name: B25
-            format: Dadant
             comment: This hive needs to be replaced next year
-            epoch: 1639170002
-            uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
-            capacity: 10
           name: B
           epoch: 1639170002
           uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
@@ -1260,34 +1266,36 @@ components:
           deleted: true
           latitude: 0.8008281904610115
           hives:
-          - standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+          - frames: 3
+            format: Dadant
+            epoch: 1639170002
+            uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+            capacity: 10
+            standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
             alerts:
             - alertType: VarroaHigh
             - alertType: VarroaHigh
             httpReponseCode: 409
+            deleted: true
             public: true
-            frames: 3
             bhiveId: 829898a53801
             name: B25
-            format: Dadant
             comment: This hive needs to be replaced next year
+          - frames: 3
+            format: Dadant
             epoch: 1639170002
             uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
             capacity: 10
-          - standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+            standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
             alerts:
             - alertType: VarroaHigh
             - alertType: VarroaHigh
             httpReponseCode: 409
+            deleted: true
             public: true
-            frames: 3
             bhiveId: 829898a53801
             name: B25
-            format: Dadant
             comment: This hive needs to be replaced next year
-            epoch: 1639170002
-            uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
-            capacity: 10
           name: B
           epoch: 1639170002
           uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
@@ -1296,34 +1304,36 @@ components:
           deleted: true
           latitude: 0.8008281904610115
           hives:
-          - standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+          - frames: 3
+            format: Dadant
+            epoch: 1639170002
+            uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+            capacity: 10
+            standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
             alerts:
             - alertType: VarroaHigh
             - alertType: VarroaHigh
             httpReponseCode: 409
+            deleted: true
             public: true
-            frames: 3
             bhiveId: 829898a53801
             name: B25
-            format: Dadant
             comment: This hive needs to be replaced next year
+          - frames: 3
+            format: Dadant
             epoch: 1639170002
             uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
             capacity: 10
-          - standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+            standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
             alerts:
             - alertType: VarroaHigh
             - alertType: VarroaHigh
             httpReponseCode: 409
+            deleted: true
             public: true
-            frames: 3
             bhiveId: 829898a53801
             name: B25
-            format: Dadant
             comment: This hive needs to be replaced next year
-            epoch: 1639170002
-            uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
-            capacity: 10
           name: B
           epoch: 1639170002
           uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
@@ -1345,34 +1355,36 @@ components:
     get-hives-response:
       example:
         hives:
-        - standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+        - frames: 3
+          format: Dadant
+          epoch: 1639170002
+          uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+          capacity: 10
+          standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
           alerts:
           - alertType: VarroaHigh
           - alertType: VarroaHigh
           httpReponseCode: 409
+          deleted: true
           public: true
-          frames: 3
           bhiveId: 829898a53801
           name: B25
-          format: Dadant
           comment: This hive needs to be replaced next year
+        - frames: 3
+          format: Dadant
           epoch: 1639170002
           uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
           capacity: 10
-        - standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+          standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
           alerts:
           - alertType: VarroaHigh
           - alertType: VarroaHigh
           httpReponseCode: 409
+          deleted: true
           public: true
-          frames: 3
           bhiveId: 829898a53801
           name: B25
-          format: Dadant
           comment: This hive needs to be replaced next year
-          epoch: 1639170002
-          uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
-          capacity: 10
         httpResponseCode: 409
       properties:
         hives:
@@ -1492,34 +1504,36 @@ components:
         deleted: true
         latitude: 0.8008281904610115
         hives:
-        - standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+        - frames: 3
+          format: Dadant
+          epoch: 1639170002
+          uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+          capacity: 10
+          standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
           alerts:
           - alertType: VarroaHigh
           - alertType: VarroaHigh
           httpReponseCode: 409
+          deleted: true
           public: true
-          frames: 3
           bhiveId: 829898a53801
           name: B25
-          format: Dadant
           comment: This hive needs to be replaced next year
+        - frames: 3
+          format: Dadant
           epoch: 1639170002
           uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
           capacity: 10
-        - standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+          standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
           alerts:
           - alertType: VarroaHigh
           - alertType: VarroaHigh
           httpReponseCode: 409
+          deleted: true
           public: true
-          frames: 3
           bhiveId: 829898a53801
           name: B25
-          format: Dadant
           comment: This hive needs to be replaced next year
-          epoch: 1639170002
-          uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
-          capacity: 10
         name: B
         epoch: 1639170002
         uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
@@ -1595,20 +1609,21 @@ components:
       type: object
     hive:
       example:
+        frames: 3
+        format: Dadant
+        epoch: 1639170002
+        uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+        capacity: 10
         standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
         alerts:
         - alertType: VarroaHigh
         - alertType: VarroaHigh
         httpReponseCode: 409
+        deleted: true
         public: true
-        frames: 3
         bhiveId: 829898a53801
         name: B25
-        format: Dadant
         comment: This hive needs to be replaced next year
-        epoch: 1639170002
-        uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
-        capacity: 10
       properties:
         name:
           description: Name of the hive. Can be chosen by the user.
@@ -1681,6 +1696,11 @@ components:
           format: int64
           type: integer
           x-protobuf-index: 12
+        deleted:
+          description: "if set to true, the hive has been deleted at this epoch."
+          example: true
+          type: boolean
+          x-protobuf-index: 13
       required:
       - name
       - standUuid

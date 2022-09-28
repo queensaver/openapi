@@ -56,4 +56,7 @@ message Hive {
   // Epoch when the data was last updated. This will be set internally, no need to add this with PUT or POST calls.
   int64 epoch = 12;
 
+  // if set to true, the hive has been deleted at this epoch.
+  bool deleted = 13;
+
 }

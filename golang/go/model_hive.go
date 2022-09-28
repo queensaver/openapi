@@ -45,6 +45,9 @@ type Hive struct {
 
 	// Epoch when the data was last updated. This will be set internally, no need to add this with PUT or POST calls.
 	Epoch int64 `json:"epoch,omitempty"`
+
+	// if set to true, the hive has been deleted at this epoch.
+	Deleted bool `json:"deleted,omitempty"`
 }
 
 // AssertHiveRequired checks if the required fields are not zero-ed

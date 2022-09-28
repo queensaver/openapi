@@ -1221,7 +1221,11 @@ components:
           example: 1639170002
           description: Epoch when the data was last updated. This will be set internally, no need to add this with PUT or POST calls.
           x-protobuf-index: 12
-
+        deleted:
+          type: boolean
+          example: true
+          description: "if set to true, the hive has been deleted at this epoch."
+          x-protobuf-index: 13
       required:
       - standUuid
       - name
