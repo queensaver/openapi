@@ -46,10 +46,10 @@ type DefaultApiRouter interface {
 // and updated with the logic required for the API.
 type DefaultApiServicer interface { 
 	BboxesGet(context.Context) (ImplResponse, error)
-	HivesDelete(context.Context, string) (ImplResponse, error)
-	HivesGet(context.Context, int64, int64, string) (ImplResponse, error)
-	HivesPost(context.Context, Hive) (ImplResponse, error)
-	HivesPut(context.Context, Hive) (ImplResponse, error)
+	HivesDelete(context.Context, string, string, string, int64) (ImplResponse, error)
+	HivesGet(context.Context, int64, int64, string, int64) (ImplResponse, error)
+	HivesPost(context.Context, string, string, int64, Hive) (ImplResponse, error)
+	HivesPut(context.Context, string, string, int64, Hive) (ImplResponse, error)
 	LoginPost(context.Context, string, string) (ImplResponse, error)
 	ScaleGet(context.Context, string, string, int64, int64, string) (ImplResponse, error)
 	StandsDelete(context.Context, string, string, string, int64) (ImplResponse, error)

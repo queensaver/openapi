@@ -186,25 +186,38 @@ export class DefaultService {
     /**
      * Delete a Hive
      * This deletes a hive.
+     * @param qToken Either the cookie or this Q-Token must be set to be authorized for the API call.
      * @param uuid The UUID of the hive.
+     * @param token Either this cookie or the Q-Token must be set to be authorized for the API call.
+     * @param userId The UserID is set internally and can not set or be overridden with the API request. Please ignore.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public hivesDelete(uuid: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any>;
-    public hivesDelete(uuid: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpResponse<any>>;
-    public hivesDelete(uuid: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpEvent<any>>;
-    public hivesDelete(uuid: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any> {
+    public hivesDelete(qToken: string, uuid: string, token?: string, userId?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any>;
+    public hivesDelete(qToken: string, uuid: string, token?: string, userId?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpResponse<any>>;
+    public hivesDelete(qToken: string, uuid: string, token?: string, userId?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpEvent<any>>;
+    public hivesDelete(qToken: string, uuid: string, token?: string, userId?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any> {
+        if (qToken === null || qToken === undefined) {
+            throw new Error('Required parameter qToken was null or undefined when calling hivesDelete.');
+        }
         if (uuid === null || uuid === undefined) {
             throw new Error('Required parameter uuid was null or undefined when calling hivesDelete.');
         }
 
         let localVarQueryParameters = new HttpParams({encoder: this.encoder});
+        if (userId !== undefined && userId !== null) {
+          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+            <any>userId, 'userId');
+        }
         if (uuid !== undefined && uuid !== null) {
           localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
             <any>uuid, 'uuid');
         }
 
         let localVarHeaders = this.defaultHeaders;
+        if (qToken !== undefined && qToken !== null) {
+            localVarHeaders = localVarHeaders.set('Q-Token', String(qToken));
+        }
 
         let localVarCredential: string | undefined;
         // authentication (cookieAuth) required
@@ -259,13 +272,14 @@ export class DefaultService {
      * @param epoch The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW()
      * @param secondsInThePast How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version.
      * @param uuid The UUID of the hive. If not set, the request will return all hives.
+     * @param userId The UserID is set internally and can not set or be overridden with the API request. Please ignore.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public hivesGet(epoch: number, secondsInThePast: number, uuid?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<Array<Hive>>;
-    public hivesGet(epoch: number, secondsInThePast: number, uuid?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<Array<Hive>>>;
-    public hivesGet(epoch: number, secondsInThePast: number, uuid?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<Array<Hive>>>;
-    public hivesGet(epoch: number, secondsInThePast: number, uuid?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+    public hivesGet(epoch: number, secondsInThePast: number, uuid?: string, userId?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<Array<Hive>>;
+    public hivesGet(epoch: number, secondsInThePast: number, uuid?: string, userId?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<Array<Hive>>>;
+    public hivesGet(epoch: number, secondsInThePast: number, uuid?: string, userId?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<Array<Hive>>>;
+    public hivesGet(epoch: number, secondsInThePast: number, uuid?: string, userId?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
         if (epoch === null || epoch === undefined) {
             throw new Error('Required parameter epoch was null or undefined when calling hivesGet.');
         }
@@ -285,6 +299,10 @@ export class DefaultService {
         if (secondsInThePast !== undefined && secondsInThePast !== null) {
           localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
             <any>secondsInThePast, 'secondsInThePast');
+        }
+        if (userId !== undefined && userId !== null) {
+          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+            <any>userId, 'userId');
         }
 
         let localVarHeaders = this.defaultHeaders;
@@ -340,16 +358,31 @@ export class DefaultService {
     /**
      * Create Hive metadata
      * This creates a new hive. A hive is a logical representation of a bee hive that can be connected to hardware.
+     * @param qToken Either the cookie or this Q-Token must be set to be authorized for the API call.
+     * @param token Either this cookie or the Q-Token must be set to be authorized for the API call.
+     * @param userId The UserID is set internally and can not set or be overridden with the API request. Please ignore.
      * @param hive 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public hivesPost(hive?: Hive, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<Hive>;
-    public hivesPost(hive?: Hive, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<Hive>>;
-    public hivesPost(hive?: Hive, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<Hive>>;
-    public hivesPost(hive?: Hive, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+    public hivesPost(qToken: string, token?: string, userId?: number, hive?: Hive, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<Hive>;
+    public hivesPost(qToken: string, token?: string, userId?: number, hive?: Hive, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<Hive>>;
+    public hivesPost(qToken: string, token?: string, userId?: number, hive?: Hive, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<Hive>>;
+    public hivesPost(qToken: string, token?: string, userId?: number, hive?: Hive, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+        if (qToken === null || qToken === undefined) {
+            throw new Error('Required parameter qToken was null or undefined when calling hivesPost.');
+        }
+
+        let localVarQueryParameters = new HttpParams({encoder: this.encoder});
+        if (userId !== undefined && userId !== null) {
+          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+            <any>userId, 'userId');
+        }
 
         let localVarHeaders = this.defaultHeaders;
+        if (qToken !== undefined && qToken !== null) {
+            localVarHeaders = localVarHeaders.set('Q-Token', String(qToken));
+        }
 
         let localVarCredential: string | undefined;
         // authentication (cookieAuth) required
@@ -399,6 +432,7 @@ export class DefaultService {
             hive,
             {
                 context: localVarHttpContext,
+                params: localVarQueryParameters,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,
@@ -411,16 +445,31 @@ export class DefaultService {
     /**
      * Update Hive metadata
      * This updates hive metadata. Note that internaly we will actally create a new version of the data.
+     * @param qToken Either the cookie or this Q-Token must be set to be authorized for the API call.
+     * @param token Either this cookie or the Q-Token must be set to be authorized for the API call.
+     * @param userId The UserID is set internally and can not set or be overridden with the API request. Please ignore.
      * @param hive 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public hivesPut(hive?: Hive, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<Hive>;
-    public hivesPut(hive?: Hive, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<Hive>>;
-    public hivesPut(hive?: Hive, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<Hive>>;
-    public hivesPut(hive?: Hive, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+    public hivesPut(qToken: string, token?: string, userId?: number, hive?: Hive, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<Hive>;
+    public hivesPut(qToken: string, token?: string, userId?: number, hive?: Hive, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<Hive>>;
+    public hivesPut(qToken: string, token?: string, userId?: number, hive?: Hive, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<Hive>>;
+    public hivesPut(qToken: string, token?: string, userId?: number, hive?: Hive, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+        if (qToken === null || qToken === undefined) {
+            throw new Error('Required parameter qToken was null or undefined when calling hivesPut.');
+        }
+
+        let localVarQueryParameters = new HttpParams({encoder: this.encoder});
+        if (userId !== undefined && userId !== null) {
+          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+            <any>userId, 'userId');
+        }
 
         let localVarHeaders = this.defaultHeaders;
+        if (qToken !== undefined && qToken !== null) {
+            localVarHeaders = localVarHeaders.set('Q-Token', String(qToken));
+        }
 
         let localVarCredential: string | undefined;
         // authentication (cookieAuth) required
@@ -470,6 +519,7 @@ export class DefaultService {
             hive,
             {
                 context: localVarHttpContext,
+                params: localVarQueryParameters,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,

@@ -44,7 +44,7 @@ func (s *DefaultApiService) BboxesGet(ctx context.Context) (ImplResponse, error)
 }
 
 // HivesDelete - Delete a Hive
-func (s *DefaultApiService) HivesDelete(ctx context.Context, uuid string) (ImplResponse, error) {
+func (s *DefaultApiService) HivesDelete(ctx context.Context, qToken string, uuid string, token string, userId int64) (ImplResponse, error) {
 	// TODO - update HivesDelete with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
@@ -61,7 +61,7 @@ func (s *DefaultApiService) HivesDelete(ctx context.Context, uuid string) (ImplR
 }
 
 // HivesGet - Get Hive metadata
-func (s *DefaultApiService) HivesGet(ctx context.Context, epoch int64, secondsInThePast int64, uuid string) (ImplResponse, error) {
+func (s *DefaultApiService) HivesGet(ctx context.Context, epoch int64, secondsInThePast int64, uuid string, userId int64) (ImplResponse, error) {
 	// TODO - update HivesGet with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
@@ -78,7 +78,7 @@ func (s *DefaultApiService) HivesGet(ctx context.Context, epoch int64, secondsIn
 }
 
 // HivesPost - Create Hive metadata
-func (s *DefaultApiService) HivesPost(ctx context.Context, hive Hive) (ImplResponse, error) {
+func (s *DefaultApiService) HivesPost(ctx context.Context, qToken string, token string, userId int64, hive Hive) (ImplResponse, error) {
 	// TODO - update HivesPost with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
@@ -95,7 +95,7 @@ func (s *DefaultApiService) HivesPost(ctx context.Context, hive Hive) (ImplRespo
 }
 
 // HivesPut - Update Hive metadata
-func (s *DefaultApiService) HivesPut(ctx context.Context, hive Hive) (ImplResponse, error) {
+func (s *DefaultApiService) HivesPut(ctx context.Context, qToken string, token string, userId int64, hive Hive) (ImplResponse, error) {
 	// TODO - update HivesPut with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 

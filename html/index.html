@@ -1821,7 +1821,7 @@ pub fn main() {
                           <div class="tab-pane active" id="examples-Default-hivesDelete-0-curl">
                             <pre class="prettyprint"><code class="language-bsh">curl -X DELETE \
  \
- "https://api.queensaver.com/v1/hives?uuid=41C0FE2F-EB0C-45B4-8842-C117E47C35E3"
+ "https://api.queensaver.com/v1/hives?userId=1234&uuid=41C0FE2F-EB0C-45B4-8842-C117E47C35E3"
 </code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-hivesDelete-0-java">
@@ -1845,10 +1845,13 @@ public class DefaultApiExample {
 
         // Create an instance of the API class
         DefaultApi apiInstance = new DefaultApi();
+        String qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either the cookie or this Q-Token must be set to be authorized for the API call.
         String uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | The UUID of the hive.
+        String token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie or the Q-Token must be set to be authorized for the API call.
+        Long userId = 1234; // Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore.
 
         try {
-            apiInstance.hivesDelete(uuid);
+            apiInstance.hivesDelete(qToken, uuid, token, userId);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#hivesDelete");
             e.printStackTrace();
@@ -1864,10 +1867,13 @@ public class DefaultApiExample {
 public class DefaultApiExample {
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
+        String qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either the cookie or this Q-Token must be set to be authorized for the API call.
         String uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | The UUID of the hive.
+        String token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie or the Q-Token must be set to be authorized for the API call.
+        Long userId = 1234; // Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore.
 
         try {
-            apiInstance.hivesDelete(uuid);
+            apiInstance.hivesDelete(qToken, uuid, token, userId);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#hivesDelete");
             e.printStackTrace();
@@ -1890,10 +1896,16 @@ public class DefaultApiExample {
 
 // Create an instance of the API class
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
+String *qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // Either the cookie or this Q-Token must be set to be authorized for the API call. (default to null)
 String *uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // The UUID of the hive. (default to null)
+String *token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // Either this cookie or the Q-Token must be set to be authorized for the API call. (optional) (default to null)
+Long *userId = 1234; // The UserID is set internally and can not set or be overridden with the API request. Please ignore. (optional) (default to null)
 
 // Delete a Hive
-[apiInstance hivesDeleteWith:uuid
+[apiInstance hivesDeleteWith:qToken
+    uuid:uuid
+    token:token
+    userId:userId
               completionHandler: ^(NSError* error) {
     if (error) {
         NSLog(@"Error: %@", error);
@@ -1914,7 +1926,12 @@ cookieAuth.apiKey = "YOUR API KEY";
 
 // Create an instance of the API class
 var api = new QueensaverApi.DefaultApi()
+var qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // {String} Either the cookie or this Q-Token must be set to be authorized for the API call.
 var uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // {String} The UUID of the hive.
+var opts = {
+  'token': 8B0FE5CF-C096-4B3E-8748-27906B4A9449, // {String} Either this cookie or the Q-Token must be set to be authorized for the API call.
+  'userId': 1234 // {Long} The UserID is set internally and can not set or be overridden with the API request. Please ignore.
+};
 
 var callback = function(error, data, response) {
   if (error) {
@@ -1923,7 +1940,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully.');
   }
 };
-api.hivesDelete(uuid, callback);
+api.hivesDelete(qToken, uuid, opts, callback);
 </code></pre>
                             </div>
 
@@ -1950,11 +1967,14 @@ namespace Example
 
             // Create an instance of the API class
             var apiInstance = new DefaultApi();
+            var qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449;  // String | Either the cookie or this Q-Token must be set to be authorized for the API call. (default to null)
             var uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3;  // String | The UUID of the hive. (default to null)
+            var token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449;  // String | Either this cookie or the Q-Token must be set to be authorized for the API call. (optional)  (default to null)
+            var userId = 1234;  // Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore. (optional)  (default to null)
 
             try {
                 // Delete a Hive
-                apiInstance.hivesDelete(uuid);
+                apiInstance.hivesDelete(qToken, uuid, token, userId);
             } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.hivesDelete: " + e.Message );
             }
@@ -1975,10 +1995,13 @@ OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKey('token',
 
 // Create an instance of the API class
 $api_instance = new OpenAPITools\Client\Api\DefaultApi();
+$qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either the cookie or this Q-Token must be set to be authorized for the API call.
 $uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | The UUID of the hive.
+$token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie or the Q-Token must be set to be authorized for the API call.
+$userId = 1234; // Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore.
 
 try {
-    $api_instance->hivesDelete($uuid);
+    $api_instance->hivesDelete($qToken, $uuid, $token, $userId);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->hivesDelete: ', $e->getMessage(), PHP_EOL;
 }
@@ -1997,10 +2020,13 @@ $WWW::OPenAPIClient::Configuration::api_key->{'token'} = 'YOUR_API_KEY';
 
 # Create an instance of the API class
 my $api_instance = WWW::OPenAPIClient::DefaultApi->new();
+my $qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; # String | Either the cookie or this Q-Token must be set to be authorized for the API call.
 my $uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; # String | The UUID of the hive.
+my $token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; # String | Either this cookie or the Q-Token must be set to be authorized for the API call.
+my $userId = 1234; # Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore.
 
 eval {
-    $api_instance->hivesDelete(uuid => $uuid);
+    $api_instance->hivesDelete(qToken => $qToken, uuid => $uuid, token => $token, userId => $userId);
 };
 if ($@) {
     warn "Exception when calling DefaultApi->hivesDelete: $@\n";
@@ -2021,11 +2047,14 @@ openapi_client.configuration.api_key['token'] = 'YOUR_API_KEY'
 
 # Create an instance of the API class
 api_instance = openapi_client.DefaultApi()
+qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449 # String | Either the cookie or this Q-Token must be set to be authorized for the API call. (default to null)
 uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3 # String | The UUID of the hive. (default to null)
+token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449 # String | Either this cookie or the Q-Token must be set to be authorized for the API call. (optional) (default to null)
+userId = 1234 # Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore. (optional) (default to null)
 
 try:
     # Delete a Hive
-    api_instance.hives_delete(uuid)
+    api_instance.hives_delete(qToken, uuid, token=token, userId=userId)
 except ApiException as e:
     print("Exception when calling DefaultApi->hivesDelete: %s\n" % e)</code></pre>
                             </div>
@@ -2034,10 +2063,13 @@ except ApiException as e:
                               <pre class="prettyprint"><code class="language-rust">extern crate DefaultApi;
 
 pub fn main() {
+    let qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String
     let uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String
+    let token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String
+    let userId = 1234; // Long
 
     let mut context = DefaultApi::Context::default();
-    let result = client.hivesDelete(uuid, &context).wait();
+    let result = client.hivesDelete(qToken, uuid, token, userId, &context).wait();
 
     println!("{:?}", result);
 }
@@ -2053,6 +2085,36 @@ pub fn main() {
                           <h2>Parameters</h2>
 
 
+                            <div class="methodsubtabletitle">Header parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                  <tr><td style="width:150px;">Q-Token*</td>
+<td>
+
+
+    <div id="d2e199_hivesDelete_qToken">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    String
+                </span>
+
+                    <div class="inner description marked">
+Either the cookie or this Q-Token must be set to be authorized for the API call.
+                    </div>
+            </div>
+                <div class="inner required">
+                    Required
+                </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                            </table>
 
 
 
@@ -2062,6 +2124,29 @@ pub fn main() {
                                 <th width="150px">Name</th>
                                 <th>Description</th>
                               </tr>
+                                <tr><td style="width:150px;">userId</td>
+<td>
+
+
+    <div id="d2e199_hivesDelete_userId">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    Long
+                </span>
+                    <span class="format">
+                        (int64)
+                    </span>
+
+                    <div class="inner description marked">
+The UserID is set internally and can not set or be overridden with the API request. Please ignore.
+                    </div>
+            </div>
+        </div>
+    </div>
+</td>
+</tr>
+
                                 <tr><td style="width:150px;">uuid*</td>
 <td>
 
@@ -2193,7 +2278,7 @@ The UUID of the hive.
                             <pre class="prettyprint"><code class="language-bsh">curl -X GET \
  \
  -H "Accept: application/json" \
- "https://api.queensaver.com/v1/hives?uuid=41C0FE2F-EB0C-45B4-8842-C117E47C35E3&epoch=1639170002&secondsInThePast=7200"
+ "https://api.queensaver.com/v1/hives?uuid=41C0FE2F-EB0C-45B4-8842-C117E47C35E3&epoch=1639170002&secondsInThePast=7200&userId=1234"
 </code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-hivesGet-0-java">
@@ -2220,9 +2305,10 @@ public class DefaultApiExample {
         Long epoch = 1639170002; // Long | The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW()
         Long secondsInThePast = 7200; // Long | How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version.
         String uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | The UUID of the hive. If not set, the request will return all hives.
+        Long userId = 1234; // Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore.
 
         try {
-            array[hive] result = apiInstance.hivesGet(epoch, secondsInThePast, uuid);
+            array[hive] result = apiInstance.hivesGet(epoch, secondsInThePast, uuid, userId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#hivesGet");
@@ -2242,9 +2328,10 @@ public class DefaultApiExample {
         Long epoch = 1639170002; // Long | The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW()
         Long secondsInThePast = 7200; // Long | How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version.
         String uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | The UUID of the hive. If not set, the request will return all hives.
+        Long userId = 1234; // Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore.
 
         try {
-            array[hive] result = apiInstance.hivesGet(epoch, secondsInThePast, uuid);
+            array[hive] result = apiInstance.hivesGet(epoch, secondsInThePast, uuid, userId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#hivesGet");
@@ -2271,11 +2358,13 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
 Long *epoch = 1639170002; // The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW() (default to null)
 Long *secondsInThePast = 7200; // How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version. (default to null)
 String *uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // The UUID of the hive. If not set, the request will return all hives. (optional) (default to null)
+Long *userId = 1234; // The UserID is set internally and can not set or be overridden with the API request. Please ignore. (optional) (default to null)
 
 // Get Hive metadata
 [apiInstance hivesGetWith:epoch
     secondsInThePast:secondsInThePast
     uuid:uuid
+    userId:userId
               completionHandler: ^(array[hive] output, NSError* error) {
     if (output) {
         NSLog(@"%@", output);
@@ -2302,7 +2391,8 @@ var api = new QueensaverApi.DefaultApi()
 var epoch = 1639170002; // {Long} The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW()
 var secondsInThePast = 7200; // {Long} How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version.
 var opts = {
-  'uuid': 41C0FE2F-EB0C-45B4-8842-C117E47C35E3 // {String} The UUID of the hive. If not set, the request will return all hives.
+  'uuid': 41C0FE2F-EB0C-45B4-8842-C117E47C35E3, // {String} The UUID of the hive. If not set, the request will return all hives.
+  'userId': 1234 // {Long} The UserID is set internally and can not set or be overridden with the API request. Please ignore.
 };
 
 var callback = function(error, data, response) {
@@ -2342,10 +2432,11 @@ namespace Example
             var epoch = 1639170002;  // Long | The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW() (default to null)
             var secondsInThePast = 7200;  // Long | How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version. (default to null)
             var uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3;  // String | The UUID of the hive. If not set, the request will return all hives. (optional)  (default to null)
+            var userId = 1234;  // Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore. (optional)  (default to null)
 
             try {
                 // Get Hive metadata
-                array[hive] result = apiInstance.hivesGet(epoch, secondsInThePast, uuid);
+                array[hive] result = apiInstance.hivesGet(epoch, secondsInThePast, uuid, userId);
                 Debug.WriteLine(result);
             } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.hivesGet: " + e.Message );
@@ -2370,9 +2461,10 @@ $api_instance = new OpenAPITools\Client\Api\DefaultApi();
 $epoch = 1639170002; // Long | The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW()
 $secondsInThePast = 7200; // Long | How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version.
 $uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | The UUID of the hive. If not set, the request will return all hives.
+$userId = 1234; // Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore.
 
 try {
-    $result = $api_instance->hivesGet($epoch, $secondsInThePast, $uuid);
+    $result = $api_instance->hivesGet($epoch, $secondsInThePast, $uuid, $userId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->hivesGet: ', $e->getMessage(), PHP_EOL;
@@ -2395,9 +2487,10 @@ my $api_instance = WWW::OPenAPIClient::DefaultApi->new();
 my $epoch = 1639170002; # Long | The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW()
 my $secondsInThePast = 7200; # Long | How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version.
 my $uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; # String | The UUID of the hive. If not set, the request will return all hives.
+my $userId = 1234; # Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore.
 
 eval {
-    my $result = $api_instance->hivesGet(epoch => $epoch, secondsInThePast => $secondsInThePast, uuid => $uuid);
+    my $result = $api_instance->hivesGet(epoch => $epoch, secondsInThePast => $secondsInThePast, uuid => $uuid, userId => $userId);
     print Dumper($result);
 };
 if ($@) {
@@ -2422,10 +2515,11 @@ api_instance = openapi_client.DefaultApi()
 epoch = 1639170002 # Long | The Unix Time (epoch) that defines the end time of the query. The beginning is defined by the secondsInThePast parameter. If unset, the epoch will be set to NOW() (default to null)
 secondsInThePast = 7200 # Long | How many seconds we go to the past to return data versions. If set to zero, we will return exactly one version. (default to null)
 uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3 # String | The UUID of the hive. If not set, the request will return all hives. (optional) (default to null)
+userId = 1234 # Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore. (optional) (default to null)
 
 try:
     # Get Hive metadata
-    api_response = api_instance.hives_get(epoch, secondsInThePast, uuid=uuid)
+    api_response = api_instance.hives_get(epoch, secondsInThePast, uuid=uuid, userId=userId)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->hivesGet: %s\n" % e)</code></pre>
@@ -2438,9 +2532,10 @@ pub fn main() {
     let epoch = 1639170002; // Long
     let secondsInThePast = 7200; // Long
     let uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String
+    let userId = 1234; // Long
 
     let mut context = DefaultApi::Context::default();
-    let result = client.hivesGet(epoch, secondsInThePast, uuid, &context).wait();
+    let result = client.hivesGet(epoch, secondsInThePast, uuid, userId, &context).wait();
 
     println!("{:?}", result);
 }
@@ -2532,6 +2627,29 @@ How many seconds we go to the past to return data versions. If set to zero, we w
                 <div class="inner required">
                     Required
                 </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                                <tr><td style="width:150px;">userId</td>
+<td>
+
+
+    <div id="d2e199_hivesGet_userId">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    Long
+                </span>
+                    <span class="format">
+                        (int64)
+                    </span>
+
+                    <div class="inner description marked">
+The UserID is set internally and can not set or be overridden with the API request. Please ignore.
+                    </div>
+            </div>
         </div>
     </div>
 </td>
@@ -2693,7 +2811,7 @@ How many seconds we go to the past to return data versions. If set to zero, we w
  \
  -H "Accept: application/json" \
  -H "Content-Type: application/json" \
- "https://api.queensaver.com/v1/hives" \
+ "https://api.queensaver.com/v1/hives?userId=1234" \
  -d ''
 </code></pre>
                           </div>
@@ -2718,10 +2836,13 @@ public class DefaultApiExample {
 
         // Create an instance of the API class
         DefaultApi apiInstance = new DefaultApi();
+        String qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either the cookie or this Q-Token must be set to be authorized for the API call.
+        String token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie or the Q-Token must be set to be authorized for the API call.
+        Long userId = 1234; // Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore.
         Hive hive = ; // Hive | 
 
         try {
-            hive result = apiInstance.hivesPost(hive);
+            hive result = apiInstance.hivesPost(qToken, token, userId, hive);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#hivesPost");
@@ -2738,10 +2859,13 @@ public class DefaultApiExample {
 public class DefaultApiExample {
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
+        String qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either the cookie or this Q-Token must be set to be authorized for the API call.
+        String token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie or the Q-Token must be set to be authorized for the API call.
+        Long userId = 1234; // Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore.
         Hive hive = ; // Hive | 
 
         try {
-            hive result = apiInstance.hivesPost(hive);
+            hive result = apiInstance.hivesPost(qToken, token, userId, hive);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#hivesPost");
@@ -2765,10 +2889,16 @@ public class DefaultApiExample {
 
 // Create an instance of the API class
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
+String *qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // Either the cookie or this Q-Token must be set to be authorized for the API call. (default to null)
+String *token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // Either this cookie or the Q-Token must be set to be authorized for the API call. (optional) (default to null)
+Long *userId = 1234; // The UserID is set internally and can not set or be overridden with the API request. Please ignore. (optional) (default to null)
 Hive *hive = ; //  (optional)
 
 // Create Hive metadata
-[apiInstance hivesPostWith:hive
+[apiInstance hivesPostWith:qToken
+    token:token
+    userId:userId
+    hive:hive
               completionHandler: ^(hive output, NSError* error) {
     if (output) {
         NSLog(@"%@", output);
@@ -2792,7 +2922,10 @@ cookieAuth.apiKey = "YOUR API KEY";
 
 // Create an instance of the API class
 var api = new QueensaverApi.DefaultApi()
+var qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // {String} Either the cookie or this Q-Token must be set to be authorized for the API call.
 var opts = {
+  'token': 8B0FE5CF-C096-4B3E-8748-27906B4A9449, // {String} Either this cookie or the Q-Token must be set to be authorized for the API call.
+  'userId': 1234, // {Long} The UserID is set internally and can not set or be overridden with the API request. Please ignore.
   'hive':  // {Hive} 
 };
 
@@ -2803,7 +2936,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.hivesPost(opts, callback);
+api.hivesPost(qToken, opts, callback);
 </code></pre>
                             </div>
 
@@ -2830,11 +2963,14 @@ namespace Example
 
             // Create an instance of the API class
             var apiInstance = new DefaultApi();
+            var qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449;  // String | Either the cookie or this Q-Token must be set to be authorized for the API call. (default to null)
+            var token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449;  // String | Either this cookie or the Q-Token must be set to be authorized for the API call. (optional)  (default to null)
+            var userId = 1234;  // Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore. (optional)  (default to null)
             var hive = new Hive(); // Hive |  (optional) 
 
             try {
                 // Create Hive metadata
-                hive result = apiInstance.hivesPost(hive);
+                hive result = apiInstance.hivesPost(qToken, token, userId, hive);
                 Debug.WriteLine(result);
             } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.hivesPost: " + e.Message );
@@ -2856,10 +2992,13 @@ OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKey('token',
 
 // Create an instance of the API class
 $api_instance = new OpenAPITools\Client\Api\DefaultApi();
+$qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either the cookie or this Q-Token must be set to be authorized for the API call.
+$token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie or the Q-Token must be set to be authorized for the API call.
+$userId = 1234; // Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore.
 $hive = ; // Hive | 
 
 try {
-    $result = $api_instance->hivesPost($hive);
+    $result = $api_instance->hivesPost($qToken, $token, $userId, $hive);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->hivesPost: ', $e->getMessage(), PHP_EOL;
@@ -2879,10 +3018,13 @@ $WWW::OPenAPIClient::Configuration::api_key->{'token'} = 'YOUR_API_KEY';
 
 # Create an instance of the API class
 my $api_instance = WWW::OPenAPIClient::DefaultApi->new();
+my $qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; # String | Either the cookie or this Q-Token must be set to be authorized for the API call.
+my $token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; # String | Either this cookie or the Q-Token must be set to be authorized for the API call.
+my $userId = 1234; # Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore.
 my $hive = WWW::OPenAPIClient::Object::Hive->new(); # Hive | 
 
 eval {
-    my $result = $api_instance->hivesPost(hive => $hive);
+    my $result = $api_instance->hivesPost(qToken => $qToken, token => $token, userId => $userId, hive => $hive);
     print Dumper($result);
 };
 if ($@) {
@@ -2904,11 +3046,14 @@ openapi_client.configuration.api_key['token'] = 'YOUR_API_KEY'
 
 # Create an instance of the API class
 api_instance = openapi_client.DefaultApi()
+qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449 # String | Either the cookie or this Q-Token must be set to be authorized for the API call. (default to null)
+token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449 # String | Either this cookie or the Q-Token must be set to be authorized for the API call. (optional) (default to null)
+userId = 1234 # Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore. (optional) (default to null)
 hive =  # Hive |  (optional)
 
 try:
     # Create Hive metadata
-    api_response = api_instance.hives_post(hive=hive)
+    api_response = api_instance.hives_post(qToken, token=token, userId=userId, hive=hive)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->hivesPost: %s\n" % e)</code></pre>
@@ -2918,10 +3063,13 @@ except ApiException as e:
                               <pre class="prettyprint"><code class="language-rust">extern crate DefaultApi;
 
 pub fn main() {
+    let qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String
+    let token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String
+    let userId = 1234; // Long
     let hive = ; // Hive
 
     let mut context = DefaultApi::Context::default();
-    let result = client.hivesPost(hive, &context).wait();
+    let result = client.hivesPost(qToken, token, userId, hive, &context).wait();
 
     println!("{:?}", result);
 }
@@ -2937,6 +3085,36 @@ pub fn main() {
                           <h2>Parameters</h2>
 
 
+                            <div class="methodsubtabletitle">Header parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                  <tr><td style="width:150px;">Q-Token*</td>
+<td>
+
+
+    <div id="d2e199_hivesPost_qToken">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    String
+                </span>
+
+                    <div class="inner description marked">
+Either the cookie or this Q-Token must be set to be authorized for the API call.
+                    </div>
+            </div>
+                <div class="inner required">
+                    Required
+                </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                            </table>
 
                             <div class="methodsubtabletitle">Body parameters</div>
                             <table id="methodsubtable">
@@ -2985,6 +3163,36 @@ $(document).ready(function() {
                             </table>
 
 
+                            <div class="methodsubtabletitle">Query parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">userId</td>
+<td>
+
+
+    <div id="d2e199_hivesPost_userId">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    Long
+                </span>
+                    <span class="format">
+                        (int64)
+                    </span>
+
+                    <div class="inner description marked">
+The UserID is set internally and can not set or be overridden with the API request. Please ignore.
+                    </div>
+            </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                            </table>
 
                           <h2>Responses</h2>
                             <h3 id="examples-Default-hivesPost-title-200"></h3>
@@ -3137,7 +3345,7 @@ $(document).ready(function() {
  \
  -H "Accept: application/json" \
  -H "Content-Type: application/json" \
- "https://api.queensaver.com/v1/hives" \
+ "https://api.queensaver.com/v1/hives?userId=1234" \
  -d ''
 </code></pre>
                           </div>
@@ -3162,10 +3370,13 @@ public class DefaultApiExample {
 
         // Create an instance of the API class
         DefaultApi apiInstance = new DefaultApi();
+        String qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either the cookie or this Q-Token must be set to be authorized for the API call.
+        String token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie or the Q-Token must be set to be authorized for the API call.
+        Long userId = 1234; // Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore.
         Hive hive = ; // Hive | 
 
         try {
-            hive result = apiInstance.hivesPut(hive);
+            hive result = apiInstance.hivesPut(qToken, token, userId, hive);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#hivesPut");
@@ -3182,10 +3393,13 @@ public class DefaultApiExample {
 public class DefaultApiExample {
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
+        String qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either the cookie or this Q-Token must be set to be authorized for the API call.
+        String token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie or the Q-Token must be set to be authorized for the API call.
+        Long userId = 1234; // Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore.
         Hive hive = ; // Hive | 
 
         try {
-            hive result = apiInstance.hivesPut(hive);
+            hive result = apiInstance.hivesPut(qToken, token, userId, hive);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#hivesPut");
@@ -3209,10 +3423,16 @@ public class DefaultApiExample {
 
 // Create an instance of the API class
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
+String *qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // Either the cookie or this Q-Token must be set to be authorized for the API call. (default to null)
+String *token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // Either this cookie or the Q-Token must be set to be authorized for the API call. (optional) (default to null)
+Long *userId = 1234; // The UserID is set internally and can not set or be overridden with the API request. Please ignore. (optional) (default to null)
 Hive *hive = ; //  (optional)
 
 // Update Hive metadata
-[apiInstance hivesPutWith:hive
+[apiInstance hivesPutWith:qToken
+    token:token
+    userId:userId
+    hive:hive
               completionHandler: ^(hive output, NSError* error) {
     if (output) {
         NSLog(@"%@", output);
@@ -3236,7 +3456,10 @@ cookieAuth.apiKey = "YOUR API KEY";
 
 // Create an instance of the API class
 var api = new QueensaverApi.DefaultApi()
+var qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // {String} Either the cookie or this Q-Token must be set to be authorized for the API call.
 var opts = {
+  'token': 8B0FE5CF-C096-4B3E-8748-27906B4A9449, // {String} Either this cookie or the Q-Token must be set to be authorized for the API call.
+  'userId': 1234, // {Long} The UserID is set internally and can not set or be overridden with the API request. Please ignore.
   'hive':  // {Hive} 
 };
 
@@ -3247,7 +3470,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.hivesPut(opts, callback);
+api.hivesPut(qToken, opts, callback);
 </code></pre>
                             </div>
 
@@ -3274,11 +3497,14 @@ namespace Example
 
             // Create an instance of the API class
             var apiInstance = new DefaultApi();
+            var qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449;  // String | Either the cookie or this Q-Token must be set to be authorized for the API call. (default to null)
+            var token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449;  // String | Either this cookie or the Q-Token must be set to be authorized for the API call. (optional)  (default to null)
+            var userId = 1234;  // Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore. (optional)  (default to null)
             var hive = new Hive(); // Hive |  (optional) 
 
             try {
                 // Update Hive metadata
-                hive result = apiInstance.hivesPut(hive);
+                hive result = apiInstance.hivesPut(qToken, token, userId, hive);
                 Debug.WriteLine(result);
             } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.hivesPut: " + e.Message );
@@ -3300,10 +3526,13 @@ OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKey('token',
 
 // Create an instance of the API class
 $api_instance = new OpenAPITools\Client\Api\DefaultApi();
+$qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either the cookie or this Q-Token must be set to be authorized for the API call.
+$token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie or the Q-Token must be set to be authorized for the API call.
+$userId = 1234; // Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore.
 $hive = ; // Hive | 
 
 try {
-    $result = $api_instance->hivesPut($hive);
+    $result = $api_instance->hivesPut($qToken, $token, $userId, $hive);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->hivesPut: ', $e->getMessage(), PHP_EOL;
@@ -3323,10 +3552,13 @@ $WWW::OPenAPIClient::Configuration::api_key->{'token'} = 'YOUR_API_KEY';
 
 # Create an instance of the API class
 my $api_instance = WWW::OPenAPIClient::DefaultApi->new();
+my $qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; # String | Either the cookie or this Q-Token must be set to be authorized for the API call.
+my $token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; # String | Either this cookie or the Q-Token must be set to be authorized for the API call.
+my $userId = 1234; # Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore.
 my $hive = WWW::OPenAPIClient::Object::Hive->new(); # Hive | 
 
 eval {
-    my $result = $api_instance->hivesPut(hive => $hive);
+    my $result = $api_instance->hivesPut(qToken => $qToken, token => $token, userId => $userId, hive => $hive);
     print Dumper($result);
 };
 if ($@) {
@@ -3348,11 +3580,14 @@ openapi_client.configuration.api_key['token'] = 'YOUR_API_KEY'
 
 # Create an instance of the API class
 api_instance = openapi_client.DefaultApi()
+qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449 # String | Either the cookie or this Q-Token must be set to be authorized for the API call. (default to null)
+token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449 # String | Either this cookie or the Q-Token must be set to be authorized for the API call. (optional) (default to null)
+userId = 1234 # Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore. (optional) (default to null)
 hive =  # Hive |  (optional)
 
 try:
     # Update Hive metadata
-    api_response = api_instance.hives_put(hive=hive)
+    api_response = api_instance.hives_put(qToken, token=token, userId=userId, hive=hive)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->hivesPut: %s\n" % e)</code></pre>
@@ -3362,10 +3597,13 @@ except ApiException as e:
                               <pre class="prettyprint"><code class="language-rust">extern crate DefaultApi;
 
 pub fn main() {
+    let qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String
+    let token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String
+    let userId = 1234; // Long
     let hive = ; // Hive
 
     let mut context = DefaultApi::Context::default();
-    let result = client.hivesPut(hive, &context).wait();
+    let result = client.hivesPut(qToken, token, userId, hive, &context).wait();
 
     println!("{:?}", result);
 }
@@ -3381,6 +3619,36 @@ pub fn main() {
                           <h2>Parameters</h2>
 
 
+                            <div class="methodsubtabletitle">Header parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                  <tr><td style="width:150px;">Q-Token*</td>
+<td>
+
+
+    <div id="d2e199_hivesPut_qToken">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    String
+                </span>
+
+                    <div class="inner description marked">
+Either the cookie or this Q-Token must be set to be authorized for the API call.
+                    </div>
+            </div>
+                <div class="inner required">
+                    Required
+                </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                            </table>
 
                             <div class="methodsubtabletitle">Body parameters</div>
                             <table id="methodsubtable">
@@ -3429,6 +3697,36 @@ $(document).ready(function() {
                             </table>
 
 
+                            <div class="methodsubtabletitle">Query parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">userId</td>
+<td>
+
+
+    <div id="d2e199_hivesPut_userId">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    Long
+                </span>
+                    <span class="format">
+                        (int64)
+                    </span>
+
+                    <div class="inner description marked">
+The UserID is set internally and can not set or be overridden with the API request. Please ignore.
+                    </div>
+            </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                            </table>
 
                           <h2>Responses</h2>
                             <h3 id="examples-Default-hivesPut-title-200"></h3>

@@ -69,8 +69,14 @@ message BboxesGetResponse {
 }
 
 message HivesDeleteRequest {
+  // Either the cookie or this Q-Token must be set to be authorized for the API call.
+  string qToken = 1;
   // The UUID of the hive.
-  string uuid = 1;
+  string uuid = 2;
+  // Either this cookie or the Q-Token must be set to be authorized for the API call.
+  string token = 3;
+  // The UserID is set internally and can not set or be overridden with the API request. Please ignore.
+  int64 userId = 4;
 
 }
 
@@ -81,6 +87,8 @@ message HivesGetRequest {
   int64 secondsInThePast = 2;
   // The UUID of the hive. If not set, the request will return all hives.
   string uuid = 3;
+  // The UserID is set internally and can not set or be overridden with the API request. Please ignore.
+  int64 userId = 4;
 
 }
 
@@ -89,12 +97,24 @@ message HivesGetResponse {
 }
 
 message HivesPostRequest {
-  Hive hive = 1;
+  // Either the cookie or this Q-Token must be set to be authorized for the API call.
+  string qToken = 1;
+  // Either this cookie or the Q-Token must be set to be authorized for the API call.
+  string token = 2;
+  // The UserID is set internally and can not set or be overridden with the API request. Please ignore.
+  int64 userId = 3;
+  Hive hive = 4;
 
 }
 
 message HivesPutRequest {
-  Hive hive = 1;
+  // Either the cookie or this Q-Token must be set to be authorized for the API call.
+  string qToken = 1;
+  // Either this cookie or the Q-Token must be set to be authorized for the API call.
+  string token = 2;
+  // The UserID is set internally and can not set or be overridden with the API request. Please ignore.
+  int64 userId = 3;
+  Hive hive = 4;
 
 }
 
