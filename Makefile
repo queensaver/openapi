@@ -2,11 +2,13 @@ UID := $(shell id -u)
 
 all: openapi protos grpc
 
+wd := /mnt/home/wogri/queensaver/openapi
+
 openapi: 
-	docker run --rm -v "${PWD}:/local" --user ${UID} openapitools/openapi-generator-cli generate -i /local/openapi.yaml -g html2 -o /local/html
-	docker run --rm -v "${PWD}:/local" --user ${UID} openapitools/openapi-generator-cli generate -i /local/openapi.yaml -g protobuf-schema -o /local/proto --package-name=openapi
-	docker run --rm -v "${PWD}:/local" --user ${UID} openapitools/openapi-generator-cli generate -i /local/openapi.yaml -g typescript-angular -o /local/angular
-	docker run --rm -v "${PWD}:/local" --user ${UID} openapitools/openapi-generator-cli generate -i /local/openapi.yaml -g go-server -o /local/golang --git-user-id queensaver --git-repo-id openapi/golang
+	docker run --rm -v "${wd}:/local" --user ${UID} openapitools/openapi-generator-cli generate -i /local/openapi.yaml -g html2 -o /local/html
+	docker run --rm -v "${wd}:/local" --user ${UID} openapitools/openapi-generator-cli generate -i /local/openapi.yaml -g protobuf-schema -o /local/proto --package-name=openapi
+	docker run --rm -v "${wd}:/local" --user ${UID} openapitools/openapi-generator-cli generate -i /local/openapi.yaml -g typescript-angular -o /local/angular
+	docker run --rm -v "${wd}:/local" --user ${UID} openapitools/openapi-generator-cli generate -i /local/openapi.yaml -g go-server -o /local/golang --git-user-id queensaver --git-repo-id openapi/golang
 	# TODO: this is generated as root - we can't do that.
 	rm golang/go/api_default.go
 	rm golang/main.go
@@ -31,6 +33,7 @@ protos:
 		--go_opt=Mmodels/get_stands_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/post_stands_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/put_stand_response.proto=github.com/queensaver/openapi/golang/proto/models \
+		--go_opt=Mmodels/get_hives_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/generic_post_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		\
 		proto/models/hive.proto \
@@ -50,6 +53,7 @@ protos:
 		proto/models/get_stands_response.proto \
 		proto/models/post_stands_response.proto \
 		proto/models/put_stand_response.proto \
+		proto/models/get_hives_response.proto \
 		proto/models/generic_post_response.proto
 
 grpc:
@@ -78,6 +82,7 @@ grpc:
 		--go_opt=Mmodels/get_stands_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/post_stands_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/put_stand_response.proto=github.com/queensaver/openapi/golang/proto/models \
+		--go_opt=Mmodels/get_hives_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/generic_post_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		\
 		--go_grpc_opt=Mservices/default_service.proto=github.com/queensaver/openapi/golang/proto/services \
@@ -98,6 +103,7 @@ grpc:
 		--go_grpc_opt=Mmodels/get_stands_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_grpc_opt=Mmodels/post_stands_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_grpc_opt=Mmodels/put_stand_response.proto=github.com/queensaver/openapi/golang/proto/models \
+		--go_grpc_opt=Mmodels/get_hives_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_grpc_opt=Mmodels/generic_post_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		\
 		proto/services/default_service.proto

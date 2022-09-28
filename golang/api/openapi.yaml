@@ -424,7 +424,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/hive'
+                  $ref: '#/components/schemas/get-hives-response'
                 type: array
           description: Hives
         "400":
@@ -1279,6 +1279,51 @@ components:
         stands:
           items:
             $ref: '#/components/schemas/stand'
+          type: array
+          x-protobuf-index: 1
+        httpResponseCode:
+          description: "HTTP response code. Used for internal purposes, will be sent\
+            \ out at the API."
+          example: 409
+          type: integer
+          x-protobuf-index: 2
+      type: object
+    get-hives-response:
+      example:
+        stands:
+        - standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+          alerts:
+          - alertType: VarroaHigh
+          - alertType: VarroaHigh
+          httpReponseCode: 409
+          public: true
+          frames: 3
+          bhiveId: 829898a53801
+          name: B25
+          format: Dadant
+          comment: This hive needs to be replaced next year
+          epoch: 1639170002
+          uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+          capacity: 10
+        - standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+          alerts:
+          - alertType: VarroaHigh
+          - alertType: VarroaHigh
+          httpReponseCode: 409
+          public: true
+          frames: 3
+          bhiveId: 829898a53801
+          name: B25
+          format: Dadant
+          comment: This hive needs to be replaced next year
+          epoch: 1639170002
+          uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+          capacity: 10
+        httpResponseCode: 409
+      properties:
+        stands:
+          items:
+            $ref: '#/components/schemas/hive'
           type: array
           x-protobuf-index: 1
         httpResponseCode:

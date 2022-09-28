@@ -308,7 +308,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/hive"
+                  $ref: "#/components/schemas/get-hives-response"
         "400":
           description: Client error
         "500":
@@ -964,6 +964,21 @@ components:
           example: 409
           description: HTTP response code. Used for internal purposes, will be sent out at the API.
           x-protobuf-index: 2
+
+    get-hives-response:
+      type: object
+      properties:
+        stands:
+          type: array
+          items:
+            $ref: "#/components/schemas/hive"
+          x-protobuf-index: 1
+        httpResponseCode:
+          type: integer
+          example: 409
+          description: HTTP response code. Used for internal purposes, will be sent out at the API.
+          x-protobuf-index: 2
+
 
     get-temperature-response:
       type: object

@@ -23,6 +23,8 @@ import { Bbox } from '../model/bbox';
 // @ts-ignore
 import { GenericPostResponse } from '../model/genericPostResponse';
 // @ts-ignore
+import { GetHivesResponse } from '../model/getHivesResponse';
+// @ts-ignore
 import { GetStandsResponse } from '../model/getStandsResponse';
 // @ts-ignore
 import { GetTemperatureResponse } from '../model/getTemperatureResponse';
@@ -276,9 +278,9 @@ export class DefaultService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public hivesGet(epoch: number, secondsInThePast: number, uuid?: string, userId?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<Array<Hive>>;
-    public hivesGet(epoch: number, secondsInThePast: number, uuid?: string, userId?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<Array<Hive>>>;
-    public hivesGet(epoch: number, secondsInThePast: number, uuid?: string, userId?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<Array<Hive>>>;
+    public hivesGet(epoch: number, secondsInThePast: number, uuid?: string, userId?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<Array<GetHivesResponse>>;
+    public hivesGet(epoch: number, secondsInThePast: number, uuid?: string, userId?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<Array<GetHivesResponse>>>;
+    public hivesGet(epoch: number, secondsInThePast: number, uuid?: string, userId?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<Array<GetHivesResponse>>>;
     public hivesGet(epoch: number, secondsInThePast: number, uuid?: string, userId?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
         if (epoch === null || epoch === undefined) {
             throw new Error('Required parameter epoch was null or undefined when calling hivesGet.');
@@ -342,7 +344,7 @@ export class DefaultService {
             }
         }
 
-        return this.httpClient.get<Array<Hive>>(`${this.configuration.basePath}/hives`,
+        return this.httpClient.get<Array<GetHivesResponse>>(`${this.configuration.basePath}/hives`,
             {
                 context: localVarHttpContext,
                 params: localVarQueryParameters,
