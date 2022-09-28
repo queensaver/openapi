@@ -351,7 +351,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/hive"
+                $ref: "#/components/schemas/put-hive-response"
         "400":
           description: Client error
         "500":
@@ -397,7 +397,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/hive"
+                $ref: "#/components/schemas/post-hives-response"
         "400":
           description: Client error
         "500":
@@ -923,6 +923,30 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/varroa-scan"
+          x-protobuf-index: 2
+
+    put-hive-response:
+      type: object
+      properties:
+        httpResponseCode:
+          type: integer
+          example: 409
+          description: HTTP response code. Used for internal purposes, will be sent out at the API.
+          x-protobuf-index: 1
+        hive:
+          $ref: "#/components/schemas/hive"
+          x-protobuf-index: 2
+
+    post-hives-response:
+      type: object
+      properties:
+        httpResponseCode:
+          type: integer
+          example: 409
+          description: HTTP response code. Used for internal purposes, will be sent out at the API.
+          x-protobuf-index: 1
+        hive:
+          $ref: "#/components/schemas/hive"
           x-protobuf-index: 2
 
     put-stand-response:

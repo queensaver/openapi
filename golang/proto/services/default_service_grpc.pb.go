@@ -27,8 +27,8 @@ type DefaultServiceClient interface {
 	BboxesGet(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*BboxesGetResponse, error)
 	HivesDelete(ctx context.Context, in *HivesDeleteRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	HivesGet(ctx context.Context, in *HivesGetRequest, opts ...grpc.CallOption) (*models.GetHivesResponse, error)
-	HivesPost(ctx context.Context, in *HivesPostRequest, opts ...grpc.CallOption) (*models.Hive, error)
-	HivesPut(ctx context.Context, in *HivesPutRequest, opts ...grpc.CallOption) (*models.Hive, error)
+	HivesPost(ctx context.Context, in *HivesPostRequest, opts ...grpc.CallOption) (*models.PostHivesResponse, error)
+	HivesPut(ctx context.Context, in *HivesPutRequest, opts ...grpc.CallOption) (*models.PutHiveResponse, error)
 	LoginPost(ctx context.Context, in *LoginPostRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	ScaleGet(ctx context.Context, in *ScaleGetRequest, opts ...grpc.CallOption) (*ScaleGetResponse, error)
 	StandsDelete(ctx context.Context, in *StandsDeleteRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -78,8 +78,8 @@ func (c *defaultServiceClient) HivesGet(ctx context.Context, in *HivesGetRequest
 	return out, nil
 }
 
-func (c *defaultServiceClient) HivesPost(ctx context.Context, in *HivesPostRequest, opts ...grpc.CallOption) (*models.Hive, error) {
-	out := new(models.Hive)
+func (c *defaultServiceClient) HivesPost(ctx context.Context, in *HivesPostRequest, opts ...grpc.CallOption) (*models.PostHivesResponse, error) {
+	out := new(models.PostHivesResponse)
 	err := c.cc.Invoke(ctx, "/openapi.services.defaultservice.DefaultService/HivesPost", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -87,8 +87,8 @@ func (c *defaultServiceClient) HivesPost(ctx context.Context, in *HivesPostReque
 	return out, nil
 }
 
-func (c *defaultServiceClient) HivesPut(ctx context.Context, in *HivesPutRequest, opts ...grpc.CallOption) (*models.Hive, error) {
-	out := new(models.Hive)
+func (c *defaultServiceClient) HivesPut(ctx context.Context, in *HivesPutRequest, opts ...grpc.CallOption) (*models.PutHiveResponse, error) {
+	out := new(models.PutHiveResponse)
 	err := c.cc.Invoke(ctx, "/openapi.services.defaultservice.DefaultService/HivesPut", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -211,8 +211,8 @@ type DefaultServiceServer interface {
 	BboxesGet(context.Context, *emptypb.Empty) (*BboxesGetResponse, error)
 	HivesDelete(context.Context, *HivesDeleteRequest) (*emptypb.Empty, error)
 	HivesGet(context.Context, *HivesGetRequest) (*models.GetHivesResponse, error)
-	HivesPost(context.Context, *HivesPostRequest) (*models.Hive, error)
-	HivesPut(context.Context, *HivesPutRequest) (*models.Hive, error)
+	HivesPost(context.Context, *HivesPostRequest) (*models.PostHivesResponse, error)
+	HivesPut(context.Context, *HivesPutRequest) (*models.PutHiveResponse, error)
 	LoginPost(context.Context, *LoginPostRequest) (*emptypb.Empty, error)
 	ScaleGet(context.Context, *ScaleGetRequest) (*ScaleGetResponse, error)
 	StandsDelete(context.Context, *StandsDeleteRequest) (*emptypb.Empty, error)
@@ -241,10 +241,10 @@ func (UnimplementedDefaultServiceServer) HivesDelete(context.Context, *HivesDele
 func (UnimplementedDefaultServiceServer) HivesGet(context.Context, *HivesGetRequest) (*models.GetHivesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method HivesGet not implemented")
 }
-func (UnimplementedDefaultServiceServer) HivesPost(context.Context, *HivesPostRequest) (*models.Hive, error) {
+func (UnimplementedDefaultServiceServer) HivesPost(context.Context, *HivesPostRequest) (*models.PostHivesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method HivesPost not implemented")
 }
-func (UnimplementedDefaultServiceServer) HivesPut(context.Context, *HivesPutRequest) (*models.Hive, error) {
+func (UnimplementedDefaultServiceServer) HivesPut(context.Context, *HivesPutRequest) (*models.PutHiveResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method HivesPut not implemented")
 }
 func (UnimplementedDefaultServiceServer) LoginPost(context.Context, *LoginPostRequest) (*emptypb.Empty, error) {

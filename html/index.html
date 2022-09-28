@@ -1053,6 +1053,20 @@ ul.nav-tabs {
     }
   }
 };
+    defs["post-hives-response"] = {
+  "type" : "object",
+  "properties" : {
+    "httpResponseCode" : {
+      "type" : "integer",
+      "description" : "HTTP response code. Used for internal purposes, will be sent out at the API.",
+      "example" : 409,
+      "x-protobuf-index" : 1
+    },
+    "hive" : {
+      "$ref" : "#/components/schemas/hive"
+    }
+  }
+};
     defs["post-stands-response"] = {
   "type" : "object",
   "properties" : {
@@ -1064,6 +1078,20 @@ ul.nav-tabs {
     },
     "stand" : {
       "$ref" : "#/components/schemas/stand"
+    }
+  }
+};
+    defs["put-hive-response"] = {
+  "type" : "object",
+  "properties" : {
+    "httpResponseCode" : {
+      "type" : "integer",
+      "description" : "HTTP response code. Used for internal purposes, will be sent out at the API.",
+      "example" : 409,
+      "x-protobuf-index" : 1
+    },
+    "hive" : {
+      "$ref" : "#/components/schemas/hive"
     }
   }
 };
@@ -2857,7 +2885,7 @@ public class DefaultApiExample {
         Hive hive = ; // Hive | 
 
         try {
-            hive result = apiInstance.hivesPost(qToken, token, userId, hive);
+            post-hives-response result = apiInstance.hivesPost(qToken, token, userId, hive);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#hivesPost");
@@ -2880,7 +2908,7 @@ public class DefaultApiExample {
         Hive hive = ; // Hive | 
 
         try {
-            hive result = apiInstance.hivesPost(qToken, token, userId, hive);
+            post-hives-response result = apiInstance.hivesPost(qToken, token, userId, hive);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#hivesPost");
@@ -2914,7 +2942,7 @@ Hive *hive = ; //  (optional)
     token:token
     userId:userId
     hive:hive
-              completionHandler: ^(hive output, NSError* error) {
+              completionHandler: ^(post-hives-response output, NSError* error) {
     if (output) {
         NSLog(@"%@", output);
     }
@@ -2985,7 +3013,7 @@ namespace Example
 
             try {
                 // Create Hive metadata
-                hive result = apiInstance.hivesPost(qToken, token, userId, hive);
+                post-hives-response result = apiInstance.hivesPost(qToken, token, userId, hive);
                 Debug.WriteLine(result);
             } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.hivesPost: " + e.Message );
@@ -3245,7 +3273,7 @@ The UserID is set internally and can not set or be overridden with the API reque
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/hive"
+        "$ref" : "#/components/schemas/post-hives-response"
       }
     }
   }
@@ -3391,7 +3419,7 @@ public class DefaultApiExample {
         Hive hive = ; // Hive | 
 
         try {
-            hive result = apiInstance.hivesPut(qToken, token, userId, hive);
+            put-hive-response result = apiInstance.hivesPut(qToken, token, userId, hive);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#hivesPut");
@@ -3414,7 +3442,7 @@ public class DefaultApiExample {
         Hive hive = ; // Hive | 
 
         try {
-            hive result = apiInstance.hivesPut(qToken, token, userId, hive);
+            put-hive-response result = apiInstance.hivesPut(qToken, token, userId, hive);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#hivesPut");
@@ -3448,7 +3476,7 @@ Hive *hive = ; //  (optional)
     token:token
     userId:userId
     hive:hive
-              completionHandler: ^(hive output, NSError* error) {
+              completionHandler: ^(put-hive-response output, NSError* error) {
     if (output) {
         NSLog(@"%@", output);
     }
@@ -3519,7 +3547,7 @@ namespace Example
 
             try {
                 // Update Hive metadata
-                hive result = apiInstance.hivesPut(qToken, token, userId, hive);
+                put-hive-response result = apiInstance.hivesPut(qToken, token, userId, hive);
                 Debug.WriteLine(result);
             } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.hivesPut: " + e.Message );
@@ -3779,7 +3807,7 @@ The UserID is set internally and can not set or be overridden with the API reque
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/hive"
+        "$ref" : "#/components/schemas/put-hive-response"
       }
     }
   }

@@ -34,6 +34,8 @@ protos:
 		--go_opt=Mmodels/post_stands_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/put_stand_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/get_hives_response.proto=github.com/queensaver/openapi/golang/proto/models \
+		--go_opt=Mmodels/put_hive_response.proto=github.com/queensaver/openapi/golang/proto/models \
+		--go_opt=Mmodels/post_hives_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/generic_post_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		\
 		proto/models/hive.proto \
@@ -54,6 +56,8 @@ protos:
 		proto/models/post_stands_response.proto \
 		proto/models/put_stand_response.proto \
 		proto/models/get_hives_response.proto \
+		proto/models/put_hive_response.proto \
+		proto/models/post_hives_response.proto \
 		proto/models/generic_post_response.proto
 
 grpc:
@@ -83,6 +87,8 @@ grpc:
 		--go_opt=Mmodels/post_stands_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/put_stand_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/get_hives_response.proto=github.com/queensaver/openapi/golang/proto/models \
+		--go_opt=Mmodels/put_hive_response.proto=github.com/queensaver/openapi/golang/proto/models \
+		--go_opt=Mmodels/post_hives_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/generic_post_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		\
 		--go_grpc_opt=Mservices/default_service.proto=github.com/queensaver/openapi/golang/proto/services \
@@ -104,6 +110,8 @@ grpc:
 		--go_grpc_opt=Mmodels/post_stands_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_grpc_opt=Mmodels/put_stand_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_grpc_opt=Mmodels/get_hives_response.proto=github.com/queensaver/openapi/golang/proto/models \
+		--go_grpc_opt=Mmodels/put_hive_response.proto=github.com/queensaver/openapi/golang/proto/models \
+		--go_grpc_opt=Mmodels/post_hives_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_grpc_opt=Mmodels/generic_post_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		\
 		proto/services/default_service.proto

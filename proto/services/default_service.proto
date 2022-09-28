@@ -19,7 +19,9 @@ import public "models/get_hives_response.proto";
 import public "models/get_stands_response.proto";
 import public "models/get_temperature_response.proto";
 import public "models/hive.proto";
+import public "models/post_hives_response.proto";
 import public "models/post_stands_response.proto";
+import public "models/put_hive_response.proto";
 import public "models/put_stand_response.proto";
 import public "models/stand.proto";
 import public "models/temperature.proto";
@@ -35,9 +37,9 @@ service DefaultService {
 
   rpc HivesGet (HivesGetRequest) returns (GetHivesResponse);
 
-  rpc HivesPost (HivesPostRequest) returns (Hive);
+  rpc HivesPost (HivesPostRequest) returns (PostHivesResponse);
 
-  rpc HivesPut (HivesPutRequest) returns (Hive);
+  rpc HivesPut (HivesPutRequest) returns (PutHiveResponse);
 
   rpc LoginPost (LoginPostRequest) returns (google.protobuf.Empty);
 

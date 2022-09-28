@@ -8,7 +8,9 @@ models/get_hives_response.proto
 models/get_stands_response.proto
 models/get_temperature_response.proto
 models/hive.proto
+models/post_hives_response.proto
 models/post_stands_response.proto
+models/put_hive_response.proto
 models/put_stand_response.proto
 models/stand.proto
 models/temperature.proto

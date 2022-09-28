@@ -31,7 +31,11 @@ import { GetTemperatureResponse } from '../model/getTemperatureResponse';
 // @ts-ignore
 import { Hive } from '../model/hive';
 // @ts-ignore
+import { PostHivesResponse } from '../model/postHivesResponse';
+// @ts-ignore
 import { PostStandsResponse } from '../model/postStandsResponse';
+// @ts-ignore
+import { PutHiveResponse } from '../model/putHiveResponse';
 // @ts-ignore
 import { PutStandResponse } from '../model/putStandResponse';
 // @ts-ignore
@@ -367,9 +371,9 @@ export class DefaultService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public hivesPost(qToken: string, token?: string, userId?: number, hive?: Hive, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<Hive>;
-    public hivesPost(qToken: string, token?: string, userId?: number, hive?: Hive, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<Hive>>;
-    public hivesPost(qToken: string, token?: string, userId?: number, hive?: Hive, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<Hive>>;
+    public hivesPost(qToken: string, token?: string, userId?: number, hive?: Hive, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<PostHivesResponse>;
+    public hivesPost(qToken: string, token?: string, userId?: number, hive?: Hive, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<PostHivesResponse>>;
+    public hivesPost(qToken: string, token?: string, userId?: number, hive?: Hive, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<PostHivesResponse>>;
     public hivesPost(qToken: string, token?: string, userId?: number, hive?: Hive, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
         if (qToken === null || qToken === undefined) {
             throw new Error('Required parameter qToken was null or undefined when calling hivesPost.');
@@ -430,7 +434,7 @@ export class DefaultService {
             }
         }
 
-        return this.httpClient.post<Hive>(`${this.configuration.basePath}/hives`,
+        return this.httpClient.post<PostHivesResponse>(`${this.configuration.basePath}/hives`,
             hive,
             {
                 context: localVarHttpContext,
@@ -454,9 +458,9 @@ export class DefaultService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public hivesPut(qToken: string, token?: string, userId?: number, hive?: Hive, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<Hive>;
-    public hivesPut(qToken: string, token?: string, userId?: number, hive?: Hive, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<Hive>>;
-    public hivesPut(qToken: string, token?: string, userId?: number, hive?: Hive, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<Hive>>;
+    public hivesPut(qToken: string, token?: string, userId?: number, hive?: Hive, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<PutHiveResponse>;
+    public hivesPut(qToken: string, token?: string, userId?: number, hive?: Hive, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<PutHiveResponse>>;
+    public hivesPut(qToken: string, token?: string, userId?: number, hive?: Hive, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<PutHiveResponse>>;
     public hivesPut(qToken: string, token?: string, userId?: number, hive?: Hive, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
         if (qToken === null || qToken === undefined) {
             throw new Error('Required parameter qToken was null or undefined when calling hivesPut.');
@@ -517,7 +521,7 @@ export class DefaultService {
             }
         }
 
-        return this.httpClient.put<Hive>(`${this.configuration.basePath}/hives`,
+        return this.httpClient.put<PutHiveResponse>(`${this.configuration.basePath}/hives`,
             hive,
             {
                 context: localVarHttpContext,
