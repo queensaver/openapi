@@ -16,7 +16,7 @@ import public "models/hive.proto";
 
 message GetHivesResponse {
 
-  repeated Hive stands = 1;
+  repeated Hive hives = 1;
 
   // HTTP response code. Used for internal purposes, will be sent out at the API.
   int32 httpResponseCode = 2;

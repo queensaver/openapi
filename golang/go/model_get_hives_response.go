@@ -11,7 +11,7 @@ package openapi
 
 type GetHivesResponse struct {
 
-	Stands []Hive `json:"stands,omitempty"`
+	Hives []Hive `json:"hives,omitempty"`
 
 	// HTTP response code. Used for internal purposes, will be sent out at the API.
 	HttpResponseCode int32 `json:"httpResponseCode,omitempty"`
@@ -19,7 +19,7 @@ type GetHivesResponse struct {
 
 // AssertGetHivesResponseRequired checks if the required fields are not zero-ed
 func AssertGetHivesResponseRequired(obj GetHivesResponse) error {
-	for _, el := range obj.Stands {
+	for _, el := range obj.Hives {
 		if err := AssertHiveRequired(el); err != nil {
 			return err
 		}

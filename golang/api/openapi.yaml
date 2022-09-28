@@ -1290,7 +1290,7 @@ components:
       type: object
     get-hives-response:
       example:
-        stands:
+        hives:
         - standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
           alerts:
           - alertType: VarroaHigh
@@ -1321,7 +1321,7 @@ components:
           capacity: 10
         httpResponseCode: 409
       properties:
-        stands:
+        hives:
           items:
             $ref: '#/components/schemas/hive'
           type: array

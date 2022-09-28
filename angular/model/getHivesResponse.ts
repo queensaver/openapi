@@ -13,7 +13,7 @@ import { Hive } from './hive';
 
 
 export interface GetHivesResponse { 
-    stands?: Array<Hive>;
+    hives?: Array<Hive>;
     /**
      * HTTP response code. Used for internal purposes, will be sent out at the API.
      */

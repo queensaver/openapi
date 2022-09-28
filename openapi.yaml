@@ -968,7 +968,7 @@ components:
     get-hives-response:
       type: object
       properties:
-        stands:
+        hives:
           type: array
           items:
             $ref: "#/components/schemas/hive"
