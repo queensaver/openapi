@@ -26,7 +26,7 @@ const _ = grpc.SupportPackageIsVersion7
 type DefaultServiceClient interface {
 	BboxesGet(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*BboxesGetResponse, error)
 	HivesDelete(ctx context.Context, in *HivesDeleteRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	HivesGet(ctx context.Context, in *HivesGetRequest, opts ...grpc.CallOption) (*HivesGetResponse, error)
+	HivesGet(ctx context.Context, in *HivesGetRequest, opts ...grpc.CallOption) (*models.GetHivesResponse, error)
 	HivesPost(ctx context.Context, in *HivesPostRequest, opts ...grpc.CallOption) (*models.Hive, error)
 	HivesPut(ctx context.Context, in *HivesPutRequest, opts ...grpc.CallOption) (*models.Hive, error)
 	LoginPost(ctx context.Context, in *LoginPostRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -69,8 +69,8 @@ func (c *defaultServiceClient) HivesDelete(ctx context.Context, in *HivesDeleteR
 	return out, nil
 }
 
-func (c *defaultServiceClient) HivesGet(ctx context.Context, in *HivesGetRequest, opts ...grpc.CallOption) (*HivesGetResponse, error) {
-	out := new(HivesGetResponse)
+func (c *defaultServiceClient) HivesGet(ctx context.Context, in *HivesGetRequest, opts ...grpc.CallOption) (*models.GetHivesResponse, error) {
+	out := new(models.GetHivesResponse)
 	err := c.cc.Invoke(ctx, "/openapi.services.defaultservice.DefaultService/HivesGet", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -210,7 +210,7 @@ func (c *defaultServiceClient) VarroaScanPost(ctx context.Context, in *VarroaSca
 type DefaultServiceServer interface {
 	BboxesGet(context.Context, *emptypb.Empty) (*BboxesGetResponse, error)
 	HivesDelete(context.Context, *HivesDeleteRequest) (*emptypb.Empty, error)
-	HivesGet(context.Context, *HivesGetRequest) (*HivesGetResponse, error)
+	HivesGet(context.Context, *HivesGetRequest) (*models.GetHivesResponse, error)
 	HivesPost(context.Context, *HivesPostRequest) (*models.Hive, error)
 	HivesPut(context.Context, *HivesPutRequest) (*models.Hive, error)
 	LoginPost(context.Context, *LoginPostRequest) (*emptypb.Empty, error)
@@ -238,7 +238,7 @@ func (UnimplementedDefaultServiceServer) BboxesGet(context.Context, *emptypb.Emp
 func (UnimplementedDefaultServiceServer) HivesDelete(context.Context, *HivesDeleteRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method HivesDelete not implemented")
 }
-func (UnimplementedDefaultServiceServer) HivesGet(context.Context, *HivesGetRequest) (*HivesGetResponse, error) {
+func (UnimplementedDefaultServiceServer) HivesGet(context.Context, *HivesGetRequest) (*models.GetHivesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method HivesGet not implemented")
 }
 func (UnimplementedDefaultServiceServer) HivesPost(context.Context, *HivesPostRequest) (*models.Hive, error) {

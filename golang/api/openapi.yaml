@@ -423,9 +423,7 @@ paths:
           content:
             application/json:
               schema:
-                items:
-                  $ref: '#/components/schemas/get-hives-response'
-                type: array
+                $ref: '#/components/schemas/get-hives-response'
           description: Hives
         "400":
           description: Client error

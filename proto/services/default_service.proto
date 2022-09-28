@@ -33,7 +33,7 @@ service DefaultService {
 
   rpc HivesDelete (HivesDeleteRequest) returns (google.protobuf.Empty);
 
-  rpc HivesGet (HivesGetRequest) returns (HivesGetResponse);
+  rpc HivesGet (HivesGetRequest) returns (GetHivesResponse);
 
   rpc HivesPost (HivesPostRequest) returns (Hive);
 
@@ -91,10 +91,6 @@ message HivesGetRequest {
   // The UserID is set internally and can not set or be overridden with the API request. Please ignore.
   int64 userId = 4;
 
-}
-
-message HivesGetResponse {
-  repeated GetHivesResponse data = 1;
 }
 
 message HivesPostRequest {

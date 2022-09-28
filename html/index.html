@@ -2326,7 +2326,7 @@ public class DefaultApiExample {
         Long userId = 1234; // Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore.
 
         try {
-            array[get-hives-response] result = apiInstance.hivesGet(epoch, secondsInThePast, uuid, userId);
+            get-hives-response result = apiInstance.hivesGet(epoch, secondsInThePast, uuid, userId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#hivesGet");
@@ -2349,7 +2349,7 @@ public class DefaultApiExample {
         Long userId = 1234; // Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore.
 
         try {
-            array[get-hives-response] result = apiInstance.hivesGet(epoch, secondsInThePast, uuid, userId);
+            get-hives-response result = apiInstance.hivesGet(epoch, secondsInThePast, uuid, userId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#hivesGet");
@@ -2383,7 +2383,7 @@ Long *userId = 1234; // The UserID is set internally and can not set or be overr
     secondsInThePast:secondsInThePast
     uuid:uuid
     userId:userId
-              completionHandler: ^(array[get-hives-response] output, NSError* error) {
+              completionHandler: ^(get-hives-response output, NSError* error) {
     if (output) {
         NSLog(@"%@", output);
     }
@@ -2454,7 +2454,7 @@ namespace Example
 
             try {
                 // Get Hive metadata
-                array[get-hives-response] result = apiInstance.hivesGet(epoch, secondsInThePast, uuid, userId);
+                get-hives-response result = apiInstance.hivesGet(epoch, secondsInThePast, uuid, userId);
                 Debug.WriteLine(result);
             } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.hivesGet: " + e.Message );
@@ -2711,10 +2711,7 @@ The UserID is set internally and can not set or be overridden with the API reque
   "content" : {
     "application/json" : {
       "schema" : {
-        "type" : "array",
-        "items" : {
-          "$ref" : "#/components/schemas/get-hives-response"
-        }
+        "$ref" : "#/components/schemas/get-hives-response"
       }
     }
   }
