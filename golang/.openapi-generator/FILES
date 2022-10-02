@@ -14,12 +14,15 @@ go/model_bbox.go
 go/model_bbox_bhive_inner.go
 go/model_bhive.go
 go/model_generic_post_response.go
+go/model_get_bbox_response.go
 go/model_get_hives_response.go
 go/model_get_stands_response.go
 go/model_get_temperature_response.go
 go/model_hive.go
+go/model_post_bbox_response.go
 go/model_post_hives_response.go
 go/model_post_stands_response.go
+go/model_put_bbox_response.go
 go/model_put_hive_response.go
 go/model_put_stand_response.go
 go/model_stand.go

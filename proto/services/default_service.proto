@@ -15,12 +15,15 @@ package openapi.services.defaultservice;
 import "google/protobuf/empty.proto";
 import public "models/bbox.proto";
 import public "models/generic_post_response.proto";
+import public "models/get_bbox_response.proto";
 import public "models/get_hives_response.proto";
 import public "models/get_stands_response.proto";
 import public "models/get_temperature_response.proto";
 import public "models/hive.proto";
+import public "models/post_bbox_response.proto";
 import public "models/post_hives_response.proto";
 import public "models/post_stands_response.proto";
+import public "models/put_bbox_response.proto";
 import public "models/put_hive_response.proto";
 import public "models/put_stand_response.proto";
 import public "models/stand.proto";
@@ -32,6 +35,14 @@ import public "models/weight.proto";
 
 service DefaultService {
   rpc BboxesGet (google.protobuf.Empty) returns (BboxesGetResponse);
+
+  rpc ConfigsBboxDelete (ConfigsBboxDeleteRequest) returns (google.protobuf.Empty);
+
+  rpc ConfigsBboxGet (ConfigsBboxGetRequest) returns (GetBboxResponse);
+
+  rpc ConfigsBboxPost (ConfigsBboxPostRequest) returns (PostBboxResponse);
+
+  rpc ConfigsBboxPut (ConfigsBboxPutRequest) returns (PutBboxResponse);
 
   rpc HivesDelete (HivesDeleteRequest) returns (google.protobuf.Empty);
 
@@ -69,6 +80,54 @@ service DefaultService {
 
 message BboxesGetResponse {
   repeated Bbox data = 1;
+}
+
+message ConfigsBboxDeleteRequest {
+  // Either the cookie or this Q-Token must be set to be authorized for the API call.
+  string qToken = 1;
+  // The UUID of the bbox.
+  string uuid = 2;
+  // Either this cookie or the Q-Token must be set to be authorized for the API call.
+  string token = 3;
+  // The UserID is set internally and can not set or be overridden with the API request. Please ignore.
+  int64 userId = 4;
+
+}
+
+message ConfigsBboxGetRequest {
+  // Either the cookie or this Q-Token must be set to be authorized for the API call.
+  string qToken = 1;
+  // Either this cookie or the Q-Token must be set to be authorized for the API call.
+  string token = 2;
+  // The UUID of the bbox. If not set, the request will return all bboxes.
+  string uuid = 3;
+  // The UserID is set internally and can not set or be overridden with the API request. Please ignore.
+  int64 userId = 4;
+
+}
+
+message ConfigsBboxPostRequest {
+  // Either the cookie or this Q-Token must be set to be authorized for the API call.
+  string qToken = 1;
+  // Either this cookie or the Q-Token must be set to be authorized for the API call.
+  string token = 2;
+  // The UserID is set internally and can not set or be overridden with the API request. Please ignore.
+  int64 userId = 3;
+  Bbox bbox = 4;
+
+}
+
+message ConfigsBboxPutRequest {
+  // Either the cookie or this Q-Token must be set to be authorized for the API call.
+  string qToken = 1;
+  // The UUID of the bbox. Required. You can only update one bbox at a time.
+  string uuid = 2;
+  // Either this cookie or the Q-Token must be set to be authorized for the API call.
+  string token = 3;
+  // The UserID is set internally and can not set or be overridden with the API request. Please ignore.
+  int64 userId = 4;
+  Bbox bbox = 5;
+
 }
 
 message HivesDeleteRequest {

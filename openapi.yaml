@@ -63,6 +63,193 @@ paths:
               schema:
                 $ref: "#/components/schemas/errorMessage"
 
+  /configs/bbox:
+    get:
+      summary: Get Config metadata of bboxes
+      description: This returns all bboxes of a user
+      security:
+      - cookieAuth: []
+      parameters:
+      - in: header
+        name: Q-Token
+        description: Either the cookie or this Q-Token must be set to be authorized for the API call.
+        schema:
+          type: string
+        example: 8B0FE5CF-C096-4B3E-8748-27906B4A9449
+        required: true
+      - in: cookie
+        name: token
+        description: Either this cookie or the Q-Token must be set to be authorized for the API call.
+        schema:
+          type: string
+        example: 8B0FE5CF-C096-4B3E-8748-27906B4A9449
+      - name: uuid
+        in: query
+        description: The UUID of the bbox. If not set, the request will return all bboxes.
+        required: false
+        example: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+        schema:
+          type: string
+      - name: userId
+        in: query
+        description: The UserID is set internally and can not set or be overridden with the API request. Please ignore.
+        required: false
+        example: 1234
+        schema:
+          type: integer
+          format: int64
+
+      responses:
+        "200":
+          description: "bboxes"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/get-bbox-response"
+        "400":
+          description: Client error
+        "500":
+          description: Internal error
+
+    put:
+      summary: Update bbox metadata
+      description: This call updates bbox metadata
+      security:
+      - cookieAuth: []
+      parameters:
+      - in: header
+        name: Q-Token
+        description: Either the cookie or this Q-Token must be set to be authorized for the API call.
+        schema:
+          type: string
+        example: 8B0FE5CF-C096-4B3E-8748-27906B4A9449
+        required: true
+      - in: cookie
+        name: token
+        description: Either this cookie or the Q-Token must be set to be authorized for the API call.
+        schema:
+          type: string
+        example: 8B0FE5CF-C096-4B3E-8748-27906B4A9449
+      - name: uuid
+        in: query
+        description: The UUID of the bbox. Required. You can only update one bbox at a time.
+        required: true
+        example: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+        schema:
+          type: string
+      - name: userId
+        in: query
+        description: The UserID is set internally and can not set or be overridden with the API request. Please ignore.
+        required: false
+        example: 1234
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/bbox"
+      responses:
+        "201":
+          description: "Returns the updated bbox"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/put-bbox-response"
+        "400":
+          description: Client error
+        "500":
+          description: Internal error
+
+
+    post:
+      summary: Create bbox
+      description: This creates a new bbox. A bbox is a physical hardware component that needs to be associated with a hive.
+      security:
+      - cookieAuth: []
+      parameters:
+      - in: header
+        name: Q-Token
+        description: Either the cookie or this Q-Token must be set to be authorized for the API call.
+        schema:
+          type: string
+        example: 8B0FE5CF-C096-4B3E-8748-27906B4A9449
+        required: true
+      - in: cookie
+        name: token
+        description: Either this cookie or the Q-Token must be set to be authorized for the API call.
+        schema:
+          type: string
+        example: 8B0FE5CF-C096-4B3E-8748-27906B4A9449
+      - name: userId
+        in: query
+        description: The UserID is set internally and can not set or be overridden with the API request. Please ignore.
+        required: false
+        example: 1234
+        schema:
+          type: integer
+          format: int64
+
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/bbox"
+      responses:
+        "201":
+          description: "Returns the created bbox and the http error code"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/post-bbox-response"
+        "400":
+          description: Client error
+        "500":
+          description: Internal error
+
+    delete:
+      summary: Delete a bbox
+      description: This deletes a bbox.
+      security:
+      - cookieAuth: []
+      parameters:
+      - in: header
+        name: Q-Token
+        description: Either the cookie or this Q-Token must be set to be authorized for the API call.
+        schema:
+          type: string
+        example: 8B0FE5CF-C096-4B3E-8748-27906B4A9449
+        required: true
+      - in: cookie
+        name: token
+        description: Either this cookie or the Q-Token must be set to be authorized for the API call.
+        schema:
+          type: string
+        example: 8B0FE5CF-C096-4B3E-8748-27906B4A9449
+      - name: userId
+        in: query
+        description: The UserID is set internally and can not set or be overridden with the API request. Please ignore.
+        required: false
+        example: 1234
+        schema:
+          type: integer
+          format: int64
+      - name: uuid
+        in: query
+        description: The UUID of the bbox.
+        required: true
+        example: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "Returns 200 if the delete was successful"
+        "400":
+          description: Client error
+        "500":
+          description: Internal error
+
 
   /stands:
     get:
@@ -947,6 +1134,44 @@ components:
           x-protobuf-index: 1
         hive:
           $ref: "#/components/schemas/hive"
+          x-protobuf-index: 2
+
+    put-bbox-response:
+      type: object
+      properties:
+        httpResponseCode:
+          type: integer
+          example: 409
+          description: HTTP response code. Used for internal purposes, will be sent out at the API.
+          x-protobuf-index: 1
+        stand:
+          $ref: "#/components/schemas/bbox"
+          x-protobuf-index: 2
+
+    post-bbox-response:
+      type: object
+      properties:
+        httpResponseCode:
+          type: integer
+          example: 409
+          description: HTTP response code. Used for internal purposes, will be sent out at the API.
+          x-protobuf-index: 1
+        stand:
+          $ref: "#/components/schemas/bbox"
+          x-protobuf-index: 2
+
+    get-bbox-response:
+      type: object
+      properties:
+        stands:
+          type: array
+          items:
+            $ref: "#/components/schemas/bbox"
+          x-protobuf-index: 1
+        httpResponseCode:
+          type: integer
+          example: 409
+          description: HTTP response code. Used for internal purposes, will be sent out at the API.
           x-protobuf-index: 2
 
     put-stand-response:

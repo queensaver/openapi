@@ -33,6 +33,9 @@ protos:
 		--go_opt=Mmodels/get_stands_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/post_stands_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/put_stand_response.proto=github.com/queensaver/openapi/golang/proto/models \
+		--go_opt=Mmodels/get_bbox_response.proto=github.com/queensaver/openapi/golang/proto/models \
+		--go_opt=Mmodels/put_bbox_response.proto=github.com/queensaver/openapi/golang/proto/models \
+		--go_opt=Mmodels/post_bbox_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/get_hives_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/put_hive_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/post_hives_response.proto=github.com/queensaver/openapi/golang/proto/models \
@@ -55,6 +58,9 @@ protos:
 		proto/models/get_stands_response.proto \
 		proto/models/post_stands_response.proto \
 		proto/models/put_stand_response.proto \
+		proto/models/get_bbox_response.proto \
+		proto/models/put_bbox_response.proto \
+		proto/models/post_bbox_response.proto \
 		proto/models/get_hives_response.proto \
 		proto/models/put_hive_response.proto \
 		proto/models/post_hives_response.proto \
@@ -86,6 +92,9 @@ grpc:
 		--go_opt=Mmodels/get_stands_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/post_stands_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/put_stand_response.proto=github.com/queensaver/openapi/golang/proto/models \
+		--go_opt=Mmodels/get_bbox_response.proto=github.com/queensaver/openapi/golang/proto/models \
+		--go_opt=Mmodels/put_bbox_response.proto=github.com/queensaver/openapi/golang/proto/models \
+		--go_opt=Mmodels/post_bbox_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/get_hives_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/put_hive_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/post_hives_response.proto=github.com/queensaver/openapi/golang/proto/models \
@@ -109,6 +118,9 @@ grpc:
 		--go_grpc_opt=Mmodels/get_stands_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_grpc_opt=Mmodels/post_stands_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_grpc_opt=Mmodels/put_stand_response.proto=github.com/queensaver/openapi/golang/proto/models \
+		--go_grpc_opt=Mmodels/get_bbox_response.proto=github.com/queensaver/openapi/golang/proto/models \
+		--go_grpc_opt=Mmodels/put_bbox_response.proto=github.com/queensaver/openapi/golang/proto/models \
+		--go_grpc_opt=Mmodels/post_bbox_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_grpc_opt=Mmodels/get_hives_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_grpc_opt=Mmodels/put_hive_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_grpc_opt=Mmodels/post_hives_response.proto=github.com/queensaver/openapi/golang/proto/models \

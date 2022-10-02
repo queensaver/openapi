@@ -21,6 +21,10 @@ import (
 // pass the data to a DefaultApiServicer to perform the required actions, then write the service results to the http response.
 type DefaultApiRouter interface { 
 	BboxesGet(http.ResponseWriter, *http.Request)
+	ConfigsBboxDelete(http.ResponseWriter, *http.Request)
+	ConfigsBboxGet(http.ResponseWriter, *http.Request)
+	ConfigsBboxPost(http.ResponseWriter, *http.Request)
+	ConfigsBboxPut(http.ResponseWriter, *http.Request)
 	HivesDelete(http.ResponseWriter, *http.Request)
 	HivesGet(http.ResponseWriter, *http.Request)
 	HivesPost(http.ResponseWriter, *http.Request)
@@ -46,6 +50,10 @@ type DefaultApiRouter interface {
 // and updated with the logic required for the API.
 type DefaultApiServicer interface { 
 	BboxesGet(context.Context) (ImplResponse, error)
+	ConfigsBboxDelete(context.Context, string, string, string, int64) (ImplResponse, error)
+	ConfigsBboxGet(context.Context, string, string, string, int64) (ImplResponse, error)
+	ConfigsBboxPost(context.Context, string, string, int64, Bbox) (ImplResponse, error)
+	ConfigsBboxPut(context.Context, string, string, string, int64, Bbox) (ImplResponse, error)
 	HivesDelete(context.Context, string, string, string, int64) (ImplResponse, error)
 	HivesGet(context.Context, int64, int64, string, int64) (ImplResponse, error)
 	HivesPost(context.Context, string, string, int64, Hive) (ImplResponse, error)

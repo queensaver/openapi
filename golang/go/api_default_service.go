@@ -43,6 +43,74 @@ func (s *DefaultApiService) BboxesGet(ctx context.Context) (ImplResponse, error)
 	return Response(http.StatusNotImplemented, nil), errors.New("BboxesGet method not implemented")
 }
 
+// ConfigsBboxDelete - Delete a bbox
+func (s *DefaultApiService) ConfigsBboxDelete(ctx context.Context, qToken string, uuid string, token string, userId int64) (ImplResponse, error) {
+	// TODO - update ConfigsBboxDelete with the required logic for this service method.
+	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
+
+	//TODO: Uncomment the next line to return response Response(200, {}) or use other options such as http.Ok ...
+	//return Response(200, nil),nil
+
+	//TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
+	//return Response(400, nil),nil
+
+	//TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
+	//return Response(500, nil),nil
+
+	return Response(http.StatusNotImplemented, nil), errors.New("ConfigsBboxDelete method not implemented")
+}
+
+// ConfigsBboxGet - Get Config metadata of bboxes
+func (s *DefaultApiService) ConfigsBboxGet(ctx context.Context, qToken string, token string, uuid string, userId int64) (ImplResponse, error) {
+	// TODO - update ConfigsBboxGet with the required logic for this service method.
+	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
+
+	//TODO: Uncomment the next line to return response Response(200, GetBboxResponse{}) or use other options such as http.Ok ...
+	//return Response(200, GetBboxResponse{}), nil
+
+	//TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
+	//return Response(400, nil),nil
+
+	//TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
+	//return Response(500, nil),nil
+
+	return Response(http.StatusNotImplemented, nil), errors.New("ConfigsBboxGet method not implemented")
+}
+
+// ConfigsBboxPost - Create bbox
+func (s *DefaultApiService) ConfigsBboxPost(ctx context.Context, qToken string, token string, userId int64, bbox Bbox) (ImplResponse, error) {
+	// TODO - update ConfigsBboxPost with the required logic for this service method.
+	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
+
+	//TODO: Uncomment the next line to return response Response(201, PostBboxResponse{}) or use other options such as http.Ok ...
+	//return Response(201, PostBboxResponse{}), nil
+
+	//TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
+	//return Response(400, nil),nil
+
+	//TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
+	//return Response(500, nil),nil
+
+	return Response(http.StatusNotImplemented, nil), errors.New("ConfigsBboxPost method not implemented")
+}
+
+// ConfigsBboxPut - Update bbox metadata
+func (s *DefaultApiService) ConfigsBboxPut(ctx context.Context, qToken string, uuid string, token string, userId int64, bbox Bbox) (ImplResponse, error) {
+	// TODO - update ConfigsBboxPut with the required logic for this service method.
+	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
+
+	//TODO: Uncomment the next line to return response Response(201, PutBboxResponse{}) or use other options such as http.Ok ...
+	//return Response(201, PutBboxResponse{}), nil
+
+	//TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
+	//return Response(400, nil),nil
+
+	//TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
+	//return Response(500, nil),nil
+
+	return Response(http.StatusNotImplemented, nil), errors.New("ConfigsBboxPut method not implemented")
+}
+
 // HivesDelete - Delete a Hive
 func (s *DefaultApiService) HivesDelete(ctx context.Context, qToken string, uuid string, token string, userId int64) (ImplResponse, error) {
 	// TODO - update HivesDelete with the required logic for this service method.
