@@ -1386,13 +1386,13 @@ components:
       type: object
     put-bbox-response:
       example:
-        httpResponseCode: 409
-        stand:
+        bbox:
           bboxId: 15
           schedule: "03 6,12,16,20 * * *"
           bhive:
           - bhiveId: 829898a53801
           - bhiveId: 829898a53801
+        httpResponseCode: 409
       properties:
         httpResponseCode:
           description: "HTTP response code. Used for internal purposes, will be sent\
@@ -1400,18 +1400,18 @@ components:
           example: 409
           type: integer
           x-protobuf-index: 1
-        stand:
+        bbox:
           $ref: '#/components/schemas/bbox'
       type: object
     post-bbox-response:
       example:
-        httpResponseCode: 409
-        stand:
+        bbox:
           bboxId: 15
           schedule: "03 6,12,16,20 * * *"
           bhive:
           - bhiveId: 829898a53801
           - bhiveId: 829898a53801
+        httpResponseCode: 409
       properties:
         httpResponseCode:
           description: "HTTP response code. Used for internal purposes, will be sent\
@@ -1419,12 +1419,12 @@ components:
           example: 409
           type: integer
           x-protobuf-index: 1
-        stand:
+        bbox:
           $ref: '#/components/schemas/bbox'
       type: object
     get-bbox-response:
       example:
-        stands:
+        bboxes:
         - bboxId: 15
           schedule: "03 6,12,16,20 * * *"
           bhive:
@@ -1437,7 +1437,7 @@ components:
           - bhiveId: 829898a53801
         httpResponseCode: 409
       properties:
-        stands:
+        bboxes:
           items:
             $ref: '#/components/schemas/bbox'
           type: array

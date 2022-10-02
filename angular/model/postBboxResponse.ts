@@ -17,6 +17,6 @@ export interface PostBboxResponse {
      * HTTP response code. Used for internal purposes, will be sent out at the API.
      */
     httpResponseCode?: number;
-    stand?: Bbox;
+    bbox?: Bbox;
 }
 

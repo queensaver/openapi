@@ -16,7 +16,7 @@ import public "models/bbox.proto";
 
 message GetBboxResponse {
 
-  repeated Bbox stands = 1;
+  repeated Bbox bboxes = 1;
 
   // HTTP response code. Used for internal purposes, will be sent out at the API.
   int32 httpResponseCode = 2;

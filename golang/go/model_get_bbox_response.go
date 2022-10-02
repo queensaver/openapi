@@ -11,7 +11,7 @@ package openapi
 
 type GetBboxResponse struct {
 
-	Stands []Bbox `json:"stands,omitempty"`
+	Bboxes []Bbox `json:"bboxes,omitempty"`
 
 	// HTTP response code. Used for internal purposes, will be sent out at the API.
 	HttpResponseCode int32 `json:"httpResponseCode,omitempty"`
@@ -19,7 +19,7 @@ type GetBboxResponse struct {
 
 // AssertGetBboxResponseRequired checks if the required fields are not zero-ed
 func AssertGetBboxResponseRequired(obj GetBboxResponse) error {
-	for _, el := range obj.Stands {
+	for _, el := range obj.Bboxes {
 		if err := AssertBboxRequired(el); err != nil {
 			return err
 		}

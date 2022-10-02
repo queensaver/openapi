@@ -14,12 +14,12 @@ type PostBboxResponse struct {
 	// HTTP response code. Used for internal purposes, will be sent out at the API.
 	HttpResponseCode int32 `json:"httpResponseCode,omitempty"`
 
-	Stand Bbox `json:"stand,omitempty"`
+	Bbox Bbox `json:"bbox,omitempty"`
 }
 
 // AssertPostBboxResponseRequired checks if the required fields are not zero-ed
 func AssertPostBboxResponseRequired(obj PostBboxResponse) error {
-	if err := AssertBboxRequired(obj.Stand); err != nil {
+	if err := AssertBboxRequired(obj.Bbox); err != nil {
 		return err
 	}
 	return nil

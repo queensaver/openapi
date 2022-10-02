@@ -13,7 +13,7 @@ import { Bbox } from './bbox';
 
 
 export interface GetBboxResponse { 
-    stands?: Array<Bbox>;
+    bboxes?: Array<Bbox>;
     /**
      * HTTP response code. Used for internal purposes, will be sent out at the API.
      */

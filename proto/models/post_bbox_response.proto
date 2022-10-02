@@ -19,6 +19,6 @@ message PostBboxResponse {
   // HTTP response code. Used for internal purposes, will be sent out at the API.
   int32 httpResponseCode = 1;
 
-  Bbox stand = 109757398;
+  Bbox bbox = 3017257;
 
 }
