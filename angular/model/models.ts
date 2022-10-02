@@ -1,6 +1,5 @@
 export * from './alerts';
 export * from './bbox';
-export * from './bboxBhiveInner';
 export * from './bhive';
 export * from './genericPostResponse';
 export * from './getBboxResponse';

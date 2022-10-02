@@ -9,7 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { BboxBhiveInner } from './bboxBhiveInner';
+import { Bhive } from './bhive';
 
 
 export interface Bbox { 
@@ -21,6 +21,6 @@ export interface Bbox {
      * A cron type of description of when the sensore measurements are supposed to be done.
      */
     schedule?: string;
-    bhive?: Array<BboxBhiveInner>;
+    bhive?: Array<Bhive>;
 }
 

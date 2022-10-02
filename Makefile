@@ -18,6 +18,7 @@ protos:
 		--go_out=paths=source_relative:golang/proto \
 		--go_opt=Mmodels/hive.proto.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/bbox_bhive.proto=github.com/queensaver/openapi/golang/proto/models \
+		--go_opt=Mmodels/bhive.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/bbox.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/hive.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/stand.proto=github.com/queensaver/openapi/golang/proto/models \
@@ -44,6 +45,7 @@ protos:
 		proto/models/hive.proto \
 		proto/models/bbox_bhive.proto \
 		proto/models/bbox.proto \
+		proto/models/bhive.proto \
 		proto/models/hive.proto \
 		proto/models/stand.proto \
 		proto/models/alerts.proto \
@@ -78,6 +80,7 @@ grpc:
 		--go_opt=Mmodels/hive.proto.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/bbox_bhive.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/bbox.proto=github.com/queensaver/openapi/golang/proto/models \
+		--go_opt=Mmodels/bhive.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/hive.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/stand.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/alerts.proto=github.com/queensaver/openapi/golang/proto/models \
@@ -104,6 +107,7 @@ grpc:
 		--go_grpc_opt=Mmodels/hive.proto.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_grpc_opt=Mmodels/bbox_bhive.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_grpc_opt=Mmodels/bbox.proto=github.com/queensaver/openapi/golang/proto/models \
+		--go_grpc_opt=Mmodels/bhive.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_grpc_opt=Mmodels/hive.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_grpc_opt=Mmodels/stand.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_grpc_opt=Mmodels/alerts.proto=github.com/queensaver/openapi/golang/proto/models \

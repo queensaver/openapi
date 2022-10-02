@@ -9,7 +9,6 @@ git_push.sh
 index.ts
 model/alerts.ts
 model/bbox.ts
-model/bboxBhiveInner.ts
 model/bhive.ts
 model/genericPostResponse.ts
 model/getBboxResponse.ts

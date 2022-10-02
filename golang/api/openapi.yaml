@@ -1785,6 +1785,8 @@ components:
       - username
       type: object
     bhive:
+      example:
+        bhiveId: 829898a53801
       properties:
         bhiveId:
           description: The ID of a beehive. Is unique for that user.
@@ -2012,16 +2014,19 @@ components:
           example: 15
           minimum: 1
           type: integer
+          x-protobuf-index: 1
         schedule:
           description: A cron type of description of when the sensore measurements
             are supposed to be done.
           example: "03 6,12,16,20 * * *"
           maxLength: 256
           type: string
+          x-protobuf-index: 2
         bhive:
           items:
-            $ref: '#/components/schemas/bbox_bhive_inner'
+            $ref: '#/components/schemas/bhive'
           type: array
+          x-protobuf-index: 3
       type: object
     user:
       properties:
@@ -2073,16 +2078,6 @@ components:
           type: integer
         scan:
           format: byte
-          type: string
-      type: object
-    bbox_bhive_inner:
-      example:
-        bhiveId: 829898a53801
-      properties:
-        bhiveId:
-          description: The ID of a beehive. Is unique for that user.
-          example: 829898a53801
-          maxLength: 256
           type: string
       type: object
   securitySchemes:

@@ -866,30 +866,22 @@ ul.nav-tabs {
       "minimum" : 1,
       "type" : "integer",
       "description" : "ID of the object. The ID is usually determined by the DBMS.",
-      "example" : 15
+      "example" : 15,
+      "x-protobuf-index" : 1
     },
     "schedule" : {
       "maxLength" : 256,
       "type" : "string",
       "description" : "A cron type of description of when the sensore measurements are supposed to be done.",
-      "example" : "03 6,12,16,20 * * *"
+      "example" : "03 6,12,16,20 * * *",
+      "x-protobuf-index" : 2
     },
     "bhive" : {
       "type" : "array",
       "items" : {
-        "$ref" : "#/components/schemas/bbox_bhive_inner"
-      }
-    }
-  }
-};
-    defs["bbox_bhive_inner"] = {
-  "type" : "object",
-  "properties" : {
-    "bhiveId" : {
-      "maxLength" : 256,
-      "type" : "string",
-      "description" : "The ID of a beehive. Is unique for that user.",
-      "example" : "829898a53801"
+        "$ref" : "#/components/schemas/bhive"
+      },
+      "x-protobuf-index" : 3
     }
   }
 };

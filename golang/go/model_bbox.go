@@ -17,13 +17,13 @@ type Bbox struct {
 	// A cron type of description of when the sensore measurements are supposed to be done.
 	Schedule string `json:"schedule,omitempty"`
 
-	Bhive []BboxBhiveInner `json:"bhive,omitempty"`
+	Bhive []Bhive `json:"bhive,omitempty"`
 }
 
 // AssertBboxRequired checks if the required fields are not zero-ed
 func AssertBboxRequired(obj Bbox) error {
 	for _, el := range obj.Bhive {
-		if err := AssertBboxBhiveInnerRequired(el); err != nil {
+		if err := AssertBhiveRequired(el); err != nil {
 			return err
 		}
 	}

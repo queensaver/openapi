@@ -1,7 +1,6 @@
 README.md
 models/alerts.proto
 models/bbox.proto
-models/bbox_bhive_inner.proto
 models/bhive.proto
 models/generic_post_response.proto
 models/get_bbox_response.proto
