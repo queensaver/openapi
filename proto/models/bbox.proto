@@ -24,4 +24,7 @@ message Bbox {
 
   repeated Bhive bhive = 3;
 
+  // If the bbox turns the power off after a successful run and wakes up later according to the schedule.
+  bool powerSave = 4;
+
 }

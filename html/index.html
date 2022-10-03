@@ -882,6 +882,12 @@ ul.nav-tabs {
         "$ref" : "#/components/schemas/bhive"
       },
       "x-protobuf-index" : 3
+    },
+    "powerSave" : {
+      "type" : "boolean",
+      "description" : "If the bbox turns the power off after a successful run and wakes up later according to the schedule.",
+      "example" : true,
+      "x-protobuf-index" : 4
     }
   }
 };
@@ -892,19 +898,22 @@ ul.nav-tabs {
       "maxLength" : 256,
       "type" : "string",
       "description" : "The ID of a beehive. Is unique for that user.",
-      "example" : "829898a53801"
+      "example" : "829898a53801",
+      "x-protobuf-index" : 1
     },
     "scaleOffset" : {
       "type" : "number",
       "description" : "Scale offset number (calibration data)",
       "format" : "float",
-      "example" : 1234
+      "example" : 1234,
+      "x-protobuf-index" : 2
     },
     "scaleReferenceUnit" : {
       "type" : "number",
       "description" : "Scale Reference Unit (calibration data)",
       "format" : "float",
-      "example" : 1234
+      "example" : 1234,
+      "x-protobuf-index" : 3
     }
   }
 };

@@ -1311,16 +1311,19 @@ components:
           maxLength: 256
           description: The ID of a beehive. Is unique for that user.
           example: "829898a53801"
+          x-protobuf-index: 1
         scaleOffset:
           type: number
           format: float
           description: Scale offset number (calibration data)
           example: 1234
+          x-protobuf-index: 2
         scaleReferenceUnit:
           type: number
           format: float
           description: Scale Reference Unit (calibration data)
           example: 1234
+          x-protobuf-index: 3
 
     stand:
       type: object
@@ -1485,6 +1488,11 @@ components:
           items:
             $ref: "#/components/schemas/bhive"
           x-protobuf-index: 3
+        powerSave:
+          type: boolean
+          example: true
+          description: If the bbox turns the power off after a successful run and wakes up later according to the schedule.
+          x-protobuf-index: 4
 
     user:
       type: object

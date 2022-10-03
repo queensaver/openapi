@@ -1396,6 +1396,7 @@ components:
           - bhiveId: 829898a53801
             scaleOffset: 1234
             scaleReferenceUnit: 1234
+          powerSave: true
         httpResponseCode: 409
       properties:
         httpResponseCode:
@@ -1419,6 +1420,7 @@ components:
           - bhiveId: 829898a53801
             scaleOffset: 1234
             scaleReferenceUnit: 1234
+          powerSave: true
         httpResponseCode: 409
       properties:
         httpResponseCode:
@@ -1442,6 +1444,7 @@ components:
           - bhiveId: 829898a53801
             scaleOffset: 1234
             scaleReferenceUnit: 1234
+          powerSave: true
         - bboxId: 15
           schedule: "03 6,12,16,20 * * *"
           bhive:
@@ -1451,6 +1454,7 @@ components:
           - bhiveId: 829898a53801
             scaleOffset: 1234
             scaleReferenceUnit: 1234
+          powerSave: true
         httpResponseCode: 409
       properties:
         bboxes:
@@ -1811,16 +1815,19 @@ components:
           example: 829898a53801
           maxLength: 256
           type: string
+          x-protobuf-index: 1
         scaleOffset:
           description: Scale offset number (calibration data)
           example: 1234
           format: float
           type: number
+          x-protobuf-index: 2
         scaleReferenceUnit:
           description: Scale Reference Unit (calibration data)
           example: 1234
           format: float
           type: number
+          x-protobuf-index: 3
       type: object
     stand:
       example:
@@ -2040,6 +2047,7 @@ components:
         - bhiveId: 829898a53801
           scaleOffset: 1234
           scaleReferenceUnit: 1234
+        powerSave: true
       properties:
         bboxId:
           description: ID of the object. The ID is usually determined by the DBMS.
@@ -2059,6 +2067,12 @@ components:
             $ref: '#/components/schemas/bhive'
           type: array
           x-protobuf-index: 3
+        powerSave:
+          description: If the bbox turns the power off after a successful run and
+            wakes up later according to the schedule.
+          example: true
+          type: boolean
+          x-protobuf-index: 4
       type: object
     user:
       properties:

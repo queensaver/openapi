@@ -18,6 +18,9 @@ type Bbox struct {
 	Schedule string `json:"schedule,omitempty"`
 
 	Bhive []Bhive `json:"bhive,omitempty"`
+
+	// If the bbox turns the power off after a successful run and wakes up later according to the schedule.
+	PowerSave bool `json:"powerSave,omitempty"`
 }
 
 // AssertBboxRequired checks if the required fields are not zero-ed

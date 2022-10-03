@@ -16,12 +16,12 @@ package openapi;
 message Bhive {
 
   // The ID of a beehive. Is unique for that user.
-  string bhiveId = 140936307;
+  string bhiveId = 1;
 
   // Scale offset number (calibration data)
-  float scaleOffset = 410928516;
+  float scaleOffset = 2;
 
   // Scale Reference Unit (calibration data)
-  float scaleReferenceUnit = 342098366;
+  float scaleReferenceUnit = 3;
 
 }

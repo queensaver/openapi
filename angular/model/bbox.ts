@@ -22,5 +22,9 @@ export interface Bbox {
      */
     schedule?: string;
     bhive?: Array<Bhive>;
+    /**
+     * If the bbox turns the power off after a successful run and wakes up later according to the schedule.
+     */
+    powerSave?: boolean;
 }
 
