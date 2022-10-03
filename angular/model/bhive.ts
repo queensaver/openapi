@@ -16,5 +16,13 @@ export interface Bhive {
      * The ID of a beehive. Is unique for that user.
      */
     bhiveId?: string;
+    /**
+     * Scale offset number (calibration data)
+     */
+    scaleOffset?: number;
+    /**
+     * Scale Reference Unit (calibration data)
+     */
+    scaleReferenceUnit?: number;
 }
 

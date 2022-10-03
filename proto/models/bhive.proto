@@ -18,4 +18,10 @@ message Bhive {
   // The ID of a beehive. Is unique for that user.
   string bhiveId = 140936307;
 
+  // Scale offset number (calibration data)
+  float scaleOffset = 410928516;
+
+  // Scale Reference Unit (calibration data)
+  float scaleReferenceUnit = 342098366;
+
 }
