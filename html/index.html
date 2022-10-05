@@ -863,10 +863,9 @@ ul.nav-tabs {
   "type" : "object",
   "properties" : {
     "bboxId" : {
-      "minimum" : 1,
-      "type" : "integer",
-      "description" : "ID of the object. The ID is usually determined by the DBMS.",
-      "example" : 15,
+      "maxLength" : 256,
+      "type" : "string",
+      "description" : "The ID of the bbox electronix (QBox). Is usually a mac address of a network interface.",
       "x-protobuf-index" : 1
     },
     "schedule" : {
@@ -876,18 +875,24 @@ ul.nav-tabs {
       "example" : "03 6,12,16,20 * * *",
       "x-protobuf-index" : 2
     },
-    "bhive" : {
+    "uuid" : {
+      "type" : "string",
+      "description" : "Unique Identifier for this hive",
+      "example" : "41C0FE2F-EB0C-45B4-8842-C117E47C35E3",
+      "x-protobuf-index" : 3
+    },
+    "bhives" : {
       "type" : "array",
       "items" : {
         "$ref" : "#/components/schemas/bhive"
       },
-      "x-protobuf-index" : 3
+      "x-protobuf-index" : 4
     },
     "powerSave" : {
       "type" : "boolean",
       "description" : "If the bbox turns the power off after a successful run and wakes up later according to the schedule.",
       "example" : true,
-      "x-protobuf-index" : 4
+      "x-protobuf-index" : 5
     }
   }
 };

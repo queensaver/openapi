@@ -14,14 +14,18 @@ import { Bhive } from './bhive';
 
 export interface Bbox { 
     /**
-     * ID of the object. The ID is usually determined by the DBMS.
+     * The ID of the bbox electronix (QBox). Is usually a mac address of a network interface.
      */
-    bboxId?: number;
+    bboxId?: string;
     /**
      * A cron type of description of when the sensore measurements are supposed to be done.
      */
     schedule?: string;
-    bhive?: Array<Bhive>;
+    /**
+     * Unique Identifier for this hive
+     */
+    uuid?: string;
+    bhives?: Array<Bhive>;
     /**
      * If the bbox turns the power off after a successful run and wakes up later according to the schedule.
      */

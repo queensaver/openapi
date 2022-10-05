@@ -11,13 +11,16 @@ package openapi
 
 type Bbox struct {
 
-	// ID of the object. The ID is usually determined by the DBMS.
-	BboxId int32 `json:"bboxId,omitempty"`
+	// The ID of the bbox electronix (QBox). Is usually a mac address of a network interface.
+	BboxId string `json:"bboxId,omitempty"`
 
 	// A cron type of description of when the sensore measurements are supposed to be done.
 	Schedule string `json:"schedule,omitempty"`
 
-	Bhive []Bhive `json:"bhive,omitempty"`
+	// Unique Identifier for this hive
+	Uuid string `json:"uuid,omitempty"`
+
+	Bhives []Bhive `json:"bhives,omitempty"`
 
 	// If the bbox turns the power off after a successful run and wakes up later according to the schedule.
 	PowerSave bool `json:"powerSave,omitempty"`
@@ -25,7 +28,7 @@ type Bbox struct {
 
 // AssertBboxRequired checks if the required fields are not zero-ed
 func AssertBboxRequired(obj Bbox) error {
-	for _, el := range obj.Bhive {
+	for _, el := range obj.Bhives {
 		if err := AssertBhiveRequired(el); err != nil {
 			return err
 		}

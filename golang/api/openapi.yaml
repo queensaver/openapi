@@ -1387,15 +1387,16 @@ components:
     put-bbox-response:
       example:
         bbox:
-          bboxId: 15
+          bboxId: bboxId
           schedule: "03 6,12,16,20 * * *"
-          bhive:
+          bhives:
           - bhiveId: 829898a53801
             scaleOffset: 1234
             scaleReferenceUnit: 1234
           - bhiveId: 829898a53801
             scaleOffset: 1234
             scaleReferenceUnit: 1234
+          uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
           powerSave: true
         httpResponseCode: 409
       properties:
@@ -1411,15 +1412,16 @@ components:
     post-bbox-response:
       example:
         bbox:
-          bboxId: 15
+          bboxId: bboxId
           schedule: "03 6,12,16,20 * * *"
-          bhive:
+          bhives:
           - bhiveId: 829898a53801
             scaleOffset: 1234
             scaleReferenceUnit: 1234
           - bhiveId: 829898a53801
             scaleOffset: 1234
             scaleReferenceUnit: 1234
+          uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
           powerSave: true
         httpResponseCode: 409
       properties:
@@ -1435,25 +1437,27 @@ components:
     get-bbox-response:
       example:
         bboxes:
-        - bboxId: 15
+        - bboxId: bboxId
           schedule: "03 6,12,16,20 * * *"
-          bhive:
+          bhives:
           - bhiveId: 829898a53801
             scaleOffset: 1234
             scaleReferenceUnit: 1234
           - bhiveId: 829898a53801
             scaleOffset: 1234
             scaleReferenceUnit: 1234
+          uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
           powerSave: true
-        - bboxId: 15
+        - bboxId: bboxId
           schedule: "03 6,12,16,20 * * *"
-          bhive:
+          bhives:
           - bhiveId: 829898a53801
             scaleOffset: 1234
             scaleReferenceUnit: 1234
           - bhiveId: 829898a53801
             scaleOffset: 1234
             scaleReferenceUnit: 1234
+          uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
           powerSave: true
         httpResponseCode: 409
       properties:
@@ -2038,22 +2042,23 @@ components:
       type: object
     bbox:
       example:
-        bboxId: 15
+        bboxId: bboxId
         schedule: "03 6,12,16,20 * * *"
-        bhive:
+        bhives:
         - bhiveId: 829898a53801
           scaleOffset: 1234
           scaleReferenceUnit: 1234
         - bhiveId: 829898a53801
           scaleOffset: 1234
           scaleReferenceUnit: 1234
+        uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
         powerSave: true
       properties:
         bboxId:
-          description: ID of the object. The ID is usually determined by the DBMS.
-          example: 15
-          minimum: 1
-          type: integer
+          description: The ID of the bbox electronix (QBox). Is usually a mac address
+            of a network interface.
+          maxLength: 256
+          type: string
           x-protobuf-index: 1
         schedule:
           description: A cron type of description of when the sensore measurements
@@ -2062,17 +2067,22 @@ components:
           maxLength: 256
           type: string
           x-protobuf-index: 2
-        bhive:
+        uuid:
+          description: Unique Identifier for this hive
+          example: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+          type: string
+          x-protobuf-index: 3
+        bhives:
           items:
             $ref: '#/components/schemas/bhive'
           type: array
-          x-protobuf-index: 3
+          x-protobuf-index: 4
         powerSave:
           description: If the bbox turns the power off after a successful run and
             wakes up later according to the schedule.
           example: true
           type: boolean
-          x-protobuf-index: 4
+          x-protobuf-index: 5
       type: object
     user:
       properties:
