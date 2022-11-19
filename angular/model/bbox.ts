@@ -31,7 +31,7 @@ export interface Bbox {
      */
     powerSave?: boolean;
     /**
-     * The registration ID of the bbox. The user needs to put this into the interface so that the bbox can then register via the /configs/register API call to retrieve the token.
+     * The registration ID of the bbox. The user needs to put this into the interface so that the bbox can then register via the /configs/bbox/register API call to retrieve the token.
      */
     registrationId?: string;
 }

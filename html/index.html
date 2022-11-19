@@ -897,7 +897,7 @@ ul.nav-tabs {
     "registrationId" : {
       "maxLength" : 256,
       "type" : "string",
-      "description" : "The registration ID of the bbox. The user needs to put this into the interface so that the bbox can then register via the /configs/register API call to retrieve the token.",
+      "description" : "The registration ID of the bbox. The user needs to put this into the interface so that the bbox can then register via the /configs/bbox/register API call to retrieve the token.",
       "x-protobuf-index" : 6
     }
   }
@@ -3999,7 +3999,7 @@ The UserID is set internally and can not set or be overridden with the API reque
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">This registers a new bbox. A bbox is a physical hardware component that needs to be associated with a hive. The bbox sends a registrationId that a user needs to know and put in the system before the registration. Once the registrationId matches a userId the bbox will get a token back and can now talk to the system.</p>
+                        <p class="marked">This registers a new bbox. A bbox is a physical hardware component that needs to be associated with a hive. The bbox sends a registrationId that a user needs to know and put in the system before the registration. Once the registrationId matches a userId the bbox will get a token back and can now talk to the system. The bbox proto is used as a convenience, the only field that is accepted is the bboxId and the registraionId.</p>
                         <p></p>
                         <br />
                         <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/configs/bbox/register</span></code></pre>

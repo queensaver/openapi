@@ -43,7 +43,7 @@ type Bbox struct {
 	Bhives []*Bhive `protobuf:"bytes,4,rep,name=bhives,proto3" json:"bhives,omitempty"`
 	// If the bbox turns the power off after a successful run and wakes up later according to the schedule.
 	PowerSave bool `protobuf:"varint,5,opt,name=powerSave,proto3" json:"powerSave,omitempty"`
-	// The registration ID of the bbox. The user needs to put this into the interface so that the bbox can then register via the /configs/register API call to retrieve the token.
+	// The registration ID of the bbox. The user needs to put this into the interface so that the bbox can then register via the /configs/bbox/register API call to retrieve the token.
 	RegistrationId string `protobuf:"bytes,6,opt,name=registrationId,proto3" json:"registrationId,omitempty"`
 }
 
