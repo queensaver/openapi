@@ -1473,6 +1473,9 @@ ul.nav-tabs {
                     <li data-group="Default" data-name="scaleGet" class="">
                       <a href="#api-Default-scaleGet">scaleGet</a>
                     </li>
+                    <li data-group="Default" data-name="scalePost" class="">
+                      <a href="#api-Default-scalePost">scalePost</a>
+                    </li>
                     <li data-group="Default" data-name="standsDelete" class="">
                       <a href="#api-Default-standsDelete">standsDelete</a>
                     </li>
@@ -6989,6 +6992,486 @@ How many seconds we go to the past to get the data measurements.
 
 
                             <div class="tab-content" id="responses-Default-scaleGet-500-wrapper" style='margin-bottom: 10px;'>
+                            </div>
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Default-scalePost">
+                      <article id="api-Default-scalePost-0" data-group="User" data-name="scalePost" data-version="0">
+                        <div class="pull-left">
+                          <h1>scalePost</h1>
+                          <p>Post Scale values</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">Sends a weight from a hive to the queensaver system. The request needs to send a cookie along with the request. The cookie is stored under the key called &quot;token&quot;. Note that this returns the scale data for a QBox Client (independent of the beeHive), the API call for an actual beeHive is different.</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/scale</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-scalePost-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-scalePost-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-scalePost-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-scalePost-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-scalePost-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-scalePost-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-scalePost-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-scalePost-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-scalePost-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-scalePost-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-scalePost-0-python">Python</a></li>
+                          <li class=""><a href="#examples-Default-scalePost-0-rust">Rust</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-scalePost-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X POST \
+ \
+ -H "Content-Type: application/json" \
+ "https://api.queensaver.com/v1/scale?userId=123" \
+ -d ''
+</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-scalePost-0-java">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.model.*;
+import org.openapitools.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        
+        // Configure API key authorization: cookieAuth
+        ApiKeyAuth cookieAuth = (ApiKeyAuth) defaultClient.getAuthentication("cookieAuth");
+        cookieAuth.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cookieAuth.setApiKeyPrefix("Token");
+
+        // Create an instance of the API class
+        DefaultApi apiInstance = new DefaultApi();
+        String qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either the cookie or this Q-Token must be set to be authorized for the API call.
+        String token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie or the Q-Token must be set to be authorized for the API call.
+        Long userId = 123; // Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
+        Weight weight = ; // Weight | 
+
+        try {
+            apiInstance.scalePost(qToken, token, userId, weight);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#scalePost");
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-scalePost-0-android">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.DefaultApi;
+
+public class DefaultApiExample {
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+        String qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either the cookie or this Q-Token must be set to be authorized for the API call.
+        String token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie or the Q-Token must be set to be authorized for the API call.
+        Long userId = 123; // Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
+        Weight weight = ; // Weight | 
+
+        try {
+            apiInstance.scalePost(qToken, token, userId, weight);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#scalePost");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-scalePost-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-scalePost-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: cookieAuth)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"token"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"token"];
+
+
+// Create an instance of the API class
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+String *qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // Either the cookie or this Q-Token must be set to be authorized for the API call. (default to null)
+String *token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // Either this cookie or the Q-Token must be set to be authorized for the API call. (optional) (default to null)
+Long *userId = 123; // The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore. (optional) (default to null)
+Weight *weight = ; //  (optional)
+
+// Post Scale values
+[apiInstance scalePostWith:qToken
+    token:token
+    userId:userId
+    weight:weight
+              completionHandler: ^(NSError* error) {
+    if (error) {
+        NSLog(@"Error: %@", error);
+    }
+}];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-scalePost-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var QueensaverApi = require('queensaver_api');
+var defaultClient = QueensaverApi.ApiClient.instance;
+
+// Configure API key authorization: cookieAuth
+var cookieAuth = defaultClient.authentications['cookieAuth'];
+cookieAuth.apiKey = "YOUR API KEY";
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//cookieAuth.apiKeyPrefix['token'] = "Token";
+
+// Create an instance of the API class
+var api = new QueensaverApi.DefaultApi()
+var qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // {String} Either the cookie or this Q-Token must be set to be authorized for the API call.
+var opts = {
+  'token': 8B0FE5CF-C096-4B3E-8748-27906B4A9449, // {String} Either this cookie or the Q-Token must be set to be authorized for the API call.
+  'userId': 123, // {Long} The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
+  'weight':  // {Weight} 
+};
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+};
+api.scalePost(qToken, opts, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-scalePost-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-scalePost-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using Org.OpenAPITools.Api;
+using Org.OpenAPITools.Client;
+using Org.OpenAPITools.Model;
+
+namespace Example
+{
+    public class scalePostExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: cookieAuth
+            Configuration.Default.ApiKey.Add("token", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.ApiKeyPrefix.Add("token", "Bearer");
+
+            // Create an instance of the API class
+            var apiInstance = new DefaultApi();
+            var qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449;  // String | Either the cookie or this Q-Token must be set to be authorized for the API call. (default to null)
+            var token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449;  // String | Either this cookie or the Q-Token must be set to be authorized for the API call. (optional)  (default to null)
+            var userId = 123;  // Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore. (optional)  (default to null)
+            var weight = new Weight(); // Weight |  (optional) 
+
+            try {
+                // Post Scale values
+                apiInstance.scalePost(qToken, token, userId, weight);
+            } catch (Exception e) {
+                Debug.Print("Exception when calling DefaultApi.scalePost: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-scalePost-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure API key authorization: cookieAuth
+OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+
+// Create an instance of the API class
+$api_instance = new OpenAPITools\Client\Api\DefaultApi();
+$qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either the cookie or this Q-Token must be set to be authorized for the API call.
+$token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie or the Q-Token must be set to be authorized for the API call.
+$userId = 123; // Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
+$weight = ; // Weight | 
+
+try {
+    $api_instance->scalePost($qToken, $token, $userId, $weight);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->scalePost: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-scalePost-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::OPenAPIClient::Configuration;
+use WWW::OPenAPIClient::DefaultApi;
+
+# Configure API key authorization: cookieAuth
+$WWW::OPenAPIClient::Configuration::api_key->{'token'} = 'YOUR_API_KEY';
+# uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+#$WWW::OPenAPIClient::Configuration::api_key_prefix->{'token'} = "Bearer";
+
+# Create an instance of the API class
+my $api_instance = WWW::OPenAPIClient::DefaultApi->new();
+my $qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; # String | Either the cookie or this Q-Token must be set to be authorized for the API call.
+my $token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; # String | Either this cookie or the Q-Token must be set to be authorized for the API call.
+my $userId = 123; # Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
+my $weight = WWW::OPenAPIClient::Object::Weight->new(); # Weight | 
+
+eval {
+    $api_instance->scalePost(qToken => $qToken, token => $token, userId => $userId, weight => $weight);
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->scalePost: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-scalePost-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import openapi_client
+from openapi_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: cookieAuth
+openapi_client.configuration.api_key['token'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# openapi_client.configuration.api_key_prefix['token'] = 'Bearer'
+
+# Create an instance of the API class
+api_instance = openapi_client.DefaultApi()
+qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449 # String | Either the cookie or this Q-Token must be set to be authorized for the API call. (default to null)
+token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449 # String | Either this cookie or the Q-Token must be set to be authorized for the API call. (optional) (default to null)
+userId = 123 # Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore. (optional) (default to null)
+weight =  # Weight |  (optional)
+
+try:
+    # Post Scale values
+    api_instance.scale_post(qToken, token=token, userId=userId, weight=weight)
+except ApiException as e:
+    print("Exception when calling DefaultApi->scalePost: %s\n" % e)</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-scalePost-0-rust">
+                              <pre class="prettyprint"><code class="language-rust">extern crate DefaultApi;
+
+pub fn main() {
+    let qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String
+    let token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String
+    let userId = 123; // Long
+    let weight = ; // Weight
+
+    let mut context = DefaultApi::Context::default();
+    let result = client.scalePost(qToken, token, userId, weight, &context).wait();
+
+    println!("{:?}", result);
+}
+</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Scopes</h2>
+                          <table>
+                            
+                          </table>
+
+                          <h2>Parameters</h2>
+
+
+                            <div class="methodsubtabletitle">Header parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                  <tr><td style="width:150px;">Q-Token*</td>
+<td>
+
+
+    <div id="d2e199_scalePost_qToken">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    String
+                </span>
+
+                    <div class="inner description marked">
+Either the cookie or this Q-Token must be set to be authorized for the API call.
+                    </div>
+            </div>
+                <div class="inner required">
+                    Required
+                </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                            </table>
+
+                            <div class="methodsubtabletitle">Body parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">weight </td>
+<td>
+<p class="marked"></p>
+<script>
+$(document).ready(function() {
+  var schemaWrapper = {
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/weight"
+      }
+    }
+  }
+};
+
+  var schema = findNode('schema',schemaWrapper).schema;
+  if (!schema) {
+    schema = schemaWrapper.schema;
+  }
+  if (schema.$ref != null) {
+    schema = defsParser.$refs.get(schema.$ref);
+  } else {
+    schemaWrapper.definitions = Object.assign({}, defs);
+    $RefParser.dereference(schemaWrapper).catch(function(err) {
+      console.log(err);
+    });
+  }
+
+  var view = new JSONSchemaView(schema,2,{isBodyParam: true});
+  var result = $('#d2e199_scalePost_weight');
+  result.empty();
+  result.append(view.render());
+});
+</script>
+<div id="d2e199_scalePost_weight"></div>
+</td>
+</tr>
+
+                            </table>
+
+
+                            <div class="methodsubtabletitle">Query parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">userId</td>
+<td>
+
+
+    <div id="d2e199_scalePost_userId">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    Long
+                </span>
+                    <span class="format">
+                        (int64)
+                    </span>
+
+                    <div class="inner description marked">
+The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
+                    </div>
+            </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                            </table>
+
+                          <h2>Responses</h2>
+                            <h3 id="examples-Default-scalePost-title-200"></h3>
+                            <p id="examples-Default-scalePost-description-200" class="marked"></p>
+                            <script>
+                              var responseDefault200_description = `OK`;
+                              var responseDefault200_description_break = responseDefault200_description.indexOf('\n');
+                              if (responseDefault200_description_break == -1) {
+                                $("#examples-Default-scalePost-title-200").text("Status: 200 - " + responseDefault200_description);
+                              } else {
+                                $("#examples-Default-scalePost-title-200").text("Status: 200 - " + responseDefault200_description.substring(0, responseDefault200_description_break));
+                                $("#examples-Default-scalePost-description-200").html(responseDefault200_description.substring(responseDefault200_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Default-scalePost-200" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Default-scalePost-200-wrapper" style='margin-bottom: 10px;'>
+                            </div>
+                            <h3 id="examples-Default-scalePost-title-400"></h3>
+                            <p id="examples-Default-scalePost-description-400" class="marked"></p>
+                            <script>
+                              var responseDefault400_description = `Client error`;
+                              var responseDefault400_description_break = responseDefault400_description.indexOf('\n');
+                              if (responseDefault400_description_break == -1) {
+                                $("#examples-Default-scalePost-title-400").text("Status: 400 - " + responseDefault400_description);
+                              } else {
+                                $("#examples-Default-scalePost-title-400").text("Status: 400 - " + responseDefault400_description.substring(0, responseDefault400_description_break));
+                                $("#examples-Default-scalePost-description-400").html(responseDefault400_description.substring(responseDefault400_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Default-scalePost-400" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Default-scalePost-400-wrapper" style='margin-bottom: 10px;'>
+                            </div>
+                            <h3 id="examples-Default-scalePost-title-500"></h3>
+                            <p id="examples-Default-scalePost-description-500" class="marked"></p>
+                            <script>
+                              var responseDefault500_description = `Internal error`;
+                              var responseDefault500_description_break = responseDefault500_description.indexOf('\n');
+                              if (responseDefault500_description_break == -1) {
+                                $("#examples-Default-scalePost-title-500").text("Status: 500 - " + responseDefault500_description);
+                              } else {
+                                $("#examples-Default-scalePost-title-500").text("Status: 500 - " + responseDefault500_description.substring(0, responseDefault500_description_break));
+                                $("#examples-Default-scalePost-description-500").html(responseDefault500_description.substring(responseDefault500_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Default-scalePost-500" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Default-scalePost-500-wrapper" style='margin-bottom: 10px;'>
                             </div>
                         </article>
                       </div>

@@ -210,6 +210,23 @@ func (s *DefaultApiService) ScaleGet(ctx context.Context, qToken string, bhiveId
 	return Response(http.StatusNotImplemented, nil), errors.New("ScaleGet method not implemented")
 }
 
+// ScalePost - Post Scale values
+func (s *DefaultApiService) ScalePost(ctx context.Context, qToken string, token string, userId int64, weight Weight) (ImplResponse, error) {
+	// TODO - update ScalePost with the required logic for this service method.
+	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
+
+	//TODO: Uncomment the next line to return response Response(200, {}) or use other options such as http.Ok ...
+	//return Response(200, nil),nil
+
+	//TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
+	//return Response(400, nil),nil
+
+	//TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
+	//return Response(500, nil),nil
+
+	return Response(http.StatusNotImplemented, nil), errors.New("ScalePost method not implemented")
+}
+
 // StandsDelete - Delete a stand
 func (s *DefaultApiService) StandsDelete(ctx context.Context, qToken string, uuid string, token string, userId int64) (ImplResponse, error) {
 	// TODO - update StandsDelete with the required logic for this service method.

@@ -35,6 +35,7 @@ type DefaultServiceClient interface {
 	HivesPut(ctx context.Context, in *HivesPutRequest, opts ...grpc.CallOption) (*models.PutHiveResponse, error)
 	LoginPost(ctx context.Context, in *LoginPostRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	ScaleGet(ctx context.Context, in *ScaleGetRequest, opts ...grpc.CallOption) (*ScaleGetResponse, error)
+	ScalePost(ctx context.Context, in *ScalePostRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	StandsDelete(ctx context.Context, in *StandsDeleteRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	StandsGet(ctx context.Context, in *StandsGetRequest, opts ...grpc.CallOption) (*models.GetStandsResponse, error)
 	StandsPost(ctx context.Context, in *StandsPostRequest, opts ...grpc.CallOption) (*models.PostStandsResponse, error)
@@ -154,6 +155,15 @@ func (c *defaultServiceClient) ScaleGet(ctx context.Context, in *ScaleGetRequest
 	return out, nil
 }
 
+func (c *defaultServiceClient) ScalePost(ctx context.Context, in *ScalePostRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, "/openapi.services.defaultservice.DefaultService/ScalePost", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *defaultServiceClient) StandsDelete(ctx context.Context, in *StandsDeleteRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, "/openapi.services.defaultservice.DefaultService/StandsDelete", in, out, opts...)
@@ -259,6 +269,7 @@ type DefaultServiceServer interface {
 	HivesPut(context.Context, *HivesPutRequest) (*models.PutHiveResponse, error)
 	LoginPost(context.Context, *LoginPostRequest) (*emptypb.Empty, error)
 	ScaleGet(context.Context, *ScaleGetRequest) (*ScaleGetResponse, error)
+	ScalePost(context.Context, *ScalePostRequest) (*emptypb.Empty, error)
 	StandsDelete(context.Context, *StandsDeleteRequest) (*emptypb.Empty, error)
 	StandsGet(context.Context, *StandsGetRequest) (*models.GetStandsResponse, error)
 	StandsPost(context.Context, *StandsPostRequest) (*models.PostStandsResponse, error)
@@ -308,6 +319,9 @@ func (UnimplementedDefaultServiceServer) LoginPost(context.Context, *LoginPostRe
 }
 func (UnimplementedDefaultServiceServer) ScaleGet(context.Context, *ScaleGetRequest) (*ScaleGetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ScaleGet not implemented")
+}
+func (UnimplementedDefaultServiceServer) ScalePost(context.Context, *ScalePostRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ScalePost not implemented")
 }
 func (UnimplementedDefaultServiceServer) StandsDelete(context.Context, *StandsDeleteRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method StandsDelete not implemented")
@@ -550,6 +564,24 @@ func _DefaultService_ScaleGet_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DefaultService_ScalePost_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ScalePostRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DefaultServiceServer).ScalePost(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/openapi.services.defaultservice.DefaultService/ScalePost",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DefaultServiceServer).ScalePost(ctx, req.(*ScalePostRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DefaultService_StandsDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(StandsDeleteRequest)
 	if err := dec(in); err != nil {
@@ -780,6 +812,10 @@ var DefaultService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ScaleGet",
 			Handler:    _DefaultService_ScaleGet_Handler,
+		},
+		{
+			MethodName: "ScalePost",
+			Handler:    _DefaultService_ScalePost_Handler,
 		},
 		{
 			MethodName: "StandsDelete",

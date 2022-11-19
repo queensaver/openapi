@@ -56,6 +56,8 @@ service DefaultService {
 
   rpc ScaleGet (ScaleGetRequest) returns (ScaleGetResponse);
 
+  rpc ScalePost (ScalePostRequest) returns (google.protobuf.Empty);
+
   rpc StandsDelete (StandsDeleteRequest) returns (google.protobuf.Empty);
 
   rpc StandsGet (StandsGetRequest) returns (GetStandsResponse);
@@ -200,6 +202,17 @@ message ScaleGetRequest {
 
 message ScaleGetResponse {
   repeated Weight data = 1;
+}
+
+message ScalePostRequest {
+  // Either the cookie or this Q-Token must be set to be authorized for the API call.
+  string qToken = 1;
+  // Either this cookie or the Q-Token must be set to be authorized for the API call.
+  string token = 2;
+  // The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
+  int64 userId = 3;
+  Weight weight = 4;
+
 }
 
 message StandsDeleteRequest {

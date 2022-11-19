@@ -1068,6 +1068,92 @@ export class DefaultService {
     }
 
     /**
+     * Post Scale values
+     * Sends a weight from a hive to the queensaver system. The request needs to send a cookie along with the request. The cookie is stored under the key called \&quot;token\&quot;. Note that this returns the scale data for a QBox Client (independent of the beeHive), the API call for an actual beeHive is different.
+     * @param qToken Either the cookie or this Q-Token must be set to be authorized for the API call.
+     * @param token Either this cookie or the Q-Token must be set to be authorized for the API call.
+     * @param userId The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
+     * @param weight 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public scalePost(qToken: string, token?: string, userId?: number, weight?: Weight, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any>;
+    public scalePost(qToken: string, token?: string, userId?: number, weight?: Weight, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpResponse<any>>;
+    public scalePost(qToken: string, token?: string, userId?: number, weight?: Weight, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpEvent<any>>;
+    public scalePost(qToken: string, token?: string, userId?: number, weight?: Weight, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any> {
+        if (qToken === null || qToken === undefined) {
+            throw new Error('Required parameter qToken was null or undefined when calling scalePost.');
+        }
+
+        let localVarQueryParameters = new HttpParams({encoder: this.encoder});
+        if (userId !== undefined && userId !== null) {
+          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+            <any>userId, 'userId');
+        }
+
+        let localVarHeaders = this.defaultHeaders;
+        if (qToken !== undefined && qToken !== null) {
+            localVarHeaders = localVarHeaders.set('Q-Token', String(qToken));
+        }
+
+        let localVarCredential: string | undefined;
+        // authentication (cookieAuth) required
+        localVarCredential = this.configuration.lookupCredential('cookieAuth');
+        if (localVarCredential) {
+        }
+
+        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
+        if (localVarHttpHeaderAcceptSelected === undefined) {
+            // to determine the Accept header
+            const httpHeaderAccepts: string[] = [
+            ];
+            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        }
+        if (localVarHttpHeaderAcceptSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
+        }
+
+        let localVarHttpContext: HttpContext | undefined = options && options.context;
+        if (localVarHttpContext === undefined) {
+            localVarHttpContext = new HttpContext();
+        }
+
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Content-Type', httpContentTypeSelected);
+        }
+
+        let responseType_: 'text' | 'json' | 'blob' = 'json';
+        if (localVarHttpHeaderAcceptSelected) {
+            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
+                responseType_ = 'text';
+            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
+                responseType_ = 'json';
+            } else {
+                responseType_ = 'blob';
+            }
+        }
+
+        return this.httpClient.post<any>(`${this.configuration.basePath}/scale`,
+            weight,
+            {
+                context: localVarHttpContext,
+                params: localVarQueryParameters,
+                responseType: <any>responseType_,
+                withCredentials: this.configuration.withCredentials,
+                headers: localVarHeaders,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
      * Delete a stand
      * This deletes a stand. If a stand is deleted, it will only get its deleted field set to true. It will not actually be deleted, because we need to always be able to go back in time.
      * @param qToken Either the cookie or this Q-Token must be set to be authorized for the API call.

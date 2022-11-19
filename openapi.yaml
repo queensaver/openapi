@@ -823,6 +823,51 @@ paths:
         "500":
           description: Internal error
 
+    post:
+      summary: Post Scale values 
+      description: Sends a weight from a hive to the queensaver system. The request needs to send a cookie along with the request. The cookie is stored under the key called "token". Note that this returns the scale data for a QBox Client (independent of the beeHive), the API call for an actual beeHive is different.
+      # operationId: getScaleValues
+      security:
+      - cookieAuth: []
+
+      parameters:
+      - in: header
+        name: Q-Token
+        description: Either the cookie or this Q-Token must be set to be authorized for the API call.
+        schema:
+          type: string
+        example: 8B0FE5CF-C096-4B3E-8748-27906B4A9449
+        required: true
+      - in: cookie
+        name: token
+        description: Either this cookie or the Q-Token must be set to be authorized for the API call.
+        schema:
+          type: string
+        example: 8B0FE5CF-C096-4B3E-8748-27906B4A9449
+      - name: userId
+        in: query
+        description: The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
+        required: false 
+        example: 123
+        schema:
+          type: integer
+          format: int64
+
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/weight"
+
+
+      responses:
+        "200":
+          description: "OK"
+        "400":
+          description: Client error
+        "500":
+          description: Internal error
+
   /varroa-scan:
     get:
       summary: Get Varroa Scan images and metadata
