@@ -13,7 +13,7 @@
 
 export interface Weight { 
     /**
-     * bhiveId to identify the data source. Might become empty in a future iteration as it\'s redundant with the query parameter.
+     * bhiveId to identify the data source.
      */
     bhiveId?: string;
     /**

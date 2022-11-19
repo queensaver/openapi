@@ -22,7 +22,7 @@ export interface Bbox {
      */
     schedule?: string;
     /**
-     * Unique Identifier for this hive
+     * Unique Identifier for this bbox
      */
     uuid?: string;
     bhives?: Array<Bhive>;
@@ -30,5 +30,9 @@ export interface Bbox {
      * If the bbox turns the power off after a successful run and wakes up later according to the schedule.
      */
     powerSave?: boolean;
+    /**
+     * The registration ID of the bbox. The user needs to put this into the interface so that the bbox can then register via the /configs/register API call to retrieve the token.
+     */
+    registrationId?: string;
 }
 

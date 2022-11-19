@@ -22,12 +22,15 @@ message Bbox {
   // A cron type of description of when the sensore measurements are supposed to be done.
   string schedule = 2;
 
-  // Unique Identifier for this hive
+  // Unique Identifier for this bbox
   string uuid = 3;
 
   repeated Bhive bhives = 4;
 
   // If the bbox turns the power off after a successful run and wakes up later according to the schedule.
   bool powerSave = 5;
+
+  // The registration ID of the bbox. The user needs to put this into the interface so that the bbox can then register via the /configs/register API call to retrieve the token.
+  string registrationId = 6;
 
 }

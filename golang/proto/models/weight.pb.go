@@ -34,7 +34,7 @@ type Weight struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// bhiveId to identify the data source. Might become empty in a future iteration as it's redundant with the query parameter.
+	// bhiveId to identify the data source.
 	BhiveId string `protobuf:"bytes,140936307,opt,name=bhiveId,proto3" json:"bhiveId,omitempty"`
 	// actual measurement of weight
 	Weight float32 `protobuf:"fixed32,254721417,opt,name=weight,proto3" json:"weight,omitempty"`

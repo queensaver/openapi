@@ -250,6 +250,37 @@ paths:
         "500":
           description: Internal error
 
+  /configs/bbox/register:
+    post:
+      summary: register bbox
+      description: This registers a new bbox. A bbox is a physical hardware component that needs to be associated with a hive. The bbox sends a registrationId that a user needs to know and put in the system before the registration. Once the registrationId matches a userId the bbox will get a token back and can now talk to the system.
+      parameters:
+      - name: userId
+        in: query
+        description: The UserID is set internally and can not set or be overridden with the API request. Please ignore.
+        required: false
+        example: 1234
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/bbox"
+      responses:
+        "200":
+          description: "Returns a cookie to the browser with the key called 'token'"
+          headers:
+            "Set-Cookie":
+              schema:
+                type: string
+                example: token=abcde12345; Path=/; HttpOnly
+        "400":
+          description: Client error
+        "500":
+          description: Internal error
+
 
   /stands:
     get:
@@ -1318,7 +1349,7 @@ components:
       properties:
         bhiveId:
           type: string
-          description: bhiveId to identify the data source. Might become empty in a future iteration as it's redundant with the query parameter.
+          description: bhiveId to identify the data source.
           example: "829898a53801"
         weight:
           type: number
@@ -1530,7 +1561,7 @@ components:
         uuid:
           type: string
           example: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
-          description: Unique Identifier for this hive
+          description: Unique Identifier for this bbox
           x-protobuf-index: 3
         bhives:
           type: array
@@ -1542,6 +1573,11 @@ components:
           example: true
           description: If the bbox turns the power off after a successful run and wakes up later according to the schedule.
           x-protobuf-index: 5
+        registrationId:
+          type: string
+          maxLength: 256
+          description: The registration ID of the bbox. The user needs to put this into the interface so that the bbox can then register via the /configs/register API call to retrieve the token.
+          x-protobuf-index: 6
 
     user:
       type: object

@@ -44,6 +44,8 @@ service DefaultService {
 
   rpc ConfigsBboxPut (ConfigsBboxPutRequest) returns (PutBboxResponse);
 
+  rpc ConfigsBboxRegisterPost (ConfigsBboxRegisterPostRequest) returns (google.protobuf.Empty);
+
   rpc HivesDelete (HivesDeleteRequest) returns (google.protobuf.Empty);
 
   rpc HivesGet (HivesGetRequest) returns (GetHivesResponse);
@@ -129,6 +131,13 @@ message ConfigsBboxPutRequest {
   // The UserID is set internally and can not set or be overridden with the API request. Please ignore.
   int64 userId = 4;
   Bbox bbox = 5;
+
+}
+
+message ConfigsBboxRegisterPostRequest {
+  // The UserID is set internally and can not set or be overridden with the API request. Please ignore.
+  int64 userId = 1;
+  Bbox bbox = 2;
 
 }
 
