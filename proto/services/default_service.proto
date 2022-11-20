@@ -58,7 +58,7 @@ service DefaultService {
 
   rpc ScaleGet (ScaleGetRequest) returns (ScaleGetResponse);
 
-  rpc ScalePost (ScalePostRequest) returns (google.protobuf.Empty);
+  rpc ScalePost (ScalePostRequest) returns (GenericPostResponse);
 
   rpc StandsDelete (StandsDeleteRequest) returns (google.protobuf.Empty);
 

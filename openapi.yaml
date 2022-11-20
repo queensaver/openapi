@@ -890,14 +890,25 @@ paths:
             schema:
               $ref: "#/components/schemas/weight"
 
-
       responses:
         "200":
-          description: "OK"
+          description: "Generic Response object"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/generic-post-response"
         "400":
-          description: Client error
+          description: "Generic Response object"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/generic-post-response"
         "500":
-          description: Internal error
+          description: "Generic Response object"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/generic-post-response"
 
   /varroa-scan:
     get:

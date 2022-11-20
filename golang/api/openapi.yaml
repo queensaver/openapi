@@ -1076,11 +1076,23 @@ paths:
               $ref: '#/components/schemas/weight'
       responses:
         "200":
-          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/generic-post-response'
+          description: Generic Response object
         "400":
-          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/generic-post-response'
+          description: Generic Response object
         "500":
-          description: Internal error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/generic-post-response'
+          description: Generic Response object
       security:
       - cookieAuth: []
       summary: Post Scale values
