@@ -281,6 +281,40 @@ paths:
         "500":
           description: Internal error
 
+  /configs/bhive/associate:
+    post:
+      summary: associate bhive (sensors) with a logical hive
+      description: This connects a bhive with a hive so all telemetry data will be associate with the hive. If the hiveUuid is empty, we disassociate that bhive (it's no longer connected to any hives)
+      parameters:
+      - name: userId
+        in: query
+        description: The UserID is set internally and can not set or be overridden with the API request. Please ignore.
+        required: false
+        example: 1234
+        schema:
+          type: integer
+          format: int64
+      - name: bhiveId
+        in: query
+        description: The Mac Address of the QBox client.
+        required: true
+        example: 829898a53801
+        schema:
+          type: string
+      - name: hiveUuid
+        in: query
+        example: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+        description: Unique Identifier for this hive
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "OK if the association / disassociation has been made"
+        "400":
+          description: Client error
+        "500":
+          description: Internal error
 
   /stands:
     get:

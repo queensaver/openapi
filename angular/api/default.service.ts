@@ -620,6 +620,90 @@ export class DefaultService {
     }
 
     /**
+     * associate bhive (sensors) with a logical hive
+     * This connects a bhive with a hive so all telemetry data will be associate with the hive. If the hiveUuid is empty, we disassociate that bhive (it\&#39;s no longer connected to any hives)
+     * @param bhiveId The Mac Address of the QBox client.
+     * @param hiveUuid Unique Identifier for this hive
+     * @param userId The UserID is set internally and can not set or be overridden with the API request. Please ignore.
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public configsBhiveAssociatePost(bhiveId: string, hiveUuid: string, userId?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any>;
+    public configsBhiveAssociatePost(bhiveId: string, hiveUuid: string, userId?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpResponse<any>>;
+    public configsBhiveAssociatePost(bhiveId: string, hiveUuid: string, userId?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpEvent<any>>;
+    public configsBhiveAssociatePost(bhiveId: string, hiveUuid: string, userId?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any> {
+        if (bhiveId === null || bhiveId === undefined) {
+            throw new Error('Required parameter bhiveId was null or undefined when calling configsBhiveAssociatePost.');
+        }
+        if (hiveUuid === null || hiveUuid === undefined) {
+            throw new Error('Required parameter hiveUuid was null or undefined when calling configsBhiveAssociatePost.');
+        }
+
+        let localVarQueryParameters = new HttpParams({encoder: this.encoder});
+        if (userId !== undefined && userId !== null) {
+          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+            <any>userId, 'userId');
+        }
+        if (bhiveId !== undefined && bhiveId !== null) {
+          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+            <any>bhiveId, 'bhiveId');
+        }
+        if (hiveUuid !== undefined && hiveUuid !== null) {
+          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+            <any>hiveUuid, 'hiveUuid');
+        }
+
+        let localVarHeaders = this.defaultHeaders;
+
+        let localVarCredential: string | undefined;
+        // authentication (cookieAuth) required
+        localVarCredential = this.configuration.lookupCredential('cookieAuth');
+        if (localVarCredential) {
+        }
+
+        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
+        if (localVarHttpHeaderAcceptSelected === undefined) {
+            // to determine the Accept header
+            const httpHeaderAccepts: string[] = [
+            ];
+            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        }
+        if (localVarHttpHeaderAcceptSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
+        }
+
+        let localVarHttpContext: HttpContext | undefined = options && options.context;
+        if (localVarHttpContext === undefined) {
+            localVarHttpContext = new HttpContext();
+        }
+
+
+        let responseType_: 'text' | 'json' | 'blob' = 'json';
+        if (localVarHttpHeaderAcceptSelected) {
+            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
+                responseType_ = 'text';
+            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
+                responseType_ = 'json';
+            } else {
+                responseType_ = 'blob';
+            }
+        }
+
+        return this.httpClient.post<any>(`${this.configuration.basePath}/configs/bhive/associate`,
+            null,
+            {
+                context: localVarHttpContext,
+                params: localVarQueryParameters,
+                responseType: <any>responseType_,
+                withCredentials: this.configuration.withCredentials,
+                headers: localVarHeaders,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
      * Delete a Hive
      * This deletes a hive.
      * @param qToken Either the cookie or this Q-Token must be set to be authorized for the API call.

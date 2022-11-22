@@ -46,6 +46,8 @@ service DefaultService {
 
   rpc ConfigsBboxRegisterPost (ConfigsBboxRegisterPostRequest) returns (google.protobuf.Empty);
 
+  rpc ConfigsBhiveAssociatePost (ConfigsBhiveAssociatePostRequest) returns (google.protobuf.Empty);
+
   rpc HivesDelete (HivesDeleteRequest) returns (google.protobuf.Empty);
 
   rpc HivesGet (HivesGetRequest) returns (GetHivesResponse);
@@ -138,6 +140,16 @@ message ConfigsBboxRegisterPostRequest {
   // The UserID is set internally and can not set or be overridden with the API request. Please ignore.
   int64 userId = 1;
   Bbox bbox = 2;
+
+}
+
+message ConfigsBhiveAssociatePostRequest {
+  // The Mac Address of the QBox client.
+  string bhiveId = 1;
+  // Unique Identifier for this hive
+  string hiveUuid = 2;
+  // The UserID is set internally and can not set or be overridden with the API request. Please ignore.
+  int64 userId = 3;
 
 }
 
