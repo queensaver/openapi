@@ -33,4 +33,10 @@ message Bbox {
   // The registration ID of the bbox. The user needs to put this into the interface so that the bbox can then register via the /configs/bbox/register API call to retrieve the token.
   string registrationId = 6;
 
+  // Hardware type of the bbox - could be a varroa-scanner or a scale, etc.
+  string hardwareType = 7;
+
+  // Hardware revision - newer revisions might have different features which are important to know.
+  int64 hardwareRevision = 8;
+
 }

@@ -296,7 +296,8 @@ paths:
         \ that a user needs to know and put in the system before the registration.\
         \ Once the registrationId matches a userId the bbox will get a token back\
         \ and can now talk to the system. The bbox proto is used as a convenience,\
-        \ the only field that is accepted is the bboxId and the registraionId."
+        \ the only field that is accepted is the bboxId and the registrationId, the\
+        \ hardwareType and that hardwareRevision."
       parameters:
       - description: The UserID is set internally and can not set or be overridden
           with the API request. Please ignore.
@@ -1544,7 +1545,9 @@ components:
           - bhiveId: 829898a53801
             scaleOffset: 1234
             scaleReferenceUnit: 1234
+          hardwareRevision: 1
           registrationId: registrationId
+          hardwareType: scale
           uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
           powerSave: true
         httpResponseCode: 409
@@ -1570,7 +1573,9 @@ components:
           - bhiveId: 829898a53801
             scaleOffset: 1234
             scaleReferenceUnit: 1234
+          hardwareRevision: 1
           registrationId: registrationId
+          hardwareType: scale
           uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
           powerSave: true
         httpResponseCode: 409
@@ -1596,7 +1601,9 @@ components:
           - bhiveId: 829898a53801
             scaleOffset: 1234
             scaleReferenceUnit: 1234
+          hardwareRevision: 1
           registrationId: registrationId
+          hardwareType: scale
           uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
           powerSave: true
         - bboxId: bboxId
@@ -1608,7 +1615,9 @@ components:
           - bhiveId: 829898a53801
             scaleOffset: 1234
             scaleReferenceUnit: 1234
+          hardwareRevision: 1
           registrationId: registrationId
+          hardwareType: scale
           uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
           powerSave: true
         httpResponseCode: 409
@@ -2202,7 +2211,9 @@ components:
         - bhiveId: 829898a53801
           scaleOffset: 1234
           scaleReferenceUnit: 1234
+        hardwareRevision: 1
         registrationId: registrationId
+        hardwareType: scale
         uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
         powerSave: true
       properties:
@@ -2242,6 +2253,20 @@ components:
           maxLength: 256
           type: string
           x-protobuf-index: 6
+        hardwareType:
+          description: "Hardware type of the bbox - could be a varroa-scanner or a\
+            \ scale, etc."
+          example: scale
+          maxLength: 256
+          type: string
+          x-protobuf-index: 7
+        hardwareRevision:
+          description: Hardware revision - newer revisions might have different features
+            which are important to know.
+          example: 1
+          format: int64
+          type: integer
+          x-protobuf-index: 8
       type: object
     user:
       properties:

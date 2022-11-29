@@ -34,5 +34,13 @@ export interface Bbox {
      * The registration ID of the bbox. The user needs to put this into the interface so that the bbox can then register via the /configs/bbox/register API call to retrieve the token.
      */
     registrationId?: string;
+    /**
+     * Hardware type of the bbox - could be a varroa-scanner or a scale, etc.
+     */
+    hardwareType?: string;
+    /**
+     * Hardware revision - newer revisions might have different features which are important to know.
+     */
+    hardwareRevision?: number;
 }
 

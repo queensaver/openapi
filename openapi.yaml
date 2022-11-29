@@ -253,7 +253,7 @@ paths:
   /configs/bbox/register:
     post:
       summary: register bbox
-      description: This registers a new bbox. A bbox is a physical hardware component that needs to be associated with a hive. The bbox sends a registrationId that a user needs to know and put in the system before the registration. Once the registrationId matches a userId the bbox will get a token back and can now talk to the system. The bbox proto is used as a convenience, the only field that is accepted is the bboxId and the registraionId. 
+      description: This registers a new bbox. A bbox is a physical hardware component that needs to be associated with a hive. The bbox sends a registrationId that a user needs to know and put in the system before the registration. Once the registrationId matches a userId the bbox will get a token back and can now talk to the system. The bbox proto is used as a convenience, the only field that is accepted is the bboxId and the registrationId, the hardwareType and that hardwareRevision. 
       parameters:
       - name: userId
         in: query
@@ -1623,6 +1623,18 @@ components:
           maxLength: 256
           description: The registration ID of the bbox. The user needs to put this into the interface so that the bbox can then register via the /configs/bbox/register API call to retrieve the token.
           x-protobuf-index: 6
+        hardwareType:
+          type: string
+          example: scale
+          maxLength: 256
+          description: Hardware type of the bbox - could be a varroa-scanner or a scale, etc.
+          x-protobuf-index: 7
+        hardwareRevision:
+          type: integer
+          format: int64
+          description: Hardware revision - newer revisions might have different features which are important to know.
+          example: 1
+          x-protobuf-index: 8
 
     user:
       type: object

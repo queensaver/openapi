@@ -543,7 +543,7 @@ export class DefaultService {
 
     /**
      * register bbox
-     * This registers a new bbox. A bbox is a physical hardware component that needs to be associated with a hive. The bbox sends a registrationId that a user needs to know and put in the system before the registration. Once the registrationId matches a userId the bbox will get a token back and can now talk to the system. The bbox proto is used as a convenience, the only field that is accepted is the bboxId and the registraionId.
+     * This registers a new bbox. A bbox is a physical hardware component that needs to be associated with a hive. The bbox sends a registrationId that a user needs to know and put in the system before the registration. Once the registrationId matches a userId the bbox will get a token back and can now talk to the system. The bbox proto is used as a convenience, the only field that is accepted is the bboxId and the registrationId, the hardwareType and that hardwareRevision.
      * @param userId The UserID is set internally and can not set or be overridden with the API request. Please ignore.
      * @param bbox 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.

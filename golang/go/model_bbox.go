@@ -27,6 +27,12 @@ type Bbox struct {
 
 	// The registration ID of the bbox. The user needs to put this into the interface so that the bbox can then register via the /configs/bbox/register API call to retrieve the token.
 	RegistrationId string `json:"registrationId,omitempty"`
+
+	// Hardware type of the bbox - could be a varroa-scanner or a scale, etc.
+	HardwareType string `json:"hardwareType,omitempty"`
+
+	// Hardware revision - newer revisions might have different features which are important to know.
+	HardwareRevision int64 `json:"hardwareRevision,omitempty"`
 }
 
 // AssertBboxRequired checks if the required fields are not zero-ed
