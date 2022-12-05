@@ -4016,7 +4016,7 @@ The UserID is set internally and can not set or be overridden with the API reque
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">This registers a new bbox. A bbox is a physical hardware component that needs to be associated with a hive. The bbox sends a registrationId that a user needs to know and put in the system before the registration. Once the registrationId matches a userId the bbox will get a token back and can now talk to the system. The bbox proto is used as a convenience, the only field that is accepted is the bboxId and the registrationId, the hardwareType and that hardwareRevision.</p>
+                        <p class="marked">This registers a new bbox. A bbox is a physical hardware component that needs to be associated with a hive. The bbox sends a registrationId that a user needs to know and put in the system before the registration. The bbox proto is used as a convenience, the only field that is accepted is the bboxId and the registrationId, the hardwareType and that hardwareRevision.</p>
                         <p></p>
                         <br />
                         <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/configs/bbox/register</span></code></pre>
@@ -4371,7 +4371,7 @@ The UserID is set internally and can not set or be overridden with the API reque
                             <h3 id="examples-Default-configsBboxRegisterPost-title-200"></h3>
                             <p id="examples-Default-configsBboxRegisterPost-description-200" class="marked"></p>
                             <script>
-                              var responseDefault200_description = `Returns a cookie to the browser with the key called 'token'`;
+                              var responseDefault200_description = `Registration was successful.`;
                               var responseDefault200_description_break = responseDefault200_description.indexOf('\n');
                               if (responseDefault200_description_break == -1) {
                                 $("#examples-Default-configsBboxRegisterPost-title-200").text("Status: 200 - " + responseDefault200_description);
@@ -4384,30 +4384,11 @@ The UserID is set internally and can not set or be overridden with the API reque
 
                             <ul id="responses-detail-Default-configsBboxRegisterPost-200" class="nav nav-tabs nav-tabs-examples" >
 
-                                <li class="">
-                                  <a data-toggle="tab" href="#responses-configsBboxRegisterPost-200-headers">Headers</a>
-                                </li>
 
                             </ul>
 
 
                             <div class="tab-content" id="responses-Default-configsBboxRegisterPost-200-wrapper" style='margin-bottom: 10px;'>
-                                  <div class="tab-pane" id="responses-configsBboxRegisterPost-200-headers">
-                                      <table>
-                                          <tr>
-                                              <th width="150px">Name</th>
-                                              <th width="100px">Type</th>
-                                              <th width="100px">Format</th>
-                                              <th>Description</th>
-                                          </tr>
-                                              <tr>
-                                                  <td>SetMinusCookie</td>
-                                                  <td>String</td>
-                                                  <td></td>
-                                                  <td></td>
-                                              </tr>
-                                      </table>
-                                  </div>
                             </div>
                             <h3 id="examples-Default-configsBboxRegisterPost-title-400"></h3>
                             <p id="examples-Default-configsBboxRegisterPost-description-400" class="marked"></p>
