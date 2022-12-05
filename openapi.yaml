@@ -270,7 +270,11 @@ paths:
               $ref: "#/components/schemas/bbox"
       responses:
         "200":
-          description: "Registration was successful."
+          description: "Generic Response object that just returns an HTTP status code"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/generic-post-response"
         "400":
           description: Client error
         "500":

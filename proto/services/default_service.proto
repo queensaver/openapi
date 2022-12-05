@@ -44,7 +44,7 @@ service DefaultService {
 
   rpc ConfigsBboxPut (ConfigsBboxPutRequest) returns (PutBboxResponse);
 
-  rpc ConfigsBboxRegisterPost (ConfigsBboxRegisterPostRequest) returns (google.protobuf.Empty);
+  rpc ConfigsBboxRegisterPost (ConfigsBboxRegisterPostRequest) returns (GenericPostResponse);
 
   rpc ConfigsBhiveAssociatePost (ConfigsBhiveAssociatePostRequest) returns (google.protobuf.Empty);
 

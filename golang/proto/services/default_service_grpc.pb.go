@@ -29,7 +29,7 @@ type DefaultServiceClient interface {
 	ConfigsBboxGet(ctx context.Context, in *ConfigsBboxGetRequest, opts ...grpc.CallOption) (*models.GetBboxResponse, error)
 	ConfigsBboxPost(ctx context.Context, in *ConfigsBboxPostRequest, opts ...grpc.CallOption) (*models.PostBboxResponse, error)
 	ConfigsBboxPut(ctx context.Context, in *ConfigsBboxPutRequest, opts ...grpc.CallOption) (*models.PutBboxResponse, error)
-	ConfigsBboxRegisterPost(ctx context.Context, in *ConfigsBboxRegisterPostRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	ConfigsBboxRegisterPost(ctx context.Context, in *ConfigsBboxRegisterPostRequest, opts ...grpc.CallOption) (*models.GenericPostResponse, error)
 	ConfigsBhiveAssociatePost(ctx context.Context, in *ConfigsBhiveAssociatePostRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	HivesDelete(ctx context.Context, in *HivesDeleteRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	HivesGet(ctx context.Context, in *HivesGetRequest, opts ...grpc.CallOption) (*models.GetHivesResponse, error)
@@ -103,8 +103,8 @@ func (c *defaultServiceClient) ConfigsBboxPut(ctx context.Context, in *ConfigsBb
 	return out, nil
 }
 
-func (c *defaultServiceClient) ConfigsBboxRegisterPost(ctx context.Context, in *ConfigsBboxRegisterPostRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *defaultServiceClient) ConfigsBboxRegisterPost(ctx context.Context, in *ConfigsBboxRegisterPostRequest, opts ...grpc.CallOption) (*models.GenericPostResponse, error) {
+	out := new(models.GenericPostResponse)
 	err := c.cc.Invoke(ctx, "/openapi.services.defaultservice.DefaultService/ConfigsBboxRegisterPost", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -283,7 +283,7 @@ type DefaultServiceServer interface {
 	ConfigsBboxGet(context.Context, *ConfigsBboxGetRequest) (*models.GetBboxResponse, error)
 	ConfigsBboxPost(context.Context, *ConfigsBboxPostRequest) (*models.PostBboxResponse, error)
 	ConfigsBboxPut(context.Context, *ConfigsBboxPutRequest) (*models.PutBboxResponse, error)
-	ConfigsBboxRegisterPost(context.Context, *ConfigsBboxRegisterPostRequest) (*emptypb.Empty, error)
+	ConfigsBboxRegisterPost(context.Context, *ConfigsBboxRegisterPostRequest) (*models.GenericPostResponse, error)
 	ConfigsBhiveAssociatePost(context.Context, *ConfigsBhiveAssociatePostRequest) (*emptypb.Empty, error)
 	HivesDelete(context.Context, *HivesDeleteRequest) (*emptypb.Empty, error)
 	HivesGet(context.Context, *HivesGetRequest) (*models.GetHivesResponse, error)
@@ -324,7 +324,7 @@ func (UnimplementedDefaultServiceServer) ConfigsBboxPost(context.Context, *Confi
 func (UnimplementedDefaultServiceServer) ConfigsBboxPut(context.Context, *ConfigsBboxPutRequest) (*models.PutBboxResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ConfigsBboxPut not implemented")
 }
-func (UnimplementedDefaultServiceServer) ConfigsBboxRegisterPost(context.Context, *ConfigsBboxRegisterPostRequest) (*emptypb.Empty, error) {
+func (UnimplementedDefaultServiceServer) ConfigsBboxRegisterPost(context.Context, *ConfigsBboxRegisterPostRequest) (*models.GenericPostResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ConfigsBboxRegisterPost not implemented")
 }
 func (UnimplementedDefaultServiceServer) ConfigsBhiveAssociatePost(context.Context, *ConfigsBhiveAssociatePostRequest) (*emptypb.Empty, error) {

@@ -4042,6 +4042,7 @@ The UserID is set internally and can not set or be overridden with the API reque
                           <div class="tab-pane active" id="examples-Default-configsBboxRegisterPost-0-curl">
                             <pre class="prettyprint"><code class="language-bsh">curl -X POST \
  \
+ -H "Accept: application/json" \
  -H "Content-Type: application/json" \
  "https://api.queensaver.com/v1/configs/bbox/register?userId=1234" \
  -d ''
@@ -4072,7 +4073,8 @@ public class DefaultApiExample {
         Bbox bbox = ; // Bbox | 
 
         try {
-            apiInstance.configsBboxRegisterPost(userId, bbox);
+            generic-post-response result = apiInstance.configsBboxRegisterPost(userId, bbox);
+            System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#configsBboxRegisterPost");
             e.printStackTrace();
@@ -4092,7 +4094,8 @@ public class DefaultApiExample {
         Bbox bbox = ; // Bbox | 
 
         try {
-            apiInstance.configsBboxRegisterPost(userId, bbox);
+            generic-post-response result = apiInstance.configsBboxRegisterPost(userId, bbox);
+            System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#configsBboxRegisterPost");
             e.printStackTrace();
@@ -4121,7 +4124,10 @@ Bbox *bbox = ; //  (optional)
 // register bbox
 [apiInstance configsBboxRegisterPostWith:userId
     bbox:bbox
-              completionHandler: ^(NSError* error) {
+              completionHandler: ^(generic-post-response output, NSError* error) {
+    if (output) {
+        NSLog(@"%@", output);
+    }
     if (error) {
         NSLog(@"Error: %@", error);
     }
@@ -4150,7 +4156,7 @@ var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
-    console.log('API called successfully.');
+    console.log('API called successfully. Returned data: ' + data);
   }
 };
 api.configsBboxRegisterPost(opts, callback);
@@ -4185,7 +4191,8 @@ namespace Example
 
             try {
                 // register bbox
-                apiInstance.configsBboxRegisterPost(userId, bbox);
+                generic-post-response result = apiInstance.configsBboxRegisterPost(userId, bbox);
+                Debug.WriteLine(result);
             } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.configsBboxRegisterPost: " + e.Message );
             }
@@ -4210,7 +4217,8 @@ $userId = 1234; // Long | The UserID is set internally and can not set or be ove
 $bbox = ; // Bbox | 
 
 try {
-    $api_instance->configsBboxRegisterPost($userId, $bbox);
+    $result = $api_instance->configsBboxRegisterPost($userId, $bbox);
+    print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->configsBboxRegisterPost: ', $e->getMessage(), PHP_EOL;
 }
@@ -4233,7 +4241,8 @@ my $userId = 1234; # Long | The UserID is set internally and can not set or be o
 my $bbox = WWW::OPenAPIClient::Object::Bbox->new(); # Bbox | 
 
 eval {
-    $api_instance->configsBboxRegisterPost(userId => $userId, bbox => $bbox);
+    my $result = $api_instance->configsBboxRegisterPost(userId => $userId, bbox => $bbox);
+    print Dumper($result);
 };
 if ($@) {
     warn "Exception when calling DefaultApi->configsBboxRegisterPost: $@\n";
@@ -4259,7 +4268,8 @@ bbox =  # Bbox |  (optional)
 
 try:
     # register bbox
-    api_instance.configs_bbox_register_post(userId=userId, bbox=bbox)
+    api_response = api_instance.configs_bbox_register_post(userId=userId, bbox=bbox)
+    pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->configsBboxRegisterPost: %s\n" % e)</code></pre>
                             </div>
@@ -4371,7 +4381,7 @@ The UserID is set internally and can not set or be overridden with the API reque
                             <h3 id="examples-Default-configsBboxRegisterPost-title-200"></h3>
                             <p id="examples-Default-configsBboxRegisterPost-description-200" class="marked"></p>
                             <script>
-                              var responseDefault200_description = `Registration was successful.`;
+                              var responseDefault200_description = `Generic Response object that just returns an HTTP status code`;
                               var responseDefault200_description_break = responseDefault200_description.indexOf('\n');
                               if (responseDefault200_description_break == -1) {
                                 $("#examples-Default-configsBboxRegisterPost-title-200").text("Status: 200 - " + responseDefault200_description);
@@ -4383,12 +4393,56 @@ The UserID is set internally and can not set or be overridden with the API reque
 
 
                             <ul id="responses-detail-Default-configsBboxRegisterPost-200" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Default-configsBboxRegisterPost-200-schema">Schema</a>
+                                </li>
+
+
 
 
                             </ul>
 
 
                             <div class="tab-content" id="responses-Default-configsBboxRegisterPost-200-wrapper" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-Default-configsBboxRegisterPost-200-schema">
+                                  <div id="responses-Default-configsBboxRegisterPost-schema-200" class="exampleStyle">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Generic Response object that just returns an HTTP status code",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/generic-post-response"
+      }
+    }
+  }
+};
+                                        var schema = findNode('schema',schemaWrapper).schema;
+                                        if (!schema) {
+                                          schema = schemaWrapper.schema;
+                                        }
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else if (schema.items != null && schema.items.$ref != null) {
+                                            schema.items = defsParser.$refs.get(schema.items.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-Default-configsBboxRegisterPost-200-schema-data').val(JSON.stringify(schema));
+                                        var result = $('#responses-Default-configsBboxRegisterPost-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-Default-configsBboxRegisterPost-200-schema-data' type='hidden' value=''></input>
+                                </div>
                             </div>
                             <h3 id="examples-Default-configsBboxRegisterPost-title-400"></h3>
                             <p id="examples-Default-configsBboxRegisterPost-description-400" class="marked"></p>
