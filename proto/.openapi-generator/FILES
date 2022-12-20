@@ -1,6 +1,7 @@
 README.md
 models/alerts.proto
 models/bbox.proto
+models/bbox_config_response.proto
 models/bhive.proto
 models/generic_post_response.proto
 models/get_bbox_response.proto
@@ -14,6 +15,7 @@ models/post_stands_response.proto
 models/put_bbox_response.proto
 models/put_hive_response.proto
 models/put_stand_response.proto
+models/registration_id.proto
 models/stand.proto
 models/temperature.proto
 models/user.proto

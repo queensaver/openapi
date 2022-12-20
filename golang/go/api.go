@@ -20,6 +20,7 @@ import (
 // The DefaultApiRouter implementation should parse necessary information from the http request,
 // pass the data to a DefaultApiServicer to perform the required actions, then write the service results to the http response.
 type DefaultApiRouter interface { 
+	AuthenticateRegistrationIdPost(http.ResponseWriter, *http.Request)
 	BboxesGet(http.ResponseWriter, *http.Request)
 	ConfigsBboxDelete(http.ResponseWriter, *http.Request)
 	ConfigsBboxGet(http.ResponseWriter, *http.Request)
@@ -52,6 +53,7 @@ type DefaultApiRouter interface {
 // while the service implementation can be ignored with the .openapi-generator-ignore file
 // and updated with the logic required for the API.
 type DefaultApiServicer interface { 
+	AuthenticateRegistrationIdPost(context.Context, RegistrationId) (ImplResponse, error)
 	BboxesGet(context.Context) (ImplResponse, error)
 	ConfigsBboxDelete(context.Context, string, string, string, int64) (ImplResponse, error)
 	ConfigsBboxGet(context.Context, string, string, string, int64) (ImplResponse, error)

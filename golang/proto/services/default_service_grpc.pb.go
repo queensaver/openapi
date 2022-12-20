@@ -24,12 +24,13 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DefaultServiceClient interface {
+	AuthenticateRegistrationIdPost(ctx context.Context, in *AuthenticateRegistrationIdPostRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	BboxesGet(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*BboxesGetResponse, error)
 	ConfigsBboxDelete(ctx context.Context, in *ConfigsBboxDeleteRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	ConfigsBboxGet(ctx context.Context, in *ConfigsBboxGetRequest, opts ...grpc.CallOption) (*models.GetBboxResponse, error)
 	ConfigsBboxPost(ctx context.Context, in *ConfigsBboxPostRequest, opts ...grpc.CallOption) (*models.PostBboxResponse, error)
 	ConfigsBboxPut(ctx context.Context, in *ConfigsBboxPutRequest, opts ...grpc.CallOption) (*models.PutBboxResponse, error)
-	ConfigsBboxRegisterPost(ctx context.Context, in *ConfigsBboxRegisterPostRequest, opts ...grpc.CallOption) (*models.GenericPostResponse, error)
+	ConfigsBboxRegisterPost(ctx context.Context, in *ConfigsBboxRegisterPostRequest, opts ...grpc.CallOption) (*models.BboxConfigResponse, error)
 	ConfigsBhiveAssociatePost(ctx context.Context, in *ConfigsBhiveAssociatePostRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	HivesDelete(ctx context.Context, in *HivesDeleteRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	HivesGet(ctx context.Context, in *HivesGetRequest, opts ...grpc.CallOption) (*models.GetHivesResponse, error)
@@ -56,6 +57,15 @@ type defaultServiceClient struct {
 
 func NewDefaultServiceClient(cc grpc.ClientConnInterface) DefaultServiceClient {
 	return &defaultServiceClient{cc}
+}
+
+func (c *defaultServiceClient) AuthenticateRegistrationIdPost(ctx context.Context, in *AuthenticateRegistrationIdPostRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, "/openapi.services.defaultservice.DefaultService/AuthenticateRegistrationIdPost", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *defaultServiceClient) BboxesGet(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*BboxesGetResponse, error) {
@@ -103,8 +113,8 @@ func (c *defaultServiceClient) ConfigsBboxPut(ctx context.Context, in *ConfigsBb
 	return out, nil
 }
 
-func (c *defaultServiceClient) ConfigsBboxRegisterPost(ctx context.Context, in *ConfigsBboxRegisterPostRequest, opts ...grpc.CallOption) (*models.GenericPostResponse, error) {
-	out := new(models.GenericPostResponse)
+func (c *defaultServiceClient) ConfigsBboxRegisterPost(ctx context.Context, in *ConfigsBboxRegisterPostRequest, opts ...grpc.CallOption) (*models.BboxConfigResponse, error) {
+	out := new(models.BboxConfigResponse)
 	err := c.cc.Invoke(ctx, "/openapi.services.defaultservice.DefaultService/ConfigsBboxRegisterPost", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -278,12 +288,13 @@ func (c *defaultServiceClient) VarroaScanPost(ctx context.Context, in *VarroaSca
 // All implementations must embed UnimplementedDefaultServiceServer
 // for forward compatibility
 type DefaultServiceServer interface {
+	AuthenticateRegistrationIdPost(context.Context, *AuthenticateRegistrationIdPostRequest) (*emptypb.Empty, error)
 	BboxesGet(context.Context, *emptypb.Empty) (*BboxesGetResponse, error)
 	ConfigsBboxDelete(context.Context, *ConfigsBboxDeleteRequest) (*emptypb.Empty, error)
 	ConfigsBboxGet(context.Context, *ConfigsBboxGetRequest) (*models.GetBboxResponse, error)
 	ConfigsBboxPost(context.Context, *ConfigsBboxPostRequest) (*models.PostBboxResponse, error)
 	ConfigsBboxPut(context.Context, *ConfigsBboxPutRequest) (*models.PutBboxResponse, error)
-	ConfigsBboxRegisterPost(context.Context, *ConfigsBboxRegisterPostRequest) (*models.GenericPostResponse, error)
+	ConfigsBboxRegisterPost(context.Context, *ConfigsBboxRegisterPostRequest) (*models.BboxConfigResponse, error)
 	ConfigsBhiveAssociatePost(context.Context, *ConfigsBhiveAssociatePostRequest) (*emptypb.Empty, error)
 	HivesDelete(context.Context, *HivesDeleteRequest) (*emptypb.Empty, error)
 	HivesGet(context.Context, *HivesGetRequest) (*models.GetHivesResponse, error)
@@ -309,6 +320,9 @@ type DefaultServiceServer interface {
 type UnimplementedDefaultServiceServer struct {
 }
 
+func (UnimplementedDefaultServiceServer) AuthenticateRegistrationIdPost(context.Context, *AuthenticateRegistrationIdPostRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AuthenticateRegistrationIdPost not implemented")
+}
 func (UnimplementedDefaultServiceServer) BboxesGet(context.Context, *emptypb.Empty) (*BboxesGetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BboxesGet not implemented")
 }
@@ -324,7 +338,7 @@ func (UnimplementedDefaultServiceServer) ConfigsBboxPost(context.Context, *Confi
 func (UnimplementedDefaultServiceServer) ConfigsBboxPut(context.Context, *ConfigsBboxPutRequest) (*models.PutBboxResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ConfigsBboxPut not implemented")
 }
-func (UnimplementedDefaultServiceServer) ConfigsBboxRegisterPost(context.Context, *ConfigsBboxRegisterPostRequest) (*models.GenericPostResponse, error) {
+func (UnimplementedDefaultServiceServer) ConfigsBboxRegisterPost(context.Context, *ConfigsBboxRegisterPostRequest) (*models.BboxConfigResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ConfigsBboxRegisterPost not implemented")
 }
 func (UnimplementedDefaultServiceServer) ConfigsBhiveAssociatePost(context.Context, *ConfigsBhiveAssociatePostRequest) (*emptypb.Empty, error) {
@@ -392,6 +406,24 @@ type UnsafeDefaultServiceServer interface {
 
 func RegisterDefaultServiceServer(s grpc.ServiceRegistrar, srv DefaultServiceServer) {
 	s.RegisterService(&DefaultService_ServiceDesc, srv)
+}
+
+func _DefaultService_AuthenticateRegistrationIdPost_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AuthenticateRegistrationIdPostRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DefaultServiceServer).AuthenticateRegistrationIdPost(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/openapi.services.defaultservice.DefaultService/AuthenticateRegistrationIdPost",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DefaultServiceServer).AuthenticateRegistrationIdPost(ctx, req.(*AuthenticateRegistrationIdPostRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _DefaultService_BboxesGet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -833,6 +865,10 @@ var DefaultService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "openapi.services.defaultservice.DefaultService",
 	HandlerType: (*DefaultServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "AuthenticateRegistrationIdPost",
+			Handler:    _DefaultService_AuthenticateRegistrationIdPost_Handler,
+		},
 		{
 			MethodName: "BboxesGet",
 			Handler:    _DefaultService_BboxesGet_Handler,

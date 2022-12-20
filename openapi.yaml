@@ -250,6 +250,26 @@ paths:
         "500":
           description: Internal error
 
+  /authenticateRegistrationId:
+    post:
+      summary: authenticate against the internal authentication service with a registrationId. 
+      description: This can not be called from the API but is an internal call. Please ignore if you consume this API publicly. An authentication call can be either a username or password but also a registrationId. In this call we implement the registrationId.
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/registrationId"
+      responses:
+        "200":
+          description: Authenticated
+        "400":
+          description: Client error
+        "500":
+          description: Internal error
+
+
   /configs/bbox/register:
     post:
       summary: register bbox
@@ -274,7 +294,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/generic-post-response"
+                $ref: "#/components/schemas/bbox-config-response"
         "400":
           description: Client error
         "500":
@@ -1209,6 +1229,20 @@ components:
           description: the scanned image data in binary format. this is used internally and won't surface at the API server (any data will be ignored).
           x-protobuf-index: 6
 
+    bbox-config-response:
+      type: object
+      properties:
+        httpResponseCode:
+          type: integer
+          example: 409
+          description: HTTP response code.
+          x-protobuf-index: 1
+        scaleMeasureInterval:
+          type: integer
+          example: 409
+          description: How often the bbox needs to take and send measurements from the scale. The unit is in seconds.
+          x-protobuf-index: 2
+
     generic-post-response:
       type: object
       properties:
@@ -1405,6 +1439,17 @@ components:
           format: int64
           description: timestamp of the measurement on one second precision
           example: 1639169129
+
+    registrationId:
+      type: object
+      properties:
+        registrationId:
+          type: string
+          maxLength: 256
+          description: Registration ID, in the form of the unique identifier 
+          example: 422DBCF1873243F4BF537E76C4CF28E9
+      required:
+      - registrationId
 
     login:
       type: object

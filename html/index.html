@@ -916,6 +916,23 @@ ul.nav-tabs {
     }
   }
 };
+    defs["bbox-config-response"] = {
+  "type" : "object",
+  "properties" : {
+    "httpResponseCode" : {
+      "type" : "integer",
+      "description" : "HTTP response code.",
+      "example" : 409,
+      "x-protobuf-index" : 1
+    },
+    "scaleMeasureInterval" : {
+      "type" : "integer",
+      "description" : "How often the bbox needs to take and send measurements from the scale. The unit is in seconds.",
+      "example" : 409,
+      "x-protobuf-index" : 2
+    }
+  }
+};
     defs["bhive"] = {
   "type" : "object",
   "properties" : {
@@ -1199,6 +1216,18 @@ ul.nav-tabs {
     }
   }
 };
+    defs["registrationId"] = {
+  "required" : [ "registrationId" ],
+  "type" : "object",
+  "properties" : {
+    "registrationId" : {
+      "maxLength" : 256,
+      "type" : "string",
+      "description" : "Registration ID, in the form of the unique identifier",
+      "example" : "422DBCF1873243F4BF537E76C4CF28E9"
+    }
+  }
+};
     defs["stand"] = {
   "required" : [ "name" ],
   "type" : "object",
@@ -1460,6 +1489,9 @@ ul.nav-tabs {
             <li class="nav-fixed nav-header active" data-group="_"><a href="#api-_">API Summary</a></li>
 
                   <li class="nav-header" data-group="Default"><a href="#api-Default">API Methods - Default</a></li>
+                    <li data-group="Default" data-name="authenticateRegistrationIdPost" class="">
+                      <a href="#api-Default-authenticateRegistrationIdPost">authenticateRegistrationIdPost</a>
+                    </li>
                     <li data-group="Default" data-name="bboxesGet" class="">
                       <a href="#api-Default-bboxesGet">bboxesGet</a>
                     </li>
@@ -1555,6 +1587,355 @@ ul.nav-tabs {
         <div id="sections">
                 <section id="api-Default">
                   <h1>Default</h1>
+                    <div id="api-Default-authenticateRegistrationIdPost">
+                      <article id="api-Default-authenticateRegistrationIdPost-0" data-group="User" data-name="authenticateRegistrationIdPost" data-version="0">
+                        <div class="pull-left">
+                          <h1>authenticateRegistrationIdPost</h1>
+                          <p>authenticate against the internal authentication service with a registrationId.</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">This can not be called from the API but is an internal call. Please ignore if you consume this API publicly. An authentication call can be either a username or password but also a registrationId. In this call we implement the registrationId.</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/authenticateRegistrationId</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-authenticateRegistrationIdPost-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-authenticateRegistrationIdPost-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-authenticateRegistrationIdPost-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-authenticateRegistrationIdPost-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-authenticateRegistrationIdPost-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-authenticateRegistrationIdPost-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-authenticateRegistrationIdPost-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-authenticateRegistrationIdPost-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-authenticateRegistrationIdPost-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-authenticateRegistrationIdPost-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-authenticateRegistrationIdPost-0-python">Python</a></li>
+                          <li class=""><a href="#examples-Default-authenticateRegistrationIdPost-0-rust">Rust</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-authenticateRegistrationIdPost-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X POST \
+ -H "Content-Type: application/json" \
+ "https://api.queensaver.com/v1/authenticateRegistrationId" \
+ -d ''
+</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-authenticateRegistrationIdPost-0-java">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.model.*;
+import org.openapitools.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+    public static void main(String[] args) {
+
+        // Create an instance of the API class
+        DefaultApi apiInstance = new DefaultApi();
+        RegistrationId registrationId = ; // RegistrationId | 
+
+        try {
+            apiInstance.authenticateRegistrationIdPost(registrationId);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#authenticateRegistrationIdPost");
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-authenticateRegistrationIdPost-0-android">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.DefaultApi;
+
+public class DefaultApiExample {
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+        RegistrationId registrationId = ; // RegistrationId | 
+
+        try {
+            apiInstance.authenticateRegistrationIdPost(registrationId);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#authenticateRegistrationIdPost");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-authenticateRegistrationIdPost-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-authenticateRegistrationIdPost-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">
+
+// Create an instance of the API class
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+RegistrationId *registrationId = ; // 
+
+// authenticate against the internal authentication service with a registrationId.
+[apiInstance authenticateRegistrationIdPostWith:registrationId
+              completionHandler: ^(NSError* error) {
+    if (error) {
+        NSLog(@"Error: %@", error);
+    }
+}];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-authenticateRegistrationIdPost-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var QueensaverApi = require('queensaver_api');
+
+// Create an instance of the API class
+var api = new QueensaverApi.DefaultApi()
+var registrationId = ; // {RegistrationId} 
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+};
+api.authenticateRegistrationIdPost(registrationId, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-authenticateRegistrationIdPost-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-authenticateRegistrationIdPost-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using Org.OpenAPITools.Api;
+using Org.OpenAPITools.Client;
+using Org.OpenAPITools.Model;
+
+namespace Example
+{
+    public class authenticateRegistrationIdPostExample
+    {
+        public void main()
+        {
+
+            // Create an instance of the API class
+            var apiInstance = new DefaultApi();
+            var registrationId = new RegistrationId(); // RegistrationId | 
+
+            try {
+                // authenticate against the internal authentication service with a registrationId.
+                apiInstance.authenticateRegistrationIdPost(registrationId);
+            } catch (Exception e) {
+                Debug.Print("Exception when calling DefaultApi.authenticateRegistrationIdPost: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-authenticateRegistrationIdPost-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Create an instance of the API class
+$api_instance = new OpenAPITools\Client\Api\DefaultApi();
+$registrationId = ; // RegistrationId | 
+
+try {
+    $api_instance->authenticateRegistrationIdPost($registrationId);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->authenticateRegistrationIdPost: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-authenticateRegistrationIdPost-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::OPenAPIClient::Configuration;
+use WWW::OPenAPIClient::DefaultApi;
+
+# Create an instance of the API class
+my $api_instance = WWW::OPenAPIClient::DefaultApi->new();
+my $registrationId = WWW::OPenAPIClient::Object::RegistrationId->new(); # RegistrationId | 
+
+eval {
+    $api_instance->authenticateRegistrationIdPost(registrationId => $registrationId);
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->authenticateRegistrationIdPost: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-authenticateRegistrationIdPost-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import openapi_client
+from openapi_client.rest import ApiException
+from pprint import pprint
+
+# Create an instance of the API class
+api_instance = openapi_client.DefaultApi()
+registrationId =  # RegistrationId | 
+
+try:
+    # authenticate against the internal authentication service with a registrationId.
+    api_instance.authenticate_registration_id_post(registrationId)
+except ApiException as e:
+    print("Exception when calling DefaultApi->authenticateRegistrationIdPost: %s\n" % e)</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-authenticateRegistrationIdPost-0-rust">
+                              <pre class="prettyprint"><code class="language-rust">extern crate DefaultApi;
+
+pub fn main() {
+    let registrationId = ; // RegistrationId
+
+    let mut context = DefaultApi::Context::default();
+    let result = client.authenticateRegistrationIdPost(registrationId, &context).wait();
+
+    println!("{:?}", result);
+}
+</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Scopes</h2>
+                          <table>
+                            
+                          </table>
+
+                          <h2>Parameters</h2>
+
+
+
+                            <div class="methodsubtabletitle">Body parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">registrationId <span style="color:red;">*</span></td>
+<td>
+<p class="marked"></p>
+<script>
+$(document).ready(function() {
+  var schemaWrapper = {
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/registrationId"
+      }
+    }
+  },
+  "required" : true
+};
+
+  var schema = findNode('schema',schemaWrapper).schema;
+  if (!schema) {
+    schema = schemaWrapper.schema;
+  }
+  if (schema.$ref != null) {
+    schema = defsParser.$refs.get(schema.$ref);
+  } else {
+    schemaWrapper.definitions = Object.assign({}, defs);
+    $RefParser.dereference(schemaWrapper).catch(function(err) {
+      console.log(err);
+    });
+  }
+
+  var view = new JSONSchemaView(schema,2,{isBodyParam: true});
+  var result = $('#d2e199_authenticateRegistrationIdPost_registrationId');
+  result.empty();
+  result.append(view.render());
+});
+</script>
+<div id="d2e199_authenticateRegistrationIdPost_registrationId"></div>
+</td>
+</tr>
+
+                            </table>
+
+
+
+                          <h2>Responses</h2>
+                            <h3 id="examples-Default-authenticateRegistrationIdPost-title-200"></h3>
+                            <p id="examples-Default-authenticateRegistrationIdPost-description-200" class="marked"></p>
+                            <script>
+                              var responseDefault200_description = `Authenticated`;
+                              var responseDefault200_description_break = responseDefault200_description.indexOf('\n');
+                              if (responseDefault200_description_break == -1) {
+                                $("#examples-Default-authenticateRegistrationIdPost-title-200").text("Status: 200 - " + responseDefault200_description);
+                              } else {
+                                $("#examples-Default-authenticateRegistrationIdPost-title-200").text("Status: 200 - " + responseDefault200_description.substring(0, responseDefault200_description_break));
+                                $("#examples-Default-authenticateRegistrationIdPost-description-200").html(responseDefault200_description.substring(responseDefault200_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Default-authenticateRegistrationIdPost-200" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Default-authenticateRegistrationIdPost-200-wrapper" style='margin-bottom: 10px;'>
+                            </div>
+                            <h3 id="examples-Default-authenticateRegistrationIdPost-title-400"></h3>
+                            <p id="examples-Default-authenticateRegistrationIdPost-description-400" class="marked"></p>
+                            <script>
+                              var responseDefault400_description = `Client error`;
+                              var responseDefault400_description_break = responseDefault400_description.indexOf('\n');
+                              if (responseDefault400_description_break == -1) {
+                                $("#examples-Default-authenticateRegistrationIdPost-title-400").text("Status: 400 - " + responseDefault400_description);
+                              } else {
+                                $("#examples-Default-authenticateRegistrationIdPost-title-400").text("Status: 400 - " + responseDefault400_description.substring(0, responseDefault400_description_break));
+                                $("#examples-Default-authenticateRegistrationIdPost-description-400").html(responseDefault400_description.substring(responseDefault400_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Default-authenticateRegistrationIdPost-400" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Default-authenticateRegistrationIdPost-400-wrapper" style='margin-bottom: 10px;'>
+                            </div>
+                            <h3 id="examples-Default-authenticateRegistrationIdPost-title-500"></h3>
+                            <p id="examples-Default-authenticateRegistrationIdPost-description-500" class="marked"></p>
+                            <script>
+                              var responseDefault500_description = `Internal error`;
+                              var responseDefault500_description_break = responseDefault500_description.indexOf('\n');
+                              if (responseDefault500_description_break == -1) {
+                                $("#examples-Default-authenticateRegistrationIdPost-title-500").text("Status: 500 - " + responseDefault500_description);
+                              } else {
+                                $("#examples-Default-authenticateRegistrationIdPost-title-500").text("Status: 500 - " + responseDefault500_description.substring(0, responseDefault500_description_break));
+                                $("#examples-Default-authenticateRegistrationIdPost-description-500").html(responseDefault500_description.substring(responseDefault500_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Default-authenticateRegistrationIdPost-500" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Default-authenticateRegistrationIdPost-500-wrapper" style='margin-bottom: 10px;'>
+                            </div>
+                        </article>
+                      </div>
+                      <hr>
                     <div id="api-Default-bboxesGet">
                       <article id="api-Default-bboxesGet-0" data-group="User" data-name="bboxesGet" data-version="0">
                         <div class="pull-left">
@@ -4073,7 +4454,7 @@ public class DefaultApiExample {
         Bbox bbox = ; // Bbox | 
 
         try {
-            generic-post-response result = apiInstance.configsBboxRegisterPost(userId, bbox);
+            bbox-config-response result = apiInstance.configsBboxRegisterPost(userId, bbox);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#configsBboxRegisterPost");
@@ -4094,7 +4475,7 @@ public class DefaultApiExample {
         Bbox bbox = ; // Bbox | 
 
         try {
-            generic-post-response result = apiInstance.configsBboxRegisterPost(userId, bbox);
+            bbox-config-response result = apiInstance.configsBboxRegisterPost(userId, bbox);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#configsBboxRegisterPost");
@@ -4124,7 +4505,7 @@ Bbox *bbox = ; //  (optional)
 // register bbox
 [apiInstance configsBboxRegisterPostWith:userId
     bbox:bbox
-              completionHandler: ^(generic-post-response output, NSError* error) {
+              completionHandler: ^(bbox-config-response output, NSError* error) {
     if (output) {
         NSLog(@"%@", output);
     }
@@ -4191,7 +4572,7 @@ namespace Example
 
             try {
                 // register bbox
-                generic-post-response result = apiInstance.configsBboxRegisterPost(userId, bbox);
+                bbox-config-response result = apiInstance.configsBboxRegisterPost(userId, bbox);
                 Debug.WriteLine(result);
             } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.configsBboxRegisterPost: " + e.Message );
@@ -4413,7 +4794,7 @@ The UserID is set internally and can not set or be overridden with the API reque
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/generic-post-response"
+        "$ref" : "#/components/schemas/bbox-config-response"
       }
     }
   }

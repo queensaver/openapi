@@ -26,6 +26,23 @@ func NewDefaultApiService() DefaultApiServicer {
 	return &DefaultApiService{}
 }
 
+// AuthenticateRegistrationIdPost - authenticate against the internal authentication service with a registrationId.
+func (s *DefaultApiService) AuthenticateRegistrationIdPost(ctx context.Context, registrationId RegistrationId) (ImplResponse, error) {
+	// TODO - update AuthenticateRegistrationIdPost with the required logic for this service method.
+	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
+
+	//TODO: Uncomment the next line to return response Response(200, {}) or use other options such as http.Ok ...
+	//return Response(200, nil),nil
+
+	//TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
+	//return Response(400, nil),nil
+
+	//TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
+	//return Response(500, nil),nil
+
+	return Response(http.StatusNotImplemented, nil), errors.New("AuthenticateRegistrationIdPost method not implemented")
+}
+
 // BboxesGet - Get QBox metadata
 func (s *DefaultApiService) BboxesGet(ctx context.Context) (ImplResponse, error) {
 	// TODO - update BboxesGet with the required logic for this service method.
@@ -116,8 +133,8 @@ func (s *DefaultApiService) ConfigsBboxRegisterPost(ctx context.Context, userId 
 	// TODO - update ConfigsBboxRegisterPost with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
-	//TODO: Uncomment the next line to return response Response(200, GenericPostResponse{}) or use other options such as http.Ok ...
-	//return Response(200, GenericPostResponse{}), nil
+	//TODO: Uncomment the next line to return response Response(200, BboxConfigResponse{}) or use other options such as http.Ok ...
+	//return Response(200, BboxConfigResponse{}), nil
 
 	//TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
 	//return Response(400, nil),nil

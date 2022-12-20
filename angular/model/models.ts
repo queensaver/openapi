@@ -1,5 +1,6 @@
 export * from './alerts';
 export * from './bbox';
+export * from './bboxConfigResponse';
 export * from './bhive';
 export * from './genericPostResponse';
 export * from './getBboxResponse';
@@ -13,6 +14,7 @@ export * from './postStandsResponse';
 export * from './putBboxResponse';
 export * from './putHiveResponse';
 export * from './putStandResponse';
+export * from './registrationId';
 export * from './stand';
 export * from './temperature';
 export * from './user';

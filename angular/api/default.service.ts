@@ -21,6 +21,8 @@ import { Observable }                                        from 'rxjs';
 // @ts-ignore
 import { Bbox } from '../model/bbox';
 // @ts-ignore
+import { BboxConfigResponse } from '../model/bboxConfigResponse';
+// @ts-ignore
 import { GenericPostResponse } from '../model/genericPostResponse';
 // @ts-ignore
 import { GetBboxResponse } from '../model/getBboxResponse';
@@ -44,6 +46,8 @@ import { PutBboxResponse } from '../model/putBboxResponse';
 import { PutHiveResponse } from '../model/putHiveResponse';
 // @ts-ignore
 import { PutStandResponse } from '../model/putStandResponse';
+// @ts-ignore
+import { RegistrationId } from '../model/registrationId';
 // @ts-ignore
 import { Stand } from '../model/stand';
 // @ts-ignore
@@ -133,6 +137,73 @@ export class DefaultService {
             throw Error("key may not be null if value is not object or array");
         }
         return httpParams;
+    }
+
+    /**
+     * authenticate against the internal authentication service with a registrationId.
+     * This can not be called from the API but is an internal call. Please ignore if you consume this API publicly. An authentication call can be either a username or password but also a registrationId. In this call we implement the registrationId.
+     * @param registrationId 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public authenticateRegistrationIdPost(registrationId: RegistrationId, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any>;
+    public authenticateRegistrationIdPost(registrationId: RegistrationId, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpResponse<any>>;
+    public authenticateRegistrationIdPost(registrationId: RegistrationId, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpEvent<any>>;
+    public authenticateRegistrationIdPost(registrationId: RegistrationId, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any> {
+        if (registrationId === null || registrationId === undefined) {
+            throw new Error('Required parameter registrationId was null or undefined when calling authenticateRegistrationIdPost.');
+        }
+
+        let localVarHeaders = this.defaultHeaders;
+
+        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
+        if (localVarHttpHeaderAcceptSelected === undefined) {
+            // to determine the Accept header
+            const httpHeaderAccepts: string[] = [
+            ];
+            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        }
+        if (localVarHttpHeaderAcceptSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
+        }
+
+        let localVarHttpContext: HttpContext | undefined = options && options.context;
+        if (localVarHttpContext === undefined) {
+            localVarHttpContext = new HttpContext();
+        }
+
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Content-Type', httpContentTypeSelected);
+        }
+
+        let responseType_: 'text' | 'json' | 'blob' = 'json';
+        if (localVarHttpHeaderAcceptSelected) {
+            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
+                responseType_ = 'text';
+            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
+                responseType_ = 'json';
+            } else {
+                responseType_ = 'blob';
+            }
+        }
+
+        return this.httpClient.post<any>(`${this.configuration.basePath}/authenticateRegistrationId`,
+            registrationId,
+            {
+                context: localVarHttpContext,
+                responseType: <any>responseType_,
+                withCredentials: this.configuration.withCredentials,
+                headers: localVarHeaders,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
     }
 
     /**
@@ -549,9 +620,9 @@ export class DefaultService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public configsBboxRegisterPost(userId?: number, bbox?: Bbox, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<GenericPostResponse>;
-    public configsBboxRegisterPost(userId?: number, bbox?: Bbox, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<GenericPostResponse>>;
-    public configsBboxRegisterPost(userId?: number, bbox?: Bbox, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<GenericPostResponse>>;
+    public configsBboxRegisterPost(userId?: number, bbox?: Bbox, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<BboxConfigResponse>;
+    public configsBboxRegisterPost(userId?: number, bbox?: Bbox, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<BboxConfigResponse>>;
+    public configsBboxRegisterPost(userId?: number, bbox?: Bbox, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<BboxConfigResponse>>;
     public configsBboxRegisterPost(userId?: number, bbox?: Bbox, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
 
         let localVarQueryParameters = new HttpParams({encoder: this.encoder});
@@ -606,7 +677,7 @@ export class DefaultService {
             }
         }
 
-        return this.httpClient.post<GenericPostResponse>(`${this.configuration.basePath}/configs/bbox/register`,
+        return this.httpClient.post<BboxConfigResponse>(`${this.configuration.basePath}/configs/bbox/register`,
             bbox,
             {
                 context: localVarHttpContext,

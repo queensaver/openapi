@@ -289,6 +289,27 @@ paths:
       security:
       - cookieAuth: []
       summary: Update bbox metadata
+  /authenticateRegistrationId:
+    post:
+      description: This can not be called from the API but is an internal call. Please
+        ignore if you consume this API publicly. An authentication call can be either
+        a username or password but also a registrationId. In this call we implement
+        the registrationId.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/registrationId'
+        required: true
+      responses:
+        "200":
+          description: Authenticated
+        "400":
+          description: Client error
+        "500":
+          description: Internal error
+      security: []
+      summary: authenticate against the internal authentication service with a registrationId.
   /configs/bbox/register:
     post:
       description: "This registers a new bbox. A bbox is a physical hardware component\
@@ -318,7 +339,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/generic-post-response'
+                $ref: '#/components/schemas/bbox-config-response'
           description: Generic Response object that just returns an HTTP status code
         "400":
           description: Client error
@@ -1407,6 +1428,23 @@ components:
           type: string
           x-protobuf-index: 6
       type: object
+    bbox-config-response:
+      example:
+        scaleMeasureInterval: 409
+        httpResponseCode: 409
+      properties:
+        httpResponseCode:
+          description: HTTP response code.
+          example: 409
+          type: integer
+          x-protobuf-index: 1
+        scaleMeasureInterval:
+          description: How often the bbox needs to take and send measurements from
+            the scale. The unit is in seconds.
+          example: 409
+          type: integer
+          x-protobuf-index: 2
+      type: object
     generic-post-response:
       example:
         httpResponseCode: 409
@@ -1945,6 +1983,16 @@ components:
           example: 1639169129
           format: int64
           type: integer
+      type: object
+    registrationId:
+      properties:
+        registrationId:
+          description: "Registration ID, in the form of the unique identifier"
+          example: 422DBCF1873243F4BF537E76C4CF28E9
+          maxLength: 256
+          type: string
+      required:
+      - registrationId
       type: object
     login:
       properties:
