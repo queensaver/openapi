@@ -44,6 +44,10 @@ paths:
         required: true
       responses:
         "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/generic-post-response'
           description: Returns a cookie to the browser with the key called 'token'
           headers:
             Set-Cookie:

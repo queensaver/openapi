@@ -60,7 +60,7 @@ service DefaultService {
 
   rpc HivesPut (HivesPutRequest) returns (PutHiveResponse);
 
-  rpc LoginPost (LoginPostRequest) returns (google.protobuf.Empty);
+  rpc LoginPost (LoginPostRequest) returns (GenericPostResponse);
 
   rpc ScaleGet (ScaleGetRequest) returns (ScaleGetResponse);
 

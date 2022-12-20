@@ -36,7 +36,7 @@ type DefaultServiceClient interface {
 	HivesGet(ctx context.Context, in *HivesGetRequest, opts ...grpc.CallOption) (*models.GetHivesResponse, error)
 	HivesPost(ctx context.Context, in *HivesPostRequest, opts ...grpc.CallOption) (*models.PostHivesResponse, error)
 	HivesPut(ctx context.Context, in *HivesPutRequest, opts ...grpc.CallOption) (*models.PutHiveResponse, error)
-	LoginPost(ctx context.Context, in *LoginPostRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	LoginPost(ctx context.Context, in *LoginPostRequest, opts ...grpc.CallOption) (*models.GenericPostResponse, error)
 	ScaleGet(ctx context.Context, in *ScaleGetRequest, opts ...grpc.CallOption) (*ScaleGetResponse, error)
 	ScalePost(ctx context.Context, in *ScalePostRequest, opts ...grpc.CallOption) (*models.GenericPostResponse, error)
 	StandsDelete(ctx context.Context, in *StandsDeleteRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -167,8 +167,8 @@ func (c *defaultServiceClient) HivesPut(ctx context.Context, in *HivesPutRequest
 	return out, nil
 }
 
-func (c *defaultServiceClient) LoginPost(ctx context.Context, in *LoginPostRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *defaultServiceClient) LoginPost(ctx context.Context, in *LoginPostRequest, opts ...grpc.CallOption) (*models.GenericPostResponse, error) {
+	out := new(models.GenericPostResponse)
 	err := c.cc.Invoke(ctx, "/openapi.services.defaultservice.DefaultService/LoginPost", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -300,7 +300,7 @@ type DefaultServiceServer interface {
 	HivesGet(context.Context, *HivesGetRequest) (*models.GetHivesResponse, error)
 	HivesPost(context.Context, *HivesPostRequest) (*models.PostHivesResponse, error)
 	HivesPut(context.Context, *HivesPutRequest) (*models.PutHiveResponse, error)
-	LoginPost(context.Context, *LoginPostRequest) (*emptypb.Empty, error)
+	LoginPost(context.Context, *LoginPostRequest) (*models.GenericPostResponse, error)
 	ScaleGet(context.Context, *ScaleGetRequest) (*ScaleGetResponse, error)
 	ScalePost(context.Context, *ScalePostRequest) (*models.GenericPostResponse, error)
 	StandsDelete(context.Context, *StandsDeleteRequest) (*emptypb.Empty, error)
@@ -356,7 +356,7 @@ func (UnimplementedDefaultServiceServer) HivesPost(context.Context, *HivesPostRe
 func (UnimplementedDefaultServiceServer) HivesPut(context.Context, *HivesPutRequest) (*models.PutHiveResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method HivesPut not implemented")
 }
-func (UnimplementedDefaultServiceServer) LoginPost(context.Context, *LoginPostRequest) (*emptypb.Empty, error) {
+func (UnimplementedDefaultServiceServer) LoginPost(context.Context, *LoginPostRequest) (*models.GenericPostResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LoginPost not implemented")
 }
 func (UnimplementedDefaultServiceServer) ScaleGet(context.Context, *ScaleGetRequest) (*ScaleGetResponse, error) {

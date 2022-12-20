@@ -50,6 +50,11 @@ paths:
       responses:
         "200":
           description: "Returns a cookie to the browser with the key called 'token'"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/generic-post-response"
+
           headers:
             "Set-Cookie":
               schema:

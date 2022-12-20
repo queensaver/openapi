@@ -7421,7 +7421,8 @@ public class DefaultApiExample {
         String password = password_example; // String | Password
 
         try {
-            apiInstance.loginPost(username, password);
+            generic-post-response result = apiInstance.loginPost(username, password);
+            System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#loginPost");
             e.printStackTrace();
@@ -7441,7 +7442,8 @@ public class DefaultApiExample {
         String password = password_example; // String | Password
 
         try {
-            apiInstance.loginPost(username, password);
+            generic-post-response result = apiInstance.loginPost(username, password);
+            System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#loginPost");
             e.printStackTrace();
@@ -7464,7 +7466,10 @@ String *password = password_example; // Password (default to null)
 // Authenticate a user against the system.
 [apiInstance loginPostWith:username
     password:password
-              completionHandler: ^(NSError* error) {
+              completionHandler: ^(generic-post-response output, NSError* error) {
+    if (output) {
+        NSLog(@"%@", output);
+    }
     if (error) {
         NSLog(@"Error: %@", error);
     }
@@ -7484,7 +7489,7 @@ var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
-    console.log('API called successfully.');
+    console.log('API called successfully. Returned data: ' + data);
   }
 };
 api.loginPost(username, password, callback);
@@ -7515,7 +7520,8 @@ namespace Example
 
             try {
                 // Authenticate a user against the system.
-                apiInstance.loginPost(username, password);
+                generic-post-response result = apiInstance.loginPost(username, password);
+                Debug.WriteLine(result);
             } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.loginPost: " + e.Message );
             }
@@ -7535,7 +7541,8 @@ $username = username_example; // String | Username, must be unique to the queens
 $password = password_example; // String | Password
 
 try {
-    $api_instance->loginPost($username, $password);
+    $result = $api_instance->loginPost($username, $password);
+    print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->loginPost: ', $e->getMessage(), PHP_EOL;
 }
@@ -7553,7 +7560,8 @@ my $username = username_example; # String | Username, must be unique to the quee
 my $password = password_example; # String | Password
 
 eval {
-    $api_instance->loginPost(username => $username, password => $password);
+    my $result = $api_instance->loginPost(username => $username, password => $password);
+    print Dumper($result);
 };
 if ($@) {
     warn "Exception when calling DefaultApi->loginPost: $@\n";
@@ -7574,7 +7582,8 @@ password = password_example # String | Password (default to null)
 
 try:
     # Authenticate a user against the system.
-    api_instance.login_post(username, password)
+    api_response = api_instance.login_post(username, password)
+    pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->loginPost: %s\n" % e)</code></pre>
                             </div>
@@ -7679,6 +7688,11 @@ Password
 
 
                             <ul id="responses-detail-Default-loginPost-200" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Default-loginPost-200-schema">Schema</a>
+                                </li>
+
+
 
                                 <li class="">
                                   <a data-toggle="tab" href="#responses-loginPost-200-headers">Headers</a>
@@ -7688,6 +7702,55 @@ Password
 
 
                             <div class="tab-content" id="responses-Default-loginPost-200-wrapper" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-Default-loginPost-200-schema">
+                                  <div id="responses-Default-loginPost-schema-200" class="exampleStyle">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Returns a cookie to the browser with the key called 'token'",
+  "headers" : {
+    "Set-Cookie" : {
+      "style" : "simple",
+      "explode" : false,
+      "schema" : {
+        "type" : "string",
+        "example" : "token=abcde12345; Path=/; HttpOnly"
+      }
+    }
+  },
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/generic-post-response"
+      }
+    }
+  }
+};
+                                        var schema = findNode('schema',schemaWrapper).schema;
+                                        if (!schema) {
+                                          schema = schemaWrapper.schema;
+                                        }
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else if (schema.items != null && schema.items.$ref != null) {
+                                            schema.items = defsParser.$refs.get(schema.items.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-Default-loginPost-200-schema-data').val(JSON.stringify(schema));
+                                        var result = $('#responses-Default-loginPost-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-Default-loginPost-200-schema-data' type='hidden' value=''></input>
+                                </div>
                                   <div class="tab-pane" id="responses-loginPost-200-headers">
                                       <table>
                                           <tr>
