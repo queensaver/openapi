@@ -857,15 +857,20 @@ paths:
 
       parameters:
       - in: header
+        name: registrationId
+        description: Either the cookie, registrationId or this Q-Token must be set to be authorized for the API call.
+        schema:
+          type: string
+        example: 8B0FE5CFC0964B3E874827906B4A9449
+      - in: header
         name: Q-Token
-        description: Either the cookie or this Q-Token must be set to be authorized for the API call.
+        description: Either the cookie, registrationId or this Q-Token must be set to be authorized for the API call.
         schema:
           type: string
         example: 8B0FE5CF-C096-4B3E-8748-27906B4A9449
-        required: true
       - in: cookie
         name: token
-        description: Either this cookie or the Q-Token must be set to be authorized for the API call.
+        description: Either this cookie, registrationId or the Q-Token must be set to be authorized for the API call.
         schema:
           type: string
         example: 8B0FE5CF-C096-4B3E-8748-27906B4A9449

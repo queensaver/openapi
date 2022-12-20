@@ -1209,21 +1209,19 @@ export class DefaultService {
     /**
      * Get Scale values
      * This returns scale values for a certain, defineable date range. The request needs to send a cookie along with the request. The cookie is stored under the key called \&quot;token\&quot;. Note that this returns the scale data for a QBox Client (independent of the beeHive), the API call for an actual beeHive is different.
-     * @param qToken Either the cookie or this Q-Token must be set to be authorized for the API call.
      * @param bhiveId The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call.
      * @param epoch The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the secondsInThePast parameter.
      * @param secondsInThePast How many seconds we go to the past to get the data measurements.
-     * @param token Either this cookie or the Q-Token must be set to be authorized for the API call.
+     * @param registrationId Either the cookie, registrationId or this Q-Token must be set to be authorized for the API call.
+     * @param qToken Either the cookie, registrationId or this Q-Token must be set to be authorized for the API call.
+     * @param token Either this cookie, registrationId or the Q-Token must be set to be authorized for the API call.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public scaleGet(qToken: string, bhiveId: string, epoch: number, secondsInThePast: number, token?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<Array<Weight>>;
-    public scaleGet(qToken: string, bhiveId: string, epoch: number, secondsInThePast: number, token?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<Array<Weight>>>;
-    public scaleGet(qToken: string, bhiveId: string, epoch: number, secondsInThePast: number, token?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<Array<Weight>>>;
-    public scaleGet(qToken: string, bhiveId: string, epoch: number, secondsInThePast: number, token?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
-        if (qToken === null || qToken === undefined) {
-            throw new Error('Required parameter qToken was null or undefined when calling scaleGet.');
-        }
+    public scaleGet(bhiveId: string, epoch: number, secondsInThePast: number, registrationId?: string, qToken?: string, token?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<Array<Weight>>;
+    public scaleGet(bhiveId: string, epoch: number, secondsInThePast: number, registrationId?: string, qToken?: string, token?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<Array<Weight>>>;
+    public scaleGet(bhiveId: string, epoch: number, secondsInThePast: number, registrationId?: string, qToken?: string, token?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<Array<Weight>>>;
+    public scaleGet(bhiveId: string, epoch: number, secondsInThePast: number, registrationId?: string, qToken?: string, token?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
         if (bhiveId === null || bhiveId === undefined) {
             throw new Error('Required parameter bhiveId was null or undefined when calling scaleGet.');
         }
@@ -1249,6 +1247,9 @@ export class DefaultService {
         }
 
         let localVarHeaders = this.defaultHeaders;
+        if (registrationId !== undefined && registrationId !== null) {
+            localVarHeaders = localVarHeaders.set('registrationId', String(registrationId));
+        }
         if (qToken !== undefined && qToken !== null) {
             localVarHeaders = localVarHeaders.set('Q-Token', String(qToken));
         }
