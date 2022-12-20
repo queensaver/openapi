@@ -19,6 +19,6 @@ export interface LoginPostResponse {
     /**
      * cookie that is returned as a cookie to the browser
      */
-    cookie?: string;
+    token?: string;
 }
 

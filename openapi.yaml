@@ -1262,7 +1262,7 @@ components:
           example: 409
           description: HTTP response code.
           x-protobuf-index: 1
-        cookie:
+        token:
           type: string
           description: cookie that is returned as a cookie to the browser
           example: "asdf"

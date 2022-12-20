@@ -15,7 +15,7 @@ type LoginPostResponse struct {
 	HttpResponseCode int32 `json:"httpResponseCode,omitempty"`
 
 	// cookie that is returned as a cookie to the browser
-	Cookie string `json:"cookie,omitempty"`
+	Token string `json:"token,omitempty"`
 }
 
 // AssertLoginPostResponseRequired checks if the required fields are not zero-ed
