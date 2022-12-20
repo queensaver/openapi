@@ -17,6 +17,7 @@ model/getHivesResponse.ts
 model/getStandsResponse.ts
 model/getTemperatureResponse.ts
 model/hive.ts
+model/loginPostResponse.ts
 model/models.ts
 model/postBboxResponse.ts
 model/postHivesResponse.ts

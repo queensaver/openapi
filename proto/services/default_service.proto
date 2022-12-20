@@ -21,6 +21,7 @@ import public "models/get_hives_response.proto";
 import public "models/get_stands_response.proto";
 import public "models/get_temperature_response.proto";
 import public "models/hive.proto";
+import public "models/login_post_response.proto";
 import public "models/post_bbox_response.proto";
 import public "models/post_hives_response.proto";
 import public "models/post_stands_response.proto";
@@ -60,7 +61,7 @@ service DefaultService {
 
   rpc HivesPut (HivesPutRequest) returns (PutHiveResponse);
 
-  rpc LoginPost (LoginPostRequest) returns (GenericPostResponse);
+  rpc LoginPost (LoginPostRequest) returns (LoginPostResponse);
 
   rpc ScaleGet (ScaleGetRequest) returns (ScaleGetResponse);
 

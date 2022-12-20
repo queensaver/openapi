@@ -9,6 +9,7 @@ models/get_hives_response.proto
 models/get_stands_response.proto
 models/get_temperature_response.proto
 models/hive.proto
+models/login_post_response.proto
 models/post_bbox_response.proto
 models/post_hives_response.proto
 models/post_stands_response.proto

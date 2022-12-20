@@ -53,13 +53,14 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/generic-post-response"
+                $ref: "#/components/schemas/login-post-response"
 
           headers:
-            "Set-Cookie":
+            "SetCookie":
               schema:
                 type: string
                 example: token=abcde12345; Path=/; HttpOnly
+                description: sets the cookie
 
         "400":
           description: The provided parameters are incorrect
@@ -1251,6 +1252,20 @@ components:
           type: integer
           example: 409
           description: How often the bbox needs to take and send measurements from the scale. The unit is in seconds.
+          x-protobuf-index: 2
+
+    login-post-response:
+      type: object
+      properties:
+        httpResponseCode:
+          type: integer
+          example: 409
+          description: HTTP response code.
+          x-protobuf-index: 1
+        cookie:
+          type: string
+          description: cookie that is returned as a cookie to the browser
+          example: "asdf"
           x-protobuf-index: 2
 
     generic-post-response:

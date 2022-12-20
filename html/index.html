@@ -1132,6 +1132,23 @@ ul.nav-tabs {
     }
   }
 };
+    defs["login-post-response"] = {
+  "type" : "object",
+  "properties" : {
+    "httpResponseCode" : {
+      "type" : "integer",
+      "description" : "HTTP response code.",
+      "example" : 409,
+      "x-protobuf-index" : 1
+    },
+    "cookie" : {
+      "type" : "string",
+      "description" : "cookie that is returned as a cookie to the browser",
+      "example" : "asdf",
+      "x-protobuf-index" : 2
+    }
+  }
+};
     defs["post-bbox-response"] = {
   "type" : "object",
   "properties" : {
@@ -7421,7 +7438,7 @@ public class DefaultApiExample {
         String password = password_example; // String | Password
 
         try {
-            generic-post-response result = apiInstance.loginPost(username, password);
+            login-post-response result = apiInstance.loginPost(username, password);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#loginPost");
@@ -7442,7 +7459,7 @@ public class DefaultApiExample {
         String password = password_example; // String | Password
 
         try {
-            generic-post-response result = apiInstance.loginPost(username, password);
+            login-post-response result = apiInstance.loginPost(username, password);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#loginPost");
@@ -7466,7 +7483,7 @@ String *password = password_example; // Password (default to null)
 // Authenticate a user against the system.
 [apiInstance loginPostWith:username
     password:password
-              completionHandler: ^(generic-post-response output, NSError* error) {
+              completionHandler: ^(login-post-response output, NSError* error) {
     if (output) {
         NSLog(@"%@", output);
     }
@@ -7520,7 +7537,7 @@ namespace Example
 
             try {
                 // Authenticate a user against the system.
-                generic-post-response result = apiInstance.loginPost(username, password);
+                login-post-response result = apiInstance.loginPost(username, password);
                 Debug.WriteLine(result);
             } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.loginPost: " + e.Message );
@@ -7709,11 +7726,12 @@ Password
                                         var schemaWrapper = {
   "description" : "Returns a cookie to the browser with the key called 'token'",
   "headers" : {
-    "Set-Cookie" : {
+    "SetCookie" : {
       "style" : "simple",
       "explode" : false,
       "schema" : {
         "type" : "string",
+        "description" : "sets the cookie",
         "example" : "token=abcde12345; Path=/; HttpOnly"
       }
     }
@@ -7721,7 +7739,7 @@ Password
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/generic-post-response"
+        "$ref" : "#/components/schemas/login-post-response"
       }
     }
   }
@@ -7760,7 +7778,7 @@ Password
                                               <th>Description</th>
                                           </tr>
                                               <tr>
-                                                  <td>SetMinusCookie</td>
+                                                  <td>SetCookie</td>
                                                   <td>String</td>
                                                   <td></td>
                                                   <td></td>

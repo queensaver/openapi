@@ -8,6 +8,7 @@ export * from './getHivesResponse';
 export * from './getStandsResponse';
 export * from './getTemperatureResponse';
 export * from './hive';
+export * from './loginPostResponse';
 export * from './postBboxResponse';
 export * from './postHivesResponse';
 export * from './postStandsResponse';

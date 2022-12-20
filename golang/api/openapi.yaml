@@ -47,12 +47,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/generic-post-response'
+                $ref: '#/components/schemas/login-post-response'
           description: Returns a cookie to the browser with the key called 'token'
           headers:
-            Set-Cookie:
+            SetCookie:
               explode: false
               schema:
+                description: sets the cookie
                 example: token=abcde12345; Path=/; HttpOnly
                 type: string
               style: simple
@@ -1457,6 +1458,22 @@ components:
             the scale. The unit is in seconds.
           example: 409
           type: integer
+          x-protobuf-index: 2
+      type: object
+    login-post-response:
+      example:
+        cookie: asdf
+        httpResponseCode: 409
+      properties:
+        httpResponseCode:
+          description: HTTP response code.
+          example: 409
+          type: integer
+          x-protobuf-index: 1
+        cookie:
+          description: cookie that is returned as a cookie to the browser
+          example: asdf
+          type: string
           x-protobuf-index: 2
       type: object
     generic-post-response:
