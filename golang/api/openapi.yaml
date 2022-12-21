@@ -308,6 +308,10 @@ paths:
         required: true
       responses:
         "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/generic-post-response'
           description: Authenticated
         "400":
           description: Client error

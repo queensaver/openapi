@@ -1638,6 +1638,7 @@ ul.nav-tabs {
                         <div class="tab-content">
                           <div class="tab-pane active" id="examples-Default-authenticateRegistrationIdPost-0-curl">
                             <pre class="prettyprint"><code class="language-bsh">curl -X POST \
+ -H "Accept: application/json" \
  -H "Content-Type: application/json" \
  "https://api.queensaver.com/v1/authenticateRegistrationId" \
  -d ''
@@ -1660,7 +1661,8 @@ public class DefaultApiExample {
         RegistrationId registrationId = ; // RegistrationId | 
 
         try {
-            apiInstance.authenticateRegistrationIdPost(registrationId);
+            generic-post-response result = apiInstance.authenticateRegistrationIdPost(registrationId);
+            System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#authenticateRegistrationIdPost");
             e.printStackTrace();
@@ -1679,7 +1681,8 @@ public class DefaultApiExample {
         RegistrationId registrationId = ; // RegistrationId | 
 
         try {
-            apiInstance.authenticateRegistrationIdPost(registrationId);
+            generic-post-response result = apiInstance.authenticateRegistrationIdPost(registrationId);
+            System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#authenticateRegistrationIdPost");
             e.printStackTrace();
@@ -1700,7 +1703,10 @@ RegistrationId *registrationId = ; //
 
 // authenticate against the internal authentication service with a registrationId.
 [apiInstance authenticateRegistrationIdPostWith:registrationId
-              completionHandler: ^(NSError* error) {
+              completionHandler: ^(generic-post-response output, NSError* error) {
+    if (output) {
+        NSLog(@"%@", output);
+    }
     if (error) {
         NSLog(@"Error: %@", error);
     }
@@ -1719,7 +1725,7 @@ var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
-    console.log('API called successfully.');
+    console.log('API called successfully. Returned data: ' + data);
   }
 };
 api.authenticateRegistrationIdPost(registrationId, callback);
@@ -1749,7 +1755,8 @@ namespace Example
 
             try {
                 // authenticate against the internal authentication service with a registrationId.
-                apiInstance.authenticateRegistrationIdPost(registrationId);
+                generic-post-response result = apiInstance.authenticateRegistrationIdPost(registrationId);
+                Debug.WriteLine(result);
             } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.authenticateRegistrationIdPost: " + e.Message );
             }
@@ -1768,7 +1775,8 @@ $api_instance = new OpenAPITools\Client\Api\DefaultApi();
 $registrationId = ; // RegistrationId | 
 
 try {
-    $api_instance->authenticateRegistrationIdPost($registrationId);
+    $result = $api_instance->authenticateRegistrationIdPost($registrationId);
+    print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->authenticateRegistrationIdPost: ', $e->getMessage(), PHP_EOL;
 }
@@ -1785,7 +1793,8 @@ my $api_instance = WWW::OPenAPIClient::DefaultApi->new();
 my $registrationId = WWW::OPenAPIClient::Object::RegistrationId->new(); # RegistrationId | 
 
 eval {
-    $api_instance->authenticateRegistrationIdPost(registrationId => $registrationId);
+    my $result = $api_instance->authenticateRegistrationIdPost(registrationId => $registrationId);
+    print Dumper($result);
 };
 if ($@) {
     warn "Exception when calling DefaultApi->authenticateRegistrationIdPost: $@\n";
@@ -1805,7 +1814,8 @@ registrationId =  # RegistrationId |
 
 try:
     # authenticate against the internal authentication service with a registrationId.
-    api_instance.authenticate_registration_id_post(registrationId)
+    api_response = api_instance.authenticate_registration_id_post(registrationId)
+    pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->authenticateRegistrationIdPost: %s\n" % e)</code></pre>
                             </div>
@@ -1899,12 +1909,56 @@ $(document).ready(function() {
 
 
                             <ul id="responses-detail-Default-authenticateRegistrationIdPost-200" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Default-authenticateRegistrationIdPost-200-schema">Schema</a>
+                                </li>
+
+
 
 
                             </ul>
 
 
                             <div class="tab-content" id="responses-Default-authenticateRegistrationIdPost-200-wrapper" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-Default-authenticateRegistrationIdPost-200-schema">
+                                  <div id="responses-Default-authenticateRegistrationIdPost-schema-200" class="exampleStyle">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Authenticated",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/generic-post-response"
+      }
+    }
+  }
+};
+                                        var schema = findNode('schema',schemaWrapper).schema;
+                                        if (!schema) {
+                                          schema = schemaWrapper.schema;
+                                        }
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else if (schema.items != null && schema.items.$ref != null) {
+                                            schema.items = defsParser.$refs.get(schema.items.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-Default-authenticateRegistrationIdPost-200-schema-data').val(JSON.stringify(schema));
+                                        var result = $('#responses-Default-authenticateRegistrationIdPost-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-Default-authenticateRegistrationIdPost-200-schema-data' type='hidden' value=''></input>
+                                </div>
                             </div>
                             <h3 id="examples-Default-authenticateRegistrationIdPost-title-400"></h3>
                             <p id="examples-Default-authenticateRegistrationIdPost-description-400" class="marked"></p>

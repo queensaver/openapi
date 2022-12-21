@@ -37,7 +37,7 @@ import public "models/varroa_scan_response.proto";
 import public "models/weight.proto";
 
 service DefaultService {
-  rpc AuthenticateRegistrationIdPost (AuthenticateRegistrationIdPostRequest) returns (google.protobuf.Empty);
+  rpc AuthenticateRegistrationIdPost (AuthenticateRegistrationIdPostRequest) returns (GenericPostResponse);
 
   rpc BboxesGet (google.protobuf.Empty) returns (BboxesGetResponse);
 

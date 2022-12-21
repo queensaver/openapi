@@ -24,7 +24,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DefaultServiceClient interface {
-	AuthenticateRegistrationIdPost(ctx context.Context, in *AuthenticateRegistrationIdPostRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	AuthenticateRegistrationIdPost(ctx context.Context, in *AuthenticateRegistrationIdPostRequest, opts ...grpc.CallOption) (*models.GenericPostResponse, error)
 	BboxesGet(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*BboxesGetResponse, error)
 	ConfigsBboxDelete(ctx context.Context, in *ConfigsBboxDeleteRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	ConfigsBboxGet(ctx context.Context, in *ConfigsBboxGetRequest, opts ...grpc.CallOption) (*models.GetBboxResponse, error)
@@ -59,8 +59,8 @@ func NewDefaultServiceClient(cc grpc.ClientConnInterface) DefaultServiceClient {
 	return &defaultServiceClient{cc}
 }
 
-func (c *defaultServiceClient) AuthenticateRegistrationIdPost(ctx context.Context, in *AuthenticateRegistrationIdPostRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *defaultServiceClient) AuthenticateRegistrationIdPost(ctx context.Context, in *AuthenticateRegistrationIdPostRequest, opts ...grpc.CallOption) (*models.GenericPostResponse, error) {
+	out := new(models.GenericPostResponse)
 	err := c.cc.Invoke(ctx, "/openapi.services.defaultservice.DefaultService/AuthenticateRegistrationIdPost", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -288,7 +288,7 @@ func (c *defaultServiceClient) VarroaScanPost(ctx context.Context, in *VarroaSca
 // All implementations must embed UnimplementedDefaultServiceServer
 // for forward compatibility
 type DefaultServiceServer interface {
-	AuthenticateRegistrationIdPost(context.Context, *AuthenticateRegistrationIdPostRequest) (*emptypb.Empty, error)
+	AuthenticateRegistrationIdPost(context.Context, *AuthenticateRegistrationIdPostRequest) (*models.GenericPostResponse, error)
 	BboxesGet(context.Context, *emptypb.Empty) (*BboxesGetResponse, error)
 	ConfigsBboxDelete(context.Context, *ConfigsBboxDeleteRequest) (*emptypb.Empty, error)
 	ConfigsBboxGet(context.Context, *ConfigsBboxGetRequest) (*models.GetBboxResponse, error)
@@ -320,7 +320,7 @@ type DefaultServiceServer interface {
 type UnimplementedDefaultServiceServer struct {
 }
 
-func (UnimplementedDefaultServiceServer) AuthenticateRegistrationIdPost(context.Context, *AuthenticateRegistrationIdPostRequest) (*emptypb.Empty, error) {
+func (UnimplementedDefaultServiceServer) AuthenticateRegistrationIdPost(context.Context, *AuthenticateRegistrationIdPostRequest) (*models.GenericPostResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AuthenticateRegistrationIdPost not implemented")
 }
 func (UnimplementedDefaultServiceServer) BboxesGet(context.Context, *emptypb.Empty) (*BboxesGetResponse, error) {
