@@ -262,7 +262,7 @@ func (s *DefaultApiService) ScaleGet(ctx context.Context, bhiveId string, epoch 
 }
 
 // ScalePost - Post Scale values
-func (s *DefaultApiService) ScalePost(ctx context.Context, qToken string, token string, userId int64, weight Weight) (ImplResponse, error) {
+func (s *DefaultApiService) ScalePost(ctx context.Context, registrationId string, qToken string, token string, userId int64, weight Weight) (ImplResponse, error) {
 	// TODO - update ScalePost with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 

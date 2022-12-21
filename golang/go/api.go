@@ -67,7 +67,7 @@ type DefaultApiServicer interface {
 	HivesPut(context.Context, string, string, int64, Hive) (ImplResponse, error)
 	LoginPost(context.Context, string, string) (ImplResponse, error)
 	ScaleGet(context.Context, string, int64, int64, string, string, string) (ImplResponse, error)
-	ScalePost(context.Context, string, string, int64, Weight) (ImplResponse, error)
+	ScalePost(context.Context, string, string, string, int64, Weight) (ImplResponse, error)
 	StandsDelete(context.Context, string, string, string, int64) (ImplResponse, error)
 	StandsGet(context.Context, string, int64, int64, string, string, int64) (ImplResponse, error)
 	StandsPost(context.Context, string, string, int64, Stand) (ImplResponse, error)

@@ -8550,13 +8550,14 @@ public class DefaultApiExample {
 
         // Create an instance of the API class
         DefaultApi apiInstance = new DefaultApi();
-        String qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either the cookie or this Q-Token must be set to be authorized for the API call.
+        String registrationId = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either the cookie, the registrationId or this Q-Token must be set to be authorized for the API call.
+        String qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either the cookie, the registrationId or this Q-Token must be set to be authorized for the API call.
         String token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie or the Q-Token must be set to be authorized for the API call.
         Long userId = 123; // Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
         Weight weight = ; // Weight | 
 
         try {
-            generic-post-response result = apiInstance.scalePost(qToken, token, userId, weight);
+            generic-post-response result = apiInstance.scalePost(registrationId, qToken, token, userId, weight);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#scalePost");
@@ -8573,13 +8574,14 @@ public class DefaultApiExample {
 public class DefaultApiExample {
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
-        String qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either the cookie or this Q-Token must be set to be authorized for the API call.
+        String registrationId = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either the cookie, the registrationId or this Q-Token must be set to be authorized for the API call.
+        String qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either the cookie, the registrationId or this Q-Token must be set to be authorized for the API call.
         String token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie or the Q-Token must be set to be authorized for the API call.
         Long userId = 123; // Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
         Weight weight = ; // Weight | 
 
         try {
-            generic-post-response result = apiInstance.scalePost(qToken, token, userId, weight);
+            generic-post-response result = apiInstance.scalePost(registrationId, qToken, token, userId, weight);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#scalePost");
@@ -8603,13 +8605,15 @@ public class DefaultApiExample {
 
 // Create an instance of the API class
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
-String *qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // Either the cookie or this Q-Token must be set to be authorized for the API call. (default to null)
+String *registrationId = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // Either the cookie, the registrationId or this Q-Token must be set to be authorized for the API call. (optional) (default to null)
+String *qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // Either the cookie, the registrationId or this Q-Token must be set to be authorized for the API call. (optional) (default to null)
 String *token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // Either this cookie or the Q-Token must be set to be authorized for the API call. (optional) (default to null)
 Long *userId = 123; // The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore. (optional) (default to null)
 Weight *weight = ; //  (optional)
 
 // Post Scale values
-[apiInstance scalePostWith:qToken
+[apiInstance scalePostWith:registrationId
+    qToken:qToken
     token:token
     userId:userId
     weight:weight
@@ -8636,8 +8640,9 @@ cookieAuth.apiKey = "YOUR API KEY";
 
 // Create an instance of the API class
 var api = new QueensaverApi.DefaultApi()
-var qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // {String} Either the cookie or this Q-Token must be set to be authorized for the API call.
 var opts = {
+  'registrationId': 8B0FE5CF-C096-4B3E-8748-27906B4A9449, // {String} Either the cookie, the registrationId or this Q-Token must be set to be authorized for the API call.
+  'qToken': 8B0FE5CF-C096-4B3E-8748-27906B4A9449, // {String} Either the cookie, the registrationId or this Q-Token must be set to be authorized for the API call.
   'token': 8B0FE5CF-C096-4B3E-8748-27906B4A9449, // {String} Either this cookie or the Q-Token must be set to be authorized for the API call.
   'userId': 123, // {Long} The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
   'weight':  // {Weight} 
@@ -8650,7 +8655,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.scalePost(qToken, opts, callback);
+api.scalePost(opts, callback);
 </code></pre>
                             </div>
 
@@ -8677,14 +8682,15 @@ namespace Example
 
             // Create an instance of the API class
             var apiInstance = new DefaultApi();
-            var qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449;  // String | Either the cookie or this Q-Token must be set to be authorized for the API call. (default to null)
+            var registrationId = 8B0FE5CF-C096-4B3E-8748-27906B4A9449;  // String | Either the cookie, the registrationId or this Q-Token must be set to be authorized for the API call. (optional)  (default to null)
+            var qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449;  // String | Either the cookie, the registrationId or this Q-Token must be set to be authorized for the API call. (optional)  (default to null)
             var token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449;  // String | Either this cookie or the Q-Token must be set to be authorized for the API call. (optional)  (default to null)
             var userId = 123;  // Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore. (optional)  (default to null)
             var weight = new Weight(); // Weight |  (optional) 
 
             try {
                 // Post Scale values
-                generic-post-response result = apiInstance.scalePost(qToken, token, userId, weight);
+                generic-post-response result = apiInstance.scalePost(registrationId, qToken, token, userId, weight);
                 Debug.WriteLine(result);
             } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.scalePost: " + e.Message );
@@ -8706,13 +8712,14 @@ OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKey('token',
 
 // Create an instance of the API class
 $api_instance = new OpenAPITools\Client\Api\DefaultApi();
-$qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either the cookie or this Q-Token must be set to be authorized for the API call.
+$registrationId = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either the cookie, the registrationId or this Q-Token must be set to be authorized for the API call.
+$qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either the cookie, the registrationId or this Q-Token must be set to be authorized for the API call.
 $token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie or the Q-Token must be set to be authorized for the API call.
 $userId = 123; // Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
 $weight = ; // Weight | 
 
 try {
-    $result = $api_instance->scalePost($qToken, $token, $userId, $weight);
+    $result = $api_instance->scalePost($registrationId, $qToken, $token, $userId, $weight);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->scalePost: ', $e->getMessage(), PHP_EOL;
@@ -8732,13 +8739,14 @@ $WWW::OPenAPIClient::Configuration::api_key->{'token'} = 'YOUR_API_KEY';
 
 # Create an instance of the API class
 my $api_instance = WWW::OPenAPIClient::DefaultApi->new();
-my $qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; # String | Either the cookie or this Q-Token must be set to be authorized for the API call.
+my $registrationId = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; # String | Either the cookie, the registrationId or this Q-Token must be set to be authorized for the API call.
+my $qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; # String | Either the cookie, the registrationId or this Q-Token must be set to be authorized for the API call.
 my $token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; # String | Either this cookie or the Q-Token must be set to be authorized for the API call.
 my $userId = 123; # Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
 my $weight = WWW::OPenAPIClient::Object::Weight->new(); # Weight | 
 
 eval {
-    my $result = $api_instance->scalePost(qToken => $qToken, token => $token, userId => $userId, weight => $weight);
+    my $result = $api_instance->scalePost(registrationId => $registrationId, qToken => $qToken, token => $token, userId => $userId, weight => $weight);
     print Dumper($result);
 };
 if ($@) {
@@ -8760,14 +8768,15 @@ openapi_client.configuration.api_key['token'] = 'YOUR_API_KEY'
 
 # Create an instance of the API class
 api_instance = openapi_client.DefaultApi()
-qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449 # String | Either the cookie or this Q-Token must be set to be authorized for the API call. (default to null)
+registrationId = 8B0FE5CF-C096-4B3E-8748-27906B4A9449 # String | Either the cookie, the registrationId or this Q-Token must be set to be authorized for the API call. (optional) (default to null)
+qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449 # String | Either the cookie, the registrationId or this Q-Token must be set to be authorized for the API call. (optional) (default to null)
 token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449 # String | Either this cookie or the Q-Token must be set to be authorized for the API call. (optional) (default to null)
 userId = 123 # Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore. (optional) (default to null)
 weight =  # Weight |  (optional)
 
 try:
     # Post Scale values
-    api_response = api_instance.scale_post(qToken, token=token, userId=userId, weight=weight)
+    api_response = api_instance.scale_post(registrationId=registrationId, qToken=qToken, token=token, userId=userId, weight=weight)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->scalePost: %s\n" % e)</code></pre>
@@ -8777,13 +8786,14 @@ except ApiException as e:
                               <pre class="prettyprint"><code class="language-rust">extern crate DefaultApi;
 
 pub fn main() {
+    let registrationId = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String
     let qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String
     let token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String
     let userId = 123; // Long
     let weight = ; // Weight
 
     let mut context = DefaultApi::Context::default();
-    let result = client.scalePost(qToken, token, userId, weight, &context).wait();
+    let result = client.scalePost(registrationId, qToken, token, userId, weight, &context).wait();
 
     println!("{:?}", result);
 }
@@ -8805,7 +8815,27 @@ pub fn main() {
                                 <th width="150px">Name</th>
                                 <th>Description</th>
                               </tr>
-                                  <tr><td style="width:150px;">Q-Token*</td>
+                                  <tr><td style="width:150px;">registrationId</td>
+<td>
+
+
+    <div id="d2e199_scalePost_registrationId">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    String
+                </span>
+
+                    <div class="inner description marked">
+Either the cookie, the registrationId or this Q-Token must be set to be authorized for the API call.
+                    </div>
+            </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                                  <tr><td style="width:150px;">Q-Token</td>
 <td>
 
 
@@ -8817,12 +8847,9 @@ pub fn main() {
                 </span>
 
                     <div class="inner description marked">
-Either the cookie or this Q-Token must be set to be authorized for the API call.
+Either the cookie, the registrationId or this Q-Token must be set to be authorized for the API call.
                     </div>
             </div>
-                <div class="inner required">
-                    Required
-                </div>
         </div>
     </div>
 </td>

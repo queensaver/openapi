@@ -931,12 +931,17 @@ paths:
 
       parameters:
       - in: header
-        name: Q-Token
-        description: Either the cookie or this Q-Token must be set to be authorized for the API call.
+        name: registrationId
+        description: Either the cookie, the registrationId or this Q-Token must be set to be authorized for the API call.
         schema:
           type: string
         example: 8B0FE5CF-C096-4B3E-8748-27906B4A9449
-        required: true
+      - in: header
+        name: Q-Token
+        description: Either the cookie, the registrationId or this Q-Token must be set to be authorized for the API call.
+        schema:
+          type: string
+        example: 8B0FE5CF-C096-4B3E-8748-27906B4A9449
       - in: cookie
         name: token
         description: Either this cookie or the Q-Token must be set to be authorized for the API call.

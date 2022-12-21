@@ -238,13 +238,15 @@ message ScaleGetResponse {
 }
 
 message ScalePostRequest {
-  // Either the cookie or this Q-Token must be set to be authorized for the API call.
-  string qToken = 1;
+  // Either the cookie, the registrationId or this Q-Token must be set to be authorized for the API call.
+  string registrationId = 1;
+  // Either the cookie, the registrationId or this Q-Token must be set to be authorized for the API call.
+  string qToken = 2;
   // Either this cookie or the Q-Token must be set to be authorized for the API call.
-  string token = 2;
+  string token = 3;
   // The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
-  int64 userId = 3;
-  Weight weight = 4;
+  int64 userId = 4;
+  Weight weight = 5;
 
 }
 

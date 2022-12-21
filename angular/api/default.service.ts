@@ -1308,20 +1308,18 @@ export class DefaultService {
     /**
      * Post Scale values
      * Sends a weight from a hive to the queensaver system. The request needs to send a cookie along with the request. The cookie is stored under the key called \&quot;token\&quot;. Note that this returns the scale data for a QBox Client (independent of the beeHive), the API call for an actual beeHive is different.
-     * @param qToken Either the cookie or this Q-Token must be set to be authorized for the API call.
+     * @param registrationId Either the cookie, the registrationId or this Q-Token must be set to be authorized for the API call.
+     * @param qToken Either the cookie, the registrationId or this Q-Token must be set to be authorized for the API call.
      * @param token Either this cookie or the Q-Token must be set to be authorized for the API call.
      * @param userId The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
      * @param weight 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public scalePost(qToken: string, token?: string, userId?: number, weight?: Weight, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<GenericPostResponse>;
-    public scalePost(qToken: string, token?: string, userId?: number, weight?: Weight, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<GenericPostResponse>>;
-    public scalePost(qToken: string, token?: string, userId?: number, weight?: Weight, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<GenericPostResponse>>;
-    public scalePost(qToken: string, token?: string, userId?: number, weight?: Weight, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
-        if (qToken === null || qToken === undefined) {
-            throw new Error('Required parameter qToken was null or undefined when calling scalePost.');
-        }
+    public scalePost(registrationId?: string, qToken?: string, token?: string, userId?: number, weight?: Weight, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<GenericPostResponse>;
+    public scalePost(registrationId?: string, qToken?: string, token?: string, userId?: number, weight?: Weight, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<GenericPostResponse>>;
+    public scalePost(registrationId?: string, qToken?: string, token?: string, userId?: number, weight?: Weight, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<GenericPostResponse>>;
+    public scalePost(registrationId?: string, qToken?: string, token?: string, userId?: number, weight?: Weight, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
 
         let localVarQueryParameters = new HttpParams({encoder: this.encoder});
         if (userId !== undefined && userId !== null) {
@@ -1330,6 +1328,9 @@ export class DefaultService {
         }
 
         let localVarHeaders = this.defaultHeaders;
+        if (registrationId !== undefined && registrationId !== null) {
+            localVarHeaders = localVarHeaders.set('registrationId', String(registrationId));
+        }
         if (qToken !== undefined && qToken !== null) {
             localVarHeaders = localVarHeaders.set('Q-Token', String(qToken));
         }
