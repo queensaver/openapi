@@ -15,7 +15,7 @@ type AuthenticatePostResponse struct {
 	HttpResponseCode int32 `json:"httpResponseCode,omitempty"`
 
 	// the user id.
-	UserId float32 `json:"userId,omitempty"`
+	UserId int64 `json:"userId,omitempty"`
 }
 
 // AssertAuthenticatePostResponseRequired checks if the required fields are not zero-ed

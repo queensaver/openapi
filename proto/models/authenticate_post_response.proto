@@ -19,6 +19,6 @@ message AuthenticatePostResponse {
   int32 httpResponseCode = 1;
 
   // the user id.
-  float userId = 2;
+  int64 userId = 2;
 
 }

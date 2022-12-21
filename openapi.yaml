@@ -1272,7 +1272,7 @@ components:
           description: HTTP response code.
           x-protobuf-index: 1
         userId:
-          type: number
+          type: integer
           format: int64
           description: the user id.
           example: 1

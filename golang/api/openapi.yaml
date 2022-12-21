@@ -1488,7 +1488,7 @@ components:
           description: the user id.
           example: 1
           format: int64
-          type: number
+          type: integer
           x-protobuf-index: 2
       type: object
     login-post-response:
