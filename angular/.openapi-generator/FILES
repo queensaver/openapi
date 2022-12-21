@@ -8,6 +8,7 @@ encoder.ts
 git_push.sh
 index.ts
 model/alerts.ts
+model/authenticatePostResponse.ts
 model/bbox.ts
 model/bboxConfigResponse.ts
 model/bhive.ts

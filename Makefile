@@ -43,6 +43,7 @@ protos:
 		--go_opt=Mmodels/bbox_config_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/registration_id.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/login_post_response.proto=github.com/queensaver/openapi/golang/proto/models \
+		--go_opt=Mmodels/authenticate_post_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/generic_post_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		\
 		proto/models/hive.proto \
@@ -72,6 +73,7 @@ protos:
 		proto/models/bbox_config_response.proto \
 		proto/models/registration_id.proto \
 		proto/models/login_post_response.proto \
+		proto/models/authenticate_post_response.proto \
 		proto/models/generic_post_response.proto
 
 grpc:
@@ -110,6 +112,7 @@ grpc:
 		--go_opt=Mmodels/bbox_config_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/registration_id.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/login_post_response.proto=github.com/queensaver/openapi/golang/proto/models \
+		--go_opt=Mmodels/authenticate_post_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/generic_post_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		\
 		--go_grpc_opt=Mservices/default_service.proto=github.com/queensaver/openapi/golang/proto/services \
@@ -140,6 +143,7 @@ grpc:
 		--go_grpc_opt=Mmodels/bbox_config_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_grpc_opt=Mmodels/registration_id.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_grpc_opt=Mmodels/login_post_response.proto=github.com/queensaver/openapi/golang/proto/models \
+		--go_grpc_opt=Mmodels/authenticate_post_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_grpc_opt=Mmodels/generic_post_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		\
 		proto/services/default_service.proto

@@ -311,7 +311,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/generic-post-response'
+                $ref: '#/components/schemas/authenticate-post-response'
           description: Authenticated
         "400":
           description: Client error
@@ -1472,6 +1472,23 @@ components:
             the scale. The unit is in seconds.
           example: 409
           type: integer
+          x-protobuf-index: 2
+      type: object
+    authenticate-post-response:
+      example:
+        httpResponseCode: 409
+        userId: 1
+      properties:
+        httpResponseCode:
+          description: HTTP response code.
+          example: 409
+          type: integer
+          x-protobuf-index: 1
+        userId:
+          description: the user id.
+          example: 1
+          format: int64
+          type: number
           x-protobuf-index: 2
       type: object
     login-post-response:

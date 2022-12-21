@@ -859,6 +859,24 @@ ul.nav-tabs {
     }
   }
 };
+    defs["authenticate-post-response"] = {
+  "type" : "object",
+  "properties" : {
+    "httpResponseCode" : {
+      "type" : "integer",
+      "description" : "HTTP response code.",
+      "example" : 409,
+      "x-protobuf-index" : 1
+    },
+    "userId" : {
+      "type" : "number",
+      "description" : "the user id.",
+      "format" : "int64",
+      "example" : 1,
+      "x-protobuf-index" : 2
+    }
+  }
+};
     defs["bbox"] = {
   "type" : "object",
   "properties" : {
@@ -1661,7 +1679,7 @@ public class DefaultApiExample {
         RegistrationId registrationId = ; // RegistrationId | 
 
         try {
-            generic-post-response result = apiInstance.authenticateRegistrationIdPost(registrationId);
+            authenticate-post-response result = apiInstance.authenticateRegistrationIdPost(registrationId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#authenticateRegistrationIdPost");
@@ -1681,7 +1699,7 @@ public class DefaultApiExample {
         RegistrationId registrationId = ; // RegistrationId | 
 
         try {
-            generic-post-response result = apiInstance.authenticateRegistrationIdPost(registrationId);
+            authenticate-post-response result = apiInstance.authenticateRegistrationIdPost(registrationId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#authenticateRegistrationIdPost");
@@ -1703,7 +1721,7 @@ RegistrationId *registrationId = ; //
 
 // authenticate against the internal authentication service with a registrationId.
 [apiInstance authenticateRegistrationIdPostWith:registrationId
-              completionHandler: ^(generic-post-response output, NSError* error) {
+              completionHandler: ^(authenticate-post-response output, NSError* error) {
     if (output) {
         NSLog(@"%@", output);
     }
@@ -1755,7 +1773,7 @@ namespace Example
 
             try {
                 // authenticate against the internal authentication service with a registrationId.
-                generic-post-response result = apiInstance.authenticateRegistrationIdPost(registrationId);
+                authenticate-post-response result = apiInstance.authenticateRegistrationIdPost(registrationId);
                 Debug.WriteLine(result);
             } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.authenticateRegistrationIdPost: " + e.Message );
@@ -1929,7 +1947,7 @@ $(document).ready(function() {
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/generic-post-response"
+        "$ref" : "#/components/schemas/authenticate-post-response"
       }
     }
   }

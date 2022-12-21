@@ -19,6 +19,8 @@ import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
 
 // @ts-ignore
+import { AuthenticatePostResponse } from '../model/authenticatePostResponse';
+// @ts-ignore
 import { Bbox } from '../model/bbox';
 // @ts-ignore
 import { BboxConfigResponse } from '../model/bboxConfigResponse';
@@ -148,9 +150,9 @@ export class DefaultService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public authenticateRegistrationIdPost(registrationId: RegistrationId, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<GenericPostResponse>;
-    public authenticateRegistrationIdPost(registrationId: RegistrationId, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<GenericPostResponse>>;
-    public authenticateRegistrationIdPost(registrationId: RegistrationId, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<GenericPostResponse>>;
+    public authenticateRegistrationIdPost(registrationId: RegistrationId, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<AuthenticatePostResponse>;
+    public authenticateRegistrationIdPost(registrationId: RegistrationId, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<AuthenticatePostResponse>>;
+    public authenticateRegistrationIdPost(registrationId: RegistrationId, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<AuthenticatePostResponse>>;
     public authenticateRegistrationIdPost(registrationId: RegistrationId, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
         if (registrationId === null || registrationId === undefined) {
             throw new Error('Required parameter registrationId was null or undefined when calling authenticateRegistrationIdPost.');
@@ -196,7 +198,7 @@ export class DefaultService {
             }
         }
 
-        return this.httpClient.post<GenericPostResponse>(`${this.configuration.basePath}/authenticateRegistrationId`,
+        return this.httpClient.post<AuthenticatePostResponse>(`${this.configuration.basePath}/authenticateRegistrationId`,
             registrationId,
             {
                 context: localVarHttpContext,

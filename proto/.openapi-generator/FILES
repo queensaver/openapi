@@ -1,5 +1,6 @@
 README.md
 models/alerts.proto
+models/authenticate_post_response.proto
 models/bbox.proto
 models/bbox_config_response.proto
 models/bhive.proto

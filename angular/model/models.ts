@@ -1,4 +1,5 @@
 export * from './alerts';
+export * from './authenticatePostResponse';
 export * from './bbox';
 export * from './bboxConfigResponse';
 export * from './bhive';

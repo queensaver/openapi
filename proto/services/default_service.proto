@@ -13,6 +13,7 @@ syntax = "proto3";
 package openapi.services.defaultservice;
 
 import "google/protobuf/empty.proto";
+import public "models/authenticate_post_response.proto";
 import public "models/bbox.proto";
 import public "models/bbox_config_response.proto";
 import public "models/generic_post_response.proto";
@@ -37,7 +38,7 @@ import public "models/varroa_scan_response.proto";
 import public "models/weight.proto";
 
 service DefaultService {
-  rpc AuthenticateRegistrationIdPost (AuthenticateRegistrationIdPostRequest) returns (GenericPostResponse);
+  rpc AuthenticateRegistrationIdPost (AuthenticateRegistrationIdPostRequest) returns (AuthenticatePostResponse);
 
   rpc BboxesGet (google.protobuf.Empty) returns (BboxesGetResponse);
 
