@@ -1223,6 +1223,7 @@ export class DefaultService {
      * @param token Either this cookie, registrationId or the Q-Token must be set to be authorized for the API call.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @deprecated
      */
     public scaleGet(bhiveId: string, epoch: number, secondsInThePast: number, qToken?: string, token?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<Array<Weight>>;
     public scaleGet(bhiveId: string, epoch: number, secondsInThePast: number, qToken?: string, token?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<Array<Weight>>>;

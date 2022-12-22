@@ -995,6 +995,7 @@ paths:
     get:
       summary: Get Scale values 
       operationId: scaleGet
+      deprecated: true
       description: This returns scale values for a certain, defineable date range. The request needs to send a cookie along with the request. The cookie is stored under the key called "token". Note that this returns the scale data for a QBox Client (independent of the beeHive), the API call for an actual beeHive is different.
       # operationId: getScaleValues
       security:

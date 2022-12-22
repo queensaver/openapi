@@ -1181,6 +1181,7 @@ paths:
       summary: Post Scale values
   /v1/scale:
     get:
+      deprecated: true
       description: "This returns scale values for a certain, defineable date range.\
         \ The request needs to send a cookie along with the request. The cookie is\
         \ stored under the key called \"token\". Note that this returns the scale\

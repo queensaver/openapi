@@ -245,6 +245,7 @@ func (s *DefaultApiService) LoginPost(ctx context.Context, username string, pass
 }
 
 // ScaleGet - Get Scale values
+// Deprecated
 func (s *DefaultApiService) ScaleGet(ctx context.Context, bhiveId string, epoch int64, secondsInThePast int64, qToken string, token string) (ImplResponse, error) {
 	// TODO - update ScaleGet with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.

@@ -33,6 +33,7 @@ type DefaultApiRouter interface {
 	HivesPost(http.ResponseWriter, *http.Request)
 	HivesPut(http.ResponseWriter, *http.Request)
 	LoginPost(http.ResponseWriter, *http.Request)
+	// Deprecated
 	ScaleGet(http.ResponseWriter, *http.Request)
 	ScaleGetV2(http.ResponseWriter, *http.Request)
 	ScalePost(http.ResponseWriter, *http.Request)
@@ -68,6 +69,7 @@ type DefaultApiServicer interface {
 	HivesPost(context.Context, string, string, int64, Hive) (ImplResponse, error)
 	HivesPut(context.Context, string, string, int64, Hive) (ImplResponse, error)
 	LoginPost(context.Context, string, string) (ImplResponse, error)
+	// Deprecated
 	ScaleGet(context.Context, string, int64, int64, string, string) (ImplResponse, error)
 	ScaleGetV2(context.Context, string, int64, int64, string, string, int64) (ImplResponse, error)
 	ScalePost(context.Context, string, string, string, int64, Weight) (ImplResponse, error)
