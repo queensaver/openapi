@@ -318,11 +318,11 @@ paths:
         "500":
           description: Internal error
 
-  /v1/configs/bhive/associate:
+  /v1/configs/bbox/associate:
     post:
-      summary: associate bhive (sensors) with a logical hive
-      operationId: configsBhiveAssociatePost
-      description: This connects a bhive with a hive so all telemetry data will be associate with the hive. If the hiveUuid is empty, we disassociate that bhive (it's no longer connected to any hives)
+      summary: associate bbox and its sensors to a logical hive
+      operationId: configsBboxAssociatePost
+      description: This connects a bbox with a hive so all telemetry data will be associate with the hive. If the hiveUuid is empty, we disassociate that bhive (it's no longer connected to any hives)
       parameters:
       - name: userId
         in: query
@@ -332,9 +332,9 @@ paths:
         schema:
           type: integer
           format: int64
-      - name: bhiveId
+      - name: bboxId
         in: query
-        description: The Mac Address of the QBox client.
+        description: The Mac Address of the bBox.
         required: true
         example: 829898a53801
         schema:

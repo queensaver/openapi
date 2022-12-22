@@ -26,12 +26,12 @@ const _ = grpc.SupportPackageIsVersion7
 type DefaultServiceClient interface {
 	AuthenticateRegistrationIdPost(ctx context.Context, in *AuthenticateRegistrationIdPostRequest, opts ...grpc.CallOption) (*models.AuthenticatePostResponse, error)
 	BboxesGet(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*BboxesGetResponse, error)
+	ConfigsBboxAssociatePost(ctx context.Context, in *ConfigsBboxAssociatePostRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	ConfigsBboxDelete(ctx context.Context, in *ConfigsBboxDeleteRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	ConfigsBboxGet(ctx context.Context, in *ConfigsBboxGetRequest, opts ...grpc.CallOption) (*models.GetBboxResponse, error)
 	ConfigsBboxPost(ctx context.Context, in *ConfigsBboxPostRequest, opts ...grpc.CallOption) (*models.PostBboxResponse, error)
 	ConfigsBboxPut(ctx context.Context, in *ConfigsBboxPutRequest, opts ...grpc.CallOption) (*models.PutBboxResponse, error)
 	ConfigsBboxRegisterPost(ctx context.Context, in *ConfigsBboxRegisterPostRequest, opts ...grpc.CallOption) (*models.BboxConfigResponse, error)
-	ConfigsBhiveAssociatePost(ctx context.Context, in *ConfigsBhiveAssociatePostRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	HivesDelete(ctx context.Context, in *HivesDeleteRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	HivesGet(ctx context.Context, in *HivesGetRequest, opts ...grpc.CallOption) (*models.GetHivesResponse, error)
 	HivesPost(ctx context.Context, in *HivesPostRequest, opts ...grpc.CallOption) (*models.PostHivesResponse, error)
@@ -79,6 +79,15 @@ func (c *defaultServiceClient) BboxesGet(ctx context.Context, in *emptypb.Empty,
 	return out, nil
 }
 
+func (c *defaultServiceClient) ConfigsBboxAssociatePost(ctx context.Context, in *ConfigsBboxAssociatePostRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, "/openapi.services.defaultservice.DefaultService/ConfigsBboxAssociatePost", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *defaultServiceClient) ConfigsBboxDelete(ctx context.Context, in *ConfigsBboxDeleteRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, "/openapi.services.defaultservice.DefaultService/ConfigsBboxDelete", in, out, opts...)
@@ -118,15 +127,6 @@ func (c *defaultServiceClient) ConfigsBboxPut(ctx context.Context, in *ConfigsBb
 func (c *defaultServiceClient) ConfigsBboxRegisterPost(ctx context.Context, in *ConfigsBboxRegisterPostRequest, opts ...grpc.CallOption) (*models.BboxConfigResponse, error) {
 	out := new(models.BboxConfigResponse)
 	err := c.cc.Invoke(ctx, "/openapi.services.defaultservice.DefaultService/ConfigsBboxRegisterPost", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *defaultServiceClient) ConfigsBhiveAssociatePost(ctx context.Context, in *ConfigsBhiveAssociatePostRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/openapi.services.defaultservice.DefaultService/ConfigsBhiveAssociatePost", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -310,12 +310,12 @@ func (c *defaultServiceClient) VarroaScanPost(ctx context.Context, in *VarroaSca
 type DefaultServiceServer interface {
 	AuthenticateRegistrationIdPost(context.Context, *AuthenticateRegistrationIdPostRequest) (*models.AuthenticatePostResponse, error)
 	BboxesGet(context.Context, *emptypb.Empty) (*BboxesGetResponse, error)
+	ConfigsBboxAssociatePost(context.Context, *ConfigsBboxAssociatePostRequest) (*emptypb.Empty, error)
 	ConfigsBboxDelete(context.Context, *ConfigsBboxDeleteRequest) (*emptypb.Empty, error)
 	ConfigsBboxGet(context.Context, *ConfigsBboxGetRequest) (*models.GetBboxResponse, error)
 	ConfigsBboxPost(context.Context, *ConfigsBboxPostRequest) (*models.PostBboxResponse, error)
 	ConfigsBboxPut(context.Context, *ConfigsBboxPutRequest) (*models.PutBboxResponse, error)
 	ConfigsBboxRegisterPost(context.Context, *ConfigsBboxRegisterPostRequest) (*models.BboxConfigResponse, error)
-	ConfigsBhiveAssociatePost(context.Context, *ConfigsBhiveAssociatePostRequest) (*emptypb.Empty, error)
 	HivesDelete(context.Context, *HivesDeleteRequest) (*emptypb.Empty, error)
 	HivesGet(context.Context, *HivesGetRequest) (*models.GetHivesResponse, error)
 	HivesPost(context.Context, *HivesPostRequest) (*models.PostHivesResponse, error)
@@ -348,6 +348,9 @@ func (UnimplementedDefaultServiceServer) AuthenticateRegistrationIdPost(context.
 func (UnimplementedDefaultServiceServer) BboxesGet(context.Context, *emptypb.Empty) (*BboxesGetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BboxesGet not implemented")
 }
+func (UnimplementedDefaultServiceServer) ConfigsBboxAssociatePost(context.Context, *ConfigsBboxAssociatePostRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ConfigsBboxAssociatePost not implemented")
+}
 func (UnimplementedDefaultServiceServer) ConfigsBboxDelete(context.Context, *ConfigsBboxDeleteRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ConfigsBboxDelete not implemented")
 }
@@ -362,9 +365,6 @@ func (UnimplementedDefaultServiceServer) ConfigsBboxPut(context.Context, *Config
 }
 func (UnimplementedDefaultServiceServer) ConfigsBboxRegisterPost(context.Context, *ConfigsBboxRegisterPostRequest) (*models.BboxConfigResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ConfigsBboxRegisterPost not implemented")
-}
-func (UnimplementedDefaultServiceServer) ConfigsBhiveAssociatePost(context.Context, *ConfigsBhiveAssociatePostRequest) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ConfigsBhiveAssociatePost not implemented")
 }
 func (UnimplementedDefaultServiceServer) HivesDelete(context.Context, *HivesDeleteRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method HivesDelete not implemented")
@@ -472,6 +472,24 @@ func _DefaultService_BboxesGet_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DefaultService_ConfigsBboxAssociatePost_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ConfigsBboxAssociatePostRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DefaultServiceServer).ConfigsBboxAssociatePost(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/openapi.services.defaultservice.DefaultService/ConfigsBboxAssociatePost",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DefaultServiceServer).ConfigsBboxAssociatePost(ctx, req.(*ConfigsBboxAssociatePostRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DefaultService_ConfigsBboxDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ConfigsBboxDeleteRequest)
 	if err := dec(in); err != nil {
@@ -558,24 +576,6 @@ func _DefaultService_ConfigsBboxRegisterPost_Handler(srv interface{}, ctx contex
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DefaultServiceServer).ConfigsBboxRegisterPost(ctx, req.(*ConfigsBboxRegisterPostRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _DefaultService_ConfigsBhiveAssociatePost_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ConfigsBhiveAssociatePostRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DefaultServiceServer).ConfigsBhiveAssociatePost(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/openapi.services.defaultservice.DefaultService/ConfigsBhiveAssociatePost",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DefaultServiceServer).ConfigsBhiveAssociatePost(ctx, req.(*ConfigsBhiveAssociatePostRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -938,6 +938,10 @@ var DefaultService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _DefaultService_BboxesGet_Handler,
 		},
 		{
+			MethodName: "ConfigsBboxAssociatePost",
+			Handler:    _DefaultService_ConfigsBboxAssociatePost_Handler,
+		},
+		{
 			MethodName: "ConfigsBboxDelete",
 			Handler:    _DefaultService_ConfigsBboxDelete_Handler,
 		},
@@ -956,10 +960,6 @@ var DefaultService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ConfigsBboxRegisterPost",
 			Handler:    _DefaultService_ConfigsBboxRegisterPost_Handler,
-		},
-		{
-			MethodName: "ConfigsBhiveAssociatePost",
-			Handler:    _DefaultService_ConfigsBhiveAssociatePost_Handler,
 		},
 		{
 			MethodName: "HivesDelete",

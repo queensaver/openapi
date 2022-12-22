@@ -363,12 +363,12 @@ paths:
         "500":
           description: Internal error
       summary: register bbox
-  /v1/configs/bhive/associate:
+  /v1/configs/bbox/associate:
     post:
-      description: "This connects a bhive with a hive so all telemetry data will be\
+      description: "This connects a bbox with a hive so all telemetry data will be\
         \ associate with the hive. If the hiveUuid is empty, we disassociate that\
         \ bhive (it's no longer connected to any hives)"
-      operationId: configsBhiveAssociatePost
+      operationId: configsBboxAssociatePost
       parameters:
       - description: The UserID is set internally and can not set or be overridden
           with the API request. Please ignore.
@@ -381,11 +381,11 @@ paths:
           format: int64
           type: integer
         style: form
-      - description: The Mac Address of the QBox client.
+      - description: The Mac Address of the bBox.
         example: 829898a53801
         explode: true
         in: query
-        name: bhiveId
+        name: bboxId
         required: true
         schema:
           type: string
@@ -406,7 +406,7 @@ paths:
           description: Client error
         "500":
           description: Internal error
-      summary: associate bhive (sensors) with a logical hive
+      summary: associate bbox and its sensors to a logical hive
   /v1/stands:
     delete:
       description: "This deletes a stand. If a stand is deleted, it will only get\

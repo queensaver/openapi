@@ -60,6 +60,23 @@ func (s *DefaultApiService) BboxesGet(ctx context.Context) (ImplResponse, error)
 	return Response(http.StatusNotImplemented, nil), errors.New("BboxesGet method not implemented")
 }
 
+// ConfigsBboxAssociatePost - associate bbox and its sensors to a logical hive
+func (s *DefaultApiService) ConfigsBboxAssociatePost(ctx context.Context, bboxId string, hiveUuid string, userId int64) (ImplResponse, error) {
+	// TODO - update ConfigsBboxAssociatePost with the required logic for this service method.
+	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
+
+	//TODO: Uncomment the next line to return response Response(200, {}) or use other options such as http.Ok ...
+	//return Response(200, nil),nil
+
+	//TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
+	//return Response(400, nil),nil
+
+	//TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
+	//return Response(500, nil),nil
+
+	return Response(http.StatusNotImplemented, nil), errors.New("ConfigsBboxAssociatePost method not implemented")
+}
+
 // ConfigsBboxDelete - Delete a bbox
 func (s *DefaultApiService) ConfigsBboxDelete(ctx context.Context, qToken string, uuid string, token string, userId int64) (ImplResponse, error) {
 	// TODO - update ConfigsBboxDelete with the required logic for this service method.
@@ -143,23 +160,6 @@ func (s *DefaultApiService) ConfigsBboxRegisterPost(ctx context.Context, userId 
 	//return Response(500, nil),nil
 
 	return Response(http.StatusNotImplemented, nil), errors.New("ConfigsBboxRegisterPost method not implemented")
-}
-
-// ConfigsBhiveAssociatePost - associate bhive (sensors) with a logical hive
-func (s *DefaultApiService) ConfigsBhiveAssociatePost(ctx context.Context, bhiveId string, hiveUuid string, userId int64) (ImplResponse, error) {
-	// TODO - update ConfigsBhiveAssociatePost with the required logic for this service method.
-	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
-
-	//TODO: Uncomment the next line to return response Response(200, {}) or use other options such as http.Ok ...
-	//return Response(200, nil),nil
-
-	//TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
-	//return Response(400, nil),nil
-
-	//TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
-	//return Response(500, nil),nil
-
-	return Response(http.StatusNotImplemented, nil), errors.New("ConfigsBhiveAssociatePost method not implemented")
 }
 
 // HivesDelete - Delete a Hive
