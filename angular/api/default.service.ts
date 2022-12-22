@@ -1313,13 +1313,14 @@ export class DefaultService {
      * @param secondsInThePast How many seconds we go to the past to get the data measurements.
      * @param qToken Either the cookie, registrationId or this Q-Token must be set to be authorized for the API call.
      * @param token Either this cookie, registrationId or the Q-Token must be set to be authorized for the API call.
+     * @param userId The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public scaleGetV2(macAddress: string, epoch: number, secondsInThePast: number, qToken?: string, token?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<Array<ScaleV2>>;
-    public scaleGetV2(macAddress: string, epoch: number, secondsInThePast: number, qToken?: string, token?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<Array<ScaleV2>>>;
-    public scaleGetV2(macAddress: string, epoch: number, secondsInThePast: number, qToken?: string, token?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<Array<ScaleV2>>>;
-    public scaleGetV2(macAddress: string, epoch: number, secondsInThePast: number, qToken?: string, token?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+    public scaleGetV2(macAddress: string, epoch: number, secondsInThePast: number, qToken?: string, token?: string, userId?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<Array<ScaleV2>>;
+    public scaleGetV2(macAddress: string, epoch: number, secondsInThePast: number, qToken?: string, token?: string, userId?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<Array<ScaleV2>>>;
+    public scaleGetV2(macAddress: string, epoch: number, secondsInThePast: number, qToken?: string, token?: string, userId?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<Array<ScaleV2>>>;
+    public scaleGetV2(macAddress: string, epoch: number, secondsInThePast: number, qToken?: string, token?: string, userId?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
         if (macAddress === null || macAddress === undefined) {
             throw new Error('Required parameter macAddress was null or undefined when calling scaleGetV2.');
         }
@@ -1342,6 +1343,10 @@ export class DefaultService {
         if (secondsInThePast !== undefined && secondsInThePast !== null) {
           localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
             <any>secondsInThePast, 'secondsInThePast');
+        }
+        if (userId !== undefined && userId !== null) {
+          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+            <any>userId, 'userId');
         }
 
         let localVarHeaders = this.defaultHeaders;

@@ -262,7 +262,7 @@ func (s *DefaultApiService) ScaleGet(ctx context.Context, bhiveId string, epoch 
 }
 
 // ScaleGetV2 - Get Scale values
-func (s *DefaultApiService) ScaleGetV2(ctx context.Context, macAddress string, epoch int64, secondsInThePast int64, qToken string, token string) (ImplResponse, error) {
+func (s *DefaultApiService) ScaleGetV2(ctx context.Context, macAddress string, epoch int64, secondsInThePast int64, qToken string, token string, userId int64) (ImplResponse, error) {
 	// TODO - update ScaleGetV2 with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 

@@ -8540,7 +8540,7 @@ How many seconds we go to the past to get the data measurements.
                             <pre class="prettyprint"><code class="language-bsh">curl -X GET \
  \
  -H "Accept: application/json" \
- "https://api.queensaver.com/v2/scale?macAddress=829898a53801&epoch=1639170002&secondsInThePast=7200"
+ "https://api.queensaver.com/v2/scale?macAddress=829898a53801&epoch=1639170002&secondsInThePast=7200&userId=123"
 </code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-scaleGetV2-0-java">
@@ -8569,9 +8569,10 @@ public class DefaultApiExample {
         Long secondsInThePast = 7200; // Long | How many seconds we go to the past to get the data measurements.
         String qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either the cookie, registrationId or this Q-Token must be set to be authorized for the API call.
         String token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie, registrationId or the Q-Token must be set to be authorized for the API call.
+        Long userId = 123; // Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
 
         try {
-            array[scaleV2] result = apiInstance.scaleGetV2(macAddress, epoch, secondsInThePast, qToken, token);
+            array[scaleV2] result = apiInstance.scaleGetV2(macAddress, epoch, secondsInThePast, qToken, token, userId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#scaleGetV2");
@@ -8593,9 +8594,10 @@ public class DefaultApiExample {
         Long secondsInThePast = 7200; // Long | How many seconds we go to the past to get the data measurements.
         String qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either the cookie, registrationId or this Q-Token must be set to be authorized for the API call.
         String token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie, registrationId or the Q-Token must be set to be authorized for the API call.
+        Long userId = 123; // Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
 
         try {
-            array[scaleV2] result = apiInstance.scaleGetV2(macAddress, epoch, secondsInThePast, qToken, token);
+            array[scaleV2] result = apiInstance.scaleGetV2(macAddress, epoch, secondsInThePast, qToken, token, userId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#scaleGetV2");
@@ -8624,6 +8626,7 @@ Long *epoch = 1639170002; // The Unix Time (epoch) that defines the end time of 
 Long *secondsInThePast = 7200; // How many seconds we go to the past to get the data measurements. (default to null)
 String *qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // Either the cookie, registrationId or this Q-Token must be set to be authorized for the API call. (optional) (default to null)
 String *token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // Either this cookie, registrationId or the Q-Token must be set to be authorized for the API call. (optional) (default to null)
+Long *userId = 123; // The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore. (optional) (default to null)
 
 // Get Scale values
 [apiInstance scaleGetV2With:macAddress
@@ -8631,6 +8634,7 @@ String *token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // Either this cookie, reg
     secondsInThePast:secondsInThePast
     qToken:qToken
     token:token
+    userId:userId
               completionHandler: ^(array[scaleV2] output, NSError* error) {
     if (output) {
         NSLog(@"%@", output);
@@ -8659,7 +8663,8 @@ var epoch = 1639170002; // {Long} The Unix Time (epoch) that defines the end tim
 var secondsInThePast = 7200; // {Long} How many seconds we go to the past to get the data measurements.
 var opts = {
   'qToken': 8B0FE5CF-C096-4B3E-8748-27906B4A9449, // {String} Either the cookie, registrationId or this Q-Token must be set to be authorized for the API call.
-  'token': 8B0FE5CF-C096-4B3E-8748-27906B4A9449 // {String} Either this cookie, registrationId or the Q-Token must be set to be authorized for the API call.
+  'token': 8B0FE5CF-C096-4B3E-8748-27906B4A9449, // {String} Either this cookie, registrationId or the Q-Token must be set to be authorized for the API call.
+  'userId': 123 // {Long} The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
 };
 
 var callback = function(error, data, response) {
@@ -8701,10 +8706,11 @@ namespace Example
             var secondsInThePast = 7200;  // Long | How many seconds we go to the past to get the data measurements. (default to null)
             var qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449;  // String | Either the cookie, registrationId or this Q-Token must be set to be authorized for the API call. (optional)  (default to null)
             var token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449;  // String | Either this cookie, registrationId or the Q-Token must be set to be authorized for the API call. (optional)  (default to null)
+            var userId = 123;  // Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore. (optional)  (default to null)
 
             try {
                 // Get Scale values
-                array[scaleV2] result = apiInstance.scaleGetV2(macAddress, epoch, secondsInThePast, qToken, token);
+                array[scaleV2] result = apiInstance.scaleGetV2(macAddress, epoch, secondsInThePast, qToken, token, userId);
                 Debug.WriteLine(result);
             } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.scaleGetV2: " + e.Message );
@@ -8731,9 +8737,10 @@ $epoch = 1639170002; // Long | The Unix Time (epoch) that defines the end time o
 $secondsInThePast = 7200; // Long | How many seconds we go to the past to get the data measurements.
 $qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either the cookie, registrationId or this Q-Token must be set to be authorized for the API call.
 $token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie, registrationId or the Q-Token must be set to be authorized for the API call.
+$userId = 123; // Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
 
 try {
-    $result = $api_instance->scaleGetV2($macAddress, $epoch, $secondsInThePast, $qToken, $token);
+    $result = $api_instance->scaleGetV2($macAddress, $epoch, $secondsInThePast, $qToken, $token, $userId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->scaleGetV2: ', $e->getMessage(), PHP_EOL;
@@ -8758,9 +8765,10 @@ my $epoch = 1639170002; # Long | The Unix Time (epoch) that defines the end time
 my $secondsInThePast = 7200; # Long | How many seconds we go to the past to get the data measurements.
 my $qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; # String | Either the cookie, registrationId or this Q-Token must be set to be authorized for the API call.
 my $token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; # String | Either this cookie, registrationId or the Q-Token must be set to be authorized for the API call.
+my $userId = 123; # Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
 
 eval {
-    my $result = $api_instance->scaleGetV2(macAddress => $macAddress, epoch => $epoch, secondsInThePast => $secondsInThePast, qToken => $qToken, token => $token);
+    my $result = $api_instance->scaleGetV2(macAddress => $macAddress, epoch => $epoch, secondsInThePast => $secondsInThePast, qToken => $qToken, token => $token, userId => $userId);
     print Dumper($result);
 };
 if ($@) {
@@ -8787,10 +8795,11 @@ epoch = 1639170002 # Long | The Unix Time (epoch) that defines the end time of t
 secondsInThePast = 7200 # Long | How many seconds we go to the past to get the data measurements. (default to null)
 qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449 # String | Either the cookie, registrationId or this Q-Token must be set to be authorized for the API call. (optional) (default to null)
 token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449 # String | Either this cookie, registrationId or the Q-Token must be set to be authorized for the API call. (optional) (default to null)
+userId = 123 # Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore. (optional) (default to null)
 
 try:
     # Get Scale values
-    api_response = api_instance.scale_get_v2(macAddress, epoch, secondsInThePast, qToken=qToken, token=token)
+    api_response = api_instance.scale_get_v2(macAddress, epoch, secondsInThePast, qToken=qToken, token=token, userId=userId)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->scaleGetV2: %s\n" % e)</code></pre>
@@ -8805,9 +8814,10 @@ pub fn main() {
     let secondsInThePast = 7200; // Long
     let qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String
     let token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String
+    let userId = 123; // Long
 
     let mut context = DefaultApi::Context::default();
-    let result = client.scaleGetV2(macAddress, epoch, secondsInThePast, qToken, token, &context).wait();
+    let result = client.scaleGetV2(macAddress, epoch, secondsInThePast, qToken, token, userId, &context).wait();
 
     println!("{:?}", result);
 }
@@ -8929,6 +8939,29 @@ How many seconds we go to the past to get the data measurements.
                 <div class="inner required">
                     Required
                 </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                                <tr><td style="width:150px;">userId</td>
+<td>
+
+
+    <div id="d2e199_scaleGetV2_userId">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    Long
+                </span>
+                    <span class="format">
+                        (int64)
+                    </span>
+
+                    <div class="inner description marked">
+The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
+                    </div>
+            </div>
         </div>
     </div>
 </td>
