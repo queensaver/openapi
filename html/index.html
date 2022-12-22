@@ -1263,6 +1263,28 @@ ul.nav-tabs {
     }
   }
 };
+    defs["scaleV2"] = {
+  "type" : "object",
+  "properties" : {
+    "macAddress" : {
+      "type" : "string",
+      "description" : "The mac address of the scale",
+      "example" : "829898a53801"
+    },
+    "weight" : {
+      "type" : "number",
+      "description" : "actual measurement of weight",
+      "format" : "float",
+      "example" : 53.2345
+    },
+    "epoch" : {
+      "type" : "integer",
+      "description" : "timestamp of the measurement on one second precision",
+      "format" : "int64",
+      "example" : 1639169129
+    }
+  }
+};
     defs["stand"] = {
   "required" : [ "name" ],
   "type" : "object",
@@ -1566,8 +1588,14 @@ ul.nav-tabs {
                     <li data-group="Default" data-name="scaleGet" class="">
                       <a href="#api-Default-scaleGet">scaleGet</a>
                     </li>
+                    <li data-group="Default" data-name="scaleGetV2" class="">
+                      <a href="#api-Default-scaleGetV2">scaleGetV2</a>
+                    </li>
                     <li data-group="Default" data-name="scalePost" class="">
                       <a href="#api-Default-scalePost">scalePost</a>
+                    </li>
+                    <li data-group="Default" data-name="scalePostV2" class="">
+                      <a href="#api-Default-scalePostV2">scalePostV2</a>
                     </li>
                     <li data-group="Default" data-name="standsDelete" class="">
                       <a href="#api-Default-standsDelete">standsDelete</a>
@@ -8506,6 +8534,546 @@ How many seconds we go to the past to get the data measurements.
                         </article>
                       </div>
                       <hr>
+                    <div id="api-Default-scaleGetV2">
+                      <article id="api-Default-scaleGetV2-0" data-group="User" data-name="scaleGetV2" data-version="0">
+                        <div class="pull-left">
+                          <h1>scaleGetV2</h1>
+                          <p>Get Scale values</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">This returns scale values for a certain, defineable date range. The request needs to send a registrationId in the header. Note that this returns the scale data for a scale (independent of the beeHive), the API call for an actual beeHive is different.</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/v2/scale</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-scaleGetV2-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-scaleGetV2-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-scaleGetV2-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-scaleGetV2-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-scaleGetV2-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-scaleGetV2-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-scaleGetV2-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-scaleGetV2-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-scaleGetV2-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-scaleGetV2-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-scaleGetV2-0-python">Python</a></li>
+                          <li class=""><a href="#examples-Default-scaleGetV2-0-rust">Rust</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-scaleGetV2-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X GET \
+ \
+ -H "Accept: application/json" \
+ "https://api.queensaver.com/v2/scale?macAddress=829898a53801&epoch=1639170002&secondsInThePast=7200"
+</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-scaleGetV2-0-java">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.model.*;
+import org.openapitools.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        
+        // Configure API key authorization: cookieAuth
+        ApiKeyAuth cookieAuth = (ApiKeyAuth) defaultClient.getAuthentication("cookieAuth");
+        cookieAuth.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cookieAuth.setApiKeyPrefix("Token");
+
+        // Create an instance of the API class
+        DefaultApi apiInstance = new DefaultApi();
+        String registrationId = 8B0FE5CFC0964B3E874827906B4A9449; // String | The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data.
+        String macAddress = 829898a53801; // String | The Mac Address of the scale.
+        Long epoch = 1639170002; // Long | The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the secondsInThePast parameter.
+        Long secondsInThePast = 7200; // Long | How many seconds we go to the past to get the data measurements.
+
+        try {
+            array[scaleV2] result = apiInstance.scaleGetV2(registrationId, macAddress, epoch, secondsInThePast);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#scaleGetV2");
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-scaleGetV2-0-android">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.DefaultApi;
+
+public class DefaultApiExample {
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+        String registrationId = 8B0FE5CFC0964B3E874827906B4A9449; // String | The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data.
+        String macAddress = 829898a53801; // String | The Mac Address of the scale.
+        Long epoch = 1639170002; // Long | The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the secondsInThePast parameter.
+        Long secondsInThePast = 7200; // Long | How many seconds we go to the past to get the data measurements.
+
+        try {
+            array[scaleV2] result = apiInstance.scaleGetV2(registrationId, macAddress, epoch, secondsInThePast);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#scaleGetV2");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-scaleGetV2-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-scaleGetV2-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: cookieAuth)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"token"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"token"];
+
+
+// Create an instance of the API class
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+String *registrationId = 8B0FE5CFC0964B3E874827906B4A9449; // The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data. (default to null)
+String *macAddress = 829898a53801; // The Mac Address of the scale. (default to null)
+Long *epoch = 1639170002; // The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the secondsInThePast parameter. (default to null)
+Long *secondsInThePast = 7200; // How many seconds we go to the past to get the data measurements. (default to null)
+
+// Get Scale values
+[apiInstance scaleGetV2With:registrationId
+    macAddress:macAddress
+    epoch:epoch
+    secondsInThePast:secondsInThePast
+              completionHandler: ^(array[scaleV2] output, NSError* error) {
+    if (output) {
+        NSLog(@"%@", output);
+    }
+    if (error) {
+        NSLog(@"Error: %@", error);
+    }
+}];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-scaleGetV2-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var QueensaverApi = require('queensaver_api');
+var defaultClient = QueensaverApi.ApiClient.instance;
+
+// Configure API key authorization: cookieAuth
+var cookieAuth = defaultClient.authentications['cookieAuth'];
+cookieAuth.apiKey = "YOUR API KEY";
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//cookieAuth.apiKeyPrefix['token'] = "Token";
+
+// Create an instance of the API class
+var api = new QueensaverApi.DefaultApi()
+var registrationId = 8B0FE5CFC0964B3E874827906B4A9449; // {String} The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data.
+var macAddress = 829898a53801; // {String} The Mac Address of the scale.
+var epoch = 1639170002; // {Long} The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the secondsInThePast parameter.
+var secondsInThePast = 7200; // {Long} How many seconds we go to the past to get the data measurements.
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.scaleGetV2(registrationId, macAddress, epoch, secondsInThePast, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-scaleGetV2-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-scaleGetV2-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using Org.OpenAPITools.Api;
+using Org.OpenAPITools.Client;
+using Org.OpenAPITools.Model;
+
+namespace Example
+{
+    public class scaleGetV2Example
+    {
+        public void main()
+        {
+            // Configure API key authorization: cookieAuth
+            Configuration.Default.ApiKey.Add("token", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.ApiKeyPrefix.Add("token", "Bearer");
+
+            // Create an instance of the API class
+            var apiInstance = new DefaultApi();
+            var registrationId = 8B0FE5CFC0964B3E874827906B4A9449;  // String | The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data. (default to null)
+            var macAddress = 829898a53801;  // String | The Mac Address of the scale. (default to null)
+            var epoch = 1639170002;  // Long | The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the secondsInThePast parameter. (default to null)
+            var secondsInThePast = 7200;  // Long | How many seconds we go to the past to get the data measurements. (default to null)
+
+            try {
+                // Get Scale values
+                array[scaleV2] result = apiInstance.scaleGetV2(registrationId, macAddress, epoch, secondsInThePast);
+                Debug.WriteLine(result);
+            } catch (Exception e) {
+                Debug.Print("Exception when calling DefaultApi.scaleGetV2: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-scaleGetV2-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure API key authorization: cookieAuth
+OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+
+// Create an instance of the API class
+$api_instance = new OpenAPITools\Client\Api\DefaultApi();
+$registrationId = 8B0FE5CFC0964B3E874827906B4A9449; // String | The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data.
+$macAddress = 829898a53801; // String | The Mac Address of the scale.
+$epoch = 1639170002; // Long | The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the secondsInThePast parameter.
+$secondsInThePast = 7200; // Long | How many seconds we go to the past to get the data measurements.
+
+try {
+    $result = $api_instance->scaleGetV2($registrationId, $macAddress, $epoch, $secondsInThePast);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->scaleGetV2: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-scaleGetV2-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::OPenAPIClient::Configuration;
+use WWW::OPenAPIClient::DefaultApi;
+
+# Configure API key authorization: cookieAuth
+$WWW::OPenAPIClient::Configuration::api_key->{'token'} = 'YOUR_API_KEY';
+# uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+#$WWW::OPenAPIClient::Configuration::api_key_prefix->{'token'} = "Bearer";
+
+# Create an instance of the API class
+my $api_instance = WWW::OPenAPIClient::DefaultApi->new();
+my $registrationId = 8B0FE5CFC0964B3E874827906B4A9449; # String | The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data.
+my $macAddress = 829898a53801; # String | The Mac Address of the scale.
+my $epoch = 1639170002; # Long | The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the secondsInThePast parameter.
+my $secondsInThePast = 7200; # Long | How many seconds we go to the past to get the data measurements.
+
+eval {
+    my $result = $api_instance->scaleGetV2(registrationId => $registrationId, macAddress => $macAddress, epoch => $epoch, secondsInThePast => $secondsInThePast);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->scaleGetV2: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-scaleGetV2-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import openapi_client
+from openapi_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: cookieAuth
+openapi_client.configuration.api_key['token'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# openapi_client.configuration.api_key_prefix['token'] = 'Bearer'
+
+# Create an instance of the API class
+api_instance = openapi_client.DefaultApi()
+registrationId = 8B0FE5CFC0964B3E874827906B4A9449 # String | The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data. (default to null)
+macAddress = 829898a53801 # String | The Mac Address of the scale. (default to null)
+epoch = 1639170002 # Long | The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the secondsInThePast parameter. (default to null)
+secondsInThePast = 7200 # Long | How many seconds we go to the past to get the data measurements. (default to null)
+
+try:
+    # Get Scale values
+    api_response = api_instance.scale_get_v2(registrationId, macAddress, epoch, secondsInThePast)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->scaleGetV2: %s\n" % e)</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-scaleGetV2-0-rust">
+                              <pre class="prettyprint"><code class="language-rust">extern crate DefaultApi;
+
+pub fn main() {
+    let registrationId = 8B0FE5CFC0964B3E874827906B4A9449; // String
+    let macAddress = 829898a53801; // String
+    let epoch = 1639170002; // Long
+    let secondsInThePast = 7200; // Long
+
+    let mut context = DefaultApi::Context::default();
+    let result = client.scaleGetV2(registrationId, macAddress, epoch, secondsInThePast, &context).wait();
+
+    println!("{:?}", result);
+}
+</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Scopes</h2>
+                          <table>
+                            
+                          </table>
+
+                          <h2>Parameters</h2>
+
+
+                            <div class="methodsubtabletitle">Header parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                  <tr><td style="width:150px;">registrationId*</td>
+<td>
+
+
+    <div id="d2e199_scaleGetV2_registrationId">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    String
+                </span>
+
+                    <div class="inner description marked">
+The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data.
+                    </div>
+            </div>
+                <div class="inner required">
+                    Required
+                </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                            </table>
+
+
+
+                            <div class="methodsubtabletitle">Query parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">macAddress*</td>
+<td>
+
+
+    <div id="d2e199_scaleGetV2_macAddress">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    String
+                </span>
+
+                    <div class="inner description marked">
+The Mac Address of the scale.
+                    </div>
+            </div>
+                <div class="inner required">
+                    Required
+                </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                                <tr><td style="width:150px;">epoch*</td>
+<td>
+
+
+    <div id="d2e199_scaleGetV2_epoch">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    Long
+                </span>
+                    <span class="format">
+                        (int64)
+                    </span>
+
+                    <div class="inner description marked">
+The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the secondsInThePast parameter.
+                    </div>
+            </div>
+                <div class="inner required">
+                    Required
+                </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                                <tr><td style="width:150px;">secondsInThePast*</td>
+<td>
+
+
+    <div id="d2e199_scaleGetV2_secondsInThePast">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    Long
+                </span>
+                    <span class="format">
+                        (int64)
+                    </span>
+
+                    <div class="inner description marked">
+How many seconds we go to the past to get the data measurements.
+                    </div>
+            </div>
+                <div class="inner required">
+                    Required
+                </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                            </table>
+
+                          <h2>Responses</h2>
+                            <h3 id="examples-Default-scaleGetV2-title-200"></h3>
+                            <p id="examples-Default-scaleGetV2-description-200" class="marked"></p>
+                            <script>
+                              var responseDefault200_description = `Successfully returned a list of scale measurements`;
+                              var responseDefault200_description_break = responseDefault200_description.indexOf('\n');
+                              if (responseDefault200_description_break == -1) {
+                                $("#examples-Default-scaleGetV2-title-200").text("Status: 200 - " + responseDefault200_description);
+                              } else {
+                                $("#examples-Default-scaleGetV2-title-200").text("Status: 200 - " + responseDefault200_description.substring(0, responseDefault200_description_break));
+                                $("#examples-Default-scaleGetV2-description-200").html(responseDefault200_description.substring(responseDefault200_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Default-scaleGetV2-200" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Default-scaleGetV2-200-schema">Schema</a>
+                                </li>
+
+
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Default-scaleGetV2-200-wrapper" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-Default-scaleGetV2-200-schema">
+                                  <div id="responses-Default-scaleGetV2-schema-200" class="exampleStyle">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Successfully returned a list of scale measurements",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/scaleV2"
+        }
+      }
+    }
+  }
+};
+                                        var schema = findNode('schema',schemaWrapper).schema;
+                                        if (!schema) {
+                                          schema = schemaWrapper.schema;
+                                        }
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else if (schema.items != null && schema.items.$ref != null) {
+                                            schema.items = defsParser.$refs.get(schema.items.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-Default-scaleGetV2-200-schema-data').val(JSON.stringify(schema));
+                                        var result = $('#responses-Default-scaleGetV2-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-Default-scaleGetV2-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+                            <h3 id="examples-Default-scaleGetV2-title-400"></h3>
+                            <p id="examples-Default-scaleGetV2-description-400" class="marked"></p>
+                            <script>
+                              var responseDefault400_description = `Client error`;
+                              var responseDefault400_description_break = responseDefault400_description.indexOf('\n');
+                              if (responseDefault400_description_break == -1) {
+                                $("#examples-Default-scaleGetV2-title-400").text("Status: 400 - " + responseDefault400_description);
+                              } else {
+                                $("#examples-Default-scaleGetV2-title-400").text("Status: 400 - " + responseDefault400_description.substring(0, responseDefault400_description_break));
+                                $("#examples-Default-scaleGetV2-description-400").html(responseDefault400_description.substring(responseDefault400_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Default-scaleGetV2-400" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Default-scaleGetV2-400-wrapper" style='margin-bottom: 10px;'>
+                            </div>
+                            <h3 id="examples-Default-scaleGetV2-title-500"></h3>
+                            <p id="examples-Default-scaleGetV2-description-500" class="marked"></p>
+                            <script>
+                              var responseDefault500_description = `Internal error`;
+                              var responseDefault500_description_break = responseDefault500_description.indexOf('\n');
+                              if (responseDefault500_description_break == -1) {
+                                $("#examples-Default-scaleGetV2-title-500").text("Status: 500 - " + responseDefault500_description);
+                              } else {
+                                $("#examples-Default-scaleGetV2-title-500").text("Status: 500 - " + responseDefault500_description.substring(0, responseDefault500_description_break));
+                                $("#examples-Default-scaleGetV2-description-500").html(responseDefault500_description.substring(responseDefault500_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Default-scaleGetV2-500" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Default-scaleGetV2-500-wrapper" style='margin-bottom: 10px;'>
+                            </div>
+                        </article>
+                      </div>
+                      <hr>
                     <div id="api-Default-scalePost">
                       <article id="api-Default-scalePost-0" data-group="User" data-name="scalePost" data-version="0">
                         <div class="pull-left">
@@ -9150,6 +9718,618 @@ The User ID. This is used internally and will be overwritten if you send it to t
                                     </script>
                                   </div>
                                   <input id='responses-Default-scalePost-500-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Default-scalePostV2">
+                      <article id="api-Default-scalePostV2-0" data-group="User" data-name="scalePostV2" data-version="0">
+                        <div class="pull-left">
+                          <h1>scalePostV2</h1>
+                          <p>Post Scale values</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">Sends a weight from a scale to the queensaver system. The request needs to send the registrationId along with the request.</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/v2/scale</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-scalePostV2-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-scalePostV2-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-scalePostV2-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-scalePostV2-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-scalePostV2-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-scalePostV2-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-scalePostV2-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-scalePostV2-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-scalePostV2-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-scalePostV2-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-scalePostV2-0-python">Python</a></li>
+                          <li class=""><a href="#examples-Default-scalePostV2-0-rust">Rust</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-scalePostV2-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X POST \
+ \
+ -H "Accept: application/json" \
+ -H "Content-Type: application/json" \
+ "https://api.queensaver.com/v2/scale?userId=123" \
+ -d ''
+</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-scalePostV2-0-java">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.model.*;
+import org.openapitools.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        
+        // Configure API key authorization: cookieAuth
+        ApiKeyAuth cookieAuth = (ApiKeyAuth) defaultClient.getAuthentication("cookieAuth");
+        cookieAuth.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cookieAuth.setApiKeyPrefix("Token");
+
+        // Create an instance of the API class
+        DefaultApi apiInstance = new DefaultApi();
+        String registrationId = 8B0FE5CFC0964B3E874827906B4A9449; // String | The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data.
+        Long userId = 123; // Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
+        ScaleV2 scaleV2 = ; // ScaleV2 | 
+
+        try {
+            generic-post-response result = apiInstance.scalePostV2(registrationId, userId, scaleV2);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#scalePostV2");
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-scalePostV2-0-android">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.DefaultApi;
+
+public class DefaultApiExample {
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+        String registrationId = 8B0FE5CFC0964B3E874827906B4A9449; // String | The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data.
+        Long userId = 123; // Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
+        ScaleV2 scaleV2 = ; // ScaleV2 | 
+
+        try {
+            generic-post-response result = apiInstance.scalePostV2(registrationId, userId, scaleV2);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#scalePostV2");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-scalePostV2-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-scalePostV2-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: cookieAuth)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"token"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"token"];
+
+
+// Create an instance of the API class
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+String *registrationId = 8B0FE5CFC0964B3E874827906B4A9449; // The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data. (default to null)
+Long *userId = 123; // The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore. (optional) (default to null)
+ScaleV2 *scaleV2 = ; //  (optional)
+
+// Post Scale values
+[apiInstance scalePostV2With:registrationId
+    userId:userId
+    scaleV2:scaleV2
+              completionHandler: ^(generic-post-response output, NSError* error) {
+    if (output) {
+        NSLog(@"%@", output);
+    }
+    if (error) {
+        NSLog(@"Error: %@", error);
+    }
+}];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-scalePostV2-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var QueensaverApi = require('queensaver_api');
+var defaultClient = QueensaverApi.ApiClient.instance;
+
+// Configure API key authorization: cookieAuth
+var cookieAuth = defaultClient.authentications['cookieAuth'];
+cookieAuth.apiKey = "YOUR API KEY";
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//cookieAuth.apiKeyPrefix['token'] = "Token";
+
+// Create an instance of the API class
+var api = new QueensaverApi.DefaultApi()
+var registrationId = 8B0FE5CFC0964B3E874827906B4A9449; // {String} The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data.
+var opts = {
+  'userId': 123, // {Long} The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
+  'scaleV2':  // {ScaleV2} 
+};
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.scalePostV2(registrationId, opts, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-scalePostV2-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-scalePostV2-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using Org.OpenAPITools.Api;
+using Org.OpenAPITools.Client;
+using Org.OpenAPITools.Model;
+
+namespace Example
+{
+    public class scalePostV2Example
+    {
+        public void main()
+        {
+            // Configure API key authorization: cookieAuth
+            Configuration.Default.ApiKey.Add("token", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.ApiKeyPrefix.Add("token", "Bearer");
+
+            // Create an instance of the API class
+            var apiInstance = new DefaultApi();
+            var registrationId = 8B0FE5CFC0964B3E874827906B4A9449;  // String | The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data. (default to null)
+            var userId = 123;  // Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore. (optional)  (default to null)
+            var scaleV2 = new ScaleV2(); // ScaleV2 |  (optional) 
+
+            try {
+                // Post Scale values
+                generic-post-response result = apiInstance.scalePostV2(registrationId, userId, scaleV2);
+                Debug.WriteLine(result);
+            } catch (Exception e) {
+                Debug.Print("Exception when calling DefaultApi.scalePostV2: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-scalePostV2-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure API key authorization: cookieAuth
+OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+
+// Create an instance of the API class
+$api_instance = new OpenAPITools\Client\Api\DefaultApi();
+$registrationId = 8B0FE5CFC0964B3E874827906B4A9449; // String | The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data.
+$userId = 123; // Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
+$scaleV2 = ; // ScaleV2 | 
+
+try {
+    $result = $api_instance->scalePostV2($registrationId, $userId, $scaleV2);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->scalePostV2: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-scalePostV2-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::OPenAPIClient::Configuration;
+use WWW::OPenAPIClient::DefaultApi;
+
+# Configure API key authorization: cookieAuth
+$WWW::OPenAPIClient::Configuration::api_key->{'token'} = 'YOUR_API_KEY';
+# uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+#$WWW::OPenAPIClient::Configuration::api_key_prefix->{'token'} = "Bearer";
+
+# Create an instance of the API class
+my $api_instance = WWW::OPenAPIClient::DefaultApi->new();
+my $registrationId = 8B0FE5CFC0964B3E874827906B4A9449; # String | The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data.
+my $userId = 123; # Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
+my $scaleV2 = WWW::OPenAPIClient::Object::ScaleV2->new(); # ScaleV2 | 
+
+eval {
+    my $result = $api_instance->scalePostV2(registrationId => $registrationId, userId => $userId, scaleV2 => $scaleV2);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->scalePostV2: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-scalePostV2-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import openapi_client
+from openapi_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: cookieAuth
+openapi_client.configuration.api_key['token'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# openapi_client.configuration.api_key_prefix['token'] = 'Bearer'
+
+# Create an instance of the API class
+api_instance = openapi_client.DefaultApi()
+registrationId = 8B0FE5CFC0964B3E874827906B4A9449 # String | The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data. (default to null)
+userId = 123 # Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore. (optional) (default to null)
+scaleV2 =  # ScaleV2 |  (optional)
+
+try:
+    # Post Scale values
+    api_response = api_instance.scale_post_v2(registrationId, userId=userId, scaleV2=scaleV2)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->scalePostV2: %s\n" % e)</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-scalePostV2-0-rust">
+                              <pre class="prettyprint"><code class="language-rust">extern crate DefaultApi;
+
+pub fn main() {
+    let registrationId = 8B0FE5CFC0964B3E874827906B4A9449; // String
+    let userId = 123; // Long
+    let scaleV2 = ; // ScaleV2
+
+    let mut context = DefaultApi::Context::default();
+    let result = client.scalePostV2(registrationId, userId, scaleV2, &context).wait();
+
+    println!("{:?}", result);
+}
+</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Scopes</h2>
+                          <table>
+                            
+                          </table>
+
+                          <h2>Parameters</h2>
+
+
+                            <div class="methodsubtabletitle">Header parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                  <tr><td style="width:150px;">registrationId*</td>
+<td>
+
+
+    <div id="d2e199_scalePostV2_registrationId">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    String
+                </span>
+
+                    <div class="inner description marked">
+The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data.
+                    </div>
+            </div>
+                <div class="inner required">
+                    Required
+                </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                            </table>
+
+                            <div class="methodsubtabletitle">Body parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">scaleV2 </td>
+<td>
+<p class="marked"></p>
+<script>
+$(document).ready(function() {
+  var schemaWrapper = {
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/scaleV2"
+      }
+    }
+  }
+};
+
+  var schema = findNode('schema',schemaWrapper).schema;
+  if (!schema) {
+    schema = schemaWrapper.schema;
+  }
+  if (schema.$ref != null) {
+    schema = defsParser.$refs.get(schema.$ref);
+  } else {
+    schemaWrapper.definitions = Object.assign({}, defs);
+    $RefParser.dereference(schemaWrapper).catch(function(err) {
+      console.log(err);
+    });
+  }
+
+  var view = new JSONSchemaView(schema,2,{isBodyParam: true});
+  var result = $('#d2e199_scalePostV2_scaleV2');
+  result.empty();
+  result.append(view.render());
+});
+</script>
+<div id="d2e199_scalePostV2_scaleV2"></div>
+</td>
+</tr>
+
+                            </table>
+
+
+                            <div class="methodsubtabletitle">Query parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">userId</td>
+<td>
+
+
+    <div id="d2e199_scalePostV2_userId">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    Long
+                </span>
+                    <span class="format">
+                        (int64)
+                    </span>
+
+                    <div class="inner description marked">
+The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
+                    </div>
+            </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                            </table>
+
+                          <h2>Responses</h2>
+                            <h3 id="examples-Default-scalePostV2-title-200"></h3>
+                            <p id="examples-Default-scalePostV2-description-200" class="marked"></p>
+                            <script>
+                              var responseDefault200_description = `Generic Response object`;
+                              var responseDefault200_description_break = responseDefault200_description.indexOf('\n');
+                              if (responseDefault200_description_break == -1) {
+                                $("#examples-Default-scalePostV2-title-200").text("Status: 200 - " + responseDefault200_description);
+                              } else {
+                                $("#examples-Default-scalePostV2-title-200").text("Status: 200 - " + responseDefault200_description.substring(0, responseDefault200_description_break));
+                                $("#examples-Default-scalePostV2-description-200").html(responseDefault200_description.substring(responseDefault200_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Default-scalePostV2-200" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Default-scalePostV2-200-schema">Schema</a>
+                                </li>
+
+
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Default-scalePostV2-200-wrapper" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-Default-scalePostV2-200-schema">
+                                  <div id="responses-Default-scalePostV2-schema-200" class="exampleStyle">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Generic Response object",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/generic-post-response"
+      }
+    }
+  }
+};
+                                        var schema = findNode('schema',schemaWrapper).schema;
+                                        if (!schema) {
+                                          schema = schemaWrapper.schema;
+                                        }
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else if (schema.items != null && schema.items.$ref != null) {
+                                            schema.items = defsParser.$refs.get(schema.items.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-Default-scalePostV2-200-schema-data').val(JSON.stringify(schema));
+                                        var result = $('#responses-Default-scalePostV2-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-Default-scalePostV2-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+                            <h3 id="examples-Default-scalePostV2-title-400"></h3>
+                            <p id="examples-Default-scalePostV2-description-400" class="marked"></p>
+                            <script>
+                              var responseDefault400_description = `Generic Response object`;
+                              var responseDefault400_description_break = responseDefault400_description.indexOf('\n');
+                              if (responseDefault400_description_break == -1) {
+                                $("#examples-Default-scalePostV2-title-400").text("Status: 400 - " + responseDefault400_description);
+                              } else {
+                                $("#examples-Default-scalePostV2-title-400").text("Status: 400 - " + responseDefault400_description.substring(0, responseDefault400_description_break));
+                                $("#examples-Default-scalePostV2-description-400").html(responseDefault400_description.substring(responseDefault400_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Default-scalePostV2-400" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Default-scalePostV2-400-schema">Schema</a>
+                                </li>
+
+
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Default-scalePostV2-400-wrapper" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-Default-scalePostV2-400-schema">
+                                  <div id="responses-Default-scalePostV2-schema-400" class="exampleStyle">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Generic Response object",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/generic-post-response"
+      }
+    }
+  }
+};
+                                        var schema = findNode('schema',schemaWrapper).schema;
+                                        if (!schema) {
+                                          schema = schemaWrapper.schema;
+                                        }
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else if (schema.items != null && schema.items.$ref != null) {
+                                            schema.items = defsParser.$refs.get(schema.items.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-Default-scalePostV2-400-schema-data').val(JSON.stringify(schema));
+                                        var result = $('#responses-Default-scalePostV2-schema-400');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-Default-scalePostV2-400-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+                            <h3 id="examples-Default-scalePostV2-title-500"></h3>
+                            <p id="examples-Default-scalePostV2-description-500" class="marked"></p>
+                            <script>
+                              var responseDefault500_description = `Generic Response object`;
+                              var responseDefault500_description_break = responseDefault500_description.indexOf('\n');
+                              if (responseDefault500_description_break == -1) {
+                                $("#examples-Default-scalePostV2-title-500").text("Status: 500 - " + responseDefault500_description);
+                              } else {
+                                $("#examples-Default-scalePostV2-title-500").text("Status: 500 - " + responseDefault500_description.substring(0, responseDefault500_description_break));
+                                $("#examples-Default-scalePostV2-description-500").html(responseDefault500_description.substring(responseDefault500_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Default-scalePostV2-500" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Default-scalePostV2-500-schema">Schema</a>
+                                </li>
+
+
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Default-scalePostV2-500-wrapper" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-Default-scalePostV2-500-schema">
+                                  <div id="responses-Default-scalePostV2-schema-500" class="exampleStyle">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Generic Response object",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/generic-post-response"
+      }
+    }
+  }
+};
+                                        var schema = findNode('schema',schemaWrapper).schema;
+                                        if (!schema) {
+                                          schema = schemaWrapper.schema;
+                                        }
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else if (schema.items != null && schema.items.$ref != null) {
+                                            schema.items = defsParser.$refs.get(schema.items.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-Default-scalePostV2-500-schema-data').val(JSON.stringify(schema));
+                                        var result = $('#responses-Default-scalePostV2-schema-500');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-Default-scalePostV2-500-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
                         </article>

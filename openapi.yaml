@@ -877,6 +877,106 @@ paths:
               schema:
                 $ref: "#/components/schemas/generic-post-response"
 
+  /v2/scale:
+    get:
+      summary: Get Scale values 
+      operationId: scaleGetV2
+      description: This returns scale values for a certain, defineable date range. The request needs to send a registrationId in the header. Note that this returns the scale data for a scale (independent of the beeHive), the API call for an actual beeHive is different.
+      # operationId: getScaleValues
+      parameters:
+      - in: header
+        name: registrationId
+        description: The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data.
+        schema:
+          type: string
+        example: 8B0FE5CFC0964B3E874827906B4A9449
+        required: true
+      - name: macAddress
+        in: query
+        description: The Mac Address of the scale.
+        required: true
+        example: 829898a53801
+        schema:
+          type: string
+      - name: epoch
+        in: query
+        description: The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the secondsInThePast parameter.
+        example: 1639170002
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: secondsInThePast
+        in: query
+        description: How many seconds we go to the past to get the data measurements. 
+        required: true
+        example: 7200
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: "Successfully returned a list of scale measurements"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/scaleV2"
+
+        "400":
+          description: Client error
+        "500":
+          description: Internal error
+
+    post:
+      summary: Post Scale values 
+      operationId: scalePostV2
+      description: Sends a weight from a scale to the queensaver system. The request needs to send the registrationId along with the request.
+      parameters:
+      - in: header
+        name: registrationId
+        description: The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data.
+        schema:
+          type: string
+        example: 8B0FE5CFC0964B3E874827906B4A9449
+        required: true
+      - name: userId
+        in: query
+        description: The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
+        required: false 
+        example: 123
+        schema:
+          type: integer
+          format: int64
+
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/scaleV2"
+
+      responses:
+        "200":
+          description: "Generic Response object"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/generic-post-response"
+        "400":
+          description: "Generic Response object"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/generic-post-response"
+        "500":
+          description: "Generic Response object"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/generic-post-response"
+
+
   /v1/scale:
     get:
       summary: Get Scale values 
@@ -1495,6 +1595,24 @@ components:
       - bhiveId
       - temperature
       - epoch
+
+    scaleV2:
+      type: object
+      properties:
+        macAddress:
+          type: string
+          description: The mac address of the scale
+          example: "829898a53801"
+        weight:
+          type: number
+          format: float
+          description: actual measurement of weight
+          example: 53.2345
+        epoch:
+          type: integer
+          format: int64
+          description: timestamp of the measurement on one second precision
+          example: 1639169129
 
     weight:
       type: object

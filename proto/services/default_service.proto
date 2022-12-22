@@ -30,6 +30,7 @@ import public "models/put_bbox_response.proto";
 import public "models/put_hive_response.proto";
 import public "models/put_stand_response.proto";
 import public "models/registration_id.proto";
+import public "models/scale_v2.proto";
 import public "models/stand.proto";
 import public "models/temperature.proto";
 import public "models/user.proto";
@@ -66,7 +67,11 @@ service DefaultService {
 
   rpc ScaleGet (ScaleGetRequest) returns (ScaleGetResponse);
 
+  rpc ScaleGetV2 (ScaleGetV2Request) returns (ScaleGetV2Response);
+
   rpc ScalePost (ScalePostRequest) returns (GenericPostResponse);
+
+  rpc ScalePostV2 (ScalePostV2Request) returns (GenericPostResponse);
 
   rpc StandsDelete (StandsDeleteRequest) returns (google.protobuf.Empty);
 
@@ -238,6 +243,22 @@ message ScaleGetResponse {
   repeated Weight data = 1;
 }
 
+message ScaleGetV2Request {
+  // The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data.
+  string registrationId = 1;
+  // The Mac Address of the scale.
+  string macAddress = 2;
+  // The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the secondsInThePast parameter.
+  int64 epoch = 3;
+  // How many seconds we go to the past to get the data measurements.
+  int64 secondsInThePast = 4;
+
+}
+
+message ScaleGetV2Response {
+  repeated ScaleV2 data = 1;
+}
+
 message ScalePostRequest {
   // Either the cookie, the registrationId or this Q-Token must be set to be authorized for the API call.
   string registrationId = 1;
@@ -248,6 +269,15 @@ message ScalePostRequest {
   // The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
   int64 userId = 4;
   Weight weight = 5;
+
+}
+
+message ScalePostV2Request {
+  // The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data.
+  string registrationId = 1;
+  // The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
+  int64 userId = 2;
+  ScaleV2 scaleV2 = 3;
 
 }
 

@@ -53,6 +53,8 @@ import { PutStandResponse } from '../model/putStandResponse';
 // @ts-ignore
 import { RegistrationId } from '../model/registrationId';
 // @ts-ignore
+import { ScaleV2 } from '../model/scaleV2';
+// @ts-ignore
 import { Stand } from '../model/stand';
 // @ts-ignore
 import { Temperature } from '../model/temperature';
@@ -1308,6 +1310,100 @@ export class DefaultService {
     }
 
     /**
+     * Get Scale values
+     * This returns scale values for a certain, defineable date range. The request needs to send a registrationId in the header. Note that this returns the scale data for a scale (independent of the beeHive), the API call for an actual beeHive is different.
+     * @param registrationId The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data.
+     * @param macAddress The Mac Address of the scale.
+     * @param epoch The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the secondsInThePast parameter.
+     * @param secondsInThePast How many seconds we go to the past to get the data measurements.
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public scaleGetV2(registrationId: string, macAddress: string, epoch: number, secondsInThePast: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<Array<ScaleV2>>;
+    public scaleGetV2(registrationId: string, macAddress: string, epoch: number, secondsInThePast: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<Array<ScaleV2>>>;
+    public scaleGetV2(registrationId: string, macAddress: string, epoch: number, secondsInThePast: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<Array<ScaleV2>>>;
+    public scaleGetV2(registrationId: string, macAddress: string, epoch: number, secondsInThePast: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+        if (registrationId === null || registrationId === undefined) {
+            throw new Error('Required parameter registrationId was null or undefined when calling scaleGetV2.');
+        }
+        if (macAddress === null || macAddress === undefined) {
+            throw new Error('Required parameter macAddress was null or undefined when calling scaleGetV2.');
+        }
+        if (epoch === null || epoch === undefined) {
+            throw new Error('Required parameter epoch was null or undefined when calling scaleGetV2.');
+        }
+        if (secondsInThePast === null || secondsInThePast === undefined) {
+            throw new Error('Required parameter secondsInThePast was null or undefined when calling scaleGetV2.');
+        }
+
+        let localVarQueryParameters = new HttpParams({encoder: this.encoder});
+        if (macAddress !== undefined && macAddress !== null) {
+          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+            <any>macAddress, 'macAddress');
+        }
+        if (epoch !== undefined && epoch !== null) {
+          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+            <any>epoch, 'epoch');
+        }
+        if (secondsInThePast !== undefined && secondsInThePast !== null) {
+          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+            <any>secondsInThePast, 'secondsInThePast');
+        }
+
+        let localVarHeaders = this.defaultHeaders;
+        if (registrationId !== undefined && registrationId !== null) {
+            localVarHeaders = localVarHeaders.set('registrationId', String(registrationId));
+        }
+
+        let localVarCredential: string | undefined;
+        // authentication (cookieAuth) required
+        localVarCredential = this.configuration.lookupCredential('cookieAuth');
+        if (localVarCredential) {
+        }
+
+        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
+        if (localVarHttpHeaderAcceptSelected === undefined) {
+            // to determine the Accept header
+            const httpHeaderAccepts: string[] = [
+                'application/json'
+            ];
+            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        }
+        if (localVarHttpHeaderAcceptSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
+        }
+
+        let localVarHttpContext: HttpContext | undefined = options && options.context;
+        if (localVarHttpContext === undefined) {
+            localVarHttpContext = new HttpContext();
+        }
+
+
+        let responseType_: 'text' | 'json' | 'blob' = 'json';
+        if (localVarHttpHeaderAcceptSelected) {
+            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
+                responseType_ = 'text';
+            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
+                responseType_ = 'json';
+            } else {
+                responseType_ = 'blob';
+            }
+        }
+
+        return this.httpClient.get<Array<ScaleV2>>(`${this.configuration.basePath}/v2/scale`,
+            {
+                context: localVarHttpContext,
+                params: localVarQueryParameters,
+                responseType: <any>responseType_,
+                withCredentials: this.configuration.withCredentials,
+                headers: localVarHeaders,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
      * Post Scale values
      * Sends a weight from a hive to the queensaver system. The request needs to send a cookie along with the request. The cookie is stored under the key called \&quot;token\&quot;. Note that this returns the scale data for a QBox Client (independent of the beeHive), the API call for an actual beeHive is different.
      * @param registrationId Either the cookie, the registrationId or this Q-Token must be set to be authorized for the API call.
@@ -1383,6 +1479,92 @@ export class DefaultService {
 
         return this.httpClient.post<GenericPostResponse>(`${this.configuration.basePath}/v1/scale`,
             weight,
+            {
+                context: localVarHttpContext,
+                params: localVarQueryParameters,
+                responseType: <any>responseType_,
+                withCredentials: this.configuration.withCredentials,
+                headers: localVarHeaders,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Post Scale values
+     * Sends a weight from a scale to the queensaver system. The request needs to send the registrationId along with the request.
+     * @param registrationId The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data.
+     * @param userId The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
+     * @param scaleV2 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public scalePostV2(registrationId: string, userId?: number, scaleV2?: ScaleV2, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<GenericPostResponse>;
+    public scalePostV2(registrationId: string, userId?: number, scaleV2?: ScaleV2, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<GenericPostResponse>>;
+    public scalePostV2(registrationId: string, userId?: number, scaleV2?: ScaleV2, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<GenericPostResponse>>;
+    public scalePostV2(registrationId: string, userId?: number, scaleV2?: ScaleV2, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+        if (registrationId === null || registrationId === undefined) {
+            throw new Error('Required parameter registrationId was null or undefined when calling scalePostV2.');
+        }
+
+        let localVarQueryParameters = new HttpParams({encoder: this.encoder});
+        if (userId !== undefined && userId !== null) {
+          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+            <any>userId, 'userId');
+        }
+
+        let localVarHeaders = this.defaultHeaders;
+        if (registrationId !== undefined && registrationId !== null) {
+            localVarHeaders = localVarHeaders.set('registrationId', String(registrationId));
+        }
+
+        let localVarCredential: string | undefined;
+        // authentication (cookieAuth) required
+        localVarCredential = this.configuration.lookupCredential('cookieAuth');
+        if (localVarCredential) {
+        }
+
+        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
+        if (localVarHttpHeaderAcceptSelected === undefined) {
+            // to determine the Accept header
+            const httpHeaderAccepts: string[] = [
+                'application/json'
+            ];
+            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        }
+        if (localVarHttpHeaderAcceptSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
+        }
+
+        let localVarHttpContext: HttpContext | undefined = options && options.context;
+        if (localVarHttpContext === undefined) {
+            localVarHttpContext = new HttpContext();
+        }
+
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Content-Type', httpContentTypeSelected);
+        }
+
+        let responseType_: 'text' | 'json' | 'blob' = 'json';
+        if (localVarHttpHeaderAcceptSelected) {
+            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
+                responseType_ = 'text';
+            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
+                responseType_ = 'json';
+            } else {
+                responseType_ = 'blob';
+            }
+        }
+
+        return this.httpClient.post<GenericPostResponse>(`${this.configuration.basePath}/v2/scale`,
+            scaleV2,
             {
                 context: localVarHttpContext,
                 params: localVarQueryParameters,

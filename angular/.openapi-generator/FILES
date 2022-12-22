@@ -27,6 +27,7 @@ model/putBboxResponse.ts
 model/putHiveResponse.ts
 model/putStandResponse.ts
 model/registrationId.ts
+model/scaleV2.ts
 model/stand.ts
 model/temperature.ts
 model/user.ts

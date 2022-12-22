@@ -1045,6 +1045,119 @@ paths:
       security:
       - cookieAuth: []
       summary: Save a new temperature measurement
+  /v2/scale:
+    get:
+      description: "This returns scale values for a certain, defineable date range.\
+        \ The request needs to send a registrationId in the header. Note that this\
+        \ returns the scale data for a scale (independent of the beeHive), the API\
+        \ call for an actual beeHive is different."
+      operationId: scaleGetV2
+      parameters:
+      - description: "The unique registration Id for that scale. The user needs to\
+          \ register it first in the cloud, otherwise we will not accept the data."
+        example: 8B0FE5CFC0964B3E874827906B4A9449
+        explode: false
+        in: header
+        name: registrationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The Mac Address of the scale.
+        example: 829898a53801
+        explode: true
+        in: query
+        name: macAddress
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: The Unix Time (epoch) that defines the end time of the scale
+          measurements. The beginning is defined by the secondsInThePast parameter.
+        example: 1639170002
+        explode: true
+        in: query
+        name: epoch
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: How many seconds we go to the past to get the data measurements.
+        example: 7200
+        explode: true
+        in: query
+        name: secondsInThePast
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/scaleV2'
+                type: array
+          description: Successfully returned a list of scale measurements
+        "400":
+          description: Client error
+        "500":
+          description: Internal error
+      summary: Get Scale values
+    post:
+      description: Sends a weight from a scale to the queensaver system. The request
+        needs to send the registrationId along with the request.
+      operationId: scalePostV2
+      parameters:
+      - description: "The unique registration Id for that scale. The user needs to\
+          \ register it first in the cloud, otherwise we will not accept the data."
+        example: 8B0FE5CFC0964B3E874827906B4A9449
+        explode: false
+        in: header
+        name: registrationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The User ID. This is used internally and will be overwritten
+          if you send it to the api server. Ignore.
+        example: 123
+        explode: true
+        in: query
+        name: userId
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/scaleV2'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/generic-post-response'
+          description: Generic Response object
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/generic-post-response'
+          description: Generic Response object
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/generic-post-response'
+          description: Generic Response object
+      summary: Post Scale values
   /v1/scale:
     get:
       description: "This returns scale values for a certain, defineable date range.\
@@ -2049,6 +2162,27 @@ components:
       - bhiveId
       - epoch
       - temperature
+      type: object
+    scaleV2:
+      example:
+        macAddress: 829898a53801
+        weight: 53.2345
+        epoch: 1639169129
+      properties:
+        macAddress:
+          description: The mac address of the scale
+          example: 829898a53801
+          type: string
+        weight:
+          description: actual measurement of weight
+          example: 53.2345
+          format: float
+          type: number
+        epoch:
+          description: timestamp of the measurement on one second precision
+          example: 1639169129
+          format: int64
+          type: integer
       type: object
     weight:
       example:
