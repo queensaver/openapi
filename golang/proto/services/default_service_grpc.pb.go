@@ -26,7 +26,7 @@ const _ = grpc.SupportPackageIsVersion7
 type DefaultServiceClient interface {
 	AuthenticateRegistrationIdPost(ctx context.Context, in *AuthenticateRegistrationIdPostRequest, opts ...grpc.CallOption) (*models.AuthenticatePostResponse, error)
 	BboxesGet(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*BboxesGetResponse, error)
-	ConfigsBboxAssociatePost(ctx context.Context, in *ConfigsBboxAssociatePostRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	ConfigsBboxAssociatePost(ctx context.Context, in *ConfigsBboxAssociatePostRequest, opts ...grpc.CallOption) (*models.GenericPostResponse, error)
 	ConfigsBboxDelete(ctx context.Context, in *ConfigsBboxDeleteRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	ConfigsBboxGet(ctx context.Context, in *ConfigsBboxGetRequest, opts ...grpc.CallOption) (*models.GetBboxResponse, error)
 	ConfigsBboxPost(ctx context.Context, in *ConfigsBboxPostRequest, opts ...grpc.CallOption) (*models.PostBboxResponse, error)
@@ -79,8 +79,8 @@ func (c *defaultServiceClient) BboxesGet(ctx context.Context, in *emptypb.Empty,
 	return out, nil
 }
 
-func (c *defaultServiceClient) ConfigsBboxAssociatePost(ctx context.Context, in *ConfigsBboxAssociatePostRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *defaultServiceClient) ConfigsBboxAssociatePost(ctx context.Context, in *ConfigsBboxAssociatePostRequest, opts ...grpc.CallOption) (*models.GenericPostResponse, error) {
+	out := new(models.GenericPostResponse)
 	err := c.cc.Invoke(ctx, "/openapi.services.defaultservice.DefaultService/ConfigsBboxAssociatePost", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -310,7 +310,7 @@ func (c *defaultServiceClient) VarroaScanPost(ctx context.Context, in *VarroaSca
 type DefaultServiceServer interface {
 	AuthenticateRegistrationIdPost(context.Context, *AuthenticateRegistrationIdPostRequest) (*models.AuthenticatePostResponse, error)
 	BboxesGet(context.Context, *emptypb.Empty) (*BboxesGetResponse, error)
-	ConfigsBboxAssociatePost(context.Context, *ConfigsBboxAssociatePostRequest) (*emptypb.Empty, error)
+	ConfigsBboxAssociatePost(context.Context, *ConfigsBboxAssociatePostRequest) (*models.GenericPostResponse, error)
 	ConfigsBboxDelete(context.Context, *ConfigsBboxDeleteRequest) (*emptypb.Empty, error)
 	ConfigsBboxGet(context.Context, *ConfigsBboxGetRequest) (*models.GetBboxResponse, error)
 	ConfigsBboxPost(context.Context, *ConfigsBboxPostRequest) (*models.PostBboxResponse, error)
@@ -348,7 +348,7 @@ func (UnimplementedDefaultServiceServer) AuthenticateRegistrationIdPost(context.
 func (UnimplementedDefaultServiceServer) BboxesGet(context.Context, *emptypb.Empty) (*BboxesGetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BboxesGet not implemented")
 }
-func (UnimplementedDefaultServiceServer) ConfigsBboxAssociatePost(context.Context, *ConfigsBboxAssociatePostRequest) (*emptypb.Empty, error) {
+func (UnimplementedDefaultServiceServer) ConfigsBboxAssociatePost(context.Context, *ConfigsBboxAssociatePostRequest) (*models.GenericPostResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ConfigsBboxAssociatePost not implemented")
 }
 func (UnimplementedDefaultServiceServer) ConfigsBboxDelete(context.Context, *ConfigsBboxDeleteRequest) (*emptypb.Empty, error) {

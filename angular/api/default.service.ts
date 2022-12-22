@@ -284,10 +284,10 @@ export class DefaultService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public configsBboxAssociatePost(bboxId: string, hiveUuid: string, userId?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any>;
-    public configsBboxAssociatePost(bboxId: string, hiveUuid: string, userId?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpResponse<any>>;
-    public configsBboxAssociatePost(bboxId: string, hiveUuid: string, userId?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpEvent<any>>;
-    public configsBboxAssociatePost(bboxId: string, hiveUuid: string, userId?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any> {
+    public configsBboxAssociatePost(bboxId: string, hiveUuid: string, userId?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<GenericPostResponse>;
+    public configsBboxAssociatePost(bboxId: string, hiveUuid: string, userId?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<GenericPostResponse>>;
+    public configsBboxAssociatePost(bboxId: string, hiveUuid: string, userId?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<GenericPostResponse>>;
+    public configsBboxAssociatePost(bboxId: string, hiveUuid: string, userId?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
         if (bboxId === null || bboxId === undefined) {
             throw new Error('Required parameter bboxId was null or undefined when calling configsBboxAssociatePost.');
         }
@@ -321,6 +321,7 @@ export class DefaultService {
         if (localVarHttpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
+                'application/json'
             ];
             localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
@@ -345,7 +346,7 @@ export class DefaultService {
             }
         }
 
-        return this.httpClient.post<any>(`${this.configuration.basePath}/v1/configs/bbox/associate`,
+        return this.httpClient.post<GenericPostResponse>(`${this.configuration.basePath}/v1/configs/bbox/associate`,
             null,
             {
                 context: localVarHttpContext,

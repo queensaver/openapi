@@ -2498,6 +2498,7 @@ pub fn main() {
                           <div class="tab-pane active" id="examples-Default-configsBboxAssociatePost-0-curl">
                             <pre class="prettyprint"><code class="language-bsh">curl -X POST \
  \
+ -H "Accept: application/json" \
  "https://api.queensaver.com/v1/configs/bbox/associate?userId=1234&bboxId=829898a53801&hiveUuid=41C0FE2F-EB0C-45B4-8842-C117E47C35E3"
 </code></pre>
                           </div>
@@ -2527,7 +2528,8 @@ public class DefaultApiExample {
         Long userId = 1234; // Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore.
 
         try {
-            apiInstance.configsBboxAssociatePost(bboxId, hiveUuid, userId);
+            generic-post-response result = apiInstance.configsBboxAssociatePost(bboxId, hiveUuid, userId);
+            System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#configsBboxAssociatePost");
             e.printStackTrace();
@@ -2548,7 +2550,8 @@ public class DefaultApiExample {
         Long userId = 1234; // Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore.
 
         try {
-            apiInstance.configsBboxAssociatePost(bboxId, hiveUuid, userId);
+            generic-post-response result = apiInstance.configsBboxAssociatePost(bboxId, hiveUuid, userId);
+            System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#configsBboxAssociatePost");
             e.printStackTrace();
@@ -2579,7 +2582,10 @@ Long *userId = 1234; // The UserID is set internally and can not set or be overr
 [apiInstance configsBboxAssociatePostWith:bboxId
     hiveUuid:hiveUuid
     userId:userId
-              completionHandler: ^(NSError* error) {
+              completionHandler: ^(generic-post-response output, NSError* error) {
+    if (output) {
+        NSLog(@"%@", output);
+    }
     if (error) {
         NSLog(@"Error: %@", error);
     }
@@ -2609,7 +2615,7 @@ var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
-    console.log('API called successfully.');
+    console.log('API called successfully. Returned data: ' + data);
   }
 };
 api.configsBboxAssociatePost(bboxId, hiveUuid, opts, callback);
@@ -2645,7 +2651,8 @@ namespace Example
 
             try {
                 // associate bbox and its sensors to a logical hive
-                apiInstance.configsBboxAssociatePost(bboxId, hiveUuid, userId);
+                generic-post-response result = apiInstance.configsBboxAssociatePost(bboxId, hiveUuid, userId);
+                Debug.WriteLine(result);
             } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.configsBboxAssociatePost: " + e.Message );
             }
@@ -2671,7 +2678,8 @@ $hiveUuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | Unique Identifier 
 $userId = 1234; // Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore.
 
 try {
-    $api_instance->configsBboxAssociatePost($bboxId, $hiveUuid, $userId);
+    $result = $api_instance->configsBboxAssociatePost($bboxId, $hiveUuid, $userId);
+    print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->configsBboxAssociatePost: ', $e->getMessage(), PHP_EOL;
 }
@@ -2695,7 +2703,8 @@ my $hiveUuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; # String | Unique Identifie
 my $userId = 1234; # Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore.
 
 eval {
-    $api_instance->configsBboxAssociatePost(bboxId => $bboxId, hiveUuid => $hiveUuid, userId => $userId);
+    my $result = $api_instance->configsBboxAssociatePost(bboxId => $bboxId, hiveUuid => $hiveUuid, userId => $userId);
+    print Dumper($result);
 };
 if ($@) {
     warn "Exception when calling DefaultApi->configsBboxAssociatePost: $@\n";
@@ -2722,7 +2731,8 @@ userId = 1234 # Long | The UserID is set internally and can not set or be overri
 
 try:
     # associate bbox and its sensors to a logical hive
-    api_instance.configs_bbox_associate_post(bboxId, hiveUuid, userId=userId)
+    api_response = api_instance.configs_bbox_associate_post(bboxId, hiveUuid, userId=userId)
+    pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->configsBboxAssociatePost: %s\n" % e)</code></pre>
                             </div>
@@ -2848,12 +2858,56 @@ Unique Identifier for this hive
 
 
                             <ul id="responses-detail-Default-configsBboxAssociatePost-200" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Default-configsBboxAssociatePost-200-schema">Schema</a>
+                                </li>
+
+
 
 
                             </ul>
 
 
                             <div class="tab-content" id="responses-Default-configsBboxAssociatePost-200-wrapper" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-Default-configsBboxAssociatePost-200-schema">
+                                  <div id="responses-Default-configsBboxAssociatePost-schema-200" class="exampleStyle">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "OK if the association / disassociation has been made",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/generic-post-response"
+      }
+    }
+  }
+};
+                                        var schema = findNode('schema',schemaWrapper).schema;
+                                        if (!schema) {
+                                          schema = schemaWrapper.schema;
+                                        }
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else if (schema.items != null && schema.items.$ref != null) {
+                                            schema.items = defsParser.$refs.get(schema.items.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-Default-configsBboxAssociatePost-200-schema-data').val(JSON.stringify(schema));
+                                        var result = $('#responses-Default-configsBboxAssociatePost-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-Default-configsBboxAssociatePost-200-schema-data' type='hidden' value=''></input>
+                                </div>
                             </div>
                             <h3 id="examples-Default-configsBboxAssociatePost-title-400"></h3>
                             <p id="examples-Default-configsBboxAssociatePost-description-400" class="marked"></p>
@@ -2870,12 +2924,56 @@ Unique Identifier for this hive
 
 
                             <ul id="responses-detail-Default-configsBboxAssociatePost-400" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Default-configsBboxAssociatePost-400-schema">Schema</a>
+                                </li>
+
+
 
 
                             </ul>
 
 
                             <div class="tab-content" id="responses-Default-configsBboxAssociatePost-400-wrapper" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-Default-configsBboxAssociatePost-400-schema">
+                                  <div id="responses-Default-configsBboxAssociatePost-schema-400" class="exampleStyle">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Client error",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/generic-post-response"
+      }
+    }
+  }
+};
+                                        var schema = findNode('schema',schemaWrapper).schema;
+                                        if (!schema) {
+                                          schema = schemaWrapper.schema;
+                                        }
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else if (schema.items != null && schema.items.$ref != null) {
+                                            schema.items = defsParser.$refs.get(schema.items.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-Default-configsBboxAssociatePost-400-schema-data').val(JSON.stringify(schema));
+                                        var result = $('#responses-Default-configsBboxAssociatePost-schema-400');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-Default-configsBboxAssociatePost-400-schema-data' type='hidden' value=''></input>
+                                </div>
                             </div>
                             <h3 id="examples-Default-configsBboxAssociatePost-title-500"></h3>
                             <p id="examples-Default-configsBboxAssociatePost-description-500" class="marked"></p>
@@ -2892,12 +2990,56 @@ Unique Identifier for this hive
 
 
                             <ul id="responses-detail-Default-configsBboxAssociatePost-500" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Default-configsBboxAssociatePost-500-schema">Schema</a>
+                                </li>
+
+
 
 
                             </ul>
 
 
                             <div class="tab-content" id="responses-Default-configsBboxAssociatePost-500-wrapper" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-Default-configsBboxAssociatePost-500-schema">
+                                  <div id="responses-Default-configsBboxAssociatePost-schema-500" class="exampleStyle">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Internal error",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/generic-post-response"
+      }
+    }
+  }
+};
+                                        var schema = findNode('schema',schemaWrapper).schema;
+                                        if (!schema) {
+                                          schema = schemaWrapper.schema;
+                                        }
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else if (schema.items != null && schema.items.$ref != null) {
+                                            schema.items = defsParser.$refs.get(schema.items.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-Default-configsBboxAssociatePost-500-schema-data').val(JSON.stringify(schema));
+                                        var result = $('#responses-Default-configsBboxAssociatePost-schema-500');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-Default-configsBboxAssociatePost-500-schema-data' type='hidden' value=''></input>
+                                </div>
                             </div>
                         </article>
                       </div>

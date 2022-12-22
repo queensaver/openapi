@@ -44,7 +44,7 @@ service DefaultService {
 
   rpc BboxesGet (google.protobuf.Empty) returns (BboxesGetResponse);
 
-  rpc ConfigsBboxAssociatePost (ConfigsBboxAssociatePostRequest) returns (google.protobuf.Empty);
+  rpc ConfigsBboxAssociatePost (ConfigsBboxAssociatePostRequest) returns (GenericPostResponse);
 
   rpc ConfigsBboxDelete (ConfigsBboxDeleteRequest) returns (google.protobuf.Empty);
 

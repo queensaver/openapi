@@ -401,10 +401,22 @@ paths:
         style: form
       responses:
         "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/generic-post-response'
           description: OK if the association / disassociation has been made
         "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/generic-post-response'
           description: Client error
         "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/generic-post-response'
           description: Internal error
       summary: associate bbox and its sensors to a logical hive
   /v1/stands:

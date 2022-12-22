@@ -349,10 +349,25 @@ paths:
       responses:
         "200":
           description: "OK if the association / disassociation has been made"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/generic-post-response"
+
         "400":
           description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/generic-post-response"
+
         "500":
           description: Internal error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/generic-post-response"
+
 
   /v1/stands:
     get:
