@@ -38,7 +38,7 @@ type DefaultServiceClient interface {
 	HivesPut(ctx context.Context, in *HivesPutRequest, opts ...grpc.CallOption) (*models.PutHiveResponse, error)
 	LoginPost(ctx context.Context, in *LoginPostRequest, opts ...grpc.CallOption) (*models.LoginPostResponse, error)
 	ScaleGet(ctx context.Context, in *ScaleGetRequest, opts ...grpc.CallOption) (*ScaleGetResponse, error)
-	ScaleGetV2(ctx context.Context, in *ScaleGetV2Request, opts ...grpc.CallOption) (*ScaleGetV2Response, error)
+	ScaleGetV2(ctx context.Context, in *ScaleGetV2Request, opts ...grpc.CallOption) (*models.ScaleV2Response, error)
 	ScalePost(ctx context.Context, in *ScalePostRequest, opts ...grpc.CallOption) (*models.GenericPostResponse, error)
 	ScalePostV2(ctx context.Context, in *ScalePostV2Request, opts ...grpc.CallOption) (*models.GenericPostResponse, error)
 	StandsDelete(ctx context.Context, in *StandsDeleteRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -187,8 +187,8 @@ func (c *defaultServiceClient) ScaleGet(ctx context.Context, in *ScaleGetRequest
 	return out, nil
 }
 
-func (c *defaultServiceClient) ScaleGetV2(ctx context.Context, in *ScaleGetV2Request, opts ...grpc.CallOption) (*ScaleGetV2Response, error) {
-	out := new(ScaleGetV2Response)
+func (c *defaultServiceClient) ScaleGetV2(ctx context.Context, in *ScaleGetV2Request, opts ...grpc.CallOption) (*models.ScaleV2Response, error) {
+	out := new(models.ScaleV2Response)
 	err := c.cc.Invoke(ctx, "/openapi.services.defaultservice.DefaultService/ScaleGetV2", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -322,7 +322,7 @@ type DefaultServiceServer interface {
 	HivesPut(context.Context, *HivesPutRequest) (*models.PutHiveResponse, error)
 	LoginPost(context.Context, *LoginPostRequest) (*models.LoginPostResponse, error)
 	ScaleGet(context.Context, *ScaleGetRequest) (*ScaleGetResponse, error)
-	ScaleGetV2(context.Context, *ScaleGetV2Request) (*ScaleGetV2Response, error)
+	ScaleGetV2(context.Context, *ScaleGetV2Request) (*models.ScaleV2Response, error)
 	ScalePost(context.Context, *ScalePostRequest) (*models.GenericPostResponse, error)
 	ScalePostV2(context.Context, *ScalePostV2Request) (*models.GenericPostResponse, error)
 	StandsDelete(context.Context, *StandsDeleteRequest) (*emptypb.Empty, error)
@@ -384,7 +384,7 @@ func (UnimplementedDefaultServiceServer) LoginPost(context.Context, *LoginPostRe
 func (UnimplementedDefaultServiceServer) ScaleGet(context.Context, *ScaleGetRequest) (*ScaleGetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ScaleGet not implemented")
 }
-func (UnimplementedDefaultServiceServer) ScaleGetV2(context.Context, *ScaleGetV2Request) (*ScaleGetV2Response, error) {
+func (UnimplementedDefaultServiceServer) ScaleGetV2(context.Context, *ScaleGetV2Request) (*models.ScaleV2Response, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ScaleGetV2 not implemented")
 }
 func (UnimplementedDefaultServiceServer) ScalePost(context.Context, *ScalePostRequest) (*models.GenericPostResponse, error) {

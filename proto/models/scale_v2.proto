@@ -16,12 +16,12 @@ package openapi;
 message ScaleV2 {
 
   // The mac address of the scale
-  string macAddress = 471320488;
+  string macAddress = 1;
 
   // actual measurement of weight
-  float weight = 254721417;
+  float weight = 2;
 
   // timestamp of the measurement on one second precision
-  int64 epoch = 96722057;
+  int64 epoch = 3;
 
 }

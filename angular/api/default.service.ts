@@ -55,6 +55,8 @@ import { RegistrationId } from '../model/registrationId';
 // @ts-ignore
 import { ScaleV2 } from '../model/scaleV2';
 // @ts-ignore
+import { ScaleV2Response } from '../model/scaleV2Response';
+// @ts-ignore
 import { Stand } from '../model/stand';
 // @ts-ignore
 import { Temperature } from '../model/temperature';
@@ -1318,9 +1320,9 @@ export class DefaultService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public scaleGetV2(macAddress: string, epoch: number, secondsInThePast: number, qToken?: string, token?: string, userId?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<Array<ScaleV2>>;
-    public scaleGetV2(macAddress: string, epoch: number, secondsInThePast: number, qToken?: string, token?: string, userId?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<Array<ScaleV2>>>;
-    public scaleGetV2(macAddress: string, epoch: number, secondsInThePast: number, qToken?: string, token?: string, userId?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<Array<ScaleV2>>>;
+    public scaleGetV2(macAddress: string, epoch: number, secondsInThePast: number, qToken?: string, token?: string, userId?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<ScaleV2Response>;
+    public scaleGetV2(macAddress: string, epoch: number, secondsInThePast: number, qToken?: string, token?: string, userId?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<ScaleV2Response>>;
+    public scaleGetV2(macAddress: string, epoch: number, secondsInThePast: number, qToken?: string, token?: string, userId?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<ScaleV2Response>>;
     public scaleGetV2(macAddress: string, epoch: number, secondsInThePast: number, qToken?: string, token?: string, userId?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
         if (macAddress === null || macAddress === undefined) {
             throw new Error('Required parameter macAddress was null or undefined when calling scaleGetV2.');
@@ -1390,7 +1392,7 @@ export class DefaultService {
             }
         }
 
-        return this.httpClient.get<Array<ScaleV2>>(`${this.configuration.basePath}/v2/scale`,
+        return this.httpClient.get<ScaleV2Response>(`${this.configuration.basePath}/v2/scale`,
             {
                 context: localVarHttpContext,
                 params: localVarQueryParameters,

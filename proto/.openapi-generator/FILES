@@ -19,6 +19,7 @@ models/put_hive_response.proto
 models/put_stand_response.proto
 models/registration_id.proto
 models/scale_v2.proto
+models/scale_v2_response.proto
 models/stand.proto
 models/temperature.proto
 models/user.proto

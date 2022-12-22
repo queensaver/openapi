@@ -1269,19 +1269,41 @@ ul.nav-tabs {
     "macAddress" : {
       "type" : "string",
       "description" : "The mac address of the scale",
-      "example" : "829898a53801"
+      "example" : "829898a53801",
+      "x-protobuf-index" : 1
     },
     "weight" : {
       "type" : "number",
       "description" : "actual measurement of weight",
       "format" : "float",
-      "example" : 53.2345
+      "example" : 53.2345,
+      "x-protobuf-index" : 2
     },
     "epoch" : {
       "type" : "integer",
       "description" : "timestamp of the measurement on one second precision",
       "format" : "int64",
-      "example" : 1639169129
+      "example" : 1639169129,
+      "x-protobuf-index" : 3
+    }
+  }
+};
+    defs["scaleV2Response"] = {
+  "type" : "object",
+  "properties" : {
+    "httpReponseCode" : {
+      "type" : "integer",
+      "description" : "HTTP response code. Used for internal purposes, will be let out at the API level.",
+      "example" : 409,
+      "x-protobuf-index" : 1
+    },
+    "values" : {
+      "type" : "array",
+      "description" : "The measurement responses",
+      "items" : {
+        "$ref" : "#/components/schemas/scaleV2"
+      },
+      "x-protobuf-index" : 2
     }
   }
 };
@@ -8572,7 +8594,7 @@ public class DefaultApiExample {
         Long userId = 123; // Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
 
         try {
-            array[scaleV2] result = apiInstance.scaleGetV2(macAddress, epoch, secondsInThePast, qToken, token, userId);
+            scaleV2Response result = apiInstance.scaleGetV2(macAddress, epoch, secondsInThePast, qToken, token, userId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#scaleGetV2");
@@ -8597,7 +8619,7 @@ public class DefaultApiExample {
         Long userId = 123; // Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
 
         try {
-            array[scaleV2] result = apiInstance.scaleGetV2(macAddress, epoch, secondsInThePast, qToken, token, userId);
+            scaleV2Response result = apiInstance.scaleGetV2(macAddress, epoch, secondsInThePast, qToken, token, userId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#scaleGetV2");
@@ -8635,7 +8657,7 @@ Long *userId = 123; // The User ID. This is used internally and will be overwrit
     qToken:qToken
     token:token
     userId:userId
-              completionHandler: ^(array[scaleV2] output, NSError* error) {
+              completionHandler: ^(scaleV2Response output, NSError* error) {
     if (output) {
         NSLog(@"%@", output);
     }
@@ -8710,7 +8732,7 @@ namespace Example
 
             try {
                 // Get Scale values
-                array[scaleV2] result = apiInstance.scaleGetV2(macAddress, epoch, secondsInThePast, qToken, token, userId);
+                scaleV2Response result = apiInstance.scaleGetV2(macAddress, epoch, secondsInThePast, qToken, token, userId);
                 Debug.WriteLine(result);
             } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.scaleGetV2: " + e.Message );
@@ -9005,10 +9027,7 @@ The User ID. This is used internally and will be overwritten if you send it to t
   "content" : {
     "application/json" : {
       "schema" : {
-        "type" : "array",
-        "items" : {
-          "$ref" : "#/components/schemas/scaleV2"
-        }
+        "$ref" : "#/components/schemas/scaleV2Response"
       }
     }
   }

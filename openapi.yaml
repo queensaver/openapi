@@ -934,9 +934,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/scaleV2"
+                $ref: "#/components/schemas/scaleV2Response"
 
         "400":
           description: Client error
@@ -1605,6 +1603,21 @@ components:
       - temperature
       - epoch
 
+    scaleV2Response:
+      type: object
+      properties:
+        httpReponseCode:
+          type: integer
+          example: 409
+          description: HTTP response code. Used for internal purposes, will be let out at the API level.
+          x-protobuf-index: 1
+        values:
+          type: array
+          items: 
+            $ref: "#/components/schemas/scaleV2"
+          description: The measurement responses
+          x-protobuf-index: 2
+
     scaleV2:
       type: object
       properties:
@@ -1612,16 +1625,19 @@ components:
           type: string
           description: The mac address of the scale
           example: "829898a53801"
+          x-protobuf-index: 1
         weight:
           type: number
           format: float
           description: actual measurement of weight
           example: 53.2345
+          x-protobuf-index: 2
         epoch:
           type: integer
           format: int64
           description: timestamp of the measurement on one second precision
           example: 1639169129
+          x-protobuf-index: 3
 
     weight:
       type: object

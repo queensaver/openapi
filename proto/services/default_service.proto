@@ -31,6 +31,7 @@ import public "models/put_hive_response.proto";
 import public "models/put_stand_response.proto";
 import public "models/registration_id.proto";
 import public "models/scale_v2.proto";
+import public "models/scale_v2_response.proto";
 import public "models/stand.proto";
 import public "models/temperature.proto";
 import public "models/user.proto";
@@ -67,7 +68,7 @@ service DefaultService {
 
   rpc ScaleGet (ScaleGetRequest) returns (ScaleGetResponse);
 
-  rpc ScaleGetV2 (ScaleGetV2Request) returns (ScaleGetV2Response);
+  rpc ScaleGetV2 (ScaleGetV2Request) returns (ScaleV2Response);
 
   rpc ScalePost (ScalePostRequest) returns (GenericPostResponse);
 
@@ -255,10 +256,6 @@ message ScaleGetV2Request {
   // The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
   int64 userId = 6;
 
-}
-
-message ScaleGetV2Response {
-  repeated ScaleV2 data = 1;
 }
 
 message ScalePostRequest {

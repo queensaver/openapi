@@ -29,6 +29,7 @@ go/model_put_hive_response.go
 go/model_put_stand_response.go
 go/model_registration_id.go
 go/model_scale_v2.go
+go/model_scale_v2_response.go
 go/model_stand.go
 go/model_temperature.go
 go/model_user.go
