@@ -1219,16 +1219,15 @@ export class DefaultService {
      * @param bhiveId The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call.
      * @param epoch The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the secondsInThePast parameter.
      * @param secondsInThePast How many seconds we go to the past to get the data measurements.
-     * @param registrationId Either the cookie, registrationId or this Q-Token must be set to be authorized for the API call.
      * @param qToken Either the cookie, registrationId or this Q-Token must be set to be authorized for the API call.
      * @param token Either this cookie, registrationId or the Q-Token must be set to be authorized for the API call.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public scaleGet(bhiveId: string, epoch: number, secondsInThePast: number, registrationId?: string, qToken?: string, token?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<Array<Weight>>;
-    public scaleGet(bhiveId: string, epoch: number, secondsInThePast: number, registrationId?: string, qToken?: string, token?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<Array<Weight>>>;
-    public scaleGet(bhiveId: string, epoch: number, secondsInThePast: number, registrationId?: string, qToken?: string, token?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<Array<Weight>>>;
-    public scaleGet(bhiveId: string, epoch: number, secondsInThePast: number, registrationId?: string, qToken?: string, token?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+    public scaleGet(bhiveId: string, epoch: number, secondsInThePast: number, qToken?: string, token?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<Array<Weight>>;
+    public scaleGet(bhiveId: string, epoch: number, secondsInThePast: number, qToken?: string, token?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<Array<Weight>>>;
+    public scaleGet(bhiveId: string, epoch: number, secondsInThePast: number, qToken?: string, token?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<Array<Weight>>>;
+    public scaleGet(bhiveId: string, epoch: number, secondsInThePast: number, qToken?: string, token?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
         if (bhiveId === null || bhiveId === undefined) {
             throw new Error('Required parameter bhiveId was null or undefined when calling scaleGet.');
         }
@@ -1254,9 +1253,6 @@ export class DefaultService {
         }
 
         let localVarHeaders = this.defaultHeaders;
-        if (registrationId !== undefined && registrationId !== null) {
-            localVarHeaders = localVarHeaders.set('registrationId', String(registrationId));
-        }
         if (qToken !== undefined && qToken !== null) {
             localVarHeaders = localVarHeaders.set('Q-Token', String(qToken));
         }
@@ -1311,21 +1307,19 @@ export class DefaultService {
 
     /**
      * Get Scale values
-     * This returns scale values for a certain, defineable date range. The request needs to send a registrationId in the header. Note that this returns the scale data for a scale (independent of the beeHive), the API call for an actual beeHive is different.
-     * @param registrationId The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data.
+     * This returns scale values for a certain, defineable date range. The request needs to send a token in the header or a cookie. Note that this returns the scale data for a scale (independent of the beeHive), the API call for an actual beeHive is different.
      * @param macAddress The Mac Address of the scale.
      * @param epoch The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the secondsInThePast parameter.
      * @param secondsInThePast How many seconds we go to the past to get the data measurements.
+     * @param qToken Either the cookie, registrationId or this Q-Token must be set to be authorized for the API call.
+     * @param token Either this cookie, registrationId or the Q-Token must be set to be authorized for the API call.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public scaleGetV2(registrationId: string, macAddress: string, epoch: number, secondsInThePast: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<Array<ScaleV2>>;
-    public scaleGetV2(registrationId: string, macAddress: string, epoch: number, secondsInThePast: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<Array<ScaleV2>>>;
-    public scaleGetV2(registrationId: string, macAddress: string, epoch: number, secondsInThePast: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<Array<ScaleV2>>>;
-    public scaleGetV2(registrationId: string, macAddress: string, epoch: number, secondsInThePast: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
-        if (registrationId === null || registrationId === undefined) {
-            throw new Error('Required parameter registrationId was null or undefined when calling scaleGetV2.');
-        }
+    public scaleGetV2(macAddress: string, epoch: number, secondsInThePast: number, qToken?: string, token?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<Array<ScaleV2>>;
+    public scaleGetV2(macAddress: string, epoch: number, secondsInThePast: number, qToken?: string, token?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<Array<ScaleV2>>>;
+    public scaleGetV2(macAddress: string, epoch: number, secondsInThePast: number, qToken?: string, token?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<Array<ScaleV2>>>;
+    public scaleGetV2(macAddress: string, epoch: number, secondsInThePast: number, qToken?: string, token?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
         if (macAddress === null || macAddress === undefined) {
             throw new Error('Required parameter macAddress was null or undefined when calling scaleGetV2.');
         }
@@ -1351,8 +1345,8 @@ export class DefaultService {
         }
 
         let localVarHeaders = this.defaultHeaders;
-        if (registrationId !== undefined && registrationId !== null) {
-            localVarHeaders = localVarHeaders.set('registrationId', String(registrationId));
+        if (qToken !== undefined && qToken !== null) {
+            localVarHeaders = localVarHeaders.set('Q-Token', String(qToken));
         }
 
         let localVarCredential: string | undefined;

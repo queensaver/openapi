@@ -231,11 +231,9 @@ message ScaleGetRequest {
   // How many seconds we go to the past to get the data measurements.
   int64 secondsInThePast = 3;
   // Either the cookie, registrationId or this Q-Token must be set to be authorized for the API call.
-  string registrationId = 4;
-  // Either the cookie, registrationId or this Q-Token must be set to be authorized for the API call.
-  string qToken = 5;
+  string qToken = 4;
   // Either this cookie, registrationId or the Q-Token must be set to be authorized for the API call.
-  string token = 6;
+  string token = 5;
 
 }
 
@@ -244,14 +242,16 @@ message ScaleGetResponse {
 }
 
 message ScaleGetV2Request {
-  // The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data.
-  string registrationId = 1;
   // The Mac Address of the scale.
-  string macAddress = 2;
+  string macAddress = 1;
   // The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the secondsInThePast parameter.
-  int64 epoch = 3;
+  int64 epoch = 2;
   // How many seconds we go to the past to get the data measurements.
-  int64 secondsInThePast = 4;
+  int64 secondsInThePast = 3;
+  // Either the cookie, registrationId or this Q-Token must be set to be authorized for the API call.
+  string qToken = 4;
+  // Either this cookie, registrationId or the Q-Token must be set to be authorized for the API call.
+  string token = 5;
 
 }
 

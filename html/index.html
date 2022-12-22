@@ -8018,12 +8018,11 @@ public class DefaultApiExample {
         String bhiveId = 829898a53801; // String | The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call.
         Long epoch = 1639170002; // Long | The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the secondsInThePast parameter.
         Long secondsInThePast = 7200; // Long | How many seconds we go to the past to get the data measurements.
-        String registrationId = 8B0FE5CFC0964B3E874827906B4A9449; // String | Either the cookie, registrationId or this Q-Token must be set to be authorized for the API call.
         String qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either the cookie, registrationId or this Q-Token must be set to be authorized for the API call.
         String token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie, registrationId or the Q-Token must be set to be authorized for the API call.
 
         try {
-            array[weight] result = apiInstance.scaleGet(bhiveId, epoch, secondsInThePast, registrationId, qToken, token);
+            array[weight] result = apiInstance.scaleGet(bhiveId, epoch, secondsInThePast, qToken, token);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#scaleGet");
@@ -8043,12 +8042,11 @@ public class DefaultApiExample {
         String bhiveId = 829898a53801; // String | The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call.
         Long epoch = 1639170002; // Long | The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the secondsInThePast parameter.
         Long secondsInThePast = 7200; // Long | How many seconds we go to the past to get the data measurements.
-        String registrationId = 8B0FE5CFC0964B3E874827906B4A9449; // String | Either the cookie, registrationId or this Q-Token must be set to be authorized for the API call.
         String qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either the cookie, registrationId or this Q-Token must be set to be authorized for the API call.
         String token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie, registrationId or the Q-Token must be set to be authorized for the API call.
 
         try {
-            array[weight] result = apiInstance.scaleGet(bhiveId, epoch, secondsInThePast, registrationId, qToken, token);
+            array[weight] result = apiInstance.scaleGet(bhiveId, epoch, secondsInThePast, qToken, token);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#scaleGet");
@@ -8075,7 +8073,6 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
 String *bhiveId = 829898a53801; // The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call. (default to null)
 Long *epoch = 1639170002; // The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the secondsInThePast parameter. (default to null)
 Long *secondsInThePast = 7200; // How many seconds we go to the past to get the data measurements. (default to null)
-String *registrationId = 8B0FE5CFC0964B3E874827906B4A9449; // Either the cookie, registrationId or this Q-Token must be set to be authorized for the API call. (optional) (default to null)
 String *qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // Either the cookie, registrationId or this Q-Token must be set to be authorized for the API call. (optional) (default to null)
 String *token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // Either this cookie, registrationId or the Q-Token must be set to be authorized for the API call. (optional) (default to null)
 
@@ -8083,7 +8080,6 @@ String *token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // Either this cookie, reg
 [apiInstance scaleGetWith:bhiveId
     epoch:epoch
     secondsInThePast:secondsInThePast
-    registrationId:registrationId
     qToken:qToken
     token:token
               completionHandler: ^(array[weight] output, NSError* error) {
@@ -8113,7 +8109,6 @@ var bhiveId = 829898a53801; // {String} The Mac Address of the QBox client. You 
 var epoch = 1639170002; // {Long} The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the secondsInThePast parameter.
 var secondsInThePast = 7200; // {Long} How many seconds we go to the past to get the data measurements.
 var opts = {
-  'registrationId': 8B0FE5CFC0964B3E874827906B4A9449, // {String} Either the cookie, registrationId or this Q-Token must be set to be authorized for the API call.
   'qToken': 8B0FE5CF-C096-4B3E-8748-27906B4A9449, // {String} Either the cookie, registrationId or this Q-Token must be set to be authorized for the API call.
   'token': 8B0FE5CF-C096-4B3E-8748-27906B4A9449 // {String} Either this cookie, registrationId or the Q-Token must be set to be authorized for the API call.
 };
@@ -8155,13 +8150,12 @@ namespace Example
             var bhiveId = 829898a53801;  // String | The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call. (default to null)
             var epoch = 1639170002;  // Long | The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the secondsInThePast parameter. (default to null)
             var secondsInThePast = 7200;  // Long | How many seconds we go to the past to get the data measurements. (default to null)
-            var registrationId = 8B0FE5CFC0964B3E874827906B4A9449;  // String | Either the cookie, registrationId or this Q-Token must be set to be authorized for the API call. (optional)  (default to null)
             var qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449;  // String | Either the cookie, registrationId or this Q-Token must be set to be authorized for the API call. (optional)  (default to null)
             var token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449;  // String | Either this cookie, registrationId or the Q-Token must be set to be authorized for the API call. (optional)  (default to null)
 
             try {
                 // Get Scale values
-                array[weight] result = apiInstance.scaleGet(bhiveId, epoch, secondsInThePast, registrationId, qToken, token);
+                array[weight] result = apiInstance.scaleGet(bhiveId, epoch, secondsInThePast, qToken, token);
                 Debug.WriteLine(result);
             } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.scaleGet: " + e.Message );
@@ -8186,12 +8180,11 @@ $api_instance = new OpenAPITools\Client\Api\DefaultApi();
 $bhiveId = 829898a53801; // String | The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call.
 $epoch = 1639170002; // Long | The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the secondsInThePast parameter.
 $secondsInThePast = 7200; // Long | How many seconds we go to the past to get the data measurements.
-$registrationId = 8B0FE5CFC0964B3E874827906B4A9449; // String | Either the cookie, registrationId or this Q-Token must be set to be authorized for the API call.
 $qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either the cookie, registrationId or this Q-Token must be set to be authorized for the API call.
 $token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie, registrationId or the Q-Token must be set to be authorized for the API call.
 
 try {
-    $result = $api_instance->scaleGet($bhiveId, $epoch, $secondsInThePast, $registrationId, $qToken, $token);
+    $result = $api_instance->scaleGet($bhiveId, $epoch, $secondsInThePast, $qToken, $token);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->scaleGet: ', $e->getMessage(), PHP_EOL;
@@ -8214,12 +8207,11 @@ my $api_instance = WWW::OPenAPIClient::DefaultApi->new();
 my $bhiveId = 829898a53801; # String | The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call.
 my $epoch = 1639170002; # Long | The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the secondsInThePast parameter.
 my $secondsInThePast = 7200; # Long | How many seconds we go to the past to get the data measurements.
-my $registrationId = 8B0FE5CFC0964B3E874827906B4A9449; # String | Either the cookie, registrationId or this Q-Token must be set to be authorized for the API call.
 my $qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; # String | Either the cookie, registrationId or this Q-Token must be set to be authorized for the API call.
 my $token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; # String | Either this cookie, registrationId or the Q-Token must be set to be authorized for the API call.
 
 eval {
-    my $result = $api_instance->scaleGet(bhiveId => $bhiveId, epoch => $epoch, secondsInThePast => $secondsInThePast, registrationId => $registrationId, qToken => $qToken, token => $token);
+    my $result = $api_instance->scaleGet(bhiveId => $bhiveId, epoch => $epoch, secondsInThePast => $secondsInThePast, qToken => $qToken, token => $token);
     print Dumper($result);
 };
 if ($@) {
@@ -8244,13 +8236,12 @@ api_instance = openapi_client.DefaultApi()
 bhiveId = 829898a53801 # String | The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call. (default to null)
 epoch = 1639170002 # Long | The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the secondsInThePast parameter. (default to null)
 secondsInThePast = 7200 # Long | How many seconds we go to the past to get the data measurements. (default to null)
-registrationId = 8B0FE5CFC0964B3E874827906B4A9449 # String | Either the cookie, registrationId or this Q-Token must be set to be authorized for the API call. (optional) (default to null)
 qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449 # String | Either the cookie, registrationId or this Q-Token must be set to be authorized for the API call. (optional) (default to null)
 token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449 # String | Either this cookie, registrationId or the Q-Token must be set to be authorized for the API call. (optional) (default to null)
 
 try:
     # Get Scale values
-    api_response = api_instance.scale_get(bhiveId, epoch, secondsInThePast, registrationId=registrationId, qToken=qToken, token=token)
+    api_response = api_instance.scale_get(bhiveId, epoch, secondsInThePast, qToken=qToken, token=token)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->scaleGet: %s\n" % e)</code></pre>
@@ -8263,12 +8254,11 @@ pub fn main() {
     let bhiveId = 829898a53801; // String
     let epoch = 1639170002; // Long
     let secondsInThePast = 7200; // Long
-    let registrationId = 8B0FE5CFC0964B3E874827906B4A9449; // String
     let qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String
     let token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String
 
     let mut context = DefaultApi::Context::default();
-    let result = client.scaleGet(bhiveId, epoch, secondsInThePast, registrationId, qToken, token, &context).wait();
+    let result = client.scaleGet(bhiveId, epoch, secondsInThePast, qToken, token, &context).wait();
 
     println!("{:?}", result);
 }
@@ -8290,26 +8280,6 @@ pub fn main() {
                                 <th width="150px">Name</th>
                                 <th>Description</th>
                               </tr>
-                                  <tr><td style="width:150px;">registrationId</td>
-<td>
-
-
-    <div id="d2e199_scaleGet_registrationId">
-        <div class="json-schema-view">
-            <div class="primitive">
-                <span class="type">
-                    String
-                </span>
-
-                    <div class="inner description marked">
-Either the cookie, registrationId or this Q-Token must be set to be authorized for the API call.
-                    </div>
-            </div>
-        </div>
-    </div>
-</td>
-</tr>
-
                                   <tr><td style="width:150px;">Q-Token</td>
 <td>
 
@@ -8543,7 +8513,7 @@ How many seconds we go to the past to get the data measurements.
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">This returns scale values for a certain, defineable date range. The request needs to send a registrationId in the header. Note that this returns the scale data for a scale (independent of the beeHive), the API call for an actual beeHive is different.</p>
+                        <p class="marked">This returns scale values for a certain, defineable date range. The request needs to send a token in the header or a cookie. Note that this returns the scale data for a scale (independent of the beeHive), the API call for an actual beeHive is different.</p>
                         <p></p>
                         <br />
                         <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/v2/scale</span></code></pre>
@@ -8594,13 +8564,14 @@ public class DefaultApiExample {
 
         // Create an instance of the API class
         DefaultApi apiInstance = new DefaultApi();
-        String registrationId = 8B0FE5CFC0964B3E874827906B4A9449; // String | The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data.
         String macAddress = 829898a53801; // String | The Mac Address of the scale.
         Long epoch = 1639170002; // Long | The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the secondsInThePast parameter.
         Long secondsInThePast = 7200; // Long | How many seconds we go to the past to get the data measurements.
+        String qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either the cookie, registrationId or this Q-Token must be set to be authorized for the API call.
+        String token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie, registrationId or the Q-Token must be set to be authorized for the API call.
 
         try {
-            array[scaleV2] result = apiInstance.scaleGetV2(registrationId, macAddress, epoch, secondsInThePast);
+            array[scaleV2] result = apiInstance.scaleGetV2(macAddress, epoch, secondsInThePast, qToken, token);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#scaleGetV2");
@@ -8617,13 +8588,14 @@ public class DefaultApiExample {
 public class DefaultApiExample {
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
-        String registrationId = 8B0FE5CFC0964B3E874827906B4A9449; // String | The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data.
         String macAddress = 829898a53801; // String | The Mac Address of the scale.
         Long epoch = 1639170002; // Long | The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the secondsInThePast parameter.
         Long secondsInThePast = 7200; // Long | How many seconds we go to the past to get the data measurements.
+        String qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either the cookie, registrationId or this Q-Token must be set to be authorized for the API call.
+        String token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie, registrationId or the Q-Token must be set to be authorized for the API call.
 
         try {
-            array[scaleV2] result = apiInstance.scaleGetV2(registrationId, macAddress, epoch, secondsInThePast);
+            array[scaleV2] result = apiInstance.scaleGetV2(macAddress, epoch, secondsInThePast, qToken, token);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#scaleGetV2");
@@ -8647,16 +8619,18 @@ public class DefaultApiExample {
 
 // Create an instance of the API class
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
-String *registrationId = 8B0FE5CFC0964B3E874827906B4A9449; // The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data. (default to null)
 String *macAddress = 829898a53801; // The Mac Address of the scale. (default to null)
 Long *epoch = 1639170002; // The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the secondsInThePast parameter. (default to null)
 Long *secondsInThePast = 7200; // How many seconds we go to the past to get the data measurements. (default to null)
+String *qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // Either the cookie, registrationId or this Q-Token must be set to be authorized for the API call. (optional) (default to null)
+String *token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // Either this cookie, registrationId or the Q-Token must be set to be authorized for the API call. (optional) (default to null)
 
 // Get Scale values
-[apiInstance scaleGetV2With:registrationId
-    macAddress:macAddress
+[apiInstance scaleGetV2With:macAddress
     epoch:epoch
     secondsInThePast:secondsInThePast
+    qToken:qToken
+    token:token
               completionHandler: ^(array[scaleV2] output, NSError* error) {
     if (output) {
         NSLog(@"%@", output);
@@ -8680,10 +8654,13 @@ cookieAuth.apiKey = "YOUR API KEY";
 
 // Create an instance of the API class
 var api = new QueensaverApi.DefaultApi()
-var registrationId = 8B0FE5CFC0964B3E874827906B4A9449; // {String} The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data.
 var macAddress = 829898a53801; // {String} The Mac Address of the scale.
 var epoch = 1639170002; // {Long} The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the secondsInThePast parameter.
 var secondsInThePast = 7200; // {Long} How many seconds we go to the past to get the data measurements.
+var opts = {
+  'qToken': 8B0FE5CF-C096-4B3E-8748-27906B4A9449, // {String} Either the cookie, registrationId or this Q-Token must be set to be authorized for the API call.
+  'token': 8B0FE5CF-C096-4B3E-8748-27906B4A9449 // {String} Either this cookie, registrationId or the Q-Token must be set to be authorized for the API call.
+};
 
 var callback = function(error, data, response) {
   if (error) {
@@ -8692,7 +8669,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.scaleGetV2(registrationId, macAddress, epoch, secondsInThePast, callback);
+api.scaleGetV2(macAddress, epoch, secondsInThePast, opts, callback);
 </code></pre>
                             </div>
 
@@ -8719,14 +8696,15 @@ namespace Example
 
             // Create an instance of the API class
             var apiInstance = new DefaultApi();
-            var registrationId = 8B0FE5CFC0964B3E874827906B4A9449;  // String | The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data. (default to null)
             var macAddress = 829898a53801;  // String | The Mac Address of the scale. (default to null)
             var epoch = 1639170002;  // Long | The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the secondsInThePast parameter. (default to null)
             var secondsInThePast = 7200;  // Long | How many seconds we go to the past to get the data measurements. (default to null)
+            var qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449;  // String | Either the cookie, registrationId or this Q-Token must be set to be authorized for the API call. (optional)  (default to null)
+            var token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449;  // String | Either this cookie, registrationId or the Q-Token must be set to be authorized for the API call. (optional)  (default to null)
 
             try {
                 // Get Scale values
-                array[scaleV2] result = apiInstance.scaleGetV2(registrationId, macAddress, epoch, secondsInThePast);
+                array[scaleV2] result = apiInstance.scaleGetV2(macAddress, epoch, secondsInThePast, qToken, token);
                 Debug.WriteLine(result);
             } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.scaleGetV2: " + e.Message );
@@ -8748,13 +8726,14 @@ OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKey('token',
 
 // Create an instance of the API class
 $api_instance = new OpenAPITools\Client\Api\DefaultApi();
-$registrationId = 8B0FE5CFC0964B3E874827906B4A9449; // String | The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data.
 $macAddress = 829898a53801; // String | The Mac Address of the scale.
 $epoch = 1639170002; // Long | The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the secondsInThePast parameter.
 $secondsInThePast = 7200; // Long | How many seconds we go to the past to get the data measurements.
+$qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either the cookie, registrationId or this Q-Token must be set to be authorized for the API call.
+$token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie, registrationId or the Q-Token must be set to be authorized for the API call.
 
 try {
-    $result = $api_instance->scaleGetV2($registrationId, $macAddress, $epoch, $secondsInThePast);
+    $result = $api_instance->scaleGetV2($macAddress, $epoch, $secondsInThePast, $qToken, $token);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->scaleGetV2: ', $e->getMessage(), PHP_EOL;
@@ -8774,13 +8753,14 @@ $WWW::OPenAPIClient::Configuration::api_key->{'token'} = 'YOUR_API_KEY';
 
 # Create an instance of the API class
 my $api_instance = WWW::OPenAPIClient::DefaultApi->new();
-my $registrationId = 8B0FE5CFC0964B3E874827906B4A9449; # String | The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data.
 my $macAddress = 829898a53801; # String | The Mac Address of the scale.
 my $epoch = 1639170002; # Long | The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the secondsInThePast parameter.
 my $secondsInThePast = 7200; # Long | How many seconds we go to the past to get the data measurements.
+my $qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; # String | Either the cookie, registrationId or this Q-Token must be set to be authorized for the API call.
+my $token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; # String | Either this cookie, registrationId or the Q-Token must be set to be authorized for the API call.
 
 eval {
-    my $result = $api_instance->scaleGetV2(registrationId => $registrationId, macAddress => $macAddress, epoch => $epoch, secondsInThePast => $secondsInThePast);
+    my $result = $api_instance->scaleGetV2(macAddress => $macAddress, epoch => $epoch, secondsInThePast => $secondsInThePast, qToken => $qToken, token => $token);
     print Dumper($result);
 };
 if ($@) {
@@ -8802,14 +8782,15 @@ openapi_client.configuration.api_key['token'] = 'YOUR_API_KEY'
 
 # Create an instance of the API class
 api_instance = openapi_client.DefaultApi()
-registrationId = 8B0FE5CFC0964B3E874827906B4A9449 # String | The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data. (default to null)
 macAddress = 829898a53801 # String | The Mac Address of the scale. (default to null)
 epoch = 1639170002 # Long | The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the secondsInThePast parameter. (default to null)
 secondsInThePast = 7200 # Long | How many seconds we go to the past to get the data measurements. (default to null)
+qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449 # String | Either the cookie, registrationId or this Q-Token must be set to be authorized for the API call. (optional) (default to null)
+token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449 # String | Either this cookie, registrationId or the Q-Token must be set to be authorized for the API call. (optional) (default to null)
 
 try:
     # Get Scale values
-    api_response = api_instance.scale_get_v2(registrationId, macAddress, epoch, secondsInThePast)
+    api_response = api_instance.scale_get_v2(macAddress, epoch, secondsInThePast, qToken=qToken, token=token)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->scaleGetV2: %s\n" % e)</code></pre>
@@ -8819,13 +8800,14 @@ except ApiException as e:
                               <pre class="prettyprint"><code class="language-rust">extern crate DefaultApi;
 
 pub fn main() {
-    let registrationId = 8B0FE5CFC0964B3E874827906B4A9449; // String
     let macAddress = 829898a53801; // String
     let epoch = 1639170002; // Long
     let secondsInThePast = 7200; // Long
+    let qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String
+    let token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String
 
     let mut context = DefaultApi::Context::default();
-    let result = client.scaleGetV2(registrationId, macAddress, epoch, secondsInThePast, &context).wait();
+    let result = client.scaleGetV2(macAddress, epoch, secondsInThePast, qToken, token, &context).wait();
 
     println!("{:?}", result);
 }
@@ -8847,11 +8829,11 @@ pub fn main() {
                                 <th width="150px">Name</th>
                                 <th>Description</th>
                               </tr>
-                                  <tr><td style="width:150px;">registrationId*</td>
+                                  <tr><td style="width:150px;">Q-Token</td>
 <td>
 
 
-    <div id="d2e199_scaleGetV2_registrationId">
+    <div id="d2e199_scaleGetV2_qToken">
         <div class="json-schema-view">
             <div class="primitive">
                 <span class="type">
@@ -8859,12 +8841,9 @@ pub fn main() {
                 </span>
 
                     <div class="inner description marked">
-The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data.
+Either the cookie, registrationId or this Q-Token must be set to be authorized for the API call.
                     </div>
             </div>
-                <div class="inner required">
-                    Required
-                </div>
         </div>
     </div>
 </td>

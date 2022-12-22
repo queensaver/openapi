@@ -245,7 +245,7 @@ func (s *DefaultApiService) LoginPost(ctx context.Context, username string, pass
 }
 
 // ScaleGet - Get Scale values
-func (s *DefaultApiService) ScaleGet(ctx context.Context, bhiveId string, epoch int64, secondsInThePast int64, registrationId string, qToken string, token string) (ImplResponse, error) {
+func (s *DefaultApiService) ScaleGet(ctx context.Context, bhiveId string, epoch int64, secondsInThePast int64, qToken string, token string) (ImplResponse, error) {
 	// TODO - update ScaleGet with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
@@ -262,7 +262,7 @@ func (s *DefaultApiService) ScaleGet(ctx context.Context, bhiveId string, epoch 
 }
 
 // ScaleGetV2 - Get Scale values
-func (s *DefaultApiService) ScaleGetV2(ctx context.Context, registrationId string, macAddress string, epoch int64, secondsInThePast int64) (ImplResponse, error) {
+func (s *DefaultApiService) ScaleGetV2(ctx context.Context, macAddress string, epoch int64, secondsInThePast int64, qToken string, token string) (ImplResponse, error) {
 	// TODO - update ScaleGetV2 with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
