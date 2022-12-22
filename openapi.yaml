@@ -5,7 +5,7 @@ info:
   description: Queensaver API to send in sensor data and retrieve it. It's also used for user management.
 
 servers:
-- url: https://api.queensaver.com/v1
+- url: https://api.queensaver.com
   description: Queensaver API Server
 
 security:
@@ -13,9 +13,10 @@ security:
 
 paths: 
 
-  /user:
+  /v1/user:
     post:
       summary: Create a user 
+      operationId: userPost
       description: This call creates a user in the queensaver system.
       security: []
       requestBody:
@@ -36,10 +37,11 @@ paths:
                 missingData:
                   value: "Data is missing."
 
-  /login:
+  /v1/login:
     post:
       summary: Authenticate a user against the system.
       description: This call is meant for interactive web applications. Be aware that the server returns a cookie with a 24 hour lifetime. 
+      operationId: loginPost
       security: []
       requestBody:
         required: true
@@ -69,10 +71,11 @@ paths:
               schema:
                 $ref: "#/components/schemas/errorMessage"
 
-  /configs/bbox:
+  /v1/configs/bbox:
     get:
       summary: Get Config metadata of bboxes
       description: This returns all bboxes of a user
+      operationId: configsBboxGet
       security:
       - cookieAuth: []
       parameters:
@@ -120,6 +123,7 @@ paths:
     put:
       summary: Update bbox metadata
       description: This call updates bbox metadata
+      operationId: configsBboxPut
       security:
       - cookieAuth: []
       parameters:
@@ -172,6 +176,7 @@ paths:
     post:
       summary: Create bbox
       description: This creates a new bbox. A bbox is a physical hardware component that needs to be associated with a hive.
+      operationId: configsBboxPost
       security:
       - cookieAuth: []
       parameters:
@@ -217,6 +222,7 @@ paths:
     delete:
       summary: Delete a bbox
       description: This deletes a bbox.
+      operationId: configsBboxDelete
       security:
       - cookieAuth: []
       parameters:
@@ -256,9 +262,10 @@ paths:
         "500":
           description: Internal error
 
-  /authenticateRegistrationId:
+  /v1/authenticateRegistrationId:
     post:
       summary: authenticate against the internal authentication service with a registrationId. 
+      operationId: authenticateRegistrationIdPost
       description: This can not be called from the API but is an internal call. Please ignore if you consume this API publicly. An authentication call can be either a username or password but also a registrationId. In this call we implement the registrationId.
       security: []
       requestBody:
@@ -280,9 +287,10 @@ paths:
           description: Internal error
 
 
-  /configs/bbox/register:
+  /v1/configs/bbox/register:
     post:
       summary: register bbox
+      operationId: configsBboxRegisterPost
       description: This registers a new bbox. A bbox is a physical hardware component that needs to be associated with a hive. The bbox sends a registrationId that a user needs to know and put in the system before the registration. The bbox proto is used as a convenience, the only field that is accepted is the bboxId and the registrationId, the hardwareType and that hardwareRevision. 
       parameters:
       - name: userId
@@ -310,9 +318,10 @@ paths:
         "500":
           description: Internal error
 
-  /configs/bhive/associate:
+  /v1/configs/bhive/associate:
     post:
       summary: associate bhive (sensors) with a logical hive
+      operationId: configsBhiveAssociatePost
       description: This connects a bhive with a hive so all telemetry data will be associate with the hive. If the hiveUuid is empty, we disassociate that bhive (it's no longer connected to any hives)
       parameters:
       - name: userId
@@ -345,9 +354,10 @@ paths:
         "500":
           description: Internal error
 
-  /stands:
+  /v1/stands:
     get:
       summary: Get Stand metadata
+      operationId: standsGet
       description: This returns all hive stand for the currently logged in user. Important to understand is that a user can go back into the past at any point in time (how did my stand look like a month or a year ago), so the cloud stores multiple versions of stand metadata. Any PUT request will create a new version.
       security:
       - cookieAuth: []
@@ -411,6 +421,7 @@ paths:
 
     put:
       summary: Update stand metadata
+      operationId: standsPut
       description: This updates stand metadata. Note that internaly we will actally create a new version of the stand (not the hives). When you issue this call you will have to provide the UUID, otherwise we don't know which stand to update. Also any hives attached to the stand will be ignored, you can only update a single stand at any time.
       security:
       - cookieAuth: []
@@ -456,6 +467,7 @@ paths:
 
     post:
       summary: Create stand metadata
+      operationId: standsPost
       description: This creates a new stand. A stand is a logical representation of a location of bee hives.
       security:
       - cookieAuth: []
@@ -501,6 +513,7 @@ paths:
 
     delete:
       summary: Delete a stand
+      operationId: standsDelete
       description: This deletes a stand. If a stand is deleted, it will only get its deleted field set to true. It will not actually be deleted, because we need to always be able to go back in time.
       security:
       - cookieAuth: []
@@ -541,9 +554,10 @@ paths:
         "500":
           description: Internal error
 
-  /hives:
+  /v1/hives:
     get:
       summary: Get Hive metadata
+      operationId: hivesGet
       description: This returns all hive metadata for the currently logged in user. Important to understand is that a user can go back into the past at any point in time (how did my bee hive look like a month or a year ago), so the cloud stores multiple versions of hive metadata. Any PUT request will create a new version. W
       security:
       - cookieAuth: []
@@ -595,6 +609,7 @@ paths:
 
     put:
       summary: Update Hive metadata
+      operationId: hivesPut
       description: This updates hive metadata. Note that internaly we will actally create a new version of the data.
       security:
       - cookieAuth: []
@@ -641,6 +656,7 @@ paths:
 
     post:
       summary: Create Hive metadata
+      operationId: hivesPost
       description: This creates a new hive. A hive is a logical representation of a bee hive that can be connected to hardware.
       security:
       - cookieAuth: []
@@ -686,6 +702,7 @@ paths:
 
     delete:
       summary: Delete a Hive
+      operationId: hivesDelete
       description: This deletes a hive.
       security:
       - cookieAuth: []
@@ -730,9 +747,10 @@ paths:
 
 
 
-  /bboxes:
+  /v1/bboxes:
     get:
       summary: Get QBox metadata
+      operationId: bboxesGet
       description: This returns QBox metadata for the logged in user. The request needs to present a valid session cookie. There are no query parameters needed here, the request will return all known bboxes.
       security:
       - cookieAuth: []
@@ -751,9 +769,10 @@ paths:
         "500":
           description: Internal error
 
-  /temperature:
+  /v1/temperature:
     get:
       summary: Get Temperature values 
+      operationId: temperatureGet
       description: This returns temperate values for a certain, defineable date range. The request needs to send a cookie along with the request. The cookie is stored under the key called "token". Note that this returns the temperature data for a QBox Client (independent of the beeHive), the API call for an actual beeHive is different.
       security:
       - cookieAuth: []
@@ -818,6 +837,7 @@ paths:
 
     post:
       summary: Save a new temperature measurement
+      operationId: temperaturePost
       description: This stores a new temperature measurement in the database. Must be authorized wit ha cookie or a token.
       security:
       - cookieAuth: []
@@ -857,9 +877,10 @@ paths:
               schema:
                 $ref: "#/components/schemas/generic-post-response"
 
-  /scale:
+  /v1/scale:
     get:
       summary: Get Scale values 
+      operationId: scaleGet
       description: This returns scale values for a certain, defineable date range. The request needs to send a cookie along with the request. The cookie is stored under the key called "token". Note that this returns the scale data for a QBox Client (independent of the beeHive), the API call for an actual beeHive is different.
       # operationId: getScaleValues
       security:
@@ -924,6 +945,7 @@ paths:
 
     post:
       summary: Post Scale values 
+      operationId: scalePost
       description: Sends a weight from a hive to the queensaver system. The request needs to send a cookie along with the request. The cookie is stored under the key called "token". Note that this returns the scale data for a QBox Client (independent of the beeHive), the API call for an actual beeHive is different.
       # operationId: getScaleValues
       security:
@@ -983,9 +1005,10 @@ paths:
               schema:
                 $ref: "#/components/schemas/generic-post-response"
 
-  /varroa-scan:
+  /v1/varroa-scan:
     get:
       summary: Get Varroa Scan images and metadata
+      operationId: varroaScanGet
       description: This returns varroa scan metadata. You can search for varroa scans for a certain, defineable date range. The request needs to send a cookie along with the request. The cookie is stored under the key called "token". Note that this returns the image for a QBox Client (independent of the beeHive), the API call for an actual beeHive is different.
       security:
       - cookieAuth: []
@@ -1057,6 +1080,7 @@ paths:
 
     post:
       summary: Save Varroa Scan metadata
+      operationId: varroaScanPost
       description: This saves varroa scan metadata. This is not callable from an external API.
       parameters:
       - name: userId
@@ -1080,9 +1104,10 @@ paths:
         "500":
           description: Internal error
 
-  /varroa-scan-image:
+  /v1/varroa-scan-image:
     post:
       summary: Save Varroa Scan image
+      operationId: varroaScanImagePost
       description: Upload a varroa scan image here. The file is attached via multipart/form-data.
       parameters:
       - in: header

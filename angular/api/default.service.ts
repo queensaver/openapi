@@ -76,7 +76,7 @@ import { Configuration }                                     from '../configurat
 })
 export class DefaultService {
 
-    protected basePath = 'https://api.queensaver.com/v1';
+    protected basePath = 'https://api.queensaver.com';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
     public encoder: HttpParameterCodec;
@@ -198,7 +198,7 @@ export class DefaultService {
             }
         }
 
-        return this.httpClient.post<AuthenticatePostResponse>(`${this.configuration.basePath}/authenticateRegistrationId`,
+        return this.httpClient.post<AuthenticatePostResponse>(`${this.configuration.basePath}/v1/authenticateRegistrationId`,
             registrationId,
             {
                 context: localVarHttpContext,
@@ -259,7 +259,7 @@ export class DefaultService {
             }
         }
 
-        return this.httpClient.get<Array<Bbox>>(`${this.configuration.basePath}/bboxes`,
+        return this.httpClient.get<Array<Bbox>>(`${this.configuration.basePath}/v1/bboxes`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -341,7 +341,7 @@ export class DefaultService {
             }
         }
 
-        return this.httpClient.delete<any>(`${this.configuration.basePath}/configs/bbox`,
+        return this.httpClient.delete<any>(`${this.configuration.basePath}/v1/configs/bbox`,
             {
                 context: localVarHttpContext,
                 params: localVarQueryParameters,
@@ -422,7 +422,7 @@ export class DefaultService {
             }
         }
 
-        return this.httpClient.get<GetBboxResponse>(`${this.configuration.basePath}/configs/bbox`,
+        return this.httpClient.get<GetBboxResponse>(`${this.configuration.basePath}/v1/configs/bbox`,
             {
                 context: localVarHttpContext,
                 params: localVarQueryParameters,
@@ -508,7 +508,7 @@ export class DefaultService {
             }
         }
 
-        return this.httpClient.post<PostBboxResponse>(`${this.configuration.basePath}/configs/bbox`,
+        return this.httpClient.post<PostBboxResponse>(`${this.configuration.basePath}/v1/configs/bbox`,
             bbox,
             {
                 context: localVarHttpContext,
@@ -603,7 +603,7 @@ export class DefaultService {
             }
         }
 
-        return this.httpClient.put<PutBboxResponse>(`${this.configuration.basePath}/configs/bbox`,
+        return this.httpClient.put<PutBboxResponse>(`${this.configuration.basePath}/v1/configs/bbox`,
             bbox,
             {
                 context: localVarHttpContext,
@@ -682,7 +682,7 @@ export class DefaultService {
             }
         }
 
-        return this.httpClient.post<BboxConfigResponse>(`${this.configuration.basePath}/configs/bbox/register`,
+        return this.httpClient.post<BboxConfigResponse>(`${this.configuration.basePath}/v1/configs/bbox/register`,
             bbox,
             {
                 context: localVarHttpContext,
@@ -766,7 +766,7 @@ export class DefaultService {
             }
         }
 
-        return this.httpClient.post<any>(`${this.configuration.basePath}/configs/bhive/associate`,
+        return this.httpClient.post<any>(`${this.configuration.basePath}/v1/configs/bhive/associate`,
             null,
             {
                 context: localVarHttpContext,
@@ -850,7 +850,7 @@ export class DefaultService {
             }
         }
 
-        return this.httpClient.delete<any>(`${this.configuration.basePath}/hives`,
+        return this.httpClient.delete<any>(`${this.configuration.basePath}/v1/hives`,
             {
                 context: localVarHttpContext,
                 params: localVarQueryParameters,
@@ -939,7 +939,7 @@ export class DefaultService {
             }
         }
 
-        return this.httpClient.get<GetHivesResponse>(`${this.configuration.basePath}/hives`,
+        return this.httpClient.get<GetHivesResponse>(`${this.configuration.basePath}/v1/hives`,
             {
                 context: localVarHttpContext,
                 params: localVarQueryParameters,
@@ -1025,7 +1025,7 @@ export class DefaultService {
             }
         }
 
-        return this.httpClient.post<PostHivesResponse>(`${this.configuration.basePath}/hives`,
+        return this.httpClient.post<PostHivesResponse>(`${this.configuration.basePath}/v1/hives`,
             hive,
             {
                 context: localVarHttpContext,
@@ -1112,7 +1112,7 @@ export class DefaultService {
             }
         }
 
-        return this.httpClient.put<PutHiveResponse>(`${this.configuration.basePath}/hives`,
+        return this.httpClient.put<PutHiveResponse>(`${this.configuration.basePath}/v1/hives`,
             hive,
             {
                 context: localVarHttpContext,
@@ -1198,7 +1198,7 @@ export class DefaultService {
             }
         }
 
-        return this.httpClient.post<LoginPostResponse>(`${this.configuration.basePath}/login`,
+        return this.httpClient.post<LoginPostResponse>(`${this.configuration.basePath}/v1/login`,
             localVarConvertFormParamsToString ? localVarFormParams.toString() : localVarFormParams,
             {
                 context: localVarHttpContext,
@@ -1294,7 +1294,7 @@ export class DefaultService {
             }
         }
 
-        return this.httpClient.get<Array<Weight>>(`${this.configuration.basePath}/scale`,
+        return this.httpClient.get<Array<Weight>>(`${this.configuration.basePath}/v1/scale`,
             {
                 context: localVarHttpContext,
                 params: localVarQueryParameters,
@@ -1381,7 +1381,7 @@ export class DefaultService {
             }
         }
 
-        return this.httpClient.post<GenericPostResponse>(`${this.configuration.basePath}/scale`,
+        return this.httpClient.post<GenericPostResponse>(`${this.configuration.basePath}/v1/scale`,
             weight,
             {
                 context: localVarHttpContext,
@@ -1465,7 +1465,7 @@ export class DefaultService {
             }
         }
 
-        return this.httpClient.delete<any>(`${this.configuration.basePath}/stands`,
+        return this.httpClient.delete<any>(`${this.configuration.basePath}/v1/stands`,
             {
                 context: localVarHttpContext,
                 params: localVarQueryParameters,
@@ -1562,7 +1562,7 @@ export class DefaultService {
             }
         }
 
-        return this.httpClient.get<GetStandsResponse>(`${this.configuration.basePath}/stands`,
+        return this.httpClient.get<GetStandsResponse>(`${this.configuration.basePath}/v1/stands`,
             {
                 context: localVarHttpContext,
                 params: localVarQueryParameters,
@@ -1648,7 +1648,7 @@ export class DefaultService {
             }
         }
 
-        return this.httpClient.post<PostStandsResponse>(`${this.configuration.basePath}/stands`,
+        return this.httpClient.post<PostStandsResponse>(`${this.configuration.basePath}/v1/stands`,
             stand,
             {
                 context: localVarHttpContext,
@@ -1735,7 +1735,7 @@ export class DefaultService {
             }
         }
 
-        return this.httpClient.put<PutStandResponse>(`${this.configuration.basePath}/stands`,
+        return this.httpClient.put<PutStandResponse>(`${this.configuration.basePath}/v1/stands`,
             stand,
             {
                 context: localVarHttpContext,
@@ -1836,7 +1836,7 @@ export class DefaultService {
             }
         }
 
-        return this.httpClient.get<GetTemperatureResponse>(`${this.configuration.basePath}/temperature`,
+        return this.httpClient.get<GetTemperatureResponse>(`${this.configuration.basePath}/v1/temperature`,
             {
                 context: localVarHttpContext,
                 params: localVarQueryParameters,
@@ -1914,7 +1914,7 @@ export class DefaultService {
             }
         }
 
-        return this.httpClient.post<GenericPostResponse>(`${this.configuration.basePath}/temperature`,
+        return this.httpClient.post<GenericPostResponse>(`${this.configuration.basePath}/v1/temperature`,
             temperature,
             {
                 context: localVarHttpContext,
@@ -1980,7 +1980,7 @@ export class DefaultService {
             }
         }
 
-        return this.httpClient.post<any>(`${this.configuration.basePath}/user`,
+        return this.httpClient.post<any>(`${this.configuration.basePath}/v1/user`,
             user,
             {
                 context: localVarHttpContext,
@@ -2079,7 +2079,7 @@ export class DefaultService {
             }
         }
 
-        return this.httpClient.get<VarroaScanResponse>(`${this.configuration.basePath}/varroa-scan`,
+        return this.httpClient.get<VarroaScanResponse>(`${this.configuration.basePath}/v1/varroa-scan`,
             {
                 context: localVarHttpContext,
                 params: localVarQueryParameters,
@@ -2179,7 +2179,7 @@ export class DefaultService {
             }
         }
 
-        return this.httpClient.post<any>(`${this.configuration.basePath}/varroa-scan-image`,
+        return this.httpClient.post<any>(`${this.configuration.basePath}/v1/varroa-scan-image`,
             localVarConvertFormParamsToString ? localVarFormParams.toString() : localVarFormParams,
             {
                 context: localVarHttpContext,
@@ -2256,7 +2256,7 @@ export class DefaultService {
             }
         }
 
-        return this.httpClient.post<any>(`${this.configuration.basePath}/varroa-scan`,
+        return this.httpClient.post<any>(`${this.configuration.basePath}/v1/varroa-scan`,
             varroaScan,
             {
                 context: localVarHttpContext,

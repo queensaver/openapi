@@ -1634,7 +1634,7 @@ ul.nav-tabs {
                         <p class="marked">This can not be called from the API but is an internal call. Please ignore if you consume this API publicly. An authentication call can be either a username or password but also a registrationId. In this call we implement the registrationId.</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/authenticateRegistrationId</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/v1/authenticateRegistrationId</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
@@ -2037,7 +2037,7 @@ $(document).ready(function() {
                         <p class="marked">This returns QBox metadata for the logged in user. The request needs to present a valid session cookie. There are no query parameters needed here, the request will return all known bboxes.</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/bboxes</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/v1/bboxes</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
@@ -2425,7 +2425,7 @@ pub fn main() {
                         <p class="marked">This deletes a bbox.</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="delete"><code><span class="pln">/configs/bbox</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="delete"><code><span class="pln">/v1/configs/bbox</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
@@ -2881,7 +2881,7 @@ The UUID of the bbox.
                         <p class="marked">This returns all bboxes of a user</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/configs/bbox</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/v1/configs/bbox</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
@@ -3388,7 +3388,7 @@ The UserID is set internally and can not set or be overridden with the API reque
                         <p class="marked">This creates a new bbox. A bbox is a physical hardware component that needs to be associated with a hive.</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/configs/bbox</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/v1/configs/bbox</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
@@ -3922,7 +3922,7 @@ The UserID is set internally and can not set or be overridden with the API reque
                         <p class="marked">This call updates bbox metadata</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="put"><code><span class="pln">/configs/bbox</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="put"><code><span class="pln">/v1/configs/bbox</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
@@ -4489,7 +4489,7 @@ The UserID is set internally and can not set or be overridden with the API reque
                         <p class="marked">This registers a new bbox. A bbox is a physical hardware component that needs to be associated with a hive. The bbox sends a registrationId that a user needs to know and put in the system before the registration. The bbox proto is used as a convenience, the only field that is accepted is the bboxId and the registrationId, the hardwareType and that hardwareRevision.</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/configs/bbox/register</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/v1/configs/bbox/register</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
@@ -4973,7 +4973,7 @@ The UserID is set internally and can not set or be overridden with the API reque
                         <p class="marked">This connects a bhive with a hive so all telemetry data will be associate with the hive. If the hiveUuid is empty, we disassociate that bhive (it&#39;s no longer connected to any hives)</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/configs/bhive/associate</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/v1/configs/bhive/associate</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
@@ -5412,7 +5412,7 @@ Unique Identifier for this hive
                         <p class="marked">This deletes a hive.</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="delete"><code><span class="pln">/hives</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="delete"><code><span class="pln">/v1/hives</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
@@ -5868,7 +5868,7 @@ The UUID of the hive.
                         <p class="marked">This returns all hive metadata for the currently logged in user. Important to understand is that a user can go back into the past at any point in time (how did my bee hive look like a month or a year ago), so the cloud stores multiple versions of hive metadata. Any PUT request will create a new version. W</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/hives</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/v1/hives</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
@@ -6397,7 +6397,7 @@ The UserID is set internally and can not set or be overridden with the API reque
                         <p class="marked">This creates a new hive. A hive is a logical representation of a bee hive that can be connected to hardware.</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/hives</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/v1/hives</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
@@ -6931,7 +6931,7 @@ The UserID is set internally and can not set or be overridden with the API reque
                         <p class="marked">This updates hive metadata. Note that internaly we will actally create a new version of the data.</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="put"><code><span class="pln">/hives</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="put"><code><span class="pln">/v1/hives</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
@@ -7465,7 +7465,7 @@ The UserID is set internally and can not set or be overridden with the API reque
                         <p class="marked">This call is meant for interactive web applications. Be aware that the server returns a cookie with a 24 hour lifetime.</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/login</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/v1/login</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
@@ -7939,7 +7939,7 @@ Password
                         <p class="marked">This returns scale values for a certain, defineable date range. The request needs to send a cookie along with the request. The cookie is stored under the key called &quot;token&quot;. Note that this returns the scale data for a QBox Client (independent of the beeHive), the API call for an actual beeHive is different.</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/scale</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/v1/scale</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
@@ -8518,7 +8518,7 @@ How many seconds we go to the past to get the data measurements.
                         <p class="marked">Sends a weight from a hive to the queensaver system. The request needs to send a cookie along with the request. The cookie is stored under the key called &quot;token&quot;. Note that this returns the scale data for a QBox Client (independent of the beeHive), the API call for an actual beeHive is different.</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/scale</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/v1/scale</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
@@ -9167,7 +9167,7 @@ The User ID. This is used internally and will be overwritten if you send it to t
                         <p class="marked">This deletes a stand. If a stand is deleted, it will only get its deleted field set to true. It will not actually be deleted, because we need to always be able to go back in time.</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="delete"><code><span class="pln">/stands</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="delete"><code><span class="pln">/v1/stands</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
@@ -9623,7 +9623,7 @@ The UUID of the stand.
                         <p class="marked">This returns all hive stand for the currently logged in user. Important to understand is that a user can go back into the past at any point in time (how did my stand look like a month or a year ago), so the cloud stores multiple versions of stand metadata. Any PUT request will create a new version.</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/stands</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/v1/stands</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
@@ -10202,7 +10202,7 @@ The UserID is set internally and can not set or be overridden with the API reque
                         <p class="marked">This creates a new stand. A stand is a logical representation of a location of bee hives.</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/stands</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/v1/stands</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
@@ -10736,7 +10736,7 @@ The UserID is set internally and can not set or be overridden with the API reque
                         <p class="marked">This updates stand metadata. Note that internaly we will actally create a new version of the stand (not the hives). When you issue this call you will have to provide the UUID, otherwise we don&#39;t know which stand to update. Also any hives attached to the stand will be ignored, you can only update a single stand at any time.</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="put"><code><span class="pln">/stands</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="put"><code><span class="pln">/v1/stands</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
@@ -11270,7 +11270,7 @@ The UserID is set internally and can not set or be overridden with the API reque
                         <p class="marked">This returns temperate values for a certain, defineable date range. The request needs to send a cookie along with the request. The cookie is stored under the key called &quot;token&quot;. Note that this returns the temperature data for a QBox Client (independent of the beeHive), the API call for an actual beeHive is different.</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/temperature</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/v1/temperature</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
@@ -11852,7 +11852,7 @@ The User ID. This is used internally and will be overwritten if you send it to t
                         <p class="marked">This stores a new temperature measurement in the database. Must be authorized wit ha cookie or a token.</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/temperature</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/v1/temperature</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
@@ -12424,7 +12424,7 @@ The User ID. This is used internally and will be overwritten if you send it to t
                         <p class="marked">This call creates a user in the queensaver system.</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/user</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/v1/user</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
@@ -12802,7 +12802,7 @@ $(document).ready(function() {
                         <p class="marked">This returns varroa scan metadata. You can search for varroa scans for a certain, defineable date range. The request needs to send a cookie along with the request. The cookie is stored under the key called &quot;token&quot;. Note that this returns the image for a QBox Client (independent of the beeHive), the API call for an actual beeHive is different.</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/varroa-scan</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/v1/varroa-scan</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
@@ -13408,7 +13408,7 @@ How many seconds we go to the past to get the data measurements.
                         <p class="marked">Upload a varroa scan image here. The file is attached via multipart/form-data.</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/varroa-scan-image</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/v1/varroa-scan-image</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
@@ -13925,7 +13925,7 @@ The Unix Time (epoch) that defines the end time of the varroa images. The beginn
                         <p class="marked">This saves varroa scan metadata. This is not callable from an external API.</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/varroa-scan</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/v1/varroa-scan</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
