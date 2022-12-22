@@ -2175,7 +2175,6 @@ components:
       type: object
     scaleV2Response:
       example:
-        httpReponseCode: 409
         values:
         - macAddress: 829898a53801
           weight: 53.2345
@@ -2183,8 +2182,9 @@ components:
         - macAddress: 829898a53801
           weight: 53.2345
           epoch: 1639169129
+        httpResponseCode: 409
       properties:
-        httpReponseCode:
+        httpResponseCode:
           description: "HTTP response code. Used for internal purposes, will be let\
             \ out at the API level."
           example: 409

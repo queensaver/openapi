@@ -16,7 +16,7 @@ export interface ScaleV2Response {
     /**
      * HTTP response code. Used for internal purposes, will be let out at the API level.
      */
-    httpReponseCode?: number;
+    httpResponseCode?: number;
     /**
      * The measurement responses
      */

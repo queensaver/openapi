@@ -12,7 +12,7 @@ package openapi
 type ScaleV2Response struct {
 
 	// HTTP response code. Used for internal purposes, will be let out at the API level.
-	HttpReponseCode int32 `json:"httpReponseCode,omitempty"`
+	HttpResponseCode int32 `json:"httpResponseCode,omitempty"`
 
 	// The measurement responses
 	Values []ScaleV2 `json:"values,omitempty"`

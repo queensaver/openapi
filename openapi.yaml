@@ -1606,7 +1606,7 @@ components:
     scaleV2Response:
       type: object
       properties:
-        httpReponseCode:
+        httpResponseCode:
           type: integer
           example: 409
           description: HTTP response code. Used for internal purposes, will be let out at the API level.
