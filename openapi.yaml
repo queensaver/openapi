@@ -911,10 +911,15 @@ paths:
         schema:
           type: string
         example: 8B0FE5CF-C096-4B3E-8748-27906B4A9449
+      - name: hiveUuid
+        in: query
+        description: The Hive UUID - can be used instead of the Mac Adress if you want to query an associated hive. Either this field or the macAddress are required.
+        example: 8B0FE5CF-C096-4B3E-8748-27906B4A9449
+        schema:
+          type: string
       - name: macAddress
         in: query
-        description: The Mac Address of the scale.
-        required: true
+        description: The Mac Address of the scale. You can omit this if you use query the hiveUuid.
         example: 829898a53801
         schema:
           type: string

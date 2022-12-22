@@ -71,7 +71,7 @@ type DefaultApiServicer interface {
 	LoginPost(context.Context, string, string) (ImplResponse, error)
 	// Deprecated
 	ScaleGet(context.Context, string, int64, int64, string, string) (ImplResponse, error)
-	ScaleGetV2(context.Context, string, int64, int64, string, string, int64) (ImplResponse, error)
+	ScaleGetV2(context.Context, int64, int64, string, string, string, string, int64) (ImplResponse, error)
 	ScalePost(context.Context, string, string, string, int64, Weight) (ImplResponse, error)
 	ScalePostV2(context.Context, string, int64, ScaleV2) (ImplResponse, error)
 	StandsDelete(context.Context, string, string, string, int64) (ImplResponse, error)
