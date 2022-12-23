@@ -164,9 +164,11 @@ message ConfigsBboxPutRequest {
 }
 
 message ConfigsBboxRegisterPostRequest {
+  // The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data.
+  string registrationId = 1;
   // The UserID is set internally and can not set or be overridden with the API request. Please ignore.
-  int64 userId = 1;
-  Bbox bbox = 2;
+  int64 userId = 2;
+  Bbox bbox = 3;
 
 }
 

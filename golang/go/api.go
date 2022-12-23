@@ -63,7 +63,7 @@ type DefaultApiServicer interface {
 	ConfigsBboxGet(context.Context, string, string, string, int64) (ImplResponse, error)
 	ConfigsBboxPost(context.Context, string, string, int64, Bbox) (ImplResponse, error)
 	ConfigsBboxPut(context.Context, string, string, string, int64, Bbox) (ImplResponse, error)
-	ConfigsBboxRegisterPost(context.Context, int64, Bbox) (ImplResponse, error)
+	ConfigsBboxRegisterPost(context.Context, string, int64, Bbox) (ImplResponse, error)
 	HivesDelete(context.Context, string, string, string, int64) (ImplResponse, error)
 	HivesGet(context.Context, int64, int64, string, int64) (ImplResponse, error)
 	HivesPost(context.Context, string, string, int64, Hive) (ImplResponse, error)

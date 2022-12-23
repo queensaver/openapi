@@ -5170,11 +5170,12 @@ public class DefaultApiExample {
 
         // Create an instance of the API class
         DefaultApi apiInstance = new DefaultApi();
+        String registrationId = 8B0FE5CFC0964B3E874827906B4A9449; // String | The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data.
         Long userId = 1234; // Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore.
         Bbox bbox = ; // Bbox | 
 
         try {
-            bbox-config-response result = apiInstance.configsBboxRegisterPost(userId, bbox);
+            bbox-config-response result = apiInstance.configsBboxRegisterPost(registrationId, userId, bbox);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#configsBboxRegisterPost");
@@ -5191,11 +5192,12 @@ public class DefaultApiExample {
 public class DefaultApiExample {
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
+        String registrationId = 8B0FE5CFC0964B3E874827906B4A9449; // String | The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data.
         Long userId = 1234; // Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore.
         Bbox bbox = ; // Bbox | 
 
         try {
-            bbox-config-response result = apiInstance.configsBboxRegisterPost(userId, bbox);
+            bbox-config-response result = apiInstance.configsBboxRegisterPost(registrationId, userId, bbox);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#configsBboxRegisterPost");
@@ -5219,11 +5221,13 @@ public class DefaultApiExample {
 
 // Create an instance of the API class
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
+String *registrationId = 8B0FE5CFC0964B3E874827906B4A9449; // The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data. (default to null)
 Long *userId = 1234; // The UserID is set internally and can not set or be overridden with the API request. Please ignore. (optional) (default to null)
 Bbox *bbox = ; //  (optional)
 
 // register bbox
-[apiInstance configsBboxRegisterPostWith:userId
+[apiInstance configsBboxRegisterPostWith:registrationId
+    userId:userId
     bbox:bbox
               completionHandler: ^(bbox-config-response output, NSError* error) {
     if (output) {
@@ -5248,6 +5252,7 @@ cookieAuth.apiKey = "YOUR API KEY";
 
 // Create an instance of the API class
 var api = new QueensaverApi.DefaultApi()
+var registrationId = 8B0FE5CFC0964B3E874827906B4A9449; // {String} The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data.
 var opts = {
   'userId': 1234, // {Long} The UserID is set internally and can not set or be overridden with the API request. Please ignore.
   'bbox':  // {Bbox} 
@@ -5260,7 +5265,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.configsBboxRegisterPost(opts, callback);
+api.configsBboxRegisterPost(registrationId, opts, callback);
 </code></pre>
                             </div>
 
@@ -5287,12 +5292,13 @@ namespace Example
 
             // Create an instance of the API class
             var apiInstance = new DefaultApi();
+            var registrationId = 8B0FE5CFC0964B3E874827906B4A9449;  // String | The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data. (default to null)
             var userId = 1234;  // Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore. (optional)  (default to null)
             var bbox = new Bbox(); // Bbox |  (optional) 
 
             try {
                 // register bbox
-                bbox-config-response result = apiInstance.configsBboxRegisterPost(userId, bbox);
+                bbox-config-response result = apiInstance.configsBboxRegisterPost(registrationId, userId, bbox);
                 Debug.WriteLine(result);
             } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.configsBboxRegisterPost: " + e.Message );
@@ -5314,11 +5320,12 @@ OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKey('token',
 
 // Create an instance of the API class
 $api_instance = new OpenAPITools\Client\Api\DefaultApi();
+$registrationId = 8B0FE5CFC0964B3E874827906B4A9449; // String | The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data.
 $userId = 1234; // Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore.
 $bbox = ; // Bbox | 
 
 try {
-    $result = $api_instance->configsBboxRegisterPost($userId, $bbox);
+    $result = $api_instance->configsBboxRegisterPost($registrationId, $userId, $bbox);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->configsBboxRegisterPost: ', $e->getMessage(), PHP_EOL;
@@ -5338,11 +5345,12 @@ $WWW::OPenAPIClient::Configuration::api_key->{'token'} = 'YOUR_API_KEY';
 
 # Create an instance of the API class
 my $api_instance = WWW::OPenAPIClient::DefaultApi->new();
+my $registrationId = 8B0FE5CFC0964B3E874827906B4A9449; # String | The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data.
 my $userId = 1234; # Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore.
 my $bbox = WWW::OPenAPIClient::Object::Bbox->new(); # Bbox | 
 
 eval {
-    my $result = $api_instance->configsBboxRegisterPost(userId => $userId, bbox => $bbox);
+    my $result = $api_instance->configsBboxRegisterPost(registrationId => $registrationId, userId => $userId, bbox => $bbox);
     print Dumper($result);
 };
 if ($@) {
@@ -5364,12 +5372,13 @@ openapi_client.configuration.api_key['token'] = 'YOUR_API_KEY'
 
 # Create an instance of the API class
 api_instance = openapi_client.DefaultApi()
+registrationId = 8B0FE5CFC0964B3E874827906B4A9449 # String | The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data. (default to null)
 userId = 1234 # Long | The UserID is set internally and can not set or be overridden with the API request. Please ignore. (optional) (default to null)
 bbox =  # Bbox |  (optional)
 
 try:
     # register bbox
-    api_response = api_instance.configs_bbox_register_post(userId=userId, bbox=bbox)
+    api_response = api_instance.configs_bbox_register_post(registrationId, userId=userId, bbox=bbox)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->configsBboxRegisterPost: %s\n" % e)</code></pre>
@@ -5379,11 +5388,12 @@ except ApiException as e:
                               <pre class="prettyprint"><code class="language-rust">extern crate DefaultApi;
 
 pub fn main() {
+    let registrationId = 8B0FE5CFC0964B3E874827906B4A9449; // String
     let userId = 1234; // Long
     let bbox = ; // Bbox
 
     let mut context = DefaultApi::Context::default();
-    let result = client.configsBboxRegisterPost(userId, bbox, &context).wait();
+    let result = client.configsBboxRegisterPost(registrationId, userId, bbox, &context).wait();
 
     println!("{:?}", result);
 }
@@ -5399,6 +5409,36 @@ pub fn main() {
                           <h2>Parameters</h2>
 
 
+                            <div class="methodsubtabletitle">Header parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                  <tr><td style="width:150px;">registrationId*</td>
+<td>
+
+
+    <div id="d2e199_configsBboxRegisterPost_registrationId">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    String
+                </span>
+
+                    <div class="inner description marked">
+The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data.
+                    </div>
+            </div>
+                <div class="inner required">
+                    Required
+                </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                            </table>
 
                             <div class="methodsubtabletitle">Body parameters</div>
                             <table id="methodsubtable">

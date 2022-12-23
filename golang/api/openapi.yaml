@@ -335,6 +335,16 @@ paths:
         \ is the bboxId and the registrationId, the hardwareType and that hardwareRevision."
       operationId: configsBboxRegisterPost
       parameters:
+      - description: "The unique registration Id for that scale. The user needs to\
+          \ register it first in the cloud, otherwise we will not accept the data."
+        example: 8B0FE5CFC0964B3E874827906B4A9449
+        explode: false
+        in: header
+        name: registrationId
+        required: true
+        schema:
+          type: string
+        style: simple
       - description: The UserID is set internally and can not set or be overridden
           with the API request. Please ignore.
         example: 1234

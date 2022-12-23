@@ -293,6 +293,13 @@ paths:
       operationId: configsBboxRegisterPost
       description: This registers a new bbox. A bbox is a physical hardware component that needs to be associated with a hive. The bbox sends a registrationId that a user needs to know and put in the system before the registration. The bbox proto is used as a convenience, the only field that is accepted is the bboxId and the registrationId, the hardwareType and that hardwareRevision. 
       parameters:
+      - in: header
+        name: registrationId
+        description: The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data.
+        schema:
+          type: string
+        example: 8B0FE5CFC0964B3E874827906B4A9449
+        required: true
       - name: userId
         in: query
         description: The UserID is set internally and can not set or be overridden with the API request. Please ignore.

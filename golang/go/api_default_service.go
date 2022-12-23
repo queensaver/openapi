@@ -146,7 +146,7 @@ func (s *DefaultApiService) ConfigsBboxPut(ctx context.Context, qToken string, u
 }
 
 // ConfigsBboxRegisterPost - register bbox
-func (s *DefaultApiService) ConfigsBboxRegisterPost(ctx context.Context, userId int64, bbox Bbox) (ImplResponse, error) {
+func (s *DefaultApiService) ConfigsBboxRegisterPost(ctx context.Context, registrationId string, userId int64, bbox Bbox) (ImplResponse, error) {
 	// TODO - update ConfigsBboxRegisterPost with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 

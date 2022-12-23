@@ -709,15 +709,19 @@ export class DefaultService {
     /**
      * register bbox
      * This registers a new bbox. A bbox is a physical hardware component that needs to be associated with a hive. The bbox sends a registrationId that a user needs to know and put in the system before the registration. The bbox proto is used as a convenience, the only field that is accepted is the bboxId and the registrationId, the hardwareType and that hardwareRevision.
+     * @param registrationId The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data.
      * @param userId The UserID is set internally and can not set or be overridden with the API request. Please ignore.
      * @param bbox 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public configsBboxRegisterPost(userId?: number, bbox?: Bbox, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<BboxConfigResponse>;
-    public configsBboxRegisterPost(userId?: number, bbox?: Bbox, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<BboxConfigResponse>>;
-    public configsBboxRegisterPost(userId?: number, bbox?: Bbox, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<BboxConfigResponse>>;
-    public configsBboxRegisterPost(userId?: number, bbox?: Bbox, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+    public configsBboxRegisterPost(registrationId: string, userId?: number, bbox?: Bbox, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<BboxConfigResponse>;
+    public configsBboxRegisterPost(registrationId: string, userId?: number, bbox?: Bbox, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<BboxConfigResponse>>;
+    public configsBboxRegisterPost(registrationId: string, userId?: number, bbox?: Bbox, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<BboxConfigResponse>>;
+    public configsBboxRegisterPost(registrationId: string, userId?: number, bbox?: Bbox, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+        if (registrationId === null || registrationId === undefined) {
+            throw new Error('Required parameter registrationId was null or undefined when calling configsBboxRegisterPost.');
+        }
 
         let localVarQueryParameters = new HttpParams({encoder: this.encoder});
         if (userId !== undefined && userId !== null) {
@@ -726,6 +730,9 @@ export class DefaultService {
         }
 
         let localVarHeaders = this.defaultHeaders;
+        if (registrationId !== undefined && registrationId !== null) {
+            localVarHeaders = localVarHeaders.set('registrationId', String(registrationId));
+        }
 
         let localVarCredential: string | undefined;
         // authentication (cookieAuth) required
