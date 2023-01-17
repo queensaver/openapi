@@ -1421,6 +1421,12 @@ components:
           example: 409
           description: How often the bbox needs to take and send measurements from the scale. The unit is in seconds.
           x-protobuf-index: 2
+        batchInterval:
+          type: integer
+          example: 3600
+          description: How often the bbox needs to send the measurements (in batches)
+          x-protobuf-index: 3
+
 
     authenticate-post-response:
       type: object

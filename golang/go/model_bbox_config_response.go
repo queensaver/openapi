@@ -16,6 +16,9 @@ type BboxConfigResponse struct {
 
 	// How often the bbox needs to take and send measurements from the scale. The unit is in seconds.
 	ScaleMeasureInterval int32 `json:"scaleMeasureInterval,omitempty"`
+
+	// How often the bbox needs to send the measurements (in batches)
+	BatchInterval int32 `json:"batchInterval,omitempty"`
 }
 
 // AssertBboxConfigResponseRequired checks if the required fields are not zero-ed

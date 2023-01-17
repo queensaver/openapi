@@ -20,5 +20,9 @@ export interface BboxConfigResponse {
      * How often the bbox needs to take and send measurements from the scale. The unit is in seconds.
      */
     scaleMeasureInterval?: number;
+    /**
+     * How often the bbox needs to send the measurements (in batches)
+     */
+    batchInterval?: number;
 }
 

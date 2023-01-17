@@ -21,4 +21,7 @@ message BboxConfigResponse {
   // How often the bbox needs to take and send measurements from the scale. The unit is in seconds.
   int32 scaleMeasureInterval = 2;
 
+  // How often the bbox needs to send the measurements (in batches)
+  int32 batchInterval = 3;
+
 }

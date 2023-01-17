@@ -1642,6 +1642,7 @@ components:
     bbox-config-response:
       example:
         scaleMeasureInterval: 409
+        batchInterval: 3600
         httpResponseCode: 409
       properties:
         httpResponseCode:
@@ -1655,6 +1656,11 @@ components:
           example: 409
           type: integer
           x-protobuf-index: 2
+        batchInterval:
+          description: How often the bbox needs to send the measurements (in batches)
+          example: 3600
+          type: integer
+          x-protobuf-index: 3
       type: object
     authenticate-post-response:
       example:
