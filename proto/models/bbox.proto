@@ -39,4 +39,7 @@ message Bbox {
   // Hardware revision - newer revisions might have different features which are important to know.
   int64 hardwareRevision = 8;
 
+  // Name of the bbox - optional
+  string name = 9;
+
 }

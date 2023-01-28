@@ -1831,6 +1831,7 @@ components:
           hardwareRevision: 1
           registrationId: registrationId
           hardwareType: scale
+          name: B47
           uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
           powerSave: true
         httpResponseCode: 409
@@ -1859,6 +1860,7 @@ components:
           hardwareRevision: 1
           registrationId: registrationId
           hardwareType: scale
+          name: B47
           uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
           powerSave: true
         httpResponseCode: 409
@@ -1887,6 +1889,7 @@ components:
           hardwareRevision: 1
           registrationId: registrationId
           hardwareType: scale
+          name: B47
           uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
           powerSave: true
         - bboxId: bboxId
@@ -1901,6 +1904,7 @@ components:
           hardwareRevision: 1
           registrationId: registrationId
           hardwareType: scale
+          name: B47
           uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
           powerSave: true
         httpResponseCode: 409
@@ -2555,6 +2559,7 @@ components:
         hardwareRevision: 1
         registrationId: registrationId
         hardwareType: scale
+        name: B47
         uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
         powerSave: true
       properties:
@@ -2608,6 +2613,12 @@ components:
           format: int64
           type: integer
           x-protobuf-index: 8
+        name:
+          description: Name of the bbox - optional
+          example: B47
+          maxLength: 256
+          type: string
+          x-protobuf-index: 9
       type: object
     user:
       properties:

@@ -33,6 +33,9 @@ type Bbox struct {
 
 	// Hardware revision - newer revisions might have different features which are important to know.
 	HardwareRevision int64 `json:"hardwareRevision,omitempty"`
+
+	// Name of the bbox - optional
+	Name string `json:"name,omitempty"`
 }
 
 // AssertBboxRequired checks if the required fields are not zero-ed

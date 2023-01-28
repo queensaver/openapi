@@ -42,5 +42,9 @@ export interface Bbox {
      * Hardware revision - newer revisions might have different features which are important to know.
      */
     hardwareRevision?: number;
+    /**
+     * Name of the bbox - optional
+     */
+    name?: string;
 }
 
