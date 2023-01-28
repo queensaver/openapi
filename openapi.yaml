@@ -1929,6 +1929,12 @@ components:
           description: Hardware revision - newer revisions might have different features which are important to know.
           example: 1
           x-protobuf-index: 8
+        name:
+          type: string
+          example: B47
+          maxLength: 256
+          description: Name of the bbox - optional
+          x-protobuf-index: 9
 
     user:
       type: object
