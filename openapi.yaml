@@ -899,6 +899,59 @@ paths:
               schema:
                 $ref: "#/components/schemas/generic-post-response"
 
+  /v1/telemetry:
+    post:
+      summary: Post Scale values and other telemetry
+      operationId: telemetryPost
+      description: Sends a weight and other telemetry from a scale to the queensaver system. The request needs to send the registrationId along with the request.
+      parameters:
+      - in: header
+        name: registrationId
+        description: The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data.
+        schema:
+          type: string
+        example: 8B0FE5CFC0964B3E874827906B4A9449
+        required: true
+      - name: userId
+        in: query
+        description: The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
+        required: false 
+        example: 123
+        schema:
+          type: integer
+          format: int64
+
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "#/components/schemas/telemetry"
+
+      responses:
+        "200":
+          description: "Generic Response object"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/generic-post-response"
+        "400":
+          description: "Generic Response object"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/generic-post-response"
+        "500":
+          description: "Generic Response object"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/generic-post-response"
+
+
+
+
   /v2/scale:
     get:
       summary: Get Scale values 
@@ -1650,6 +1703,53 @@ components:
             $ref: "#/components/schemas/scaleV2"
           description: The measurement responses
           x-protobuf-index: 2
+
+    telemetry:
+      type: object
+      properties:
+        macAddress:
+          type: string
+          description: The mac address of the scale
+          example: "829898a53801"
+          x-protobuf-index: 1
+        weight:
+          type: number
+          format: float
+          description: actual measurement of weight
+          example: 53.2345
+          x-protobuf-index: 2
+        epoch:
+          type: integer
+          format: int64
+          description: timestamp of the measurement on one second precision
+          example: 1639169129
+          x-protobuf-index: 3
+        temperature:
+          type: number
+          format: float
+          description: temperature
+          example: 12.2345
+          x-protobuf-index: 4
+        airPressure:
+          type: number
+          format: float
+          description: air pressure according to sensor
+          example: 12.2345
+          x-protobuf-index: 5
+        batteryVoltage:
+          type: number
+          format: float
+          description: Battery voltage
+          example: 12.2345
+          x-protobuf-index: 6
+        signalStrength:
+          type: integer
+          format: int32
+          description: signal Strength in %
+          example: 12
+          x-protobuf-index: 7
+
+
 
     scaleV2:
       type: object

@@ -33,6 +33,7 @@ import public "models/registration_id.proto";
 import public "models/scale_v2.proto";
 import public "models/scale_v2_response.proto";
 import public "models/stand.proto";
+import public "models/telemetry.proto";
 import public "models/temperature.proto";
 import public "models/user.proto";
 import public "models/varroa_scan.proto";
@@ -81,6 +82,8 @@ service DefaultService {
   rpc StandsPost (StandsPostRequest) returns (PostStandsResponse);
 
   rpc StandsPut (StandsPutRequest) returns (PutStandResponse);
+
+  rpc TelemetryPost (TelemetryPostRequest) returns (GenericPostResponse);
 
   rpc TemperatureGet (TemperatureGetRequest) returns (GetTemperatureResponse);
 
@@ -331,6 +334,15 @@ message StandsPutRequest {
   // The UserID is set internally and can not set or be overridden with the API request. Please ignore.
   int64 userId = 3;
   Stand stand = 4;
+
+}
+
+message TelemetryPostRequest {
+  // The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data.
+  string registrationId = 1;
+  // The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
+  int64 userId = 2;
+  repeated Telemetry telemetry = 3;
 
 }
 

@@ -381,6 +381,23 @@ func (s *DefaultApiService) StandsPut(ctx context.Context, qToken string, token 
 	return Response(http.StatusNotImplemented, nil), errors.New("StandsPut method not implemented")
 }
 
+// TelemetryPost - Post Scale values and other telemetry
+func (s *DefaultApiService) TelemetryPost(ctx context.Context, registrationId string, userId int64, telemetry []Telemetry) (ImplResponse, error) {
+	// TODO - update TelemetryPost with the required logic for this service method.
+	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
+
+	//TODO: Uncomment the next line to return response Response(200, GenericPostResponse{}) or use other options such as http.Ok ...
+	//return Response(200, GenericPostResponse{}), nil
+
+	//TODO: Uncomment the next line to return response Response(400, GenericPostResponse{}) or use other options such as http.Ok ...
+	//return Response(400, GenericPostResponse{}), nil
+
+	//TODO: Uncomment the next line to return response Response(500, GenericPostResponse{}) or use other options such as http.Ok ...
+	//return Response(500, GenericPostResponse{}), nil
+
+	return Response(http.StatusNotImplemented, nil), errors.New("TelemetryPost method not implemented")
+}
+
 // TemperatureGet - Get Temperature values
 func (s *DefaultApiService) TemperatureGet(ctx context.Context, qToken string, bhiveId string, epoch int64, secondsInThePast int64, token string, userId int64) (ImplResponse, error) {
 	// TODO - update TemperatureGet with the required logic for this service method.

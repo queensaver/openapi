@@ -20,6 +20,7 @@ export * from './registrationId';
 export * from './scaleV2';
 export * from './scaleV2Response';
 export * from './stand';
+export * from './telemetry';
 export * from './temperature';
 export * from './user';
 export * from './varroaScan';

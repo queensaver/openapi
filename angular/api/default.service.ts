@@ -59,6 +59,8 @@ import { ScaleV2Response } from '../model/scaleV2Response';
 // @ts-ignore
 import { Stand } from '../model/stand';
 // @ts-ignore
+import { Telemetry } from '../model/telemetry';
+// @ts-ignore
 import { Temperature } from '../model/temperature';
 // @ts-ignore
 import { User } from '../model/user';
@@ -1931,6 +1933,92 @@ export class DefaultService {
 
         return this.httpClient.put<PutStandResponse>(`${this.configuration.basePath}/v1/stands`,
             stand,
+            {
+                context: localVarHttpContext,
+                params: localVarQueryParameters,
+                responseType: <any>responseType_,
+                withCredentials: this.configuration.withCredentials,
+                headers: localVarHeaders,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Post Scale values and other telemetry
+     * Sends a weight and other telemetry from a scale to the queensaver system. The request needs to send the registrationId along with the request.
+     * @param registrationId The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data.
+     * @param userId The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
+     * @param telemetry 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public telemetryPost(registrationId: string, userId?: number, telemetry?: Array<Telemetry>, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<GenericPostResponse>;
+    public telemetryPost(registrationId: string, userId?: number, telemetry?: Array<Telemetry>, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<GenericPostResponse>>;
+    public telemetryPost(registrationId: string, userId?: number, telemetry?: Array<Telemetry>, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<GenericPostResponse>>;
+    public telemetryPost(registrationId: string, userId?: number, telemetry?: Array<Telemetry>, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+        if (registrationId === null || registrationId === undefined) {
+            throw new Error('Required parameter registrationId was null or undefined when calling telemetryPost.');
+        }
+
+        let localVarQueryParameters = new HttpParams({encoder: this.encoder});
+        if (userId !== undefined && userId !== null) {
+          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+            <any>userId, 'userId');
+        }
+
+        let localVarHeaders = this.defaultHeaders;
+        if (registrationId !== undefined && registrationId !== null) {
+            localVarHeaders = localVarHeaders.set('registrationId', String(registrationId));
+        }
+
+        let localVarCredential: string | undefined;
+        // authentication (cookieAuth) required
+        localVarCredential = this.configuration.lookupCredential('cookieAuth');
+        if (localVarCredential) {
+        }
+
+        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
+        if (localVarHttpHeaderAcceptSelected === undefined) {
+            // to determine the Accept header
+            const httpHeaderAccepts: string[] = [
+                'application/json'
+            ];
+            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        }
+        if (localVarHttpHeaderAcceptSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
+        }
+
+        let localVarHttpContext: HttpContext | undefined = options && options.context;
+        if (localVarHttpContext === undefined) {
+            localVarHttpContext = new HttpContext();
+        }
+
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Content-Type', httpContentTypeSelected);
+        }
+
+        let responseType_: 'text' | 'json' | 'blob' = 'json';
+        if (localVarHttpHeaderAcceptSelected) {
+            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
+                responseType_ = 'text';
+            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
+                responseType_ = 'json';
+            } else {
+                responseType_ = 'blob';
+            }
+        }
+
+        return this.httpClient.post<GenericPostResponse>(`${this.configuration.basePath}/v1/telemetry`,
+            telemetry,
             {
                 context: localVarHttpContext,
                 params: localVarQueryParameters,

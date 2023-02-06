@@ -45,6 +45,7 @@ type DefaultServiceClient interface {
 	StandsGet(ctx context.Context, in *StandsGetRequest, opts ...grpc.CallOption) (*models.GetStandsResponse, error)
 	StandsPost(ctx context.Context, in *StandsPostRequest, opts ...grpc.CallOption) (*models.PostStandsResponse, error)
 	StandsPut(ctx context.Context, in *StandsPutRequest, opts ...grpc.CallOption) (*models.PutStandResponse, error)
+	TelemetryPost(ctx context.Context, in *TelemetryPostRequest, opts ...grpc.CallOption) (*models.GenericPostResponse, error)
 	TemperatureGet(ctx context.Context, in *TemperatureGetRequest, opts ...grpc.CallOption) (*models.GetTemperatureResponse, error)
 	TemperaturePost(ctx context.Context, in *TemperaturePostRequest, opts ...grpc.CallOption) (*models.GenericPostResponse, error)
 	UserPost(ctx context.Context, in *UserPostRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -250,6 +251,15 @@ func (c *defaultServiceClient) StandsPut(ctx context.Context, in *StandsPutReque
 	return out, nil
 }
 
+func (c *defaultServiceClient) TelemetryPost(ctx context.Context, in *TelemetryPostRequest, opts ...grpc.CallOption) (*models.GenericPostResponse, error) {
+	out := new(models.GenericPostResponse)
+	err := c.cc.Invoke(ctx, "/openapi.services.defaultservice.DefaultService/TelemetryPost", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *defaultServiceClient) TemperatureGet(ctx context.Context, in *TemperatureGetRequest, opts ...grpc.CallOption) (*models.GetTemperatureResponse, error) {
 	out := new(models.GetTemperatureResponse)
 	err := c.cc.Invoke(ctx, "/openapi.services.defaultservice.DefaultService/TemperatureGet", in, out, opts...)
@@ -329,6 +339,7 @@ type DefaultServiceServer interface {
 	StandsGet(context.Context, *StandsGetRequest) (*models.GetStandsResponse, error)
 	StandsPost(context.Context, *StandsPostRequest) (*models.PostStandsResponse, error)
 	StandsPut(context.Context, *StandsPutRequest) (*models.PutStandResponse, error)
+	TelemetryPost(context.Context, *TelemetryPostRequest) (*models.GenericPostResponse, error)
 	TemperatureGet(context.Context, *TemperatureGetRequest) (*models.GetTemperatureResponse, error)
 	TemperaturePost(context.Context, *TemperaturePostRequest) (*models.GenericPostResponse, error)
 	UserPost(context.Context, *UserPostRequest) (*emptypb.Empty, error)
@@ -404,6 +415,9 @@ func (UnimplementedDefaultServiceServer) StandsPost(context.Context, *StandsPost
 }
 func (UnimplementedDefaultServiceServer) StandsPut(context.Context, *StandsPutRequest) (*models.PutStandResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method StandsPut not implemented")
+}
+func (UnimplementedDefaultServiceServer) TelemetryPost(context.Context, *TelemetryPostRequest) (*models.GenericPostResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TelemetryPost not implemented")
 }
 func (UnimplementedDefaultServiceServer) TemperatureGet(context.Context, *TemperatureGetRequest) (*models.GetTemperatureResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TemperatureGet not implemented")
@@ -814,6 +828,24 @@ func _DefaultService_StandsPut_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DefaultService_TelemetryPost_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TelemetryPostRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DefaultServiceServer).TelemetryPost(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/openapi.services.defaultservice.DefaultService/TelemetryPost",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DefaultServiceServer).TelemetryPost(ctx, req.(*TelemetryPostRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DefaultService_TemperatureGet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(TemperatureGetRequest)
 	if err := dec(in); err != nil {
@@ -1012,6 +1044,10 @@ var DefaultService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "StandsPut",
 			Handler:    _DefaultService_StandsPut_Handler,
+		},
+		{
+			MethodName: "TelemetryPost",
+			Handler:    _DefaultService_TelemetryPost_Handler,
 		},
 		{
 			MethodName: "TemperatureGet",

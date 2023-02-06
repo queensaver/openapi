@@ -31,6 +31,7 @@ go/model_registration_id.go
 go/model_scale_v2.go
 go/model_scale_v2_response.go
 go/model_stand.go
+go/model_telemetry.go
 go/model_temperature.go
 go/model_user.go
 go/model_varroa_scan.go

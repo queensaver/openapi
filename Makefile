@@ -46,6 +46,7 @@ protos:
 		--go_opt=Mmodels/authenticate_post_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/scale_v2.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/scale_v2_response.proto=github.com/queensaver/openapi/golang/proto/models \
+		--go_opt=Mmodels/telemetry.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/generic_post_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		\
 		proto/models/hive.proto \
@@ -78,6 +79,7 @@ protos:
 		proto/models/authenticate_post_response.proto \
 		proto/models/scale_v2.proto \
 		proto/models/scale_v2_response.proto \
+		proto/models/telemetry.proto \
 		proto/models/generic_post_response.proto
 
 grpc:
@@ -119,6 +121,7 @@ grpc:
 		--go_opt=Mmodels/authenticate_post_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/scale_v2.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/scale_v2_response.proto=github.com/queensaver/openapi/golang/proto/models \
+		--go_opt=Mmodels/telemetry.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_opt=Mmodels/generic_post_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		\
 		--go_grpc_opt=Mservices/default_service.proto=github.com/queensaver/openapi/golang/proto/services \
@@ -152,6 +155,7 @@ grpc:
 		--go_grpc_opt=Mmodels/authenticate_post_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_grpc_opt=Mmodels/scale_v2.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_grpc_opt=Mmodels/scale_v2_response.proto=github.com/queensaver/openapi/golang/proto/models \
+		--go_grpc_opt=Mmodels/telemetry.proto=github.com/queensaver/openapi/golang/proto/models \
 		--go_grpc_opt=Mmodels/generic_post_response.proto=github.com/queensaver/openapi/golang/proto/models \
 		\
 		proto/services/default_service.proto

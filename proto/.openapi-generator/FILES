@@ -21,6 +21,7 @@ models/registration_id.proto
 models/scale_v2.proto
 models/scale_v2_response.proto
 models/stand.proto
+models/telemetry.proto
 models/temperature.proto
 models/user.proto
 models/varroa_scan.proto

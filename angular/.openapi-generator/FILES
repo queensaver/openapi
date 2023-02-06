@@ -30,6 +30,7 @@ model/registrationId.ts
 model/scaleV2.ts
 model/scaleV2Response.ts
 model/stand.ts
+model/telemetry.ts
 model/temperature.ts
 model/user.ts
 model/varroaScan.ts
