@@ -925,9 +925,7 @@ paths:
         content:
           application/json:
             schema:
-              type: array
-              items:
-                $ref: "#/components/schemas/telemetry"
+              $ref: "#/components/schemas/telemetryValues"
 
       responses:
         "200":
@@ -1703,6 +1701,11 @@ components:
             $ref: "#/components/schemas/scaleV2"
           description: The measurement responses
           x-protobuf-index: 2
+
+    telemetryValues:
+      type: array
+      items: 
+        $ref: "#/components/schemas/telemetry"
 
     telemetry:
       type: object

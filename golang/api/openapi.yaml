@@ -1098,9 +1098,7 @@ paths:
         content:
           application/json:
             schema:
-              items:
-                $ref: '#/components/schemas/telemetry'
-              type: array
+              $ref: '#/components/schemas/telemetryValues'
       responses:
         "200":
           content:
@@ -2295,6 +2293,10 @@ components:
           type: array
           x-protobuf-index: 2
       type: object
+    telemetryValues:
+      items:
+        $ref: '#/components/schemas/telemetry'
+      type: array
     telemetry:
       properties:
         macAddress:
