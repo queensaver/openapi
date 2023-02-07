@@ -79,7 +79,7 @@ type DefaultApiServicer interface {
 	StandsGet(context.Context, string, int64, int64, string, string, int64) (ImplResponse, error)
 	StandsPost(context.Context, string, string, int64, Stand) (ImplResponse, error)
 	StandsPut(context.Context, string, string, int64, Stand) (ImplResponse, error)
-	TelemetryPost(context.Context, string, int64, []Telemetry) (ImplResponse, error)
+	TelemetryPost(context.Context, string, int64, TelemetryValues) (ImplResponse, error)
 	TemperatureGet(context.Context, string, string, int64, int64, string, int64) (ImplResponse, error)
 	TemperaturePost(context.Context, int64, Temperature) (ImplResponse, error)
 	UserPost(context.Context, User) (ImplResponse, error)

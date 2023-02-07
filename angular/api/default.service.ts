@@ -59,7 +59,7 @@ import { ScaleV2Response } from '../model/scaleV2Response';
 // @ts-ignore
 import { Stand } from '../model/stand';
 // @ts-ignore
-import { Telemetry } from '../model/telemetry';
+import { TelemetryValues } from '../model/telemetryValues';
 // @ts-ignore
 import { Temperature } from '../model/temperature';
 // @ts-ignore
@@ -1950,14 +1950,14 @@ export class DefaultService {
      * Sends a weight and other telemetry from a scale to the queensaver system. The request needs to send the registrationId along with the request.
      * @param registrationId The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data.
      * @param userId The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
-     * @param telemetry 
+     * @param telemetryValues 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public telemetryPost(registrationId: string, userId?: number, telemetry?: Array<Telemetry>, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<GenericPostResponse>;
-    public telemetryPost(registrationId: string, userId?: number, telemetry?: Array<Telemetry>, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<GenericPostResponse>>;
-    public telemetryPost(registrationId: string, userId?: number, telemetry?: Array<Telemetry>, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<GenericPostResponse>>;
-    public telemetryPost(registrationId: string, userId?: number, telemetry?: Array<Telemetry>, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+    public telemetryPost(registrationId: string, userId?: number, telemetryValues?: TelemetryValues, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<GenericPostResponse>;
+    public telemetryPost(registrationId: string, userId?: number, telemetryValues?: TelemetryValues, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<GenericPostResponse>>;
+    public telemetryPost(registrationId: string, userId?: number, telemetryValues?: TelemetryValues, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<GenericPostResponse>>;
+    public telemetryPost(registrationId: string, userId?: number, telemetryValues?: TelemetryValues, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
         if (registrationId === null || registrationId === undefined) {
             throw new Error('Required parameter registrationId was null or undefined when calling telemetryPost.');
         }
@@ -2018,7 +2018,7 @@ export class DefaultService {
         }
 
         return this.httpClient.post<GenericPostResponse>(`${this.configuration.basePath}/v1/telemetry`,
-            telemetry,
+            telemetryValues,
             {
                 context: localVarHttpContext,
                 params: localVarQueryParameters,

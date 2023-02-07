@@ -31,6 +31,7 @@ model/scaleV2.ts
 model/scaleV2Response.ts
 model/stand.ts
 model/telemetry.ts
+model/telemetryValues.ts
 model/temperature.ts
 model/user.ts
 model/varroaScan.ts

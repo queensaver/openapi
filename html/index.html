@@ -1430,6 +1430,17 @@ ul.nav-tabs {
     }
   }
 };
+    defs["telemetryValues"] = {
+  "type" : "object",
+  "properties" : {
+    "values" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/components/schemas/telemetry"
+      }
+    }
+  }
+};
     defs["temperature"] = {
   "required" : [ "bhiveId", "epoch", "temperature" ],
   "type" : "object",
@@ -12785,15 +12796,7 @@ The UserID is set internally and can not set or be overridden with the API reque
  -H "Accept: application/json" \
  -H "Content-Type: application/json" \
  "https://api.queensaver.com/v1/telemetry?userId=123" \
- -d '{
-  &quot;macAddress&quot; : &quot;829898a53801&quot;,
-  &quot;airPressure&quot; : 12.2345,
-  &quot;batteryVoltage&quot; : 12.2345,
-  &quot;signalStrength&quot; : 12,
-  &quot;temperature&quot; : 12.2345,
-  &quot;weight&quot; : 53.2345,
-  &quot;epoch&quot; : 1639169129
-}'
+ -d ''
 </code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-telemetryPost-0-java">
@@ -12819,10 +12822,10 @@ public class DefaultApiExample {
         DefaultApi apiInstance = new DefaultApi();
         String registrationId = 8B0FE5CFC0964B3E874827906B4A9449; // String | The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data.
         Long userId = 123; // Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
-        array[telemetry] telemetry = ; // array[telemetry] | 
+        TelemetryValues telemetryValues = ; // TelemetryValues | 
 
         try {
-            generic-post-response result = apiInstance.telemetryPost(registrationId, userId, telemetry);
+            generic-post-response result = apiInstance.telemetryPost(registrationId, userId, telemetryValues);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#telemetryPost");
@@ -12841,10 +12844,10 @@ public class DefaultApiExample {
         DefaultApi apiInstance = new DefaultApi();
         String registrationId = 8B0FE5CFC0964B3E874827906B4A9449; // String | The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data.
         Long userId = 123; // Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
-        array[telemetry] telemetry = ; // array[telemetry] | 
+        TelemetryValues telemetryValues = ; // TelemetryValues | 
 
         try {
-            generic-post-response result = apiInstance.telemetryPost(registrationId, userId, telemetry);
+            generic-post-response result = apiInstance.telemetryPost(registrationId, userId, telemetryValues);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#telemetryPost");
@@ -12870,12 +12873,12 @@ public class DefaultApiExample {
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 String *registrationId = 8B0FE5CFC0964B3E874827906B4A9449; // The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data. (default to null)
 Long *userId = 123; // The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore. (optional) (default to null)
-array[telemetry] *telemetry = ; //  (optional)
+TelemetryValues *telemetryValues = ; //  (optional)
 
 // Post Scale values and other telemetry
 [apiInstance telemetryPostWith:registrationId
     userId:userId
-    telemetry:telemetry
+    telemetryValues:telemetryValues
               completionHandler: ^(generic-post-response output, NSError* error) {
     if (output) {
         NSLog(@"%@", output);
@@ -12902,7 +12905,7 @@ var api = new QueensaverApi.DefaultApi()
 var registrationId = 8B0FE5CFC0964B3E874827906B4A9449; // {String} The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data.
 var opts = {
   'userId': 123, // {Long} The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
-  'telemetry':  // {array[telemetry]} 
+  'telemetryValues':  // {TelemetryValues} 
 };
 
 var callback = function(error, data, response) {
@@ -12941,11 +12944,11 @@ namespace Example
             var apiInstance = new DefaultApi();
             var registrationId = 8B0FE5CFC0964B3E874827906B4A9449;  // String | The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data. (default to null)
             var userId = 123;  // Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore. (optional)  (default to null)
-            var telemetry = new array[telemetry](); // array[telemetry] |  (optional) 
+            var telemetryValues = new TelemetryValues(); // TelemetryValues |  (optional) 
 
             try {
                 // Post Scale values and other telemetry
-                generic-post-response result = apiInstance.telemetryPost(registrationId, userId, telemetry);
+                generic-post-response result = apiInstance.telemetryPost(registrationId, userId, telemetryValues);
                 Debug.WriteLine(result);
             } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.telemetryPost: " + e.Message );
@@ -12969,10 +12972,10 @@ OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKey('token',
 $api_instance = new OpenAPITools\Client\Api\DefaultApi();
 $registrationId = 8B0FE5CFC0964B3E874827906B4A9449; // String | The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data.
 $userId = 123; // Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
-$telemetry = ; // array[telemetry] | 
+$telemetryValues = ; // TelemetryValues | 
 
 try {
-    $result = $api_instance->telemetryPost($registrationId, $userId, $telemetry);
+    $result = $api_instance->telemetryPost($registrationId, $userId, $telemetryValues);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->telemetryPost: ', $e->getMessage(), PHP_EOL;
@@ -12994,10 +12997,10 @@ $WWW::OPenAPIClient::Configuration::api_key->{'token'} = 'YOUR_API_KEY';
 my $api_instance = WWW::OPenAPIClient::DefaultApi->new();
 my $registrationId = 8B0FE5CFC0964B3E874827906B4A9449; # String | The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data.
 my $userId = 123; # Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
-my $telemetry = [WWW::OPenAPIClient::Object::array[telemetry]->new()]; # array[telemetry] | 
+my $telemetryValues = WWW::OPenAPIClient::Object::TelemetryValues->new(); # TelemetryValues | 
 
 eval {
-    my $result = $api_instance->telemetryPost(registrationId => $registrationId, userId => $userId, telemetry => $telemetry);
+    my $result = $api_instance->telemetryPost(registrationId => $registrationId, userId => $userId, telemetryValues => $telemetryValues);
     print Dumper($result);
 };
 if ($@) {
@@ -13021,11 +13024,11 @@ openapi_client.configuration.api_key['token'] = 'YOUR_API_KEY'
 api_instance = openapi_client.DefaultApi()
 registrationId = 8B0FE5CFC0964B3E874827906B4A9449 # String | The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data. (default to null)
 userId = 123 # Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore. (optional) (default to null)
-telemetry =  # array[telemetry] |  (optional)
+telemetryValues =  # TelemetryValues |  (optional)
 
 try:
     # Post Scale values and other telemetry
-    api_response = api_instance.telemetry_post(registrationId, userId=userId, telemetry=telemetry)
+    api_response = api_instance.telemetry_post(registrationId, userId=userId, telemetryValues=telemetryValues)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->telemetryPost: %s\n" % e)</code></pre>
@@ -13037,10 +13040,10 @@ except ApiException as e:
 pub fn main() {
     let registrationId = 8B0FE5CFC0964B3E874827906B4A9449; // String
     let userId = 123; // Long
-    let telemetry = ; // array[telemetry]
+    let telemetryValues = ; // TelemetryValues
 
     let mut context = DefaultApi::Context::default();
-    let result = client.telemetryPost(registrationId, userId, telemetry, &context).wait();
+    let result = client.telemetryPost(registrationId, userId, telemetryValues, &context).wait();
 
     println!("{:?}", result);
 }
@@ -13093,7 +13096,7 @@ The unique registration Id for that scale. The user needs to register it first i
                                 <th width="150px">Name</th>
                                 <th>Description</th>
                               </tr>
-                                <tr><td style="width:150px;">telemetry </td>
+                                <tr><td style="width:150px;">telemetryValues </td>
 <td>
 <p class="marked"></p>
 <script>
@@ -13122,12 +13125,12 @@ $(document).ready(function() {
   }
 
   var view = new JSONSchemaView(schema,2,{isBodyParam: true});
-  var result = $('#d2e199_telemetryPost_telemetry');
+  var result = $('#d2e199_telemetryPost_telemetryValues');
   result.empty();
   result.append(view.render());
 });
 </script>
-<div id="d2e199_telemetryPost_telemetry"></div>
+<div id="d2e199_telemetryPost_telemetryValues"></div>
 </td>
 </tr>
 

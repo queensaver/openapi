@@ -33,7 +33,7 @@ import public "models/registration_id.proto";
 import public "models/scale_v2.proto";
 import public "models/scale_v2_response.proto";
 import public "models/stand.proto";
-import public "models/telemetry.proto";
+import public "models/telemetry_values.proto";
 import public "models/temperature.proto";
 import public "models/user.proto";
 import public "models/varroa_scan.proto";
@@ -342,7 +342,7 @@ message TelemetryPostRequest {
   string registrationId = 1;
   // The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
   int64 userId = 2;
-  repeated Telemetry telemetry = 3;
+  TelemetryValues telemetryValues = 3;
 
 }
 

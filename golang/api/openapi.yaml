@@ -2294,9 +2294,12 @@ components:
           x-protobuf-index: 2
       type: object
     telemetryValues:
-      items:
-        $ref: '#/components/schemas/telemetry'
-      type: array
+      properties:
+        values:
+          items:
+            $ref: '#/components/schemas/telemetry'
+          type: array
+      type: object
     telemetry:
       properties:
         macAddress:

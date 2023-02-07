@@ -382,7 +382,7 @@ func (s *DefaultApiService) StandsPut(ctx context.Context, qToken string, token 
 }
 
 // TelemetryPost - Post Scale values and other telemetry
-func (s *DefaultApiService) TelemetryPost(ctx context.Context, registrationId string, userId int64, telemetry []Telemetry) (ImplResponse, error) {
+func (s *DefaultApiService) TelemetryPost(ctx context.Context, registrationId string, userId int64, telemetryValues TelemetryValues) (ImplResponse, error) {
 	// TODO - update TelemetryPost with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 

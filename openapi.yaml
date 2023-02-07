@@ -1703,9 +1703,12 @@ components:
           x-protobuf-index: 2
 
     telemetryValues:
-      type: array
-      items: 
-        $ref: "#/components/schemas/telemetry"
+      type: object
+      properties:
+        values:
+          type: array
+          items: 
+            $ref: "#/components/schemas/telemetry"
 
     telemetry:
       type: object
