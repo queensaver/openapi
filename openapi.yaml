@@ -1707,6 +1707,9 @@ components:
       properties:
         values:
           type: array
+          description: An array of telemetry values
+          example: "[]"
+          x-protobuf-index: 1
           items: 
             $ref: "#/components/schemas/telemetry"
 

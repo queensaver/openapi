@@ -2296,9 +2296,12 @@ components:
     telemetryValues:
       properties:
         values:
+          description: An array of telemetry values
+          example: "[]"
           items:
             $ref: '#/components/schemas/telemetry'
           type: array
+          x-protobuf-index: 1
       type: object
     telemetry:
       properties:
