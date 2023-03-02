@@ -1822,10 +1822,10 @@ components:
           alerts:
           - alertType: VarroaHigh
           - alertType: VarroaHigh
+          bboxId: 829898a53801
           httpReponseCode: 409
           deleted: true
           public: true
-          bhiveId: 829898a53801
           name: B25
           comment: This hive needs to be replaced next year
         httpResponseCode: 409
@@ -1851,10 +1851,10 @@ components:
           alerts:
           - alertType: VarroaHigh
           - alertType: VarroaHigh
+          bboxId: 829898a53801
           httpReponseCode: 409
           deleted: true
           public: true
-          bhiveId: 829898a53801
           name: B25
           comment: This hive needs to be replaced next year
         httpResponseCode: 409
@@ -1990,10 +1990,10 @@ components:
             alerts:
             - alertType: VarroaHigh
             - alertType: VarroaHigh
+            bboxId: 829898a53801
             httpReponseCode: 409
             deleted: true
             public: true
-            bhiveId: 829898a53801
             name: B25
             comment: This hive needs to be replaced next year
           - frames: 3
@@ -2005,10 +2005,10 @@ components:
             alerts:
             - alertType: VarroaHigh
             - alertType: VarroaHigh
+            bboxId: 829898a53801
             httpReponseCode: 409
             deleted: true
             public: true
-            bhiveId: 829898a53801
             name: B25
             comment: This hive needs to be replaced next year
           name: B
@@ -2042,10 +2042,10 @@ components:
             alerts:
             - alertType: VarroaHigh
             - alertType: VarroaHigh
+            bboxId: 829898a53801
             httpReponseCode: 409
             deleted: true
             public: true
-            bhiveId: 829898a53801
             name: B25
             comment: This hive needs to be replaced next year
           - frames: 3
@@ -2057,10 +2057,10 @@ components:
             alerts:
             - alertType: VarroaHigh
             - alertType: VarroaHigh
+            bboxId: 829898a53801
             httpReponseCode: 409
             deleted: true
             public: true
-            bhiveId: 829898a53801
             name: B25
             comment: This hive needs to be replaced next year
           name: B
@@ -2093,10 +2093,10 @@ components:
             alerts:
             - alertType: VarroaHigh
             - alertType: VarroaHigh
+            bboxId: 829898a53801
             httpReponseCode: 409
             deleted: true
             public: true
-            bhiveId: 829898a53801
             name: B25
             comment: This hive needs to be replaced next year
           - frames: 3
@@ -2108,10 +2108,10 @@ components:
             alerts:
             - alertType: VarroaHigh
             - alertType: VarroaHigh
+            bboxId: 829898a53801
             httpReponseCode: 409
             deleted: true
             public: true
-            bhiveId: 829898a53801
             name: B25
             comment: This hive needs to be replaced next year
           name: B
@@ -2131,10 +2131,10 @@ components:
             alerts:
             - alertType: VarroaHigh
             - alertType: VarroaHigh
+            bboxId: 829898a53801
             httpReponseCode: 409
             deleted: true
             public: true
-            bhiveId: 829898a53801
             name: B25
             comment: This hive needs to be replaced next year
           - frames: 3
@@ -2146,10 +2146,10 @@ components:
             alerts:
             - alertType: VarroaHigh
             - alertType: VarroaHigh
+            bboxId: 829898a53801
             httpReponseCode: 409
             deleted: true
             public: true
-            bhiveId: 829898a53801
             name: B25
             comment: This hive needs to be replaced next year
           name: B
@@ -2182,10 +2182,10 @@ components:
           alerts:
           - alertType: VarroaHigh
           - alertType: VarroaHigh
+          bboxId: 829898a53801
           httpReponseCode: 409
           deleted: true
           public: true
-          bhiveId: 829898a53801
           name: B25
           comment: This hive needs to be replaced next year
         - frames: 3
@@ -2197,10 +2197,10 @@ components:
           alerts:
           - alertType: VarroaHigh
           - alertType: VarroaHigh
+          bboxId: 829898a53801
           httpReponseCode: 409
           deleted: true
           public: true
-          bhiveId: 829898a53801
           name: B25
           comment: This hive needs to be replaced next year
         httpResponseCode: 409
@@ -2459,10 +2459,10 @@ components:
           alerts:
           - alertType: VarroaHigh
           - alertType: VarroaHigh
+          bboxId: 829898a53801
           httpReponseCode: 409
           deleted: true
           public: true
-          bhiveId: 829898a53801
           name: B25
           comment: This hive needs to be replaced next year
         - frames: 3
@@ -2474,10 +2474,10 @@ components:
           alerts:
           - alertType: VarroaHigh
           - alertType: VarroaHigh
+          bboxId: 829898a53801
           httpReponseCode: 409
           deleted: true
           public: true
-          bhiveId: 829898a53801
           name: B25
           comment: This hive needs to be replaced next year
         name: B
@@ -2564,10 +2564,10 @@ components:
         alerts:
         - alertType: VarroaHigh
         - alertType: VarroaHigh
+        bboxId: 829898a53801
         httpReponseCode: 409
         deleted: true
         public: true
-        bhiveId: 829898a53801
         name: B25
         comment: This hive needs to be replaced next year
       properties:
@@ -2623,8 +2623,8 @@ components:
             $ref: '#/components/schemas/alerts'
           type: array
           x-protobuf-index: 9
-        bhiveId:
-          description: The ID of beehive electronics (QBox client).
+        bboxId:
+          description: The ID of beehive electronics (bbox).
           example: 829898a53801
           maxLength: 256
           type: string

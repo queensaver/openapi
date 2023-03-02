@@ -37,8 +37,8 @@ type Hive struct {
 
 	Alerts []Alerts `json:"alerts,omitempty"`
 
-	// The ID of beehive electronics (QBox client).
-	BhiveId string `json:"bhiveId,omitempty"`
+	// The ID of beehive electronics (bbox).
+	BboxId string `json:"bboxId,omitempty"`
 
 	// HTTP response code. Used for internal purposes, will be let out at the API level.
 	HttpReponseCode int32 `json:"httpReponseCode,omitempty"`

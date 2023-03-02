@@ -47,9 +47,9 @@ export interface Hive {
     frames?: number;
     alerts?: Array<Alerts>;
     /**
-     * The ID of beehive electronics (QBox client).
+     * The ID of beehive electronics (bbox).
      */
-    bhiveId?: string;
+    bboxId?: string;
     /**
      * HTTP response code. Used for internal purposes, will be let out at the API level.
      */

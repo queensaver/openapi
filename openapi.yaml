@@ -1966,10 +1966,10 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/alerts"
-        bhiveId:
+        bboxId:
           type: string
           maxLength: 256
-          description: The ID of beehive electronics (QBox client).
+          description: The ID of beehive electronics (bbox).
           example: "829898a53801"
           x-protobuf-index: 10
         httpReponseCode:
