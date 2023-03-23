@@ -38,4 +38,5 @@ model/varroaScan.ts
 model/varroaScanMetadata.ts
 model/varroaScanResponse.ts
 model/weight.ts
+param.ts
 variables.ts

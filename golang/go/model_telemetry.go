@@ -11,26 +11,32 @@ package openapi
 
 type Telemetry struct {
 
-	// The mac address of the scale
+	// The mac address of the scale; short form: m
 	MacAddress string `json:"macAddress,omitempty"`
 
-	// actual measurement of weight
+	// actual measurement of weight; short form: w
 	Weight float32 `json:"weight,omitempty"`
 
-	// timestamp of the measurement on one second precision
+	// timestamp of the measurement on one second precision; short form: e
 	Epoch int64 `json:"epoch,omitempty"`
 
-	// temperature
+	// temperature; short form: t
 	Temperature float32 `json:"temperature,omitempty"`
 
-	// air pressure according to sensor
+	// air pressure according to sensor; short form: p
 	AirPressure float32 `json:"airPressure,omitempty"`
 
-	// Battery voltage
+	// Battery voltage; short form: b
 	BatteryVoltage float32 `json:"batteryVoltage,omitempty"`
 
-	// signal Strength in %
+	// signal Strength in %; short from: s
 	SignalStrength int32 `json:"signalStrength,omitempty"`
+
+	// longitude of the system; short form: lo
+	Longitude float32 `json:"longitude,omitempty"`
+
+	// latitude of the system; short form: la
+	Latitude float32 `json:"latitude,omitempty"`
 }
 
 // AssertTelemetryRequired checks if the required fields are not zero-ed

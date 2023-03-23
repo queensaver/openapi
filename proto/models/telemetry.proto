@@ -15,25 +15,31 @@ package openapi;
 
 message Telemetry {
 
-  // The mac address of the scale
+  // The mac address of the scale; short form: m
   string macAddress = 1;
 
-  // actual measurement of weight
+  // actual measurement of weight; short form: w
   float weight = 2;
 
-  // timestamp of the measurement on one second precision
+  // timestamp of the measurement on one second precision; short form: e
   int64 epoch = 3;
 
-  // temperature
+  // temperature; short form: t
   float temperature = 4;
 
-  // air pressure according to sensor
+  // air pressure according to sensor; short form: p
   float airPressure = 5;
 
-  // Battery voltage
+  // Battery voltage; short form: b
   float batteryVoltage = 6;
 
-  // signal Strength in %
+  // signal Strength in %; short from: s
   int32 signalStrength = 7;
+
+  // longitude of the system; short form: lo
+  float longitude = 8;
+
+  // latitude of the system; short form: la
+  float latitude = 9;
 
 }

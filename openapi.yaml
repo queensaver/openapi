@@ -1718,45 +1718,59 @@ components:
       properties:
         macAddress:
           type: string
-          description: The mac address of the scale
+          description: "The mac address of the scale; short form: m"
           example: "829898a53801"
           x-protobuf-index: 1
         weight:
           type: number
           format: float
-          description: actual measurement of weight
+          description: "actual measurement of weight; short form: w"
           example: 53.2345
           x-protobuf-index: 2
         epoch:
           type: integer
           format: int64
-          description: timestamp of the measurement on one second precision
+          description: "timestamp of the measurement on one second precision; short form: e"
           example: 1639169129
           x-protobuf-index: 3
         temperature:
           type: number
           format: float
-          description: temperature
+          description: "temperature; short form: t"
           example: 12.2345
           x-protobuf-index: 4
         airPressure:
           type: number
           format: float
-          description: air pressure according to sensor
+          description: "air pressure according to sensor; short form: p"
           example: 12.2345
           x-protobuf-index: 5
         batteryVoltage:
           type: number
           format: float
-          description: Battery voltage
+          description: "Battery voltage; short form: b"
           example: 12.2345
           x-protobuf-index: 6
         signalStrength:
           type: integer
           format: int32
-          description: signal Strength in %
+          description: "signal Strength in %; short from: s"
           example: 12
           x-protobuf-index: 7
+        longitude:
+          type: number
+          format: float
+          description: "longitude of the system; short form: lo"
+          example: "-45.136822"
+          x-protobuf-index: 8
+        latitude:
+          type: number
+          format: float
+          description: "latitude of the system; short form: la"
+          example: "-45.136822"
+          x-protobuf-index: 9
+
+
 
 
 
