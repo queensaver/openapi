@@ -13,40 +13,40 @@
 
 export interface Telemetry { 
     /**
-     * The mac address of the scale; short form: m
+     * The mac address of the scale
      */
-    macAddress?: string;
+    m?: string;
     /**
-     * actual measurement of weight; short form: w
+     * actual measurement of weight
      */
-    weight?: number;
+    w?: number;
     /**
-     * timestamp of the measurement on one second precision; short form: e
+     * timestamp of the measurement on one second precision (unix timestamp)
      */
-    epoch?: number;
+    e?: number;
     /**
-     * temperature; short form: t
+     * temperature
      */
-    temperature?: number;
+    t?: number;
     /**
-     * air pressure according to sensor; short form: p
+     * air pressure according to sensor
      */
-    airPressure?: number;
+    a?: number;
     /**
-     * Battery voltage; short form: b
+     * Battery voltage
      */
-    batteryVoltage?: number;
+    b?: number;
     /**
-     * signal Strength in %; short from: s
+     * signal Strength in %
      */
-    signalStrength?: number;
+    s?: number;
     /**
-     * longitude of the system; short form: lo
+     * longitude of the system
      */
-    longitude?: number;
+    lo?: number;
     /**
-     * latitude of the system; short form: la
+     * latitude of the system
      */
-    latitude?: number;
+    la?: number;
 }
 
