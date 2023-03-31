@@ -1881,6 +1881,7 @@ components:
             scaleOffset: 1234
             scaleReferenceUnit: 1234
           hardwareRevision: 1
+          hiveUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
           registrationId: registrationId
           hardwareType: scale
           name: B47
@@ -1910,6 +1911,7 @@ components:
             scaleOffset: 1234
             scaleReferenceUnit: 1234
           hardwareRevision: 1
+          hiveUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
           registrationId: registrationId
           hardwareType: scale
           name: B47
@@ -1939,6 +1941,7 @@ components:
             scaleOffset: 1234
             scaleReferenceUnit: 1234
           hardwareRevision: 1
+          hiveUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
           registrationId: registrationId
           hardwareType: scale
           name: B47
@@ -1954,6 +1957,7 @@ components:
             scaleOffset: 1234
             scaleReferenceUnit: 1234
           hardwareRevision: 1
+          hiveUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
           registrationId: registrationId
           hardwareType: scale
           name: B47
@@ -2676,6 +2680,7 @@ components:
           scaleOffset: 1234
           scaleReferenceUnit: 1234
         hardwareRevision: 1
+        hiveUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
         registrationId: registrationId
         hardwareType: scale
         name: B47
@@ -2738,6 +2743,11 @@ components:
           maxLength: 256
           type: string
           x-protobuf-index: 9
+        hiveUuid:
+          description: Associated Hive with this bbox
+          example: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+          type: string
+          x-protobuf-index: 10
       type: object
     user:
       properties:

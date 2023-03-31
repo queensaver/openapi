@@ -42,4 +42,7 @@ message Bbox {
   // Name of the bbox - optional
   string name = 9;
 
+  // Associated Hive with this bbox
+  string hiveUuid = 10;
+
 }

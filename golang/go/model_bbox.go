@@ -36,6 +36,9 @@ type Bbox struct {
 
 	// Name of the bbox - optional
 	Name string `json:"name,omitempty"`
+
+	// Associated Hive with this bbox
+	HiveUuid string `json:"hiveUuid,omitempty"`
 }
 
 // AssertBboxRequired checks if the required fields are not zero-ed

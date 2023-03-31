@@ -46,5 +46,9 @@ export interface Bbox {
      * Name of the bbox - optional
      */
     name?: string;
+    /**
+     * Associated Hive with this bbox
+     */
+    hiveUuid?: string;
 }
 

@@ -2058,6 +2058,11 @@ components:
           maxLength: 256
           description: Name of the bbox - optional
           x-protobuf-index: 9
+        hiveUuid:
+          type: string
+          example: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+          description: Associated Hive with this bbox
+          x-protobuf-index: 10
 
     user:
       type: object
