@@ -967,6 +967,12 @@ ul.nav-tabs {
       "description" : "How often the bbox needs to send the measurements (in batches)",
       "example" : 3600,
       "x-protobuf-index" : 3
+    },
+    "gps" : {
+      "type" : "integer",
+      "description" : "time in ms to wait for GPS, 0 deactivates GPS",
+      "example" : 0,
+      "x-protobuf-index" : 4
     }
   }
 };
@@ -1560,6 +1566,11 @@ ul.nav-tabs {
       "description" : "the scanned image data in binary format. this is used internally and won't surface at the API server (any data will be ignored).",
       "format" : "byte",
       "x-protobuf-index" : 6
+    },
+    "hiveUuid" : {
+      "type" : "string",
+      "description" : "the UUID of the bee hive this scan has been associated to",
+      "x-protobuf-index" : 7
     }
   }
 };
@@ -15437,11 +15448,12 @@ public class DefaultApiExample {
         String token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie or the Q-Token must be set to be authorized for the API call.
         Long userId = 789; // Long | the internal user id of the authenticated user. Will be set internally in the cloud system and does not have an effect if set via the API call as it will be overridden. Don't set this value.
         String bhiveId = bhiveId_example; // String | The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call.
+        String hiveUuid = hiveUuid_example; // String | The UUID of a hive. This is used for a photobox. Leave empty if you don't know the associated hive yet.
         Long epoch = 789; // Long | The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter.
         byte[] scan = BYTE_ARRAY_DATA_HERE; // byte[] | 
 
         try {
-            apiInstance.varroaScanImagePost(qToken, token, userId, bhiveId, epoch, scan);
+            apiInstance.varroaScanImagePost(qToken, token, userId, bhiveId, hiveUuid, epoch, scan);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#varroaScanImagePost");
             e.printStackTrace();
@@ -15461,11 +15473,12 @@ public class DefaultApiExample {
         String token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie or the Q-Token must be set to be authorized for the API call.
         Long userId = 789; // Long | the internal user id of the authenticated user. Will be set internally in the cloud system and does not have an effect if set via the API call as it will be overridden. Don't set this value.
         String bhiveId = bhiveId_example; // String | The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call.
+        String hiveUuid = hiveUuid_example; // String | The UUID of a hive. This is used for a photobox. Leave empty if you don't know the associated hive yet.
         Long epoch = 789; // Long | The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter.
         byte[] scan = BYTE_ARRAY_DATA_HERE; // byte[] | 
 
         try {
-            apiInstance.varroaScanImagePost(qToken, token, userId, bhiveId, epoch, scan);
+            apiInstance.varroaScanImagePost(qToken, token, userId, bhiveId, hiveUuid, epoch, scan);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#varroaScanImagePost");
             e.printStackTrace();
@@ -15492,6 +15505,7 @@ String *qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // Either the cookie or t
 String *token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // Either this cookie or the Q-Token must be set to be authorized for the API call. (optional) (default to null)
 Long *userId = 789; // the internal user id of the authenticated user. Will be set internally in the cloud system and does not have an effect if set via the API call as it will be overridden. Don't set this value. (optional) (default to null)
 String *bhiveId = bhiveId_example; // The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call. (optional) (default to null)
+String *hiveUuid = hiveUuid_example; // The UUID of a hive. This is used for a photobox. Leave empty if you don't know the associated hive yet. (optional) (default to null)
 Long *epoch = 789; // The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter. (optional) (default to null)
 byte[] *scan = BYTE_ARRAY_DATA_HERE; //  (optional) (default to null)
 
@@ -15500,6 +15514,7 @@ byte[] *scan = BYTE_ARRAY_DATA_HERE; //  (optional) (default to null)
     token:token
     userId:userId
     bhiveId:bhiveId
+    hiveUuid:hiveUuid
     epoch:epoch
     scan:scan
               completionHandler: ^(NSError* error) {
@@ -15527,6 +15542,7 @@ var opts = {
   'token': 8B0FE5CF-C096-4B3E-8748-27906B4A9449, // {String} Either this cookie or the Q-Token must be set to be authorized for the API call.
   'userId': 789, // {Long} the internal user id of the authenticated user. Will be set internally in the cloud system and does not have an effect if set via the API call as it will be overridden. Don't set this value.
   'bhiveId': bhiveId_example, // {String} The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call.
+  'hiveUuid': hiveUuid_example, // {String} The UUID of a hive. This is used for a photobox. Leave empty if you don't know the associated hive yet.
   'epoch': 789, // {Long} The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter.
   'scan': BYTE_ARRAY_DATA_HERE // {byte[]} 
 };
@@ -15569,12 +15585,13 @@ namespace Example
             var token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449;  // String | Either this cookie or the Q-Token must be set to be authorized for the API call. (optional)  (default to null)
             var userId = 789;  // Long | the internal user id of the authenticated user. Will be set internally in the cloud system and does not have an effect if set via the API call as it will be overridden. Don't set this value. (optional)  (default to null)
             var bhiveId = bhiveId_example;  // String | The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call. (optional)  (default to null)
+            var hiveUuid = hiveUuid_example;  // String | The UUID of a hive. This is used for a photobox. Leave empty if you don't know the associated hive yet. (optional)  (default to null)
             var epoch = 789;  // Long | The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter. (optional)  (default to null)
             var scan = BYTE_ARRAY_DATA_HERE;  // byte[] |  (optional)  (default to null)
 
             try {
                 // Save Varroa Scan image
-                apiInstance.varroaScanImagePost(qToken, token, userId, bhiveId, epoch, scan);
+                apiInstance.varroaScanImagePost(qToken, token, userId, bhiveId, hiveUuid, epoch, scan);
             } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.varroaScanImagePost: " + e.Message );
             }
@@ -15599,11 +15616,12 @@ $qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either the cookie or
 $token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie or the Q-Token must be set to be authorized for the API call.
 $userId = 789; // Long | the internal user id of the authenticated user. Will be set internally in the cloud system and does not have an effect if set via the API call as it will be overridden. Don't set this value.
 $bhiveId = bhiveId_example; // String | The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call.
+$hiveUuid = hiveUuid_example; // String | The UUID of a hive. This is used for a photobox. Leave empty if you don't know the associated hive yet.
 $epoch = 789; // Long | The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter.
 $scan = BYTE_ARRAY_DATA_HERE; // byte[] | 
 
 try {
-    $api_instance->varroaScanImagePost($qToken, $token, $userId, $bhiveId, $epoch, $scan);
+    $api_instance->varroaScanImagePost($qToken, $token, $userId, $bhiveId, $hiveUuid, $epoch, $scan);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->varroaScanImagePost: ', $e->getMessage(), PHP_EOL;
 }
@@ -15626,11 +15644,12 @@ my $qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; # String | Either the cookie 
 my $token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; # String | Either this cookie or the Q-Token must be set to be authorized for the API call.
 my $userId = 789; # Long | the internal user id of the authenticated user. Will be set internally in the cloud system and does not have an effect if set via the API call as it will be overridden. Don't set this value.
 my $bhiveId = bhiveId_example; # String | The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call.
+my $hiveUuid = hiveUuid_example; # String | The UUID of a hive. This is used for a photobox. Leave empty if you don't know the associated hive yet.
 my $epoch = 789; # Long | The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter.
 my $scan = BYTE_ARRAY_DATA_HERE; # byte[] | 
 
 eval {
-    $api_instance->varroaScanImagePost(qToken => $qToken, token => $token, userId => $userId, bhiveId => $bhiveId, epoch => $epoch, scan => $scan);
+    $api_instance->varroaScanImagePost(qToken => $qToken, token => $token, userId => $userId, bhiveId => $bhiveId, hiveUuid => $hiveUuid, epoch => $epoch, scan => $scan);
 };
 if ($@) {
     warn "Exception when calling DefaultApi->varroaScanImagePost: $@\n";
@@ -15655,12 +15674,13 @@ qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449 # String | Either the cookie or th
 token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449 # String | Either this cookie or the Q-Token must be set to be authorized for the API call. (optional) (default to null)
 userId = 789 # Long | the internal user id of the authenticated user. Will be set internally in the cloud system and does not have an effect if set via the API call as it will be overridden. Don't set this value. (optional) (default to null)
 bhiveId = bhiveId_example # String | The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call. (optional) (default to null)
+hiveUuid = hiveUuid_example # String | The UUID of a hive. This is used for a photobox. Leave empty if you don't know the associated hive yet. (optional) (default to null)
 epoch = 789 # Long | The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter. (optional) (default to null)
 scan = BYTE_ARRAY_DATA_HERE # byte[] |  (optional) (default to null)
 
 try:
     # Save Varroa Scan image
-    api_instance.varroa_scan_image_post(qToken, token=token, userId=userId, bhiveId=bhiveId, epoch=epoch, scan=scan)
+    api_instance.varroa_scan_image_post(qToken, token=token, userId=userId, bhiveId=bhiveId, hiveUuid=hiveUuid, epoch=epoch, scan=scan)
 except ApiException as e:
     print("Exception when calling DefaultApi->varroaScanImagePost: %s\n" % e)</code></pre>
                             </div>
@@ -15673,11 +15693,12 @@ pub fn main() {
     let token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String
     let userId = 789; // Long
     let bhiveId = bhiveId_example; // String
+    let hiveUuid = hiveUuid_example; // String
     let epoch = 789; // Long
     let scan = BYTE_ARRAY_DATA_HERE; // byte[]
 
     let mut context = DefaultApi::Context::default();
-    let result = client.varroaScanImagePost(qToken, token, userId, bhiveId, epoch, scan, &context).wait();
+    let result = client.varroaScanImagePost(qToken, token, userId, bhiveId, hiveUuid, epoch, scan, &context).wait();
 
     println!("{:?}", result);
 }
@@ -15767,6 +15788,26 @@ the internal user id of the authenticated user. Will be set internally in the cl
 
                     <div class="inner description marked">
 The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call.
+                    </div>
+            </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                                  <tr><td style="width:150px;">hiveUuid</td>
+<td>
+
+
+    <div id="d2e199_varroaScanImagePost_hiveUuid">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    String
+                </span>
+
+                    <div class="inner description marked">
+The UUID of a hive. This is used for a photobox. Leave empty if you don&#39;t know the associated hive yet.
                     </div>
             </div>
         </div>

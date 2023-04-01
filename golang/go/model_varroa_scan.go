@@ -27,6 +27,9 @@ type VarroaScan struct {
 
 	// the scanned image data in binary format. this is used internally and won't surface at the API server (any data will be ignored).
 	Scan string `json:"scan,omitempty"`
+
+	// the UUID of the bee hive this scan has been associated to
+	HiveUuid string `json:"hiveUuid,omitempty"`
 }
 
 // AssertVarroaScanRequired checks if the required fields are not zero-ed

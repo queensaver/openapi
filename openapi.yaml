@@ -1323,6 +1323,10 @@ paths:
                   description: The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call.
                   example: 829898a53801
                   type: string
+                hiveUuid:
+                  description: The UUID of a hive. This is used for a photobox. Leave empty if you don't know the associated hive yet.
+                  example: 8B0FE5CF-C096-4B3E-8748-27906B4A9449
+                  type: string
                 epoch:
                   description: The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter.
                   example: 1639170002
@@ -1458,6 +1462,10 @@ components:
           format: byte
           description: the scanned image data in binary format. this is used internally and won't surface at the API server (any data will be ignored).
           x-protobuf-index: 6
+        hiveUuid:
+          type: string
+          description: the UUID of the bee hive this scan has been associated to
+          x-protobuf-index: 7
 
     bbox-config-response:
       type: object
@@ -1477,7 +1485,11 @@ components:
           example: 3600
           description: How often the bbox needs to send the measurements (in batches)
           x-protobuf-index: 3
-
+        gps:
+          type: integer
+          example: 0
+          description: "time in ms to wait for GPS, 0 deactivates GPS"
+          x-protobuf-index: 4
 
     authenticate-post-response:
       type: object

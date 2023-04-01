@@ -19,6 +19,9 @@ type BboxConfigResponse struct {
 
 	// How often the bbox needs to send the measurements (in batches)
 	BatchInterval int32 `json:"batchInterval,omitempty"`
+
+	// time in ms to wait for GPS, 0 deactivates GPS
+	Gps int32 `json:"gps,omitempty"`
 }
 
 // AssertBboxConfigResponseRequired checks if the required fields are not zero-ed

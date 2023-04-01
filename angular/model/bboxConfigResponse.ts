@@ -24,5 +24,9 @@ export interface BboxConfigResponse {
      * How often the bbox needs to send the measurements (in batches)
      */
     batchInterval?: number;
+    /**
+     * time in ms to wait for GPS, 0 deactivates GPS
+     */
+    gps?: number;
 }
 

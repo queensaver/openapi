@@ -24,4 +24,7 @@ message BboxConfigResponse {
   // How often the bbox needs to send the measurements (in batches)
   int32 batchInterval = 3;
 
+  // time in ms to wait for GPS, 0 deactivates GPS
+  int32 gps = 4;
+
 }

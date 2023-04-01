@@ -2411,15 +2411,16 @@ export class DefaultService {
      * @param token Either this cookie or the Q-Token must be set to be authorized for the API call.
      * @param userId the internal user id of the authenticated user. Will be set internally in the cloud system and does not have an effect if set via the API call as it will be overridden. Don\\\&#39;t set this value.
      * @param bhiveId The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call.
+     * @param hiveUuid The UUID of a hive. This is used for a photobox. Leave empty if you don\\\&#39;t know the associated hive yet.
      * @param epoch The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter.
      * @param scan 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public varroaScanImagePost(qToken: string, token?: string, userId?: number, bhiveId?: string, epoch?: number, scan?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any>;
-    public varroaScanImagePost(qToken: string, token?: string, userId?: number, bhiveId?: string, epoch?: number, scan?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpResponse<any>>;
-    public varroaScanImagePost(qToken: string, token?: string, userId?: number, bhiveId?: string, epoch?: number, scan?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpEvent<any>>;
-    public varroaScanImagePost(qToken: string, token?: string, userId?: number, bhiveId?: string, epoch?: number, scan?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any> {
+    public varroaScanImagePost(qToken: string, token?: string, userId?: number, bhiveId?: string, hiveUuid?: string, epoch?: number, scan?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any>;
+    public varroaScanImagePost(qToken: string, token?: string, userId?: number, bhiveId?: string, hiveUuid?: string, epoch?: number, scan?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpResponse<any>>;
+    public varroaScanImagePost(qToken: string, token?: string, userId?: number, bhiveId?: string, hiveUuid?: string, epoch?: number, scan?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpEvent<any>>;
+    public varroaScanImagePost(qToken: string, token?: string, userId?: number, bhiveId?: string, hiveUuid?: string, epoch?: number, scan?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any> {
         if (qToken === null || qToken === undefined) {
             throw new Error('Required parameter qToken was null or undefined when calling varroaScanImagePost.');
         }
@@ -2472,6 +2473,9 @@ export class DefaultService {
         }
         if (bhiveId !== undefined) {
             localVarFormParams = localVarFormParams.append('bhiveId', <any>bhiveId) as any || localVarFormParams;
+        }
+        if (hiveUuid !== undefined) {
+            localVarFormParams = localVarFormParams.append('hiveUuid', <any>hiveUuid) as any || localVarFormParams;
         }
         if (epoch !== undefined) {
             localVarFormParams = localVarFormParams.append('epoch', <any>epoch) as any || localVarFormParams;

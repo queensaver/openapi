@@ -34,5 +34,9 @@ export interface VarroaScan {
      * the scanned image data in binary format. this is used internally and won\'t surface at the API server (any data will be ignored).
      */
     scan?: string;
+    /**
+     * the UUID of the bee hive this scan has been associated to
+     */
+    hiveUuid?: string;
 }
 
