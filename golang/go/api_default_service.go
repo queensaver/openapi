@@ -447,7 +447,7 @@ func (s *DefaultApiService) UserPost(ctx context.Context, user User) (ImplRespon
 }
 
 // VarroaScanGet - Get Varroa Scan images and metadata
-func (s *DefaultApiService) VarroaScanGet(ctx context.Context, qToken string, bhiveId string, token string, epoch int64, uuid string, userId int64, secondsInThePast int64) (ImplResponse, error) {
+func (s *DefaultApiService) VarroaScanGet(ctx context.Context, qToken string, bhiveId string, token string, epoch int64, uuid string, hiveUuid string, userId int64, secondsInThePast int64) (ImplResponse, error) {
 	// TODO - update VarroaScanGet with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
@@ -461,6 +461,23 @@ func (s *DefaultApiService) VarroaScanGet(ctx context.Context, qToken string, bh
 	//return Response(500, nil),nil
 
 	return Response(http.StatusNotImplemented, nil), errors.New("VarroaScanGet method not implemented")
+}
+
+// VarroaScanImageAssociate - Associate a varroa scan with a bee hive
+func (s *DefaultApiService) VarroaScanImageAssociate(ctx context.Context, varroaScanImageUuid string, hiveUuid string, userId int64) (ImplResponse, error) {
+	// TODO - update VarroaScanImageAssociate with the required logic for this service method.
+	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
+
+	//TODO: Uncomment the next line to return response Response(200, {}) or use other options such as http.Ok ...
+	//return Response(200, nil),nil
+
+	//TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
+	//return Response(400, nil),nil
+
+	//TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
+	//return Response(500, nil),nil
+
+	return Response(http.StatusNotImplemented, nil), errors.New("VarroaScanImageAssociate method not implemented")
 }
 
 // VarroaScanImagePost - Save Varroa Scan image

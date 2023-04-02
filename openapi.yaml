@@ -1229,7 +1229,14 @@ paths:
           format: int64
       - name: uuid
         in: query
-        description: The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges. This is currently not implemented.
+        description: The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges. If you leave out the UUID we will not return any additional data to the varroa-scans (like positions of mites).
+        required: false
+        example: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+        schema:
+          type: string
+      - name: hiveUuid
+        in: query
+        description: Return a summary of all scans according to the UUID of an assigned hive. This parameter is optional. You can't use this in combination with the bhiveId or uuid parameters. 
         required: false
         example: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
         schema:
@@ -1262,6 +1269,43 @@ paths:
           description: Client error
         "500":
           description: Internal error
+
+    put:
+      summary: Associate a varroa scan with a bee hive
+      operationId: varroaScanImageAssociate
+      description: This connects a scan with a hive.
+      parameters:
+      - name: userId
+        in: query
+        description: The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
+        required: false 
+        example: 123
+        schema:
+          type: integer
+          format: int64
+      - name: varroaScanImageUuid
+        in: query
+        description: The UUID of the varroa scan.
+        example: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+        required: true
+        schema:
+          type: string
+      - name: hiveUuid
+        in: query
+        description: The UUID of the varroa bee hive (see the /v1/hives call).
+        required: true
+        example: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+        schema:
+          type: string
+
+      responses:
+        "200":
+          description: "OK"
+        "400":
+          description: Client error
+        "500":
+          description: Internal error
+
 
     post:
       summary: Save Varroa Scan metadata

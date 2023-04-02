@@ -50,6 +50,7 @@ type DefaultServiceClient interface {
 	TemperaturePost(ctx context.Context, in *TemperaturePostRequest, opts ...grpc.CallOption) (*models.GenericPostResponse, error)
 	UserPost(ctx context.Context, in *UserPostRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	VarroaScanGet(ctx context.Context, in *VarroaScanGetRequest, opts ...grpc.CallOption) (*models.VarroaScanResponse, error)
+	VarroaScanImageAssociate(ctx context.Context, in *VarroaScanImageAssociateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	VarroaScanImagePost(ctx context.Context, in *VarroaScanImagePostRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	VarroaScanPost(ctx context.Context, in *VarroaScanPostRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
@@ -296,6 +297,15 @@ func (c *defaultServiceClient) VarroaScanGet(ctx context.Context, in *VarroaScan
 	return out, nil
 }
 
+func (c *defaultServiceClient) VarroaScanImageAssociate(ctx context.Context, in *VarroaScanImageAssociateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, "/openapi.services.defaultservice.DefaultService/VarroaScanImageAssociate", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *defaultServiceClient) VarroaScanImagePost(ctx context.Context, in *VarroaScanImagePostRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, "/openapi.services.defaultservice.DefaultService/VarroaScanImagePost", in, out, opts...)
@@ -344,6 +354,7 @@ type DefaultServiceServer interface {
 	TemperaturePost(context.Context, *TemperaturePostRequest) (*models.GenericPostResponse, error)
 	UserPost(context.Context, *UserPostRequest) (*emptypb.Empty, error)
 	VarroaScanGet(context.Context, *VarroaScanGetRequest) (*models.VarroaScanResponse, error)
+	VarroaScanImageAssociate(context.Context, *VarroaScanImageAssociateRequest) (*emptypb.Empty, error)
 	VarroaScanImagePost(context.Context, *VarroaScanImagePostRequest) (*emptypb.Empty, error)
 	VarroaScanPost(context.Context, *VarroaScanPostRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedDefaultServiceServer()
@@ -430,6 +441,9 @@ func (UnimplementedDefaultServiceServer) UserPost(context.Context, *UserPostRequ
 }
 func (UnimplementedDefaultServiceServer) VarroaScanGet(context.Context, *VarroaScanGetRequest) (*models.VarroaScanResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method VarroaScanGet not implemented")
+}
+func (UnimplementedDefaultServiceServer) VarroaScanImageAssociate(context.Context, *VarroaScanImageAssociateRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method VarroaScanImageAssociate not implemented")
 }
 func (UnimplementedDefaultServiceServer) VarroaScanImagePost(context.Context, *VarroaScanImagePostRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method VarroaScanImagePost not implemented")
@@ -918,6 +932,24 @@ func _DefaultService_VarroaScanGet_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DefaultService_VarroaScanImageAssociate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(VarroaScanImageAssociateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DefaultServiceServer).VarroaScanImageAssociate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/openapi.services.defaultservice.DefaultService/VarroaScanImageAssociate",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DefaultServiceServer).VarroaScanImageAssociate(ctx, req.(*VarroaScanImageAssociateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DefaultService_VarroaScanImagePost_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(VarroaScanImagePostRequest)
 	if err := dec(in); err != nil {
@@ -1064,6 +1096,10 @@ var DefaultService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "VarroaScanGet",
 			Handler:    _DefaultService_VarroaScanGet_Handler,
+		},
+		{
+			MethodName: "VarroaScanImageAssociate",
+			Handler:    _DefaultService_VarroaScanImageAssociate_Handler,
 		},
 		{
 			MethodName: "VarroaScanImagePost",

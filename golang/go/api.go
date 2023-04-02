@@ -47,6 +47,7 @@ type DefaultApiRouter interface {
 	TemperaturePost(http.ResponseWriter, *http.Request)
 	UserPost(http.ResponseWriter, *http.Request)
 	VarroaScanGet(http.ResponseWriter, *http.Request)
+	VarroaScanImageAssociate(http.ResponseWriter, *http.Request)
 	VarroaScanImagePost(http.ResponseWriter, *http.Request)
 	VarroaScanPost(http.ResponseWriter, *http.Request)
 }
@@ -83,7 +84,8 @@ type DefaultApiServicer interface {
 	TemperatureGet(context.Context, string, string, int64, int64, string, int64) (ImplResponse, error)
 	TemperaturePost(context.Context, int64, Temperature) (ImplResponse, error)
 	UserPost(context.Context, User) (ImplResponse, error)
-	VarroaScanGet(context.Context, string, string, string, int64, string, int64, int64) (ImplResponse, error)
+	VarroaScanGet(context.Context, string, string, string, int64, string, string, int64, int64) (ImplResponse, error)
+	VarroaScanImageAssociate(context.Context, string, string, int64) (ImplResponse, error)
 	VarroaScanImagePost(context.Context, string, string, int64, string, string, int64, string) (ImplResponse, error)
 	VarroaScanPost(context.Context, int64, VarroaScan) (ImplResponse, error)
 }

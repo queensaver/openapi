@@ -93,6 +93,8 @@ service DefaultService {
 
   rpc VarroaScanGet (VarroaScanGetRequest) returns (VarroaScanResponse);
 
+  rpc VarroaScanImageAssociate (VarroaScanImageAssociateRequest) returns (google.protobuf.Empty);
+
   rpc VarroaScanImagePost (VarroaScanImagePostRequest) returns (google.protobuf.Empty);
 
   rpc VarroaScanPost (VarroaScanPostRequest) returns (google.protobuf.Empty);
@@ -383,12 +385,24 @@ message VarroaScanGetRequest {
   string token = 3;
   // The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter.
   int64 epoch = 4;
-  // The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges. This is currently not implemented.
+  // The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges. If you leave out the UUID we will not return any additional data to the varroa-scans (like positions of mites).
   string uuid = 5;
+  // Return a summary of all scans according to the UUID of an assigned hive. This parameter is optional. You can't use this in combination with the bhiveId or uuid parameters.
+  string hiveUuid = 6;
   // The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
-  int64 userId = 6;
+  int64 userId = 7;
   // How many seconds we go to the past to get the data measurements.
-  int64 secondsInThePast = 7;
+  int64 secondsInThePast = 8;
+
+}
+
+message VarroaScanImageAssociateRequest {
+  // The UUID of the varroa scan.
+  string varroaScanImageUuid = 1;
+  // The UUID of the varroa bee hive (see the /v1/hives call).
+  string hiveUuid = 2;
+  // The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
+  int64 userId = 3;
 
 }
 

@@ -1757,6 +1757,9 @@ ul.nav-tabs {
                     <li data-group="Default" data-name="varroaScanGet" class="">
                       <a href="#api-Default-varroaScanGet">varroaScanGet</a>
                     </li>
+                    <li data-group="Default" data-name="varroaScanImageAssociate" class="">
+                      <a href="#api-Default-varroaScanImageAssociate">varroaScanImageAssociate</a>
+                    </li>
                     <li data-group="Default" data-name="varroaScanImagePost" class="">
                       <a href="#api-Default-varroaScanImagePost">varroaScanImagePost</a>
                     </li>
@@ -14818,7 +14821,7 @@ $(document).ready(function() {
                             <pre class="prettyprint"><code class="language-bsh">curl -X GET \
  \
  -H "Accept: application/json" \
- "https://api.queensaver.com/v1/varroa-scan?bhiveId=829898a53801&epoch=1639170002&uuid=41C0FE2F-EB0C-45B4-8842-C117E47C35E3&userId=123&secondsInThePast=7200"
+ "https://api.queensaver.com/v1/varroa-scan?bhiveId=829898a53801&epoch=1639170002&uuid=41C0FE2F-EB0C-45B4-8842-C117E47C35E3&hiveUuid=41C0FE2F-EB0C-45B4-8842-C117E47C35E3&userId=123&secondsInThePast=7200"
 </code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-varroaScanGet-0-java">
@@ -14846,12 +14849,13 @@ public class DefaultApiExample {
         String bhiveId = 829898a53801; // String | The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call.
         String token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie or the Q-Token must be set to be authorized for the API call.
         Long epoch = 1639170002; // Long | The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter.
-        String uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges. This is currently not implemented.
+        String uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges. If you leave out the UUID we will not return any additional data to the varroa-scans (like positions of mites).
+        String hiveUuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | Return a summary of all scans according to the UUID of an assigned hive. This parameter is optional. You can't use this in combination with the bhiveId or uuid parameters.
         Long userId = 123; // Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
         Long secondsInThePast = 7200; // Long | How many seconds we go to the past to get the data measurements.
 
         try {
-            varroa-scan-response result = apiInstance.varroaScanGet(qToken, bhiveId, token, epoch, uuid, userId, secondsInThePast);
+            varroa-scan-response result = apiInstance.varroaScanGet(qToken, bhiveId, token, epoch, uuid, hiveUuid, userId, secondsInThePast);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#varroaScanGet");
@@ -14872,12 +14876,13 @@ public class DefaultApiExample {
         String bhiveId = 829898a53801; // String | The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call.
         String token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie or the Q-Token must be set to be authorized for the API call.
         Long epoch = 1639170002; // Long | The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter.
-        String uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges. This is currently not implemented.
+        String uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges. If you leave out the UUID we will not return any additional data to the varroa-scans (like positions of mites).
+        String hiveUuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | Return a summary of all scans according to the UUID of an assigned hive. This parameter is optional. You can't use this in combination with the bhiveId or uuid parameters.
         Long userId = 123; // Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
         Long secondsInThePast = 7200; // Long | How many seconds we go to the past to get the data measurements.
 
         try {
-            varroa-scan-response result = apiInstance.varroaScanGet(qToken, bhiveId, token, epoch, uuid, userId, secondsInThePast);
+            varroa-scan-response result = apiInstance.varroaScanGet(qToken, bhiveId, token, epoch, uuid, hiveUuid, userId, secondsInThePast);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#varroaScanGet");
@@ -14905,7 +14910,8 @@ String *qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // Either the cookie or t
 String *bhiveId = 829898a53801; // The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call. (default to null)
 String *token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // Either this cookie or the Q-Token must be set to be authorized for the API call. (optional) (default to null)
 Long *epoch = 1639170002; // The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter. (optional) (default to null)
-String *uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges. This is currently not implemented. (optional) (default to null)
+String *uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges. If you leave out the UUID we will not return any additional data to the varroa-scans (like positions of mites). (optional) (default to null)
+String *hiveUuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // Return a summary of all scans according to the UUID of an assigned hive. This parameter is optional. You can't use this in combination with the bhiveId or uuid parameters. (optional) (default to null)
 Long *userId = 123; // The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore. (optional) (default to null)
 Long *secondsInThePast = 7200; // How many seconds we go to the past to get the data measurements. (optional) (default to null)
 
@@ -14915,6 +14921,7 @@ Long *secondsInThePast = 7200; // How many seconds we go to the past to get the 
     token:token
     epoch:epoch
     uuid:uuid
+    hiveUuid:hiveUuid
     userId:userId
     secondsInThePast:secondsInThePast
               completionHandler: ^(varroa-scan-response output, NSError* error) {
@@ -14945,7 +14952,8 @@ var bhiveId = 829898a53801; // {String} The Mac Address of the QBox client. You 
 var opts = {
   'token': 8B0FE5CF-C096-4B3E-8748-27906B4A9449, // {String} Either this cookie or the Q-Token must be set to be authorized for the API call.
   'epoch': 1639170002, // {Long} The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter.
-  'uuid': 41C0FE2F-EB0C-45B4-8842-C117E47C35E3, // {String} The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges. This is currently not implemented.
+  'uuid': 41C0FE2F-EB0C-45B4-8842-C117E47C35E3, // {String} The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges. If you leave out the UUID we will not return any additional data to the varroa-scans (like positions of mites).
+  'hiveUuid': 41C0FE2F-EB0C-45B4-8842-C117E47C35E3, // {String} Return a summary of all scans according to the UUID of an assigned hive. This parameter is optional. You can't use this in combination with the bhiveId or uuid parameters.
   'userId': 123, // {Long} The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
   'secondsInThePast': 7200 // {Long} How many seconds we go to the past to get the data measurements.
 };
@@ -14988,13 +14996,14 @@ namespace Example
             var bhiveId = 829898a53801;  // String | The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call. (default to null)
             var token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449;  // String | Either this cookie or the Q-Token must be set to be authorized for the API call. (optional)  (default to null)
             var epoch = 1639170002;  // Long | The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter. (optional)  (default to null)
-            var uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3;  // String | The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges. This is currently not implemented. (optional)  (default to null)
+            var uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3;  // String | The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges. If you leave out the UUID we will not return any additional data to the varroa-scans (like positions of mites). (optional)  (default to null)
+            var hiveUuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3;  // String | Return a summary of all scans according to the UUID of an assigned hive. This parameter is optional. You can't use this in combination with the bhiveId or uuid parameters. (optional)  (default to null)
             var userId = 123;  // Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore. (optional)  (default to null)
             var secondsInThePast = 7200;  // Long | How many seconds we go to the past to get the data measurements. (optional)  (default to null)
 
             try {
                 // Get Varroa Scan images and metadata
-                varroa-scan-response result = apiInstance.varroaScanGet(qToken, bhiveId, token, epoch, uuid, userId, secondsInThePast);
+                varroa-scan-response result = apiInstance.varroaScanGet(qToken, bhiveId, token, epoch, uuid, hiveUuid, userId, secondsInThePast);
                 Debug.WriteLine(result);
             } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.varroaScanGet: " + e.Message );
@@ -15020,12 +15029,13 @@ $qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either the cookie or
 $bhiveId = 829898a53801; // String | The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call.
 $token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie or the Q-Token must be set to be authorized for the API call.
 $epoch = 1639170002; // Long | The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter.
-$uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges. This is currently not implemented.
+$uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges. If you leave out the UUID we will not return any additional data to the varroa-scans (like positions of mites).
+$hiveUuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | Return a summary of all scans according to the UUID of an assigned hive. This parameter is optional. You can't use this in combination with the bhiveId or uuid parameters.
 $userId = 123; // Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
 $secondsInThePast = 7200; // Long | How many seconds we go to the past to get the data measurements.
 
 try {
-    $result = $api_instance->varroaScanGet($qToken, $bhiveId, $token, $epoch, $uuid, $userId, $secondsInThePast);
+    $result = $api_instance->varroaScanGet($qToken, $bhiveId, $token, $epoch, $uuid, $hiveUuid, $userId, $secondsInThePast);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->varroaScanGet: ', $e->getMessage(), PHP_EOL;
@@ -15049,12 +15059,13 @@ my $qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; # String | Either the cookie 
 my $bhiveId = 829898a53801; # String | The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call.
 my $token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; # String | Either this cookie or the Q-Token must be set to be authorized for the API call.
 my $epoch = 1639170002; # Long | The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter.
-my $uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; # String | The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges. This is currently not implemented.
+my $uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; # String | The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges. If you leave out the UUID we will not return any additional data to the varroa-scans (like positions of mites).
+my $hiveUuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; # String | Return a summary of all scans according to the UUID of an assigned hive. This parameter is optional. You can't use this in combination with the bhiveId or uuid parameters.
 my $userId = 123; # Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
 my $secondsInThePast = 7200; # Long | How many seconds we go to the past to get the data measurements.
 
 eval {
-    my $result = $api_instance->varroaScanGet(qToken => $qToken, bhiveId => $bhiveId, token => $token, epoch => $epoch, uuid => $uuid, userId => $userId, secondsInThePast => $secondsInThePast);
+    my $result = $api_instance->varroaScanGet(qToken => $qToken, bhiveId => $bhiveId, token => $token, epoch => $epoch, uuid => $uuid, hiveUuid => $hiveUuid, userId => $userId, secondsInThePast => $secondsInThePast);
     print Dumper($result);
 };
 if ($@) {
@@ -15080,13 +15091,14 @@ qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449 # String | Either the cookie or th
 bhiveId = 829898a53801 # String | The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call. (default to null)
 token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449 # String | Either this cookie or the Q-Token must be set to be authorized for the API call. (optional) (default to null)
 epoch = 1639170002 # Long | The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter. (optional) (default to null)
-uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3 # String | The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges. This is currently not implemented. (optional) (default to null)
+uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3 # String | The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges. If you leave out the UUID we will not return any additional data to the varroa-scans (like positions of mites). (optional) (default to null)
+hiveUuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3 # String | Return a summary of all scans according to the UUID of an assigned hive. This parameter is optional. You can't use this in combination with the bhiveId or uuid parameters. (optional) (default to null)
 userId = 123 # Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore. (optional) (default to null)
 secondsInThePast = 7200 # Long | How many seconds we go to the past to get the data measurements. (optional) (default to null)
 
 try:
     # Get Varroa Scan images and metadata
-    api_response = api_instance.varroa_scan_get(qToken, bhiveId, token=token, epoch=epoch, uuid=uuid, userId=userId, secondsInThePast=secondsInThePast)
+    api_response = api_instance.varroa_scan_get(qToken, bhiveId, token=token, epoch=epoch, uuid=uuid, hiveUuid=hiveUuid, userId=userId, secondsInThePast=secondsInThePast)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->varroaScanGet: %s\n" % e)</code></pre>
@@ -15101,11 +15113,12 @@ pub fn main() {
     let token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String
     let epoch = 1639170002; // Long
     let uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String
+    let hiveUuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String
     let userId = 123; // Long
     let secondsInThePast = 7200; // Long
 
     let mut context = DefaultApi::Context::default();
-    let result = client.varroaScanGet(qToken, bhiveId, token, epoch, uuid, userId, secondsInThePast, &context).wait();
+    let result = client.varroaScanGet(qToken, bhiveId, token, epoch, uuid, hiveUuid, userId, secondsInThePast, &context).wait();
 
     println!("{:?}", result);
 }
@@ -15218,7 +15231,27 @@ The Unix Time (epoch) that defines the end time of the varroa images. The beginn
                 </span>
 
                     <div class="inner description marked">
-The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges. This is currently not implemented.
+The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges. If you leave out the UUID we will not return any additional data to the varroa-scans (like positions of mites).
+                    </div>
+            </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                                <tr><td style="width:150px;">hiveUuid</td>
+<td>
+
+
+    <div id="d2e199_varroaScanGet_hiveUuid">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    String
+                </span>
+
+                    <div class="inner description marked">
+Return a summary of all scans according to the UUID of an assigned hive. This parameter is optional. You can&#39;t use this in combination with the bhiveId or uuid parameters.
                     </div>
             </div>
         </div>
@@ -15380,6 +15413,445 @@ How many seconds we go to the past to get the data measurements.
 
 
                             <div class="tab-content" id="responses-Default-varroaScanGet-500-wrapper" style='margin-bottom: 10px;'>
+                            </div>
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Default-varroaScanImageAssociate">
+                      <article id="api-Default-varroaScanImageAssociate-0" data-group="User" data-name="varroaScanImageAssociate" data-version="0">
+                        <div class="pull-left">
+                          <h1>varroaScanImageAssociate</h1>
+                          <p>Associate a varroa scan with a bee hive</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">This connects a scan with a hive.</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="put"><code><span class="pln">/v1/varroa-scan</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-varroaScanImageAssociate-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-varroaScanImageAssociate-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-varroaScanImageAssociate-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-varroaScanImageAssociate-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-varroaScanImageAssociate-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-varroaScanImageAssociate-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-varroaScanImageAssociate-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-varroaScanImageAssociate-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-varroaScanImageAssociate-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-varroaScanImageAssociate-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-varroaScanImageAssociate-0-python">Python</a></li>
+                          <li class=""><a href="#examples-Default-varroaScanImageAssociate-0-rust">Rust</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-varroaScanImageAssociate-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X PUT \
+ \
+ "https://api.queensaver.com/v1/varroa-scan?userId=123&varroaScanImageUuid=41C0FE2F-EB0C-45B4-8842-C117E47C35E3&hiveUuid=41C0FE2F-EB0C-45B4-8842-C117E47C35E3"
+</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-varroaScanImageAssociate-0-java">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.model.*;
+import org.openapitools.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        
+        // Configure API key authorization: cookieAuth
+        ApiKeyAuth cookieAuth = (ApiKeyAuth) defaultClient.getAuthentication("cookieAuth");
+        cookieAuth.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cookieAuth.setApiKeyPrefix("Token");
+
+        // Create an instance of the API class
+        DefaultApi apiInstance = new DefaultApi();
+        String varroaScanImageUuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | The UUID of the varroa scan.
+        String hiveUuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | The UUID of the varroa bee hive (see the /v1/hives call).
+        Long userId = 123; // Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
+
+        try {
+            apiInstance.varroaScanImageAssociate(varroaScanImageUuid, hiveUuid, userId);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#varroaScanImageAssociate");
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-varroaScanImageAssociate-0-android">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.DefaultApi;
+
+public class DefaultApiExample {
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+        String varroaScanImageUuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | The UUID of the varroa scan.
+        String hiveUuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | The UUID of the varroa bee hive (see the /v1/hives call).
+        Long userId = 123; // Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
+
+        try {
+            apiInstance.varroaScanImageAssociate(varroaScanImageUuid, hiveUuid, userId);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#varroaScanImageAssociate");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-varroaScanImageAssociate-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-varroaScanImageAssociate-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: cookieAuth)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"token"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"token"];
+
+
+// Create an instance of the API class
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+String *varroaScanImageUuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // The UUID of the varroa scan. (default to null)
+String *hiveUuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // The UUID of the varroa bee hive (see the /v1/hives call). (default to null)
+Long *userId = 123; // The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore. (optional) (default to null)
+
+// Associate a varroa scan with a bee hive
+[apiInstance varroaScanImageAssociateWith:varroaScanImageUuid
+    hiveUuid:hiveUuid
+    userId:userId
+              completionHandler: ^(NSError* error) {
+    if (error) {
+        NSLog(@"Error: %@", error);
+    }
+}];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-varroaScanImageAssociate-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var QueensaverApi = require('queensaver_api');
+var defaultClient = QueensaverApi.ApiClient.instance;
+
+// Configure API key authorization: cookieAuth
+var cookieAuth = defaultClient.authentications['cookieAuth'];
+cookieAuth.apiKey = "YOUR API KEY";
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//cookieAuth.apiKeyPrefix['token'] = "Token";
+
+// Create an instance of the API class
+var api = new QueensaverApi.DefaultApi()
+var varroaScanImageUuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // {String} The UUID of the varroa scan.
+var hiveUuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // {String} The UUID of the varroa bee hive (see the /v1/hives call).
+var opts = {
+  'userId': 123 // {Long} The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
+};
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+};
+api.varroaScanImageAssociate(varroaScanImageUuid, hiveUuid, opts, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-varroaScanImageAssociate-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-varroaScanImageAssociate-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using Org.OpenAPITools.Api;
+using Org.OpenAPITools.Client;
+using Org.OpenAPITools.Model;
+
+namespace Example
+{
+    public class varroaScanImageAssociateExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: cookieAuth
+            Configuration.Default.ApiKey.Add("token", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.ApiKeyPrefix.Add("token", "Bearer");
+
+            // Create an instance of the API class
+            var apiInstance = new DefaultApi();
+            var varroaScanImageUuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3;  // String | The UUID of the varroa scan. (default to null)
+            var hiveUuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3;  // String | The UUID of the varroa bee hive (see the /v1/hives call). (default to null)
+            var userId = 123;  // Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore. (optional)  (default to null)
+
+            try {
+                // Associate a varroa scan with a bee hive
+                apiInstance.varroaScanImageAssociate(varroaScanImageUuid, hiveUuid, userId);
+            } catch (Exception e) {
+                Debug.Print("Exception when calling DefaultApi.varroaScanImageAssociate: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-varroaScanImageAssociate-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure API key authorization: cookieAuth
+OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+
+// Create an instance of the API class
+$api_instance = new OpenAPITools\Client\Api\DefaultApi();
+$varroaScanImageUuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | The UUID of the varroa scan.
+$hiveUuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | The UUID of the varroa bee hive (see the /v1/hives call).
+$userId = 123; // Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
+
+try {
+    $api_instance->varroaScanImageAssociate($varroaScanImageUuid, $hiveUuid, $userId);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->varroaScanImageAssociate: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-varroaScanImageAssociate-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::OPenAPIClient::Configuration;
+use WWW::OPenAPIClient::DefaultApi;
+
+# Configure API key authorization: cookieAuth
+$WWW::OPenAPIClient::Configuration::api_key->{'token'} = 'YOUR_API_KEY';
+# uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+#$WWW::OPenAPIClient::Configuration::api_key_prefix->{'token'} = "Bearer";
+
+# Create an instance of the API class
+my $api_instance = WWW::OPenAPIClient::DefaultApi->new();
+my $varroaScanImageUuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; # String | The UUID of the varroa scan.
+my $hiveUuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; # String | The UUID of the varroa bee hive (see the /v1/hives call).
+my $userId = 123; # Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
+
+eval {
+    $api_instance->varroaScanImageAssociate(varroaScanImageUuid => $varroaScanImageUuid, hiveUuid => $hiveUuid, userId => $userId);
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->varroaScanImageAssociate: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-varroaScanImageAssociate-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import openapi_client
+from openapi_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: cookieAuth
+openapi_client.configuration.api_key['token'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# openapi_client.configuration.api_key_prefix['token'] = 'Bearer'
+
+# Create an instance of the API class
+api_instance = openapi_client.DefaultApi()
+varroaScanImageUuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3 # String | The UUID of the varroa scan. (default to null)
+hiveUuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3 # String | The UUID of the varroa bee hive (see the /v1/hives call). (default to null)
+userId = 123 # Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore. (optional) (default to null)
+
+try:
+    # Associate a varroa scan with a bee hive
+    api_instance.varroa_scan_image_associate(varroaScanImageUuid, hiveUuid, userId=userId)
+except ApiException as e:
+    print("Exception when calling DefaultApi->varroaScanImageAssociate: %s\n" % e)</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-varroaScanImageAssociate-0-rust">
+                              <pre class="prettyprint"><code class="language-rust">extern crate DefaultApi;
+
+pub fn main() {
+    let varroaScanImageUuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String
+    let hiveUuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String
+    let userId = 123; // Long
+
+    let mut context = DefaultApi::Context::default();
+    let result = client.varroaScanImageAssociate(varroaScanImageUuid, hiveUuid, userId, &context).wait();
+
+    println!("{:?}", result);
+}
+</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Scopes</h2>
+                          <table>
+                            
+                          </table>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+                            <div class="methodsubtabletitle">Query parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">userId</td>
+<td>
+
+
+    <div id="d2e199_varroaScanImageAssociate_userId">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    Long
+                </span>
+                    <span class="format">
+                        (int64)
+                    </span>
+
+                    <div class="inner description marked">
+The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
+                    </div>
+            </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                                <tr><td style="width:150px;">varroaScanImageUuid*</td>
+<td>
+
+
+    <div id="d2e199_varroaScanImageAssociate_varroaScanImageUuid">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    String
+                </span>
+
+                    <div class="inner description marked">
+The UUID of the varroa scan.
+                    </div>
+            </div>
+                <div class="inner required">
+                    Required
+                </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                                <tr><td style="width:150px;">hiveUuid*</td>
+<td>
+
+
+    <div id="d2e199_varroaScanImageAssociate_hiveUuid">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    String
+                </span>
+
+                    <div class="inner description marked">
+The UUID of the varroa bee hive (see the /v1/hives call).
+                    </div>
+            </div>
+                <div class="inner required">
+                    Required
+                </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                            </table>
+
+                          <h2>Responses</h2>
+                            <h3 id="examples-Default-varroaScanImageAssociate-title-200"></h3>
+                            <p id="examples-Default-varroaScanImageAssociate-description-200" class="marked"></p>
+                            <script>
+                              var responseDefault200_description = `OK`;
+                              var responseDefault200_description_break = responseDefault200_description.indexOf('\n');
+                              if (responseDefault200_description_break == -1) {
+                                $("#examples-Default-varroaScanImageAssociate-title-200").text("Status: 200 - " + responseDefault200_description);
+                              } else {
+                                $("#examples-Default-varroaScanImageAssociate-title-200").text("Status: 200 - " + responseDefault200_description.substring(0, responseDefault200_description_break));
+                                $("#examples-Default-varroaScanImageAssociate-description-200").html(responseDefault200_description.substring(responseDefault200_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Default-varroaScanImageAssociate-200" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Default-varroaScanImageAssociate-200-wrapper" style='margin-bottom: 10px;'>
+                            </div>
+                            <h3 id="examples-Default-varroaScanImageAssociate-title-400"></h3>
+                            <p id="examples-Default-varroaScanImageAssociate-description-400" class="marked"></p>
+                            <script>
+                              var responseDefault400_description = `Client error`;
+                              var responseDefault400_description_break = responseDefault400_description.indexOf('\n');
+                              if (responseDefault400_description_break == -1) {
+                                $("#examples-Default-varroaScanImageAssociate-title-400").text("Status: 400 - " + responseDefault400_description);
+                              } else {
+                                $("#examples-Default-varroaScanImageAssociate-title-400").text("Status: 400 - " + responseDefault400_description.substring(0, responseDefault400_description_break));
+                                $("#examples-Default-varroaScanImageAssociate-description-400").html(responseDefault400_description.substring(responseDefault400_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Default-varroaScanImageAssociate-400" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Default-varroaScanImageAssociate-400-wrapper" style='margin-bottom: 10px;'>
+                            </div>
+                            <h3 id="examples-Default-varroaScanImageAssociate-title-500"></h3>
+                            <p id="examples-Default-varroaScanImageAssociate-description-500" class="marked"></p>
+                            <script>
+                              var responseDefault500_description = `Internal error`;
+                              var responseDefault500_description_break = responseDefault500_description.indexOf('\n');
+                              if (responseDefault500_description_break == -1) {
+                                $("#examples-Default-varroaScanImageAssociate-title-500").text("Status: 500 - " + responseDefault500_description);
+                              } else {
+                                $("#examples-Default-varroaScanImageAssociate-title-500").text("Status: 500 - " + responseDefault500_description.substring(0, responseDefault500_description_break));
+                                $("#examples-Default-varroaScanImageAssociate-description-500").html(responseDefault500_description.substring(responseDefault500_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Default-varroaScanImageAssociate-500" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Default-varroaScanImageAssociate-500-wrapper" style='margin-bottom: 10px;'>
                             </div>
                         </article>
                       </div>

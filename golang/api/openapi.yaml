@@ -1468,11 +1468,23 @@ paths:
         style: form
       - description: "The UUID of the varra-scan. If not set, the request will return\
           \ scans in the given time range. If this parameter is given we ignore all\
-          \ time ranges. This is currently not implemented."
+          \ time ranges. If you leave out the UUID we will not return any additional\
+          \ data to the varroa-scans (like positions of mites)."
         example: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
         explode: true
         in: query
         name: uuid
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Return a summary of all scans according to the UUID of an assigned
+          hive. This parameter is optional. You can't use this in combination with
+          the bhiveId or uuid parameters.
+        example: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+        explode: true
+        in: query
+        name: hiveUuid
         required: false
         schema:
           type: string
@@ -1541,6 +1553,47 @@ paths:
         "500":
           description: Internal error
       summary: Save Varroa Scan metadata
+    put:
+      description: This connects a scan with a hive.
+      operationId: varroaScanImageAssociate
+      parameters:
+      - description: The User ID. This is used internally and will be overwritten
+          if you send it to the api server. Ignore.
+        example: 123
+        explode: true
+        in: query
+        name: userId
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: The UUID of the varroa scan.
+        example: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+        explode: true
+        in: query
+        name: varroaScanImageUuid
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: The UUID of the varroa bee hive (see the /v1/hives call).
+        example: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+        explode: true
+        in: query
+        name: hiveUuid
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Client error
+        "500":
+          description: Internal error
+      summary: Associate a varroa scan with a bee hive
   /v1/varroa-scan-image:
     post:
       description: Upload a varroa scan image here. The file is attached via multipart/form-data.
