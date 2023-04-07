@@ -1995,7 +1995,7 @@ type VarroaScanGetRequest struct {
 
 	// Either the cookie or this Q-Token must be set to be authorized for the API call.
 	QToken string `protobuf:"bytes,1,opt,name=qToken,proto3" json:"qToken,omitempty"`
-	// The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call.
+	// The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call. You can't use this in combination with hiveUuid or uuid.
 	BhiveId string `protobuf:"bytes,2,opt,name=bhiveId,proto3" json:"bhiveId,omitempty"`
 	// Either this cookie or the Q-Token must be set to be authorized for the API call.
 	Token string `protobuf:"bytes,3,opt,name=token,proto3" json:"token,omitempty"`
