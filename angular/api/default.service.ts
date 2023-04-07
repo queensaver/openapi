@@ -2418,10 +2418,10 @@ export class DefaultService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public varroaScanImageAssociate(varroaScanImageUuid: string, hiveUuid: string, userId?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any>;
-    public varroaScanImageAssociate(varroaScanImageUuid: string, hiveUuid: string, userId?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpResponse<any>>;
-    public varroaScanImageAssociate(varroaScanImageUuid: string, hiveUuid: string, userId?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpEvent<any>>;
-    public varroaScanImageAssociate(varroaScanImageUuid: string, hiveUuid: string, userId?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any> {
+    public varroaScanImageAssociate(varroaScanImageUuid: string, hiveUuid: string, userId?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<GenericPostResponse>;
+    public varroaScanImageAssociate(varroaScanImageUuid: string, hiveUuid: string, userId?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<GenericPostResponse>>;
+    public varroaScanImageAssociate(varroaScanImageUuid: string, hiveUuid: string, userId?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<GenericPostResponse>>;
+    public varroaScanImageAssociate(varroaScanImageUuid: string, hiveUuid: string, userId?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
         if (varroaScanImageUuid === null || varroaScanImageUuid === undefined) {
             throw new Error('Required parameter varroaScanImageUuid was null or undefined when calling varroaScanImageAssociate.');
         }
@@ -2455,6 +2455,7 @@ export class DefaultService {
         if (localVarHttpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
+                'application/json'
             ];
             localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
@@ -2480,7 +2481,7 @@ export class DefaultService {
         }
 
         let localVarPath = `/v1/varroa-scan`;
-        return this.httpClient.request<any>('put', `${this.configuration.basePath}${localVarPath}`,
+        return this.httpClient.request<GenericPostResponse>('put', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 params: localVarQueryParameters,

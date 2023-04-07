@@ -15452,6 +15452,7 @@ How many seconds we go to the past to get the data measurements.
                           <div class="tab-pane active" id="examples-Default-varroaScanImageAssociate-0-curl">
                             <pre class="prettyprint"><code class="language-bsh">curl -X PUT \
  \
+ -H "Accept: application/json" \
  "https://api.queensaver.com/v1/varroa-scan?userId=123&varroaScanImageUuid=41C0FE2F-EB0C-45B4-8842-C117E47C35E3&hiveUuid=41C0FE2F-EB0C-45B4-8842-C117E47C35E3"
 </code></pre>
                           </div>
@@ -15481,7 +15482,8 @@ public class DefaultApiExample {
         Long userId = 123; // Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
 
         try {
-            apiInstance.varroaScanImageAssociate(varroaScanImageUuid, hiveUuid, userId);
+            generic-post-response result = apiInstance.varroaScanImageAssociate(varroaScanImageUuid, hiveUuid, userId);
+            System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#varroaScanImageAssociate");
             e.printStackTrace();
@@ -15502,7 +15504,8 @@ public class DefaultApiExample {
         Long userId = 123; // Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
 
         try {
-            apiInstance.varroaScanImageAssociate(varroaScanImageUuid, hiveUuid, userId);
+            generic-post-response result = apiInstance.varroaScanImageAssociate(varroaScanImageUuid, hiveUuid, userId);
+            System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#varroaScanImageAssociate");
             e.printStackTrace();
@@ -15533,7 +15536,10 @@ Long *userId = 123; // The User ID. This is used internally and will be overwrit
 [apiInstance varroaScanImageAssociateWith:varroaScanImageUuid
     hiveUuid:hiveUuid
     userId:userId
-              completionHandler: ^(NSError* error) {
+              completionHandler: ^(generic-post-response output, NSError* error) {
+    if (output) {
+        NSLog(@"%@", output);
+    }
     if (error) {
         NSLog(@"Error: %@", error);
     }
@@ -15563,7 +15569,7 @@ var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
-    console.log('API called successfully.');
+    console.log('API called successfully. Returned data: ' + data);
   }
 };
 api.varroaScanImageAssociate(varroaScanImageUuid, hiveUuid, opts, callback);
@@ -15599,7 +15605,8 @@ namespace Example
 
             try {
                 // Associate a varroa scan with a bee hive
-                apiInstance.varroaScanImageAssociate(varroaScanImageUuid, hiveUuid, userId);
+                generic-post-response result = apiInstance.varroaScanImageAssociate(varroaScanImageUuid, hiveUuid, userId);
+                Debug.WriteLine(result);
             } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.varroaScanImageAssociate: " + e.Message );
             }
@@ -15625,7 +15632,8 @@ $hiveUuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | The UUID of the va
 $userId = 123; // Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
 
 try {
-    $api_instance->varroaScanImageAssociate($varroaScanImageUuid, $hiveUuid, $userId);
+    $result = $api_instance->varroaScanImageAssociate($varroaScanImageUuid, $hiveUuid, $userId);
+    print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->varroaScanImageAssociate: ', $e->getMessage(), PHP_EOL;
 }
@@ -15649,7 +15657,8 @@ my $hiveUuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; # String | The UUID of the 
 my $userId = 123; # Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
 
 eval {
-    $api_instance->varroaScanImageAssociate(varroaScanImageUuid => $varroaScanImageUuid, hiveUuid => $hiveUuid, userId => $userId);
+    my $result = $api_instance->varroaScanImageAssociate(varroaScanImageUuid => $varroaScanImageUuid, hiveUuid => $hiveUuid, userId => $userId);
+    print Dumper($result);
 };
 if ($@) {
     warn "Exception when calling DefaultApi->varroaScanImageAssociate: $@\n";
@@ -15676,7 +15685,8 @@ userId = 123 # Long | The User ID. This is used internally and will be overwritt
 
 try:
     # Associate a varroa scan with a bee hive
-    api_instance.varroa_scan_image_associate(varroaScanImageUuid, hiveUuid, userId=userId)
+    api_response = api_instance.varroa_scan_image_associate(varroaScanImageUuid, hiveUuid, userId=userId)
+    pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->varroaScanImageAssociate: %s\n" % e)</code></pre>
                             </div>
@@ -15802,12 +15812,52 @@ The UUID of the varroa bee hive (see the /v1/hives call).
 
 
                             <ul id="responses-detail-Default-varroaScanImageAssociate-200" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Default-varroaScanImageAssociate-200-schema">Schema</a>
+                                </li>
+
+
 
 
                             </ul>
 
 
                             <div class="tab-content" id="responses-Default-varroaScanImageAssociate-200-wrapper" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-Default-varroaScanImageAssociate-200-schema">
+                                  <div id="responses-Default-varroaScanImageAssociate-schema-200" class="exampleStyle">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = ;
+                                        var schema = findNode('schema',schemaWrapper).schema;
+                                        if (!schema) {
+                                          schema = schemaWrapper.schema;
+                                        }
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                          Object.keys(schema.properties).forEach( (item) => {
+                                            if (schema.properties[item].$ref != null) {
+                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
+                                            }
+                                          });
+                                        } else if (schema.items != null && schema.items.$ref != null) {
+                                            schema.items = defsParser.$refs.get(schema.items.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-Default-varroaScanImageAssociate-200-schema-data').val(JSON.stringify(schema));
+                                        var result = $('#responses-Default-varroaScanImageAssociate-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-Default-varroaScanImageAssociate-200-schema-data' type='hidden' value=''></input>
+                                </div>
                             </div>
                             <h3 id="examples-Default-varroaScanImageAssociate-title-400"></h3>
                             <p id="examples-Default-varroaScanImageAssociate-description-400" class="marked"></p>

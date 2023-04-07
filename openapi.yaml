@@ -1301,6 +1301,11 @@ paths:
       responses:
         "200":
           description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/generic-post-response"
+
         "400":
           description: Client error
         "500":

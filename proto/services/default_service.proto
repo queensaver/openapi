@@ -93,7 +93,7 @@ service DefaultService {
 
   rpc VarroaScanGet (VarroaScanGetRequest) returns (VarroaScanResponse);
 
-  rpc VarroaScanImageAssociate (VarroaScanImageAssociateRequest) returns (google.protobuf.Empty);
+  rpc VarroaScanImageAssociate (VarroaScanImageAssociateRequest) returns (GenericPostResponse);
 
   rpc VarroaScanImagePost (VarroaScanImagePostRequest) returns (google.protobuf.Empty);
 
