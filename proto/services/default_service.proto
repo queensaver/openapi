@@ -385,7 +385,7 @@ message VarroaScanGetRequest {
   string bhiveId = 3;
   // The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter.
   int64 epoch = 4;
-  // The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges. If you leave out the UUID we will not return any additional data to the varroa-scans (like positions of mites).
+  // The UUID of the varra-scan. If not set, the request will return scans in the given time range. If you leave out the UUID we will not return any additional data to the varroa-scans (like positions of mites).
   string uuid = 5;
   // Return a summary of all scans according to the UUID of an assigned hive. This parameter is optional. You can't use this in combination with the bhiveId or uuid parameters.
   string hiveUuid = 6;

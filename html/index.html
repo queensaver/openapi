@@ -14849,7 +14849,7 @@ public class DefaultApiExample {
         String token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie or the Q-Token must be set to be authorized for the API call.
         String bhiveId = 829898a53801; // String | The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call. You can't use this in combination with hiveUuid or uuid.
         Long epoch = 1639170002; // Long | The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter.
-        String uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges. If you leave out the UUID we will not return any additional data to the varroa-scans (like positions of mites).
+        String uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | The UUID of the varra-scan. If not set, the request will return scans in the given time range. If you leave out the UUID we will not return any additional data to the varroa-scans (like positions of mites).
         String hiveUuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | Return a summary of all scans according to the UUID of an assigned hive. This parameter is optional. You can't use this in combination with the bhiveId or uuid parameters.
         Long userId = 123; // Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
         Long secondsInThePast = 7200; // Long | How many seconds we go to the past to get the data measurements.
@@ -14876,7 +14876,7 @@ public class DefaultApiExample {
         String token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie or the Q-Token must be set to be authorized for the API call.
         String bhiveId = 829898a53801; // String | The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call. You can't use this in combination with hiveUuid or uuid.
         Long epoch = 1639170002; // Long | The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter.
-        String uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges. If you leave out the UUID we will not return any additional data to the varroa-scans (like positions of mites).
+        String uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | The UUID of the varra-scan. If not set, the request will return scans in the given time range. If you leave out the UUID we will not return any additional data to the varroa-scans (like positions of mites).
         String hiveUuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | Return a summary of all scans according to the UUID of an assigned hive. This parameter is optional. You can't use this in combination with the bhiveId or uuid parameters.
         Long userId = 123; // Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
         Long secondsInThePast = 7200; // Long | How many seconds we go to the past to get the data measurements.
@@ -14910,7 +14910,7 @@ String *qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // Either the cookie or t
 String *token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // Either this cookie or the Q-Token must be set to be authorized for the API call. (optional) (default to null)
 String *bhiveId = 829898a53801; // The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call. You can't use this in combination with hiveUuid or uuid. (optional) (default to null)
 Long *epoch = 1639170002; // The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter. (optional) (default to null)
-String *uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges. If you leave out the UUID we will not return any additional data to the varroa-scans (like positions of mites). (optional) (default to null)
+String *uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // The UUID of the varra-scan. If not set, the request will return scans in the given time range. If you leave out the UUID we will not return any additional data to the varroa-scans (like positions of mites). (optional) (default to null)
 String *hiveUuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // Return a summary of all scans according to the UUID of an assigned hive. This parameter is optional. You can't use this in combination with the bhiveId or uuid parameters. (optional) (default to null)
 Long *userId = 123; // The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore. (optional) (default to null)
 Long *secondsInThePast = 7200; // How many seconds we go to the past to get the data measurements. (optional) (default to null)
@@ -14952,7 +14952,7 @@ var opts = {
   'token': 8B0FE5CF-C096-4B3E-8748-27906B4A9449, // {String} Either this cookie or the Q-Token must be set to be authorized for the API call.
   'bhiveId': 829898a53801, // {String} The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call. You can't use this in combination with hiveUuid or uuid.
   'epoch': 1639170002, // {Long} The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter.
-  'uuid': 41C0FE2F-EB0C-45B4-8842-C117E47C35E3, // {String} The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges. If you leave out the UUID we will not return any additional data to the varroa-scans (like positions of mites).
+  'uuid': 41C0FE2F-EB0C-45B4-8842-C117E47C35E3, // {String} The UUID of the varra-scan. If not set, the request will return scans in the given time range. If you leave out the UUID we will not return any additional data to the varroa-scans (like positions of mites).
   'hiveUuid': 41C0FE2F-EB0C-45B4-8842-C117E47C35E3, // {String} Return a summary of all scans according to the UUID of an assigned hive. This parameter is optional. You can't use this in combination with the bhiveId or uuid parameters.
   'userId': 123, // {Long} The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
   'secondsInThePast': 7200 // {Long} How many seconds we go to the past to get the data measurements.
@@ -14996,7 +14996,7 @@ namespace Example
             var token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449;  // String | Either this cookie or the Q-Token must be set to be authorized for the API call. (optional)  (default to null)
             var bhiveId = 829898a53801;  // String | The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call. You can't use this in combination with hiveUuid or uuid. (optional)  (default to null)
             var epoch = 1639170002;  // Long | The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter. (optional)  (default to null)
-            var uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3;  // String | The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges. If you leave out the UUID we will not return any additional data to the varroa-scans (like positions of mites). (optional)  (default to null)
+            var uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3;  // String | The UUID of the varra-scan. If not set, the request will return scans in the given time range. If you leave out the UUID we will not return any additional data to the varroa-scans (like positions of mites). (optional)  (default to null)
             var hiveUuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3;  // String | Return a summary of all scans according to the UUID of an assigned hive. This parameter is optional. You can't use this in combination with the bhiveId or uuid parameters. (optional)  (default to null)
             var userId = 123;  // Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore. (optional)  (default to null)
             var secondsInThePast = 7200;  // Long | How many seconds we go to the past to get the data measurements. (optional)  (default to null)
@@ -15029,7 +15029,7 @@ $qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either the cookie or
 $token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie or the Q-Token must be set to be authorized for the API call.
 $bhiveId = 829898a53801; // String | The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call. You can't use this in combination with hiveUuid or uuid.
 $epoch = 1639170002; // Long | The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter.
-$uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges. If you leave out the UUID we will not return any additional data to the varroa-scans (like positions of mites).
+$uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | The UUID of the varra-scan. If not set, the request will return scans in the given time range. If you leave out the UUID we will not return any additional data to the varroa-scans (like positions of mites).
 $hiveUuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | Return a summary of all scans according to the UUID of an assigned hive. This parameter is optional. You can't use this in combination with the bhiveId or uuid parameters.
 $userId = 123; // Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
 $secondsInThePast = 7200; // Long | How many seconds we go to the past to get the data measurements.
@@ -15059,7 +15059,7 @@ my $qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; # String | Either the cookie 
 my $token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; # String | Either this cookie or the Q-Token must be set to be authorized for the API call.
 my $bhiveId = 829898a53801; # String | The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call. You can't use this in combination with hiveUuid or uuid.
 my $epoch = 1639170002; # Long | The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter.
-my $uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; # String | The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges. If you leave out the UUID we will not return any additional data to the varroa-scans (like positions of mites).
+my $uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; # String | The UUID of the varra-scan. If not set, the request will return scans in the given time range. If you leave out the UUID we will not return any additional data to the varroa-scans (like positions of mites).
 my $hiveUuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; # String | Return a summary of all scans according to the UUID of an assigned hive. This parameter is optional. You can't use this in combination with the bhiveId or uuid parameters.
 my $userId = 123; # Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
 my $secondsInThePast = 7200; # Long | How many seconds we go to the past to get the data measurements.
@@ -15091,7 +15091,7 @@ qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449 # String | Either the cookie or th
 token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449 # String | Either this cookie or the Q-Token must be set to be authorized for the API call. (optional) (default to null)
 bhiveId = 829898a53801 # String | The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call. You can't use this in combination with hiveUuid or uuid. (optional) (default to null)
 epoch = 1639170002 # Long | The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter. (optional) (default to null)
-uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3 # String | The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges. If you leave out the UUID we will not return any additional data to the varroa-scans (like positions of mites). (optional) (default to null)
+uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3 # String | The UUID of the varra-scan. If not set, the request will return scans in the given time range. If you leave out the UUID we will not return any additional data to the varroa-scans (like positions of mites). (optional) (default to null)
 hiveUuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3 # String | Return a summary of all scans according to the UUID of an assigned hive. This parameter is optional. You can't use this in combination with the bhiveId or uuid parameters. (optional) (default to null)
 userId = 123 # Long | The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore. (optional) (default to null)
 secondsInThePast = 7200 # Long | How many seconds we go to the past to get the data measurements. (optional) (default to null)
@@ -15228,7 +15228,7 @@ The Unix Time (epoch) that defines the end time of the varroa images. The beginn
                 </span>
 
                     <div class="inner description marked">
-The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges. If you leave out the UUID we will not return any additional data to the varroa-scans (like positions of mites).
+The UUID of the varra-scan. If not set, the request will return scans in the given time range. If you leave out the UUID we will not return any additional data to the varroa-scans (like positions of mites).
                     </div>
             </div>
         </div>

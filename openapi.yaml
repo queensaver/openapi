@@ -1228,7 +1228,7 @@ paths:
           format: int64
       - name: uuid
         in: query
-        description: The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges. If you leave out the UUID we will not return any additional data to the varroa-scans (like positions of mites).
+        description: The UUID of the varra-scan. If not set, the request will return scans in the given time range. If you leave out the UUID we will not return any additional data to the varroa-scans (like positions of mites).
         required: false
         example: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
         schema:

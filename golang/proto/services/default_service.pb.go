@@ -2001,7 +2001,7 @@ type VarroaScanGetRequest struct {
 	BhiveId string `protobuf:"bytes,3,opt,name=bhiveId,proto3" json:"bhiveId,omitempty"`
 	// The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter.
 	Epoch int64 `protobuf:"varint,4,opt,name=epoch,proto3" json:"epoch,omitempty"`
-	// The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges. If you leave out the UUID we will not return any additional data to the varroa-scans (like positions of mites).
+	// The UUID of the varra-scan. If not set, the request will return scans in the given time range. If you leave out the UUID we will not return any additional data to the varroa-scans (like positions of mites).
 	Uuid string `protobuf:"bytes,5,opt,name=uuid,proto3" json:"uuid,omitempty"`
 	// Return a summary of all scans according to the UUID of an assigned hive. This parameter is optional. You can't use this in combination with the bhiveId or uuid parameters.
 	HiveUuid string `protobuf:"bytes,6,opt,name=hiveUuid,proto3" json:"hiveUuid,omitempty"`

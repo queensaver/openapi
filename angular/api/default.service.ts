@@ -2311,7 +2311,7 @@ export class DefaultService {
      * @param token Either this cookie or the Q-Token must be set to be authorized for the API call.
      * @param bhiveId The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call. You can\&#39;t use this in combination with hiveUuid or uuid.
      * @param epoch The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter.
-     * @param uuid The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges. If you leave out the UUID we will not return any additional data to the varroa-scans (like positions of mites).
+     * @param uuid The UUID of the varra-scan. If not set, the request will return scans in the given time range. If you leave out the UUID we will not return any additional data to the varroa-scans (like positions of mites).
      * @param hiveUuid Return a summary of all scans according to the UUID of an assigned hive. This parameter is optional. You can\&#39;t use this in combination with the bhiveId or uuid parameters.
      * @param userId The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
      * @param secondsInThePast How many seconds we go to the past to get the data measurements.
