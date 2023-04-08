@@ -379,10 +379,10 @@ message UserPostRequest {
 message VarroaScanGetRequest {
   // Either the cookie or this Q-Token must be set to be authorized for the API call.
   string qToken = 1;
-  // The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call. You can't use this in combination with hiveUuid or uuid.
-  string bhiveId = 2;
   // Either this cookie or the Q-Token must be set to be authorized for the API call.
-  string token = 3;
+  string token = 2;
+  // The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call. You can't use this in combination with hiveUuid or uuid.
+  string bhiveId = 3;
   // The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter.
   int64 epoch = 4;
   // The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges. If you leave out the UUID we will not return any additional data to the varroa-scans (like positions of mites).

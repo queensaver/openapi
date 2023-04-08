@@ -2308,8 +2308,8 @@ export class DefaultService {
      * Get Varroa Scan images and metadata
      * This returns varroa scan metadata. You can search for varroa scans for a certain, defineable date range. The request needs to send a cookie along with the request. The cookie is stored under the key called \&quot;token\&quot;. Note that this returns the image for a QBox Client (independent of the beeHive), the API call for an actual beeHive is different.
      * @param qToken Either the cookie or this Q-Token must be set to be authorized for the API call.
-     * @param bhiveId The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call. You can\&#39;t use this in combination with hiveUuid or uuid.
      * @param token Either this cookie or the Q-Token must be set to be authorized for the API call.
+     * @param bhiveId The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call. You can\&#39;t use this in combination with hiveUuid or uuid.
      * @param epoch The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter.
      * @param uuid The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges. If you leave out the UUID we will not return any additional data to the varroa-scans (like positions of mites).
      * @param hiveUuid Return a summary of all scans according to the UUID of an assigned hive. This parameter is optional. You can\&#39;t use this in combination with the bhiveId or uuid parameters.
@@ -2318,15 +2318,12 @@ export class DefaultService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public varroaScanGet(qToken: string, bhiveId: string, token?: string, epoch?: number, uuid?: string, hiveUuid?: string, userId?: number, secondsInThePast?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<VarroaScanResponse>;
-    public varroaScanGet(qToken: string, bhiveId: string, token?: string, epoch?: number, uuid?: string, hiveUuid?: string, userId?: number, secondsInThePast?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<VarroaScanResponse>>;
-    public varroaScanGet(qToken: string, bhiveId: string, token?: string, epoch?: number, uuid?: string, hiveUuid?: string, userId?: number, secondsInThePast?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<VarroaScanResponse>>;
-    public varroaScanGet(qToken: string, bhiveId: string, token?: string, epoch?: number, uuid?: string, hiveUuid?: string, userId?: number, secondsInThePast?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+    public varroaScanGet(qToken: string, token?: string, bhiveId?: string, epoch?: number, uuid?: string, hiveUuid?: string, userId?: number, secondsInThePast?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<VarroaScanResponse>;
+    public varroaScanGet(qToken: string, token?: string, bhiveId?: string, epoch?: number, uuid?: string, hiveUuid?: string, userId?: number, secondsInThePast?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<VarroaScanResponse>>;
+    public varroaScanGet(qToken: string, token?: string, bhiveId?: string, epoch?: number, uuid?: string, hiveUuid?: string, userId?: number, secondsInThePast?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<VarroaScanResponse>>;
+    public varroaScanGet(qToken: string, token?: string, bhiveId?: string, epoch?: number, uuid?: string, hiveUuid?: string, userId?: number, secondsInThePast?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
         if (qToken === null || qToken === undefined) {
             throw new Error('Required parameter qToken was null or undefined when calling varroaScanGet.');
-        }
-        if (bhiveId === null || bhiveId === undefined) {
-            throw new Error('Required parameter bhiveId was null or undefined when calling varroaScanGet.');
         }
 
         let localVarQueryParameters = new HttpParams({encoder: this.encoder});

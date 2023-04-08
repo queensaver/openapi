@@ -1452,7 +1452,7 @@ paths:
         explode: true
         in: query
         name: bhiveId
-        required: true
+        required: false
         schema:
           type: string
         style: form

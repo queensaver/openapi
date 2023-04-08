@@ -447,7 +447,7 @@ func (s *DefaultApiService) UserPost(ctx context.Context, user User) (ImplRespon
 }
 
 // VarroaScanGet - Get Varroa Scan images and metadata
-func (s *DefaultApiService) VarroaScanGet(ctx context.Context, qToken string, bhiveId string, token string, epoch int64, uuid string, hiveUuid string, userId int64, secondsInThePast int64) (ImplResponse, error) {
+func (s *DefaultApiService) VarroaScanGet(ctx context.Context, qToken string, token string, bhiveId string, epoch int64, uuid string, hiveUuid string, userId int64, secondsInThePast int64) (ImplResponse, error) {
 	// TODO - update VarroaScanGet with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 

@@ -1215,7 +1215,6 @@ paths:
       - name: bhiveId
         in: query
         description: The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call. You can't use this in combination with hiveUuid or uuid.
-        required: true
         example: 829898a53801
         schema:
           type: string
