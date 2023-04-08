@@ -30,6 +30,9 @@ type VarroaScan struct {
 
 	// the UUID of the bee hive this scan has been associated to
 	HiveUuid string `json:"hiveUuid,omitempty"`
+
+	// the UUID of this scan
+	Uuid string `json:"uuid,omitempty"`
 }
 
 // AssertVarroaScanRequired checks if the required fields are not zero-ed

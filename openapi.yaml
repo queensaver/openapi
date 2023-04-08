@@ -1512,8 +1512,14 @@ components:
           x-protobuf-index: 6
         hiveUuid:
           type: string
+          example: "9454A929-D921-4F22-8F57-322F2CD3CB16"
           description: the UUID of the bee hive this scan has been associated to
           x-protobuf-index: 7
+        uuid:
+          type: string
+          example: "9454A929-D921-4F22-8F57-322F2CD3CB16"
+          description: the UUID of this scan
+          x-protobuf-index: 8
 
     bbox-config-response:
       type: object

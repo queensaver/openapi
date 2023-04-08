@@ -38,5 +38,9 @@ export interface VarroaScan {
      * the UUID of the bee hive this scan has been associated to
      */
     hiveUuid?: string;
+    /**
+     * the UUID of this scan
+     */
+    uuid?: string;
 }
 

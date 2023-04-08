@@ -36,4 +36,7 @@ message VarroaScan {
   // the UUID of the bee hive this scan has been associated to
   string hiveUuid = 7;
 
+  // the UUID of this scan
+  string uuid = 8;
+
 }
