@@ -83,6 +83,8 @@ service DefaultService {
 
   rpc StandsPut (StandsPutRequest) returns (PutStandResponse);
 
+  rpc TelemetryGet (TelemetryGetRequest) returns (ScaleV2Response);
+
   rpc TelemetryPost (TelemetryPostRequest) returns (GenericPostResponse);
 
   rpc TemperatureGet (TemperatureGetRequest) returns (GetTemperatureResponse);
@@ -336,6 +338,24 @@ message StandsPutRequest {
   // The UserID is set internally and can not set or be overridden with the API request. Please ignore.
   int64 userId = 3;
   Stand stand = 4;
+
+}
+
+message TelemetryGetRequest {
+  // The Unix Time (epoch) that defines the end time of the telemetry measurements. The beginning is defined by the secondsInThePast parameter.
+  int64 epoch = 1;
+  // How many seconds we go to the past to get the data measurements.
+  int64 secondsInThePast = 2;
+  // Either the cookie, registrationId or this Q-Token must be set to be authorized for the API call.
+  string qToken = 3;
+  // Either this cookie, registrationId or the Q-Token must be set to be authorized for the API call.
+  string token = 4;
+  // The Hive UUID - can be used instead of the Mac Adress if you want to query an associated hive. Either this field or the macAddress are required.
+  string hiveUuid = 5;
+  // The Mac Address of the scale. You can omit this if you use query the hiveUuid.
+  string macAddress = 6;
+  // The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
+  int64 userId = 7;
 
 }
 

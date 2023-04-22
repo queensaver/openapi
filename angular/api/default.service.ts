@@ -1971,6 +1971,106 @@ export class DefaultService {
     }
 
     /**
+     * Get telemetry values
+     * This returns telemetry values for a certain, defineable date range. The request needs to send a token in the header or a cookie. Note that this returns the telemetry data for a scale, the API call for an actual beeHive is different.
+     * @param epoch The Unix Time (epoch) that defines the end time of the telemetry measurements. The beginning is defined by the secondsInThePast parameter.
+     * @param secondsInThePast How many seconds we go to the past to get the data measurements.
+     * @param qToken Either the cookie, registrationId or this Q-Token must be set to be authorized for the API call.
+     * @param token Either this cookie, registrationId or the Q-Token must be set to be authorized for the API call.
+     * @param hiveUuid The Hive UUID - can be used instead of the Mac Adress if you want to query an associated hive. Either this field or the macAddress are required.
+     * @param macAddress The Mac Address of the scale. You can omit this if you use query the hiveUuid.
+     * @param userId The User ID. This is used internally and will be overwritten if you send it to the api server. Ignore.
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public telemetryGet(epoch: number, secondsInThePast: number, qToken?: string, token?: string, hiveUuid?: string, macAddress?: string, userId?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<ScaleV2Response>;
+    public telemetryGet(epoch: number, secondsInThePast: number, qToken?: string, token?: string, hiveUuid?: string, macAddress?: string, userId?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<ScaleV2Response>>;
+    public telemetryGet(epoch: number, secondsInThePast: number, qToken?: string, token?: string, hiveUuid?: string, macAddress?: string, userId?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<ScaleV2Response>>;
+    public telemetryGet(epoch: number, secondsInThePast: number, qToken?: string, token?: string, hiveUuid?: string, macAddress?: string, userId?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+        if (epoch === null || epoch === undefined) {
+            throw new Error('Required parameter epoch was null or undefined when calling telemetryGet.');
+        }
+        if (secondsInThePast === null || secondsInThePast === undefined) {
+            throw new Error('Required parameter secondsInThePast was null or undefined when calling telemetryGet.');
+        }
+
+        let localVarQueryParameters = new HttpParams({encoder: this.encoder});
+        if (hiveUuid !== undefined && hiveUuid !== null) {
+          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+            <any>hiveUuid, 'hiveUuid');
+        }
+        if (macAddress !== undefined && macAddress !== null) {
+          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+            <any>macAddress, 'macAddress');
+        }
+        if (epoch !== undefined && epoch !== null) {
+          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+            <any>epoch, 'epoch');
+        }
+        if (secondsInThePast !== undefined && secondsInThePast !== null) {
+          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+            <any>secondsInThePast, 'secondsInThePast');
+        }
+        if (userId !== undefined && userId !== null) {
+          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+            <any>userId, 'userId');
+        }
+
+        let localVarHeaders = this.defaultHeaders;
+        if (qToken !== undefined && qToken !== null) {
+            localVarHeaders = localVarHeaders.set('Q-Token', String(qToken));
+        }
+
+        let localVarCredential: string | undefined;
+        // authentication (cookieAuth) required
+        localVarCredential = this.configuration.lookupCredential('cookieAuth');
+        if (localVarCredential) {
+        }
+
+        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
+        if (localVarHttpHeaderAcceptSelected === undefined) {
+            // to determine the Accept header
+            const httpHeaderAccepts: string[] = [
+                'application/json'
+            ];
+            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        }
+        if (localVarHttpHeaderAcceptSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
+        }
+
+        let localVarHttpContext: HttpContext | undefined = options && options.context;
+        if (localVarHttpContext === undefined) {
+            localVarHttpContext = new HttpContext();
+        }
+
+
+        let responseType_: 'text' | 'json' | 'blob' = 'json';
+        if (localVarHttpHeaderAcceptSelected) {
+            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
+                responseType_ = 'text';
+            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
+                responseType_ = 'json';
+            } else {
+                responseType_ = 'blob';
+            }
+        }
+
+        let localVarPath = `/v1/telemetry`;
+        return this.httpClient.request<ScaleV2Response>('get', `${this.configuration.basePath}${localVarPath}`,
+            {
+                context: localVarHttpContext,
+                params: localVarQueryParameters,
+                responseType: <any>responseType_,
+                withCredentials: this.configuration.withCredentials,
+                headers: localVarHeaders,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
      * Post Scale values and other telemetry
      * Sends a weight and other telemetry from a scale to the queensaver system. The request needs to send the registrationId along with the request.
      * @param registrationId The unique registration Id for that scale. The user needs to register it first in the cloud, otherwise we will not accept the data.

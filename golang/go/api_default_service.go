@@ -381,6 +381,23 @@ func (s *DefaultApiService) StandsPut(ctx context.Context, qToken string, token 
 	return Response(http.StatusNotImplemented, nil), errors.New("StandsPut method not implemented")
 }
 
+// TelemetryGet - Get telemetry values
+func (s *DefaultApiService) TelemetryGet(ctx context.Context, epoch int64, secondsInThePast int64, qToken string, token string, hiveUuid string, macAddress string, userId int64) (ImplResponse, error) {
+	// TODO - update TelemetryGet with the required logic for this service method.
+	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
+
+	//TODO: Uncomment the next line to return response Response(200, ScaleV2Response{}) or use other options such as http.Ok ...
+	//return Response(200, ScaleV2Response{}), nil
+
+	//TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
+	//return Response(400, nil),nil
+
+	//TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
+	//return Response(500, nil),nil
+
+	return Response(http.StatusNotImplemented, nil), errors.New("TelemetryGet method not implemented")
+}
+
 // TelemetryPost - Post Scale values and other telemetry
 func (s *DefaultApiService) TelemetryPost(ctx context.Context, registrationId string, userId int64, telemetryValues TelemetryValues) (ImplResponse, error) {
 	// TODO - update TelemetryPost with the required logic for this service method.
