@@ -5,7 +5,7 @@ all: openapi protos grpc
 wd := /mnt/home/wogri/queensaver/openapi
 
 openapi: 
-	docker run --rm -v "${wd}:/local" --user ${UID} openapitools/openapi-generator-cli generate -i /local/openapi.yaml -g html2 -o /local/html
+	docker run --rm -v "${wd}:/local" --user ${UID} openapitools/openapi-generator-cli:v5.4.0 generate -i /local/openapi.yaml -g html2 -o /local/html
 	docker run --rm -v "${wd}:/local" --user ${UID} openapitools/openapi-generator-cli generate -i /local/openapi.yaml -g protobuf-schema -o /local/proto --package-name=openapi
 	docker run --rm -v "${wd}:/local" --user ${UID} openapitools/openapi-generator-cli generate -i /local/openapi.yaml -g typescript-angular -o /local/angular
 	docker run --rm -v "${wd}:/local" --user ${UID} openapitools/openapi-generator-cli generate -i /local/openapi.yaml -g go-server -o /local/golang --git-user-id queensaver --git-repo-id openapi/golang

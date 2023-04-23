@@ -2119,18 +2119,22 @@ $(document).ready(function() {
                                   <div id="responses-Default-authenticateRegistrationIdPost-schema-200" class="exampleStyle">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "Authenticated",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/authenticate-post-response"
+      }
+    }
+  }
+};
                                         var schema = findNode('schema',schemaWrapper).schema;
                                         if (!schema) {
                                           schema = schemaWrapper.schema;
                                         }
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
-                                          Object.keys(schema.properties).forEach( (item) => {
-                                            if (schema.properties[item].$ref != null) {
-                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
-                                            }
-                                          });
                                         } else if (schema.items != null && schema.items.$ref != null) {
                                             schema.items = defsParser.$refs.get(schema.items.$ref);
                                         } else {
@@ -2500,18 +2504,25 @@ pub fn main() {
                                   <div id="responses-Default-bboxesGet-schema-200" class="exampleStyle">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "QBox metadata",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/bbox"
+        }
+      }
+    }
+  }
+};
                                         var schema = findNode('schema',schemaWrapper).schema;
                                         if (!schema) {
                                           schema = schemaWrapper.schema;
                                         }
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
-                                          Object.keys(schema.properties).forEach( (item) => {
-                                            if (schema.properties[item].$ref != null) {
-                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
-                                            }
-                                          });
                                         } else if (schema.items != null && schema.items.$ref != null) {
                                             schema.items = defsParser.$refs.get(schema.items.$ref);
                                         } else {
@@ -2989,18 +3000,22 @@ Unique Identifier for this hive
                                   <div id="responses-Default-configsBboxAssociatePost-schema-200" class="exampleStyle">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "OK if the association / disassociation has been made",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/generic-post-response"
+      }
+    }
+  }
+};
                                         var schema = findNode('schema',schemaWrapper).schema;
                                         if (!schema) {
                                           schema = schemaWrapper.schema;
                                         }
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
-                                          Object.keys(schema.properties).forEach( (item) => {
-                                            if (schema.properties[item].$ref != null) {
-                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
-                                            }
-                                          });
                                         } else if (schema.items != null && schema.items.$ref != null) {
                                             schema.items = defsParser.$refs.get(schema.items.$ref);
                                         } else {
@@ -3051,18 +3066,22 @@ Unique Identifier for this hive
                                   <div id="responses-Default-configsBboxAssociatePost-schema-400" class="exampleStyle">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "Client error",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/generic-post-response"
+      }
+    }
+  }
+};
                                         var schema = findNode('schema',schemaWrapper).schema;
                                         if (!schema) {
                                           schema = schemaWrapper.schema;
                                         }
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
-                                          Object.keys(schema.properties).forEach( (item) => {
-                                            if (schema.properties[item].$ref != null) {
-                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
-                                            }
-                                          });
                                         } else if (schema.items != null && schema.items.$ref != null) {
                                             schema.items = defsParser.$refs.get(schema.items.$ref);
                                         } else {
@@ -3113,18 +3132,22 @@ Unique Identifier for this hive
                                   <div id="responses-Default-configsBboxAssociatePost-schema-500" class="exampleStyle">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "Internal error",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/generic-post-response"
+      }
+    }
+  }
+};
                                         var schema = findNode('schema',schemaWrapper).schema;
                                         if (!schema) {
                                           schema = schemaWrapper.schema;
                                         }
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
-                                          Object.keys(schema.properties).forEach( (item) => {
-                                            if (schema.properties[item].$ref != null) {
-                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
-                                            }
-                                          });
                                         } else if (schema.items != null && schema.items.$ref != null) {
                                             schema.items = defsParser.$refs.get(schema.items.$ref);
                                         } else {
@@ -4028,18 +4051,22 @@ The UserID is set internally and can not set or be overridden with the API reque
                                   <div id="responses-Default-configsBboxGet-schema-200" class="exampleStyle">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "bboxes",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/get-bbox-response"
+      }
+    }
+  }
+};
                                         var schema = findNode('schema',schemaWrapper).schema;
                                         if (!schema) {
                                           schema = schemaWrapper.schema;
                                         }
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
-                                          Object.keys(schema.properties).forEach( (item) => {
-                                            if (schema.properties[item].$ref != null) {
-                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
-                                            }
-                                          });
                                         } else if (schema.items != null && schema.items.$ref != null) {
                                             schema.items = defsParser.$refs.get(schema.items.$ref);
                                         } else {
@@ -4558,18 +4585,22 @@ The UserID is set internally and can not set or be overridden with the API reque
                                   <div id="responses-Default-configsBboxPost-schema-201" class="exampleStyle">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "Returns the created bbox and the http error code",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/post-bbox-response"
+      }
+    }
+  }
+};
                                         var schema = findNode('schema',schemaWrapper).schema;
                                         if (!schema) {
                                           schema = schemaWrapper.schema;
                                         }
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
-                                          Object.keys(schema.properties).forEach( (item) => {
-                                            if (schema.properties[item].$ref != null) {
-                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
-                                            }
-                                          });
                                         } else if (schema.items != null && schema.items.$ref != null) {
                                             schema.items = defsParser.$refs.get(schema.items.$ref);
                                         } else {
@@ -5121,18 +5152,22 @@ The UserID is set internally and can not set or be overridden with the API reque
                                   <div id="responses-Default-configsBboxPut-schema-201" class="exampleStyle">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "Returns the updated bbox",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/put-bbox-response"
+      }
+    }
+  }
+};
                                         var schema = findNode('schema',schemaWrapper).schema;
                                         if (!schema) {
                                           schema = schemaWrapper.schema;
                                         }
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
-                                          Object.keys(schema.properties).forEach( (item) => {
-                                            if (schema.properties[item].$ref != null) {
-                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
-                                            }
-                                          });
                                         } else if (schema.items != null && schema.items.$ref != null) {
                                             schema.items = defsParser.$refs.get(schema.items.$ref);
                                         } else {
@@ -5641,18 +5676,22 @@ The UserID is set internally and can not set or be overridden with the API reque
                                   <div id="responses-Default-configsBboxRegisterPost-schema-200" class="exampleStyle">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "Generic Response object that just returns an HTTP status code",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/bbox-config-response"
+      }
+    }
+  }
+};
                                         var schema = findNode('schema',schemaWrapper).schema;
                                         if (!schema) {
                                           schema = schemaWrapper.schema;
                                         }
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
-                                          Object.keys(schema.properties).forEach( (item) => {
-                                            if (schema.properties[item].$ref != null) {
-                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
-                                            }
-                                          });
                                         } else if (schema.items != null && schema.items.$ref != null) {
                                             schema.items = defsParser.$refs.get(schema.items.$ref);
                                         } else {
@@ -6622,18 +6661,22 @@ The UserID is set internally and can not set or be overridden with the API reque
                                   <div id="responses-Default-hivesGet-schema-200" class="exampleStyle">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "Hives",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/get-hives-response"
+      }
+    }
+  }
+};
                                         var schema = findNode('schema',schemaWrapper).schema;
                                         if (!schema) {
                                           schema = schemaWrapper.schema;
                                         }
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
-                                          Object.keys(schema.properties).forEach( (item) => {
-                                            if (schema.properties[item].$ref != null) {
-                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
-                                            }
-                                          });
                                         } else if (schema.items != null && schema.items.$ref != null) {
                                             schema.items = defsParser.$refs.get(schema.items.$ref);
                                         } else {
@@ -7152,18 +7195,22 @@ The UserID is set internally and can not set or be overridden with the API reque
                                   <div id="responses-Default-hivesPost-schema-200" class="exampleStyle">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "Returns the created hive",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/post-hives-response"
+      }
+    }
+  }
+};
                                         var schema = findNode('schema',schemaWrapper).schema;
                                         if (!schema) {
                                           schema = schemaWrapper.schema;
                                         }
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
-                                          Object.keys(schema.properties).forEach( (item) => {
-                                            if (schema.properties[item].$ref != null) {
-                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
-                                            }
-                                          });
                                         } else if (schema.items != null && schema.items.$ref != null) {
                                             schema.items = defsParser.$refs.get(schema.items.$ref);
                                         } else {
@@ -7682,18 +7729,22 @@ The UserID is set internally and can not set or be overridden with the API reque
                                   <div id="responses-Default-hivesPut-schema-200" class="exampleStyle">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "Returns the updated hive",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/put-hive-response"
+      }
+    }
+  }
+};
                                         var schema = findNode('schema',schemaWrapper).schema;
                                         if (!schema) {
                                           schema = schemaWrapper.schema;
                                         }
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
-                                          Object.keys(schema.properties).forEach( (item) => {
-                                            if (schema.properties[item].$ref != null) {
-                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
-                                            }
-                                          });
                                         } else if (schema.items != null && schema.items.$ref != null) {
                                             schema.items = defsParser.$refs.get(schema.items.$ref);
                                         } else {
@@ -8103,18 +8154,33 @@ Password
                                   <div id="responses-Default-loginPost-schema-200" class="exampleStyle">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "Returns a cookie to the browser with the key called 'token'",
+  "headers" : {
+    "SetCookie" : {
+      "style" : "simple",
+      "explode" : false,
+      "schema" : {
+        "type" : "string",
+        "description" : "sets the cookie",
+        "example" : "token=abcde12345; Path=/; HttpOnly"
+      }
+    }
+  },
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/login-post-response"
+      }
+    }
+  }
+};
                                         var schema = findNode('schema',schemaWrapper).schema;
                                         if (!schema) {
                                           schema = schemaWrapper.schema;
                                         }
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
-                                          Object.keys(schema.properties).forEach( (item) => {
-                                            if (schema.properties[item].$ref != null) {
-                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
-                                            }
-                                          });
                                         } else if (schema.items != null && schema.items.$ref != null) {
                                             schema.items = defsParser.$refs.get(schema.items.$ref);
                                         } else {
@@ -8181,18 +8247,22 @@ Password
                                   <div id="responses-Default-loginPost-schema-400" class="exampleStyle">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "The provided parameters are incorrect",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/errorMessage"
+      }
+    }
+  }
+};
                                         var schema = findNode('schema',schemaWrapper).schema;
                                         if (!schema) {
                                           schema = schemaWrapper.schema;
                                         }
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
-                                          Object.keys(schema.properties).forEach( (item) => {
-                                            if (schema.properties[item].$ref != null) {
-                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
-                                            }
-                                          });
                                         } else if (schema.items != null && schema.items.$ref != null) {
                                             schema.items = defsParser.$refs.get(schema.items.$ref);
                                         } else {
@@ -8679,18 +8749,25 @@ How many seconds we go to the past to get the data measurements.
                                   <div id="responses-Default-scaleGet-schema-200" class="exampleStyle">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "Successfully returned a list of scale measurements",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/weight"
+        }
+      }
+    }
+  }
+};
                                         var schema = findNode('schema',schemaWrapper).schema;
                                         if (!schema) {
                                           schema = schemaWrapper.schema;
                                         }
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
-                                          Object.keys(schema.properties).forEach( (item) => {
-                                            if (schema.properties[item].$ref != null) {
-                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
-                                            }
-                                          });
                                         } else if (schema.items != null && schema.items.$ref != null) {
                                             schema.items = defsParser.$refs.get(schema.items.$ref);
                                         } else {
@@ -9281,18 +9358,22 @@ The User ID. This is used internally and will be overwritten if you send it to t
                                   <div id="responses-Default-scaleGetV2-schema-200" class="exampleStyle">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "Successfully returned a list of scale measurements",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/scaleV2Response"
+      }
+    }
+  }
+};
                                         var schema = findNode('schema',schemaWrapper).schema;
                                         if (!schema) {
                                           schema = schemaWrapper.schema;
                                         }
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
-                                          Object.keys(schema.properties).forEach( (item) => {
-                                            if (schema.properties[item].$ref != null) {
-                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
-                                            }
-                                          });
                                         } else if (schema.items != null && schema.items.$ref != null) {
                                             schema.items = defsParser.$refs.get(schema.items.$ref);
                                         } else {
@@ -9838,18 +9919,22 @@ The User ID. This is used internally and will be overwritten if you send it to t
                                   <div id="responses-Default-scalePost-schema-200" class="exampleStyle">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "Generic Response object",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/generic-post-response"
+      }
+    }
+  }
+};
                                         var schema = findNode('schema',schemaWrapper).schema;
                                         if (!schema) {
                                           schema = schemaWrapper.schema;
                                         }
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
-                                          Object.keys(schema.properties).forEach( (item) => {
-                                            if (schema.properties[item].$ref != null) {
-                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
-                                            }
-                                          });
                                         } else if (schema.items != null && schema.items.$ref != null) {
                                             schema.items = defsParser.$refs.get(schema.items.$ref);
                                         } else {
@@ -9900,18 +9985,22 @@ The User ID. This is used internally and will be overwritten if you send it to t
                                   <div id="responses-Default-scalePost-schema-400" class="exampleStyle">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "Generic Response object",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/generic-post-response"
+      }
+    }
+  }
+};
                                         var schema = findNode('schema',schemaWrapper).schema;
                                         if (!schema) {
                                           schema = schemaWrapper.schema;
                                         }
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
-                                          Object.keys(schema.properties).forEach( (item) => {
-                                            if (schema.properties[item].$ref != null) {
-                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
-                                            }
-                                          });
                                         } else if (schema.items != null && schema.items.$ref != null) {
                                             schema.items = defsParser.$refs.get(schema.items.$ref);
                                         } else {
@@ -9962,18 +10051,22 @@ The User ID. This is used internally and will be overwritten if you send it to t
                                   <div id="responses-Default-scalePost-schema-500" class="exampleStyle">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "Generic Response object",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/generic-post-response"
+      }
+    }
+  }
+};
                                         var schema = findNode('schema',schemaWrapper).schema;
                                         if (!schema) {
                                           schema = schemaWrapper.schema;
                                         }
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
-                                          Object.keys(schema.properties).forEach( (item) => {
-                                            if (schema.properties[item].$ref != null) {
-                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
-                                            }
-                                          });
                                         } else if (schema.items != null && schema.items.$ref != null) {
                                             schema.items = defsParser.$refs.get(schema.items.$ref);
                                         } else {
@@ -10438,18 +10531,22 @@ The User ID. This is used internally and will be overwritten if you send it to t
                                   <div id="responses-Default-scalePostV2-schema-200" class="exampleStyle">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "Generic Response object",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/generic-post-response"
+      }
+    }
+  }
+};
                                         var schema = findNode('schema',schemaWrapper).schema;
                                         if (!schema) {
                                           schema = schemaWrapper.schema;
                                         }
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
-                                          Object.keys(schema.properties).forEach( (item) => {
-                                            if (schema.properties[item].$ref != null) {
-                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
-                                            }
-                                          });
                                         } else if (schema.items != null && schema.items.$ref != null) {
                                             schema.items = defsParser.$refs.get(schema.items.$ref);
                                         } else {
@@ -10500,18 +10597,22 @@ The User ID. This is used internally and will be overwritten if you send it to t
                                   <div id="responses-Default-scalePostV2-schema-400" class="exampleStyle">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "Generic Response object",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/generic-post-response"
+      }
+    }
+  }
+};
                                         var schema = findNode('schema',schemaWrapper).schema;
                                         if (!schema) {
                                           schema = schemaWrapper.schema;
                                         }
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
-                                          Object.keys(schema.properties).forEach( (item) => {
-                                            if (schema.properties[item].$ref != null) {
-                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
-                                            }
-                                          });
                                         } else if (schema.items != null && schema.items.$ref != null) {
                                             schema.items = defsParser.$refs.get(schema.items.$ref);
                                         } else {
@@ -10562,18 +10663,22 @@ The User ID. This is used internally and will be overwritten if you send it to t
                                   <div id="responses-Default-scalePostV2-schema-500" class="exampleStyle">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "Generic Response object",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/generic-post-response"
+      }
+    }
+  }
+};
                                         var schema = findNode('schema',schemaWrapper).schema;
                                         if (!schema) {
                                           schema = schemaWrapper.schema;
                                         }
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
-                                          Object.keys(schema.properties).forEach( (item) => {
-                                            if (schema.properties[item].$ref != null) {
-                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
-                                            }
-                                          });
                                         } else if (schema.items != null && schema.items.$ref != null) {
                                             schema.items = defsParser.$refs.get(schema.items.$ref);
                                         } else {
@@ -11549,18 +11654,22 @@ The UserID is set internally and can not set or be overridden with the API reque
                                   <div id="responses-Default-standsGet-schema-200" class="exampleStyle">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "Stands",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/get-stands-response"
+      }
+    }
+  }
+};
                                         var schema = findNode('schema',schemaWrapper).schema;
                                         if (!schema) {
                                           schema = schemaWrapper.schema;
                                         }
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
-                                          Object.keys(schema.properties).forEach( (item) => {
-                                            if (schema.properties[item].$ref != null) {
-                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
-                                            }
-                                          });
                                         } else if (schema.items != null && schema.items.$ref != null) {
                                             schema.items = defsParser.$refs.get(schema.items.$ref);
                                         } else {
@@ -12079,18 +12188,22 @@ The UserID is set internally and can not set or be overridden with the API reque
                                   <div id="responses-Default-standsPost-schema-201" class="exampleStyle">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "Returns the created stand and the http error code",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/post-stands-response"
+      }
+    }
+  }
+};
                                         var schema = findNode('schema',schemaWrapper).schema;
                                         if (!schema) {
                                           schema = schemaWrapper.schema;
                                         }
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
-                                          Object.keys(schema.properties).forEach( (item) => {
-                                            if (schema.properties[item].$ref != null) {
-                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
-                                            }
-                                          });
                                         } else if (schema.items != null && schema.items.$ref != null) {
                                             schema.items = defsParser.$refs.get(schema.items.$ref);
                                         } else {
@@ -12609,18 +12722,22 @@ The UserID is set internally and can not set or be overridden with the API reque
                                   <div id="responses-Default-standsPut-schema-201" class="exampleStyle">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "Returns the updated stand",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/put-stand-response"
+      }
+    }
+  }
+};
                                         var schema = findNode('schema',schemaWrapper).schema;
                                         if (!schema) {
                                           schema = schemaWrapper.schema;
                                         }
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
-                                          Object.keys(schema.properties).forEach( (item) => {
-                                            if (schema.properties[item].$ref != null) {
-                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
-                                            }
-                                          });
                                         } else if (schema.items != null && schema.items.$ref != null) {
                                             schema.items = defsParser.$refs.get(schema.items.$ref);
                                         } else {
@@ -13211,18 +13328,22 @@ The User ID. This is used internally and will be overwritten if you send it to t
                                   <div id="responses-Default-telemetryGet-schema-200" class="exampleStyle">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "Successfully returned a list of telemetry measurements",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/scaleV2Response"
+      }
+    }
+  }
+};
                                         var schema = findNode('schema',schemaWrapper).schema;
                                         if (!schema) {
                                           schema = schemaWrapper.schema;
                                         }
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
-                                          Object.keys(schema.properties).forEach( (item) => {
-                                            if (schema.properties[item].$ref != null) {
-                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
-                                            }
-                                          });
                                         } else if (schema.items != null && schema.items.$ref != null) {
                                             schema.items = defsParser.$refs.get(schema.items.$ref);
                                         } else {
@@ -13731,18 +13852,22 @@ The User ID. This is used internally and will be overwritten if you send it to t
                                   <div id="responses-Default-telemetryPost-schema-200" class="exampleStyle">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "Generic Response object",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/generic-post-response"
+      }
+    }
+  }
+};
                                         var schema = findNode('schema',schemaWrapper).schema;
                                         if (!schema) {
                                           schema = schemaWrapper.schema;
                                         }
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
-                                          Object.keys(schema.properties).forEach( (item) => {
-                                            if (schema.properties[item].$ref != null) {
-                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
-                                            }
-                                          });
                                         } else if (schema.items != null && schema.items.$ref != null) {
                                             schema.items = defsParser.$refs.get(schema.items.$ref);
                                         } else {
@@ -13793,18 +13918,22 @@ The User ID. This is used internally and will be overwritten if you send it to t
                                   <div id="responses-Default-telemetryPost-schema-400" class="exampleStyle">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "Generic Response object",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/generic-post-response"
+      }
+    }
+  }
+};
                                         var schema = findNode('schema',schemaWrapper).schema;
                                         if (!schema) {
                                           schema = schemaWrapper.schema;
                                         }
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
-                                          Object.keys(schema.properties).forEach( (item) => {
-                                            if (schema.properties[item].$ref != null) {
-                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
-                                            }
-                                          });
                                         } else if (schema.items != null && schema.items.$ref != null) {
                                             schema.items = defsParser.$refs.get(schema.items.$ref);
                                         } else {
@@ -13855,18 +13984,22 @@ The User ID. This is used internally and will be overwritten if you send it to t
                                   <div id="responses-Default-telemetryPost-schema-500" class="exampleStyle">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "Generic Response object",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/generic-post-response"
+      }
+    }
+  }
+};
                                         var schema = findNode('schema',schemaWrapper).schema;
                                         if (!schema) {
                                           schema = schemaWrapper.schema;
                                         }
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
-                                          Object.keys(schema.properties).forEach( (item) => {
-                                            if (schema.properties[item].$ref != null) {
-                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
-                                            }
-                                          });
                                         } else if (schema.items != null && schema.items.$ref != null) {
                                             schema.items = defsParser.$refs.get(schema.items.$ref);
                                         } else {
@@ -14389,18 +14522,22 @@ The User ID. This is used internally and will be overwritten if you send it to t
                                   <div id="responses-Default-temperatureGet-schema-200" class="exampleStyle">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "Successfully returned a list of scale measurements",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/get-temperature-response"
+      }
+    }
+  }
+};
                                         var schema = findNode('schema',schemaWrapper).schema;
                                         if (!schema) {
                                           schema = schemaWrapper.schema;
                                         }
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
-                                          Object.keys(schema.properties).forEach( (item) => {
-                                            if (schema.properties[item].$ref != null) {
-                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
-                                            }
-                                          });
                                         } else if (schema.items != null && schema.items.$ref != null) {
                                             schema.items = defsParser.$refs.get(schema.items.$ref);
                                         } else {
@@ -14869,18 +15006,22 @@ The User ID. This is used internally and will be overwritten if you send it to t
                                   <div id="responses-Default-temperaturePost-schema-200" class="exampleStyle">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "Generic Response object",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/generic-post-response"
+      }
+    }
+  }
+};
                                         var schema = findNode('schema',schemaWrapper).schema;
                                         if (!schema) {
                                           schema = schemaWrapper.schema;
                                         }
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
-                                          Object.keys(schema.properties).forEach( (item) => {
-                                            if (schema.properties[item].$ref != null) {
-                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
-                                            }
-                                          });
                                         } else if (schema.items != null && schema.items.$ref != null) {
                                             schema.items = defsParser.$refs.get(schema.items.$ref);
                                         } else {
@@ -14931,18 +15072,22 @@ The User ID. This is used internally and will be overwritten if you send it to t
                                   <div id="responses-Default-temperaturePost-schema-400" class="exampleStyle">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "Generic Response object",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/generic-post-response"
+      }
+    }
+  }
+};
                                         var schema = findNode('schema',schemaWrapper).schema;
                                         if (!schema) {
                                           schema = schemaWrapper.schema;
                                         }
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
-                                          Object.keys(schema.properties).forEach( (item) => {
-                                            if (schema.properties[item].$ref != null) {
-                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
-                                            }
-                                          });
                                         } else if (schema.items != null && schema.items.$ref != null) {
                                             schema.items = defsParser.$refs.get(schema.items.$ref);
                                         } else {
@@ -14993,18 +15138,22 @@ The User ID. This is used internally and will be overwritten if you send it to t
                                   <div id="responses-Default-temperaturePost-schema-500" class="exampleStyle">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "Generic Response object",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/generic-post-response"
+      }
+    }
+  }
+};
                                         var schema = findNode('schema',schemaWrapper).schema;
                                         if (!schema) {
                                           schema = schemaWrapper.schema;
                                         }
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
-                                          Object.keys(schema.properties).forEach( (item) => {
-                                            if (schema.properties[item].$ref != null) {
-                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
-                                            }
-                                          });
                                         } else if (schema.items != null && schema.items.$ref != null) {
                                             schema.items = defsParser.$refs.get(schema.items.$ref);
                                         } else {
@@ -15362,18 +15511,27 @@ $(document).ready(function() {
                                   <div id="responses-Default-userPost-schema-400" class="exampleStyle">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "The provided parameters are incorrect",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/errorMessage"
+      },
+      "examples" : {
+        "missingData" : {
+          "value" : "Data is missing."
+        }
+      }
+    }
+  }
+};
                                         var schema = findNode('schema',schemaWrapper).schema;
                                         if (!schema) {
                                           schema = schemaWrapper.schema;
                                         }
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
-                                          Object.keys(schema.properties).forEach( (item) => {
-                                            if (schema.properties[item].$ref != null) {
-                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
-                                            }
-                                          });
                                         } else if (schema.items != null && schema.items.$ref != null) {
                                             schema.items = defsParser.$refs.get(schema.items.$ref);
                                         } else {
@@ -15947,18 +16105,22 @@ How many seconds we go to the past to get the data measurements.
                                   <div id="responses-Default-varroaScanGet-schema-200" class="exampleStyle">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "Successfully returns a list of varroa scans",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/varroa-scan-response"
+      }
+    }
+  }
+};
                                         var schema = findNode('schema',schemaWrapper).schema;
                                         if (!schema) {
                                           schema = schemaWrapper.schema;
                                         }
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
-                                          Object.keys(schema.properties).forEach( (item) => {
-                                            if (schema.properties[item].$ref != null) {
-                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
-                                            }
-                                          });
                                         } else if (schema.items != null && schema.items.$ref != null) {
                                             schema.items = defsParser.$refs.get(schema.items.$ref);
                                         } else {
@@ -16436,18 +16598,22 @@ The UUID of the varroa bee hive (see the /v1/hives call).
                                   <div id="responses-Default-varroaScanImageAssociate-schema-200" class="exampleStyle">
                                     <script>
                                       $(document).ready(function() {
-                                        var schemaWrapper = ;
+                                        var schemaWrapper = {
+  "description" : "OK",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/generic-post-response"
+      }
+    }
+  }
+};
                                         var schema = findNode('schema',schemaWrapper).schema;
                                         if (!schema) {
                                           schema = schemaWrapper.schema;
                                         }
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
-                                          Object.keys(schema.properties).forEach( (item) => {
-                                            if (schema.properties[item].$ref != null) {
-                                              schema.properties[item] = defsParser.$refs.get(schema.properties[item].$ref);
-                                            }
-                                          });
                                         } else if (schema.items != null && schema.items.$ref != null) {
                                             schema.items = defsParser.$refs.get(schema.items.$ref);
                                         } else {
