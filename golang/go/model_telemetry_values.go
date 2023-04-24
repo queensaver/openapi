@@ -11,6 +11,9 @@ package openapi
 
 type TelemetryValues struct {
 
+	// HTTP response code. Used for internal purposes, will be let out at the API level.
+	HttpResponseCode int32 `json:"httpResponseCode,omitempty"`
+
 	// An array of telemetry values
 	Values []Telemetry `json:"values,omitempty"`
 }
