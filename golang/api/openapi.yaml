@@ -2512,13 +2512,6 @@ components:
           example: 409
           type: integer
           x-protobuf-index: 1
-        values:
-          description: An array of telemetry values
-          example: "[]"
-          items:
-            $ref: '#/components/schemas/telemetry'
-          type: array
-          x-protobuf-index: 2
       type: object
     telemetry:
       example:

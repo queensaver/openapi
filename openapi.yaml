@@ -1859,13 +1859,6 @@ components:
           example: 409
           description: HTTP response code. Used for internal purposes, will be let out at the API level.
           x-protobuf-index: 1
-        values:
-          type: array
-          description: An array of telemetry values
-          example: "[]"
-          x-protobuf-index: 2
-          items: 
-            $ref: "#/components/schemas/telemetry"
 
     telemetry:
       type: object

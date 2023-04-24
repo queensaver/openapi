@@ -12,14 +12,10 @@ syntax = "proto3";
 
 package openapi;
 
-import public "models/telemetry.proto";
 
 message TelemetryValues {
 
   // HTTP response code. Used for internal purposes, will be let out at the API level.
   int32 httpResponseCode = 1;
-
-  // An array of telemetry values
-  repeated Telemetry values = 2;
 
 }
