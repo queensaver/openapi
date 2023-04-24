@@ -1483,6 +1483,14 @@ ul.nav-tabs {
       "description" : "HTTP response code. Used for internal purposes, will be let out at the API level.",
       "example" : 409,
       "x-protobuf-index" : 1
+    },
+    "values" : {
+      "type" : "array",
+      "description" : "The measurement responses",
+      "items" : {
+        "$ref" : "#/components/schemas/telemetry"
+      },
+      "x-protobuf-index" : 2
     }
   }
 };

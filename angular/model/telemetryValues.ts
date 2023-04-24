@@ -9,6 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { Telemetry } from './telemetry';
 
 
 export interface TelemetryValues { 
@@ -16,5 +17,9 @@ export interface TelemetryValues {
      * HTTP response code. Used for internal purposes, will be let out at the API level.
      */
     httpResponseCode?: number;
+    /**
+     * The measurement responses
+     */
+    values?: Array<Telemetry>;
 }
 
