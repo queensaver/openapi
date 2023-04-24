@@ -1008,7 +1008,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/scaleV2Response"
+                $ref: "#/components/schemas/telemetryResponse"
 
         "400":
           description: Client error
@@ -1820,6 +1820,21 @@ components:
       - bhiveId
       - temperature
       - epoch
+
+    telemetryResponse:
+      type: object
+      properties:
+        httpResponseCode:
+          type: integer
+          example: 409
+          description: HTTP response code. Used for internal purposes, will be let out at the API level.
+          x-protobuf-index: 1
+        values:
+          type: array
+          items: 
+            $ref: "#/components/schemas/telemetry"
+          description: The measurement responses
+          x-protobuf-index: 2
 
     scaleV2Response:
       type: object
