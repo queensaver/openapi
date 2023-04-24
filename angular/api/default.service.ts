@@ -59,6 +59,8 @@ import { ScaleV2Response } from '../model/scaleV2Response';
 // @ts-ignore
 import { Stand } from '../model/stand';
 // @ts-ignore
+import { TelemetryResponse } from '../model/telemetryResponse';
+// @ts-ignore
 import { TelemetryValues } from '../model/telemetryValues';
 // @ts-ignore
 import { Temperature } from '../model/temperature';
@@ -1983,9 +1985,9 @@ export class DefaultService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public telemetryGet(epoch: number, secondsInThePast: number, qToken?: string, token?: string, hiveUuid?: string, macAddress?: string, userId?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<ScaleV2Response>;
-    public telemetryGet(epoch: number, secondsInThePast: number, qToken?: string, token?: string, hiveUuid?: string, macAddress?: string, userId?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<ScaleV2Response>>;
-    public telemetryGet(epoch: number, secondsInThePast: number, qToken?: string, token?: string, hiveUuid?: string, macAddress?: string, userId?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<ScaleV2Response>>;
+    public telemetryGet(epoch: number, secondsInThePast: number, qToken?: string, token?: string, hiveUuid?: string, macAddress?: string, userId?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<TelemetryResponse>;
+    public telemetryGet(epoch: number, secondsInThePast: number, qToken?: string, token?: string, hiveUuid?: string, macAddress?: string, userId?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<TelemetryResponse>>;
+    public telemetryGet(epoch: number, secondsInThePast: number, qToken?: string, token?: string, hiveUuid?: string, macAddress?: string, userId?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<TelemetryResponse>>;
     public telemetryGet(epoch: number, secondsInThePast: number, qToken?: string, token?: string, hiveUuid?: string, macAddress?: string, userId?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
         if (epoch === null || epoch === undefined) {
             throw new Error('Required parameter epoch was null or undefined when calling telemetryGet.');
@@ -2057,7 +2059,7 @@ export class DefaultService {
         }
 
         let localVarPath = `/v1/telemetry`;
-        return this.httpClient.request<ScaleV2Response>('get', `${this.configuration.basePath}${localVarPath}`,
+        return this.httpClient.request<TelemetryResponse>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 params: localVarQueryParameters,

@@ -33,6 +33,7 @@ import public "models/registration_id.proto";
 import public "models/scale_v2.proto";
 import public "models/scale_v2_response.proto";
 import public "models/stand.proto";
+import public "models/telemetry_response.proto";
 import public "models/telemetry_values.proto";
 import public "models/temperature.proto";
 import public "models/user.proto";
@@ -83,7 +84,7 @@ service DefaultService {
 
   rpc StandsPut (StandsPutRequest) returns (PutStandResponse);
 
-  rpc TelemetryGet (TelemetryGetRequest) returns (ScaleV2Response);
+  rpc TelemetryGet (TelemetryGetRequest) returns (TelemetryResponse);
 
   rpc TelemetryPost (TelemetryPostRequest) returns (GenericPostResponse);
 

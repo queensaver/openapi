@@ -32,6 +32,7 @@ go/model_scale_v2.go
 go/model_scale_v2_response.go
 go/model_stand.go
 go/model_telemetry.go
+go/model_telemetry_response.go
 go/model_telemetry_values.go
 go/model_temperature.go
 go/model_user.go

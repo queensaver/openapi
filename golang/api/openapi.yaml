@@ -1153,7 +1153,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/scaleV2Response'
+                $ref: '#/components/schemas/telemetryResponse'
           description: Successfully returned a list of telemetry measurements
         "400":
           description: Client error
@@ -2444,6 +2444,42 @@ components:
       - epoch
       - temperature
       type: object
+    telemetryResponse:
+      example:
+        values:
+        - a: 12.2345
+          b: 12.2345
+          s: 12
+          lo: -45.136822
+          t: 12.2345
+          e: 1639169129
+          la: -45.136822
+          w: 53.2345
+          m: 829898a53801
+        - a: 12.2345
+          b: 12.2345
+          s: 12
+          lo: -45.136822
+          t: 12.2345
+          e: 1639169129
+          la: -45.136822
+          w: 53.2345
+          m: 829898a53801
+        httpResponseCode: 409
+      properties:
+        httpResponseCode:
+          description: "HTTP response code. Used for internal purposes, will be let\
+            \ out at the API level."
+          example: 409
+          type: integer
+          x-protobuf-index: 1
+        values:
+          description: The measurement responses
+          items:
+            $ref: '#/components/schemas/telemetry'
+          type: array
+          x-protobuf-index: 2
+      type: object
     scaleV2Response:
       example:
         values:
@@ -2479,6 +2515,16 @@ components:
           x-protobuf-index: 1
       type: object
     telemetry:
+      example:
+        a: 12.2345
+        b: 12.2345
+        s: 12
+        lo: -45.136822
+        t: 12.2345
+        e: 1639169129
+        la: -45.136822
+        w: 53.2345
+        m: 829898a53801
       properties:
         m:
           description: The mac address of the scale
