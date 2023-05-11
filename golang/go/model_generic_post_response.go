@@ -19,15 +19,3 @@ type GenericPostResponse struct {
 func AssertGenericPostResponseRequired(obj GenericPostResponse) error {
 	return nil
 }
-
-// AssertRecurseGenericPostResponseRequired recursively checks if required fields are not zero-ed in a nested slice.
-// Accepts only nested slice of GenericPostResponse (e.g. [][]GenericPostResponse), otherwise ErrTypeAssertionError is thrown.
-func AssertRecurseGenericPostResponseRequired(objSlice interface{}) error {
-	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
-		aGenericPostResponse, ok := obj.(GenericPostResponse)
-		if !ok {
-			return ErrTypeAssertionError
-		}
-		return AssertGenericPostResponseRequired(aGenericPostResponse)
-	})
-}

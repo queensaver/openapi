@@ -34,15 +34,3 @@ type VarroaScanMetadata struct {
 func AssertVarroaScanMetadataRequired(obj VarroaScanMetadata) error {
 	return nil
 }
-
-// AssertRecurseVarroaScanMetadataRequired recursively checks if required fields are not zero-ed in a nested slice.
-// Accepts only nested slice of VarroaScanMetadata (e.g. [][]VarroaScanMetadata), otherwise ErrTypeAssertionError is thrown.
-func AssertRecurseVarroaScanMetadataRequired(objSlice interface{}) error {
-	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
-		aVarroaScanMetadata, ok := obj.(VarroaScanMetadata)
-		if !ok {
-			return ErrTypeAssertionError
-		}
-		return AssertVarroaScanMetadataRequired(aVarroaScanMetadata)
-	})
-}

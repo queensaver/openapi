@@ -28,15 +28,3 @@ type BboxConfigResponse struct {
 func AssertBboxConfigResponseRequired(obj BboxConfigResponse) error {
 	return nil
 }
-
-// AssertRecurseBboxConfigResponseRequired recursively checks if required fields are not zero-ed in a nested slice.
-// Accepts only nested slice of BboxConfigResponse (e.g. [][]BboxConfigResponse), otherwise ErrTypeAssertionError is thrown.
-func AssertRecurseBboxConfigResponseRequired(objSlice interface{}) error {
-	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
-		aBboxConfigResponse, ok := obj.(BboxConfigResponse)
-		if !ok {
-			return ErrTypeAssertionError
-		}
-		return AssertBboxConfigResponseRequired(aBboxConfigResponse)
-	})
-}

@@ -26,15 +26,3 @@ func AssertGetBboxResponseRequired(obj GetBboxResponse) error {
 	}
 	return nil
 }
-
-// AssertRecurseGetBboxResponseRequired recursively checks if required fields are not zero-ed in a nested slice.
-// Accepts only nested slice of GetBboxResponse (e.g. [][]GetBboxResponse), otherwise ErrTypeAssertionError is thrown.
-func AssertRecurseGetBboxResponseRequired(objSlice interface{}) error {
-	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
-		aGetBboxResponse, ok := obj.(GetBboxResponse)
-		if !ok {
-			return ErrTypeAssertionError
-		}
-		return AssertGetBboxResponseRequired(aGetBboxResponse)
-	})
-}

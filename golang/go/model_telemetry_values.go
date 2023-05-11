@@ -27,15 +27,3 @@ func AssertTelemetryValuesRequired(obj TelemetryValues) error {
 	}
 	return nil
 }
-
-// AssertRecurseTelemetryValuesRequired recursively checks if required fields are not zero-ed in a nested slice.
-// Accepts only nested slice of TelemetryValues (e.g. [][]TelemetryValues), otherwise ErrTypeAssertionError is thrown.
-func AssertRecurseTelemetryValuesRequired(objSlice interface{}) error {
-	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
-		aTelemetryValues, ok := obj.(TelemetryValues)
-		if !ok {
-			return ErrTypeAssertionError
-		}
-		return AssertTelemetryValuesRequired(aTelemetryValues)
-	})
-}

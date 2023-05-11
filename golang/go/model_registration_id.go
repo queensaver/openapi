@@ -28,15 +28,3 @@ func AssertRegistrationIdRequired(obj RegistrationId) error {
 
 	return nil
 }
-
-// AssertRecurseRegistrationIdRequired recursively checks if required fields are not zero-ed in a nested slice.
-// Accepts only nested slice of RegistrationId (e.g. [][]RegistrationId), otherwise ErrTypeAssertionError is thrown.
-func AssertRecurseRegistrationIdRequired(objSlice interface{}) error {
-	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
-		aRegistrationId, ok := obj.(RegistrationId)
-		if !ok {
-			return ErrTypeAssertionError
-		}
-		return AssertRegistrationIdRequired(aRegistrationId)
-	})
-}

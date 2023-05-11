@@ -28,15 +28,3 @@ func AssertAlertsRequired(obj Alerts) error {
 
 	return nil
 }
-
-// AssertRecurseAlertsRequired recursively checks if required fields are not zero-ed in a nested slice.
-// Accepts only nested slice of Alerts (e.g. [][]Alerts), otherwise ErrTypeAssertionError is thrown.
-func AssertRecurseAlertsRequired(objSlice interface{}) error {
-	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
-		aAlerts, ok := obj.(Alerts)
-		if !ok {
-			return ErrTypeAssertionError
-		}
-		return AssertAlertsRequired(aAlerts)
-	})
-}

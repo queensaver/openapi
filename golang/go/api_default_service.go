@@ -31,14 +31,14 @@ func (s *DefaultApiService) AuthenticateRegistrationIdPost(ctx context.Context, 
 	// TODO - update AuthenticateRegistrationIdPost with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
-	//TODO: Uncomment the next line to return response Response(200, AuthenticatePostResponse{}) or use other options such as http.Ok ...
-	//return Response(200, AuthenticatePostResponse{}), nil
+	// TODO: Uncomment the next line to return response Response(200, AuthenticatePostResponse{}) or use other options such as http.Ok ...
+	// return Response(200, AuthenticatePostResponse{}), nil
 
-	//TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
-	//return Response(400, nil),nil
+	// TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
+	// return Response(400, nil),nil
 
-	//TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
-	//return Response(500, nil),nil
+	// TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
+	// return Response(500, nil),nil
 
 	return Response(http.StatusNotImplemented, nil), errors.New("AuthenticateRegistrationIdPost method not implemented")
 }
@@ -48,14 +48,14 @@ func (s *DefaultApiService) BboxesGet(ctx context.Context) (ImplResponse, error)
 	// TODO - update BboxesGet with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
-	//TODO: Uncomment the next line to return response Response(200, []Bbox{}) or use other options such as http.Ok ...
-	//return Response(200, []Bbox{}), nil
+	// TODO: Uncomment the next line to return response Response(200, []Bbox{}) or use other options such as http.Ok ...
+	// return Response(200, []Bbox{}), nil
 
-	//TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
-	//return Response(400, nil),nil
+	// TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
+	// return Response(400, nil),nil
 
-	//TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
-	//return Response(500, nil),nil
+	// TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
+	// return Response(500, nil),nil
 
 	return Response(http.StatusNotImplemented, nil), errors.New("BboxesGet method not implemented")
 }
@@ -65,14 +65,14 @@ func (s *DefaultApiService) ConfigsBboxAssociatePost(ctx context.Context, bboxId
 	// TODO - update ConfigsBboxAssociatePost with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
-	//TODO: Uncomment the next line to return response Response(200, GenericPostResponse{}) or use other options such as http.Ok ...
-	//return Response(200, GenericPostResponse{}), nil
+	// TODO: Uncomment the next line to return response Response(200, GenericPostResponse{}) or use other options such as http.Ok ...
+	// return Response(200, GenericPostResponse{}), nil
 
-	//TODO: Uncomment the next line to return response Response(400, GenericPostResponse{}) or use other options such as http.Ok ...
-	//return Response(400, GenericPostResponse{}), nil
+	// TODO: Uncomment the next line to return response Response(400, GenericPostResponse{}) or use other options such as http.Ok ...
+	// return Response(400, GenericPostResponse{}), nil
 
-	//TODO: Uncomment the next line to return response Response(500, GenericPostResponse{}) or use other options such as http.Ok ...
-	//return Response(500, GenericPostResponse{}), nil
+	// TODO: Uncomment the next line to return response Response(500, GenericPostResponse{}) or use other options such as http.Ok ...
+	// return Response(500, GenericPostResponse{}), nil
 
 	return Response(http.StatusNotImplemented, nil), errors.New("ConfigsBboxAssociatePost method not implemented")
 }
@@ -82,14 +82,14 @@ func (s *DefaultApiService) ConfigsBboxDelete(ctx context.Context, qToken string
 	// TODO - update ConfigsBboxDelete with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
-	//TODO: Uncomment the next line to return response Response(200, {}) or use other options such as http.Ok ...
-	//return Response(200, nil),nil
+	// TODO: Uncomment the next line to return response Response(200, {}) or use other options such as http.Ok ...
+	// return Response(200, nil),nil
 
-	//TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
-	//return Response(400, nil),nil
+	// TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
+	// return Response(400, nil),nil
 
-	//TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
-	//return Response(500, nil),nil
+	// TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
+	// return Response(500, nil),nil
 
 	return Response(http.StatusNotImplemented, nil), errors.New("ConfigsBboxDelete method not implemented")
 }
@@ -99,14 +99,14 @@ func (s *DefaultApiService) ConfigsBboxGet(ctx context.Context, qToken string, t
 	// TODO - update ConfigsBboxGet with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
-	//TODO: Uncomment the next line to return response Response(200, GetBboxResponse{}) or use other options such as http.Ok ...
-	//return Response(200, GetBboxResponse{}), nil
+	// TODO: Uncomment the next line to return response Response(200, GetBboxResponse{}) or use other options such as http.Ok ...
+	// return Response(200, GetBboxResponse{}), nil
 
-	//TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
-	//return Response(400, nil),nil
+	// TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
+	// return Response(400, nil),nil
 
-	//TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
-	//return Response(500, nil),nil
+	// TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
+	// return Response(500, nil),nil
 
 	return Response(http.StatusNotImplemented, nil), errors.New("ConfigsBboxGet method not implemented")
 }
@@ -116,14 +116,14 @@ func (s *DefaultApiService) ConfigsBboxPost(ctx context.Context, qToken string, 
 	// TODO - update ConfigsBboxPost with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
-	//TODO: Uncomment the next line to return response Response(201, PostBboxResponse{}) or use other options such as http.Ok ...
-	//return Response(201, PostBboxResponse{}), nil
+	// TODO: Uncomment the next line to return response Response(201, PostBboxResponse{}) or use other options such as http.Ok ...
+	// return Response(201, PostBboxResponse{}), nil
 
-	//TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
-	//return Response(400, nil),nil
+	// TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
+	// return Response(400, nil),nil
 
-	//TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
-	//return Response(500, nil),nil
+	// TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
+	// return Response(500, nil),nil
 
 	return Response(http.StatusNotImplemented, nil), errors.New("ConfigsBboxPost method not implemented")
 }
@@ -133,14 +133,14 @@ func (s *DefaultApiService) ConfigsBboxPut(ctx context.Context, qToken string, u
 	// TODO - update ConfigsBboxPut with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
-	//TODO: Uncomment the next line to return response Response(201, PutBboxResponse{}) or use other options such as http.Ok ...
-	//return Response(201, PutBboxResponse{}), nil
+	// TODO: Uncomment the next line to return response Response(201, PutBboxResponse{}) or use other options such as http.Ok ...
+	// return Response(201, PutBboxResponse{}), nil
 
-	//TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
-	//return Response(400, nil),nil
+	// TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
+	// return Response(400, nil),nil
 
-	//TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
-	//return Response(500, nil),nil
+	// TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
+	// return Response(500, nil),nil
 
 	return Response(http.StatusNotImplemented, nil), errors.New("ConfigsBboxPut method not implemented")
 }
@@ -150,14 +150,14 @@ func (s *DefaultApiService) ConfigsBboxRegisterPost(ctx context.Context, registr
 	// TODO - update ConfigsBboxRegisterPost with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
-	//TODO: Uncomment the next line to return response Response(200, BboxConfigResponse{}) or use other options such as http.Ok ...
-	//return Response(200, BboxConfigResponse{}), nil
+	// TODO: Uncomment the next line to return response Response(200, BboxConfigResponse{}) or use other options such as http.Ok ...
+	// return Response(200, BboxConfigResponse{}), nil
 
-	//TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
-	//return Response(400, nil),nil
+	// TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
+	// return Response(400, nil),nil
 
-	//TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
-	//return Response(500, nil),nil
+	// TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
+	// return Response(500, nil),nil
 
 	return Response(http.StatusNotImplemented, nil), errors.New("ConfigsBboxRegisterPost method not implemented")
 }
@@ -167,14 +167,14 @@ func (s *DefaultApiService) HivesDelete(ctx context.Context, qToken string, uuid
 	// TODO - update HivesDelete with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
-	//TODO: Uncomment the next line to return response Response(200, {}) or use other options such as http.Ok ...
-	//return Response(200, nil),nil
+	// TODO: Uncomment the next line to return response Response(200, {}) or use other options such as http.Ok ...
+	// return Response(200, nil),nil
 
-	//TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
-	//return Response(400, nil),nil
+	// TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
+	// return Response(400, nil),nil
 
-	//TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
-	//return Response(500, nil),nil
+	// TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
+	// return Response(500, nil),nil
 
 	return Response(http.StatusNotImplemented, nil), errors.New("HivesDelete method not implemented")
 }
@@ -184,14 +184,14 @@ func (s *DefaultApiService) HivesGet(ctx context.Context, epoch int64, secondsIn
 	// TODO - update HivesGet with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
-	//TODO: Uncomment the next line to return response Response(200, GetHivesResponse{}) or use other options such as http.Ok ...
-	//return Response(200, GetHivesResponse{}), nil
+	// TODO: Uncomment the next line to return response Response(200, GetHivesResponse{}) or use other options such as http.Ok ...
+	// return Response(200, GetHivesResponse{}), nil
 
-	//TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
-	//return Response(400, nil),nil
+	// TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
+	// return Response(400, nil),nil
 
-	//TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
-	//return Response(500, nil),nil
+	// TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
+	// return Response(500, nil),nil
 
 	return Response(http.StatusNotImplemented, nil), errors.New("HivesGet method not implemented")
 }
@@ -201,14 +201,14 @@ func (s *DefaultApiService) HivesPost(ctx context.Context, qToken string, token 
 	// TODO - update HivesPost with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
-	//TODO: Uncomment the next line to return response Response(200, PostHivesResponse{}) or use other options such as http.Ok ...
-	//return Response(200, PostHivesResponse{}), nil
+	// TODO: Uncomment the next line to return response Response(200, PostHivesResponse{}) or use other options such as http.Ok ...
+	// return Response(200, PostHivesResponse{}), nil
 
-	//TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
-	//return Response(400, nil),nil
+	// TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
+	// return Response(400, nil),nil
 
-	//TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
-	//return Response(500, nil),nil
+	// TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
+	// return Response(500, nil),nil
 
 	return Response(http.StatusNotImplemented, nil), errors.New("HivesPost method not implemented")
 }
@@ -218,14 +218,14 @@ func (s *DefaultApiService) HivesPut(ctx context.Context, qToken string, token s
 	// TODO - update HivesPut with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
-	//TODO: Uncomment the next line to return response Response(200, PutHiveResponse{}) or use other options such as http.Ok ...
-	//return Response(200, PutHiveResponse{}), nil
+	// TODO: Uncomment the next line to return response Response(200, PutHiveResponse{}) or use other options such as http.Ok ...
+	// return Response(200, PutHiveResponse{}), nil
 
-	//TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
-	//return Response(400, nil),nil
+	// TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
+	// return Response(400, nil),nil
 
-	//TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
-	//return Response(500, nil),nil
+	// TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
+	// return Response(500, nil),nil
 
 	return Response(http.StatusNotImplemented, nil), errors.New("HivesPut method not implemented")
 }
@@ -235,11 +235,11 @@ func (s *DefaultApiService) LoginPost(ctx context.Context, username string, pass
 	// TODO - update LoginPost with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
-	//TODO: Uncomment the next line to return response Response(200, LoginPostResponse{}) or use other options such as http.Ok ...
-	//return Response(200, LoginPostResponse{}), nil
+	// TODO: Uncomment the next line to return response Response(200, LoginPostResponse{}) or use other options such as http.Ok ...
+	// return Response(200, LoginPostResponse{}), nil
 
-	//TODO: Uncomment the next line to return response Response(400, string{}) or use other options such as http.Ok ...
-	//return Response(400, string{}), nil
+	// TODO: Uncomment the next line to return response Response(400, string{}) or use other options such as http.Ok ...
+	// return Response(400, string{}), nil
 
 	return Response(http.StatusNotImplemented, nil), errors.New("LoginPost method not implemented")
 }
@@ -250,14 +250,14 @@ func (s *DefaultApiService) ScaleGet(ctx context.Context, bhiveId string, epoch 
 	// TODO - update ScaleGet with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
-	//TODO: Uncomment the next line to return response Response(200, []Weight{}) or use other options such as http.Ok ...
-	//return Response(200, []Weight{}), nil
+	// TODO: Uncomment the next line to return response Response(200, []Weight{}) or use other options such as http.Ok ...
+	// return Response(200, []Weight{}), nil
 
-	//TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
-	//return Response(400, nil),nil
+	// TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
+	// return Response(400, nil),nil
 
-	//TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
-	//return Response(500, nil),nil
+	// TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
+	// return Response(500, nil),nil
 
 	return Response(http.StatusNotImplemented, nil), errors.New("ScaleGet method not implemented")
 }
@@ -267,14 +267,14 @@ func (s *DefaultApiService) ScaleGetV2(ctx context.Context, epoch int64, seconds
 	// TODO - update ScaleGetV2 with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
-	//TODO: Uncomment the next line to return response Response(200, ScaleV2Response{}) or use other options such as http.Ok ...
-	//return Response(200, ScaleV2Response{}), nil
+	// TODO: Uncomment the next line to return response Response(200, ScaleV2Response{}) or use other options such as http.Ok ...
+	// return Response(200, ScaleV2Response{}), nil
 
-	//TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
-	//return Response(400, nil),nil
+	// TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
+	// return Response(400, nil),nil
 
-	//TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
-	//return Response(500, nil),nil
+	// TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
+	// return Response(500, nil),nil
 
 	return Response(http.StatusNotImplemented, nil), errors.New("ScaleGetV2 method not implemented")
 }
@@ -284,14 +284,14 @@ func (s *DefaultApiService) ScalePost(ctx context.Context, registrationId string
 	// TODO - update ScalePost with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
-	//TODO: Uncomment the next line to return response Response(200, GenericPostResponse{}) or use other options such as http.Ok ...
-	//return Response(200, GenericPostResponse{}), nil
+	// TODO: Uncomment the next line to return response Response(200, GenericPostResponse{}) or use other options such as http.Ok ...
+	// return Response(200, GenericPostResponse{}), nil
 
-	//TODO: Uncomment the next line to return response Response(400, GenericPostResponse{}) or use other options such as http.Ok ...
-	//return Response(400, GenericPostResponse{}), nil
+	// TODO: Uncomment the next line to return response Response(400, GenericPostResponse{}) or use other options such as http.Ok ...
+	// return Response(400, GenericPostResponse{}), nil
 
-	//TODO: Uncomment the next line to return response Response(500, GenericPostResponse{}) or use other options such as http.Ok ...
-	//return Response(500, GenericPostResponse{}), nil
+	// TODO: Uncomment the next line to return response Response(500, GenericPostResponse{}) or use other options such as http.Ok ...
+	// return Response(500, GenericPostResponse{}), nil
 
 	return Response(http.StatusNotImplemented, nil), errors.New("ScalePost method not implemented")
 }
@@ -301,14 +301,14 @@ func (s *DefaultApiService) ScalePostV2(ctx context.Context, registrationId stri
 	// TODO - update ScalePostV2 with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
-	//TODO: Uncomment the next line to return response Response(200, GenericPostResponse{}) or use other options such as http.Ok ...
-	//return Response(200, GenericPostResponse{}), nil
+	// TODO: Uncomment the next line to return response Response(200, GenericPostResponse{}) or use other options such as http.Ok ...
+	// return Response(200, GenericPostResponse{}), nil
 
-	//TODO: Uncomment the next line to return response Response(400, GenericPostResponse{}) or use other options such as http.Ok ...
-	//return Response(400, GenericPostResponse{}), nil
+	// TODO: Uncomment the next line to return response Response(400, GenericPostResponse{}) or use other options such as http.Ok ...
+	// return Response(400, GenericPostResponse{}), nil
 
-	//TODO: Uncomment the next line to return response Response(500, GenericPostResponse{}) or use other options such as http.Ok ...
-	//return Response(500, GenericPostResponse{}), nil
+	// TODO: Uncomment the next line to return response Response(500, GenericPostResponse{}) or use other options such as http.Ok ...
+	// return Response(500, GenericPostResponse{}), nil
 
 	return Response(http.StatusNotImplemented, nil), errors.New("ScalePostV2 method not implemented")
 }
@@ -318,14 +318,14 @@ func (s *DefaultApiService) StandsDelete(ctx context.Context, qToken string, uui
 	// TODO - update StandsDelete with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
-	//TODO: Uncomment the next line to return response Response(200, {}) or use other options such as http.Ok ...
-	//return Response(200, nil),nil
+	// TODO: Uncomment the next line to return response Response(200, {}) or use other options such as http.Ok ...
+	// return Response(200, nil),nil
 
-	//TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
-	//return Response(400, nil),nil
+	// TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
+	// return Response(400, nil),nil
 
-	//TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
-	//return Response(500, nil),nil
+	// TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
+	// return Response(500, nil),nil
 
 	return Response(http.StatusNotImplemented, nil), errors.New("StandsDelete method not implemented")
 }
@@ -335,14 +335,14 @@ func (s *DefaultApiService) StandsGet(ctx context.Context, qToken string, epoch 
 	// TODO - update StandsGet with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
-	//TODO: Uncomment the next line to return response Response(200, GetStandsResponse{}) or use other options such as http.Ok ...
-	//return Response(200, GetStandsResponse{}), nil
+	// TODO: Uncomment the next line to return response Response(200, GetStandsResponse{}) or use other options such as http.Ok ...
+	// return Response(200, GetStandsResponse{}), nil
 
-	//TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
-	//return Response(400, nil),nil
+	// TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
+	// return Response(400, nil),nil
 
-	//TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
-	//return Response(500, nil),nil
+	// TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
+	// return Response(500, nil),nil
 
 	return Response(http.StatusNotImplemented, nil), errors.New("StandsGet method not implemented")
 }
@@ -352,14 +352,14 @@ func (s *DefaultApiService) StandsPost(ctx context.Context, qToken string, token
 	// TODO - update StandsPost with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
-	//TODO: Uncomment the next line to return response Response(201, PostStandsResponse{}) or use other options such as http.Ok ...
-	//return Response(201, PostStandsResponse{}), nil
+	// TODO: Uncomment the next line to return response Response(201, PostStandsResponse{}) or use other options such as http.Ok ...
+	// return Response(201, PostStandsResponse{}), nil
 
-	//TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
-	//return Response(400, nil),nil
+	// TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
+	// return Response(400, nil),nil
 
-	//TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
-	//return Response(500, nil),nil
+	// TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
+	// return Response(500, nil),nil
 
 	return Response(http.StatusNotImplemented, nil), errors.New("StandsPost method not implemented")
 }
@@ -369,14 +369,14 @@ func (s *DefaultApiService) StandsPut(ctx context.Context, qToken string, token 
 	// TODO - update StandsPut with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
-	//TODO: Uncomment the next line to return response Response(201, PutStandResponse{}) or use other options such as http.Ok ...
-	//return Response(201, PutStandResponse{}), nil
+	// TODO: Uncomment the next line to return response Response(201, PutStandResponse{}) or use other options such as http.Ok ...
+	// return Response(201, PutStandResponse{}), nil
 
-	//TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
-	//return Response(400, nil),nil
+	// TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
+	// return Response(400, nil),nil
 
-	//TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
-	//return Response(500, nil),nil
+	// TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
+	// return Response(500, nil),nil
 
 	return Response(http.StatusNotImplemented, nil), errors.New("StandsPut method not implemented")
 }
@@ -386,14 +386,14 @@ func (s *DefaultApiService) TelemetryGet(ctx context.Context, epoch int64, secon
 	// TODO - update TelemetryGet with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
-	//TODO: Uncomment the next line to return response Response(200, TelemetryResponse{}) or use other options such as http.Ok ...
-	//return Response(200, TelemetryResponse{}), nil
+	// TODO: Uncomment the next line to return response Response(200, TelemetryResponse{}) or use other options such as http.Ok ...
+	// return Response(200, TelemetryResponse{}), nil
 
-	//TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
-	//return Response(400, nil),nil
+	// TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
+	// return Response(400, nil),nil
 
-	//TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
-	//return Response(500, nil),nil
+	// TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
+	// return Response(500, nil),nil
 
 	return Response(http.StatusNotImplemented, nil), errors.New("TelemetryGet method not implemented")
 }
@@ -403,14 +403,14 @@ func (s *DefaultApiService) TelemetryPost(ctx context.Context, registrationId st
 	// TODO - update TelemetryPost with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
-	//TODO: Uncomment the next line to return response Response(200, GenericPostResponse{}) or use other options such as http.Ok ...
-	//return Response(200, GenericPostResponse{}), nil
+	// TODO: Uncomment the next line to return response Response(200, GenericPostResponse{}) or use other options such as http.Ok ...
+	// return Response(200, GenericPostResponse{}), nil
 
-	//TODO: Uncomment the next line to return response Response(400, GenericPostResponse{}) or use other options such as http.Ok ...
-	//return Response(400, GenericPostResponse{}), nil
+	// TODO: Uncomment the next line to return response Response(400, GenericPostResponse{}) or use other options such as http.Ok ...
+	// return Response(400, GenericPostResponse{}), nil
 
-	//TODO: Uncomment the next line to return response Response(500, GenericPostResponse{}) or use other options such as http.Ok ...
-	//return Response(500, GenericPostResponse{}), nil
+	// TODO: Uncomment the next line to return response Response(500, GenericPostResponse{}) or use other options such as http.Ok ...
+	// return Response(500, GenericPostResponse{}), nil
 
 	return Response(http.StatusNotImplemented, nil), errors.New("TelemetryPost method not implemented")
 }
@@ -420,14 +420,14 @@ func (s *DefaultApiService) TemperatureGet(ctx context.Context, qToken string, b
 	// TODO - update TemperatureGet with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
-	//TODO: Uncomment the next line to return response Response(200, GetTemperatureResponse{}) or use other options such as http.Ok ...
-	//return Response(200, GetTemperatureResponse{}), nil
+	// TODO: Uncomment the next line to return response Response(200, GetTemperatureResponse{}) or use other options such as http.Ok ...
+	// return Response(200, GetTemperatureResponse{}), nil
 
-	//TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
-	//return Response(400, nil),nil
+	// TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
+	// return Response(400, nil),nil
 
-	//TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
-	//return Response(500, nil),nil
+	// TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
+	// return Response(500, nil),nil
 
 	return Response(http.StatusNotImplemented, nil), errors.New("TemperatureGet method not implemented")
 }
@@ -437,14 +437,14 @@ func (s *DefaultApiService) TemperaturePost(ctx context.Context, userId int64, t
 	// TODO - update TemperaturePost with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
-	//TODO: Uncomment the next line to return response Response(200, GenericPostResponse{}) or use other options such as http.Ok ...
-	//return Response(200, GenericPostResponse{}), nil
+	// TODO: Uncomment the next line to return response Response(200, GenericPostResponse{}) or use other options such as http.Ok ...
+	// return Response(200, GenericPostResponse{}), nil
 
-	//TODO: Uncomment the next line to return response Response(400, GenericPostResponse{}) or use other options such as http.Ok ...
-	//return Response(400, GenericPostResponse{}), nil
+	// TODO: Uncomment the next line to return response Response(400, GenericPostResponse{}) or use other options such as http.Ok ...
+	// return Response(400, GenericPostResponse{}), nil
 
-	//TODO: Uncomment the next line to return response Response(500, GenericPostResponse{}) or use other options such as http.Ok ...
-	//return Response(500, GenericPostResponse{}), nil
+	// TODO: Uncomment the next line to return response Response(500, GenericPostResponse{}) or use other options such as http.Ok ...
+	// return Response(500, GenericPostResponse{}), nil
 
 	return Response(http.StatusNotImplemented, nil), errors.New("TemperaturePost method not implemented")
 }
@@ -454,11 +454,11 @@ func (s *DefaultApiService) UserPost(ctx context.Context, user User) (ImplRespon
 	// TODO - update UserPost with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
-	//TODO: Uncomment the next line to return response Response(200, {}) or use other options such as http.Ok ...
-	//return Response(200, nil),nil
+	// TODO: Uncomment the next line to return response Response(200, {}) or use other options such as http.Ok ...
+	// return Response(200, nil),nil
 
-	//TODO: Uncomment the next line to return response Response(400, string{}) or use other options such as http.Ok ...
-	//return Response(400, string{}), nil
+	// TODO: Uncomment the next line to return response Response(400, string{}) or use other options such as http.Ok ...
+	// return Response(400, string{}), nil
 
 	return Response(http.StatusNotImplemented, nil), errors.New("UserPost method not implemented")
 }
@@ -468,14 +468,14 @@ func (s *DefaultApiService) VarroaScanGet(ctx context.Context, qToken string, to
 	// TODO - update VarroaScanGet with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
-	//TODO: Uncomment the next line to return response Response(200, VarroaScanResponse{}) or use other options such as http.Ok ...
-	//return Response(200, VarroaScanResponse{}), nil
+	// TODO: Uncomment the next line to return response Response(200, VarroaScanResponse{}) or use other options such as http.Ok ...
+	// return Response(200, VarroaScanResponse{}), nil
 
-	//TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
-	//return Response(400, nil),nil
+	// TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
+	// return Response(400, nil),nil
 
-	//TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
-	//return Response(500, nil),nil
+	// TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
+	// return Response(500, nil),nil
 
 	return Response(http.StatusNotImplemented, nil), errors.New("VarroaScanGet method not implemented")
 }
@@ -485,14 +485,14 @@ func (s *DefaultApiService) VarroaScanImageAssociate(ctx context.Context, varroa
 	// TODO - update VarroaScanImageAssociate with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
-	//TODO: Uncomment the next line to return response Response(200, GenericPostResponse{}) or use other options such as http.Ok ...
-	//return Response(200, GenericPostResponse{}), nil
+	// TODO: Uncomment the next line to return response Response(200, GenericPostResponse{}) or use other options such as http.Ok ...
+	// return Response(200, GenericPostResponse{}), nil
 
-	//TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
-	//return Response(400, nil),nil
+	// TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
+	// return Response(400, nil),nil
 
-	//TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
-	//return Response(500, nil),nil
+	// TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
+	// return Response(500, nil),nil
 
 	return Response(http.StatusNotImplemented, nil), errors.New("VarroaScanImageAssociate method not implemented")
 }
@@ -502,14 +502,14 @@ func (s *DefaultApiService) VarroaScanImagePost(ctx context.Context, qToken stri
 	// TODO - update VarroaScanImagePost with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
-	//TODO: Uncomment the next line to return response Response(200, {}) or use other options such as http.Ok ...
-	//return Response(200, nil),nil
+	// TODO: Uncomment the next line to return response Response(200, {}) or use other options such as http.Ok ...
+	// return Response(200, nil),nil
 
-	//TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
-	//return Response(400, nil),nil
+	// TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
+	// return Response(400, nil),nil
 
-	//TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
-	//return Response(500, nil),nil
+	// TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
+	// return Response(500, nil),nil
 
 	return Response(http.StatusNotImplemented, nil), errors.New("VarroaScanImagePost method not implemented")
 }
@@ -519,14 +519,14 @@ func (s *DefaultApiService) VarroaScanPost(ctx context.Context, userId int64, va
 	// TODO - update VarroaScanPost with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
-	//TODO: Uncomment the next line to return response Response(200, {}) or use other options such as http.Ok ...
-	//return Response(200, nil),nil
+	// TODO: Uncomment the next line to return response Response(200, {}) or use other options such as http.Ok ...
+	// return Response(200, nil),nil
 
-	//TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
-	//return Response(400, nil),nil
+	// TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
+	// return Response(400, nil),nil
 
-	//TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
-	//return Response(500, nil),nil
+	// TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
+	// return Response(500, nil),nil
 
 	return Response(http.StatusNotImplemented, nil), errors.New("VarroaScanPost method not implemented")
 }

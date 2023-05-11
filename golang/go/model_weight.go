@@ -25,15 +25,3 @@ type Weight struct {
 func AssertWeightRequired(obj Weight) error {
 	return nil
 }
-
-// AssertRecurseWeightRequired recursively checks if required fields are not zero-ed in a nested slice.
-// Accepts only nested slice of Weight (e.g. [][]Weight), otherwise ErrTypeAssertionError is thrown.
-func AssertRecurseWeightRequired(objSlice interface{}) error {
-	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
-		aWeight, ok := obj.(Weight)
-		if !ok {
-			return ErrTypeAssertionError
-		}
-		return AssertWeightRequired(aWeight)
-	})
-}

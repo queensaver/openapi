@@ -26,15 +26,3 @@ func AssertVarroaScanResponseRequired(obj VarroaScanResponse) error {
 	}
 	return nil
 }
-
-// AssertRecurseVarroaScanResponseRequired recursively checks if required fields are not zero-ed in a nested slice.
-// Accepts only nested slice of VarroaScanResponse (e.g. [][]VarroaScanResponse), otherwise ErrTypeAssertionError is thrown.
-func AssertRecurseVarroaScanResponseRequired(objSlice interface{}) error {
-	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
-		aVarroaScanResponse, ok := obj.(VarroaScanResponse)
-		if !ok {
-			return ErrTypeAssertionError
-		}
-		return AssertVarroaScanResponseRequired(aVarroaScanResponse)
-	})
-}

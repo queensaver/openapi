@@ -25,15 +25,3 @@ type ScaleV2 struct {
 func AssertScaleV2Required(obj ScaleV2) error {
 	return nil
 }
-
-// AssertRecurseScaleV2Required recursively checks if required fields are not zero-ed in a nested slice.
-// Accepts only nested slice of ScaleV2 (e.g. [][]ScaleV2), otherwise ErrTypeAssertionError is thrown.
-func AssertRecurseScaleV2Required(objSlice interface{}) error {
-	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
-		aScaleV2, ok := obj.(ScaleV2)
-		if !ok {
-			return ErrTypeAssertionError
-		}
-		return AssertScaleV2Required(aScaleV2)
-	})
-}

@@ -22,15 +22,3 @@ type LoginPostResponse struct {
 func AssertLoginPostResponseRequired(obj LoginPostResponse) error {
 	return nil
 }
-
-// AssertRecurseLoginPostResponseRequired recursively checks if required fields are not zero-ed in a nested slice.
-// Accepts only nested slice of LoginPostResponse (e.g. [][]LoginPostResponse), otherwise ErrTypeAssertionError is thrown.
-func AssertRecurseLoginPostResponseRequired(objSlice interface{}) error {
-	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
-		aLoginPostResponse, ok := obj.(LoginPostResponse)
-		if !ok {
-			return ErrTypeAssertionError
-		}
-		return AssertLoginPostResponseRequired(aLoginPostResponse)
-	})
-}

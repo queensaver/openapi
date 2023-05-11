@@ -54,15 +54,3 @@ func AssertStandRequired(obj Stand) error {
 	}
 	return nil
 }
-
-// AssertRecurseStandRequired recursively checks if required fields are not zero-ed in a nested slice.
-// Accepts only nested slice of Stand (e.g. [][]Stand), otherwise ErrTypeAssertionError is thrown.
-func AssertRecurseStandRequired(objSlice interface{}) error {
-	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
-		aStand, ok := obj.(Stand)
-		if !ok {
-			return ErrTypeAssertionError
-		}
-		return AssertStandRequired(aStand)
-	})
-}

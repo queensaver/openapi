@@ -1150,7 +1150,7 @@ ul.nav-tabs {
     "bboxId" : {
       "maxLength" : 256,
       "type" : "string",
-      "description" : "The ID of beehive electronics (bbox).",
+      "description" : "The ID of beehive electronics (bbox) - deprecated. Use the configUuid instead.",
       "example" : "829898a53801",
       "x-protobuf-index" : 10
     },
@@ -1172,6 +1172,13 @@ ul.nav-tabs {
       "description" : "if set to true, the hive has been deleted at this epoch.",
       "example" : true,
       "x-protobuf-index" : 13
+    },
+    "configUuid" : {
+      "maxLength" : 256,
+      "type" : "string",
+      "description" : "The uuid of beehive electronics (bbox).",
+      "example" : "5F71DCE6-F22A-4E05-B011-5B91D3912332",
+      "x-protobuf-index" : 14
     }
   }
 };

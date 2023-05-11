@@ -43,15 +43,3 @@ type Telemetry struct {
 func AssertTelemetryRequired(obj Telemetry) error {
 	return nil
 }
-
-// AssertRecurseTelemetryRequired recursively checks if required fields are not zero-ed in a nested slice.
-// Accepts only nested slice of Telemetry (e.g. [][]Telemetry), otherwise ErrTypeAssertionError is thrown.
-func AssertRecurseTelemetryRequired(objSlice interface{}) error {
-	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
-		aTelemetry, ok := obj.(Telemetry)
-		if !ok {
-			return ErrTypeAssertionError
-		}
-		return AssertTelemetryRequired(aTelemetry)
-	})
-}

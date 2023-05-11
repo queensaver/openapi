@@ -25,15 +25,3 @@ type Bhive struct {
 func AssertBhiveRequired(obj Bhive) error {
 	return nil
 }
-
-// AssertRecurseBhiveRequired recursively checks if required fields are not zero-ed in a nested slice.
-// Accepts only nested slice of Bhive (e.g. [][]Bhive), otherwise ErrTypeAssertionError is thrown.
-func AssertRecurseBhiveRequired(objSlice interface{}) error {
-	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
-		aBhive, ok := obj.(Bhive)
-		if !ok {
-			return ErrTypeAssertionError
-		}
-		return AssertBhiveRequired(aBhive)
-	})
-}

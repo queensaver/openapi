@@ -24,15 +24,3 @@ func AssertPutStandResponseRequired(obj PutStandResponse) error {
 	}
 	return nil
 }
-
-// AssertRecursePutStandResponseRequired recursively checks if required fields are not zero-ed in a nested slice.
-// Accepts only nested slice of PutStandResponse (e.g. [][]PutStandResponse), otherwise ErrTypeAssertionError is thrown.
-func AssertRecursePutStandResponseRequired(objSlice interface{}) error {
-	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
-		aPutStandResponse, ok := obj.(PutStandResponse)
-		if !ok {
-			return ErrTypeAssertionError
-		}
-		return AssertPutStandResponseRequired(aPutStandResponse)
-	})
-}

@@ -37,7 +37,7 @@ type Hive struct {
 
 	Alerts []Alerts `json:"alerts,omitempty"`
 
-	// The ID of beehive electronics (bbox).
+	// The ID of beehive electronics (bbox) - deprecated. Use the configUuid instead.
 	BboxId string `json:"bboxId,omitempty"`
 
 	// HTTP response code. Used for internal purposes, will be let out at the API level.
@@ -48,6 +48,9 @@ type Hive struct {
 
 	// if set to true, the hive has been deleted at this epoch.
 	Deleted bool `json:"deleted,omitempty"`
+
+	// The uuid of beehive electronics (bbox).
+	ConfigUuid string `json:"configUuid,omitempty"`
 }
 
 // AssertHiveRequired checks if the required fields are not zero-ed
@@ -68,16 +71,4 @@ func AssertHiveRequired(obj Hive) error {
 		}
 	}
 	return nil
-}
-
-// AssertRecurseHiveRequired recursively checks if required fields are not zero-ed in a nested slice.
-// Accepts only nested slice of Hive (e.g. [][]Hive), otherwise ErrTypeAssertionError is thrown.
-func AssertRecurseHiveRequired(objSlice interface{}) error {
-	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
-		aHive, ok := obj.(Hive)
-		if !ok {
-			return ErrTypeAssertionError
-		}
-		return AssertHiveRequired(aHive)
-	})
 }

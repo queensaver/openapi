@@ -1988,6 +1988,7 @@ components:
           format: Dadant
           epoch: 1639170002
           uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+          configUuid: 5F71DCE6-F22A-4E05-B011-5B91D3912332
           capacity: 10
           standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
           alerts:
@@ -2017,6 +2018,7 @@ components:
           format: Dadant
           epoch: 1639170002
           uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+          configUuid: 5F71DCE6-F22A-4E05-B011-5B91D3912332
           capacity: 10
           standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
           alerts:
@@ -2160,6 +2162,7 @@ components:
             format: Dadant
             epoch: 1639170002
             uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+            configUuid: 5F71DCE6-F22A-4E05-B011-5B91D3912332
             capacity: 10
             standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
             alerts:
@@ -2175,6 +2178,7 @@ components:
             format: Dadant
             epoch: 1639170002
             uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+            configUuid: 5F71DCE6-F22A-4E05-B011-5B91D3912332
             capacity: 10
             standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
             alerts:
@@ -2212,6 +2216,7 @@ components:
             format: Dadant
             epoch: 1639170002
             uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+            configUuid: 5F71DCE6-F22A-4E05-B011-5B91D3912332
             capacity: 10
             standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
             alerts:
@@ -2227,6 +2232,7 @@ components:
             format: Dadant
             epoch: 1639170002
             uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+            configUuid: 5F71DCE6-F22A-4E05-B011-5B91D3912332
             capacity: 10
             standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
             alerts:
@@ -2263,6 +2269,7 @@ components:
             format: Dadant
             epoch: 1639170002
             uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+            configUuid: 5F71DCE6-F22A-4E05-B011-5B91D3912332
             capacity: 10
             standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
             alerts:
@@ -2278,6 +2285,7 @@ components:
             format: Dadant
             epoch: 1639170002
             uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+            configUuid: 5F71DCE6-F22A-4E05-B011-5B91D3912332
             capacity: 10
             standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
             alerts:
@@ -2301,6 +2309,7 @@ components:
             format: Dadant
             epoch: 1639170002
             uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+            configUuid: 5F71DCE6-F22A-4E05-B011-5B91D3912332
             capacity: 10
             standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
             alerts:
@@ -2316,6 +2325,7 @@ components:
             format: Dadant
             epoch: 1639170002
             uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+            configUuid: 5F71DCE6-F22A-4E05-B011-5B91D3912332
             capacity: 10
             standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
             alerts:
@@ -2352,6 +2362,7 @@ components:
           format: Dadant
           epoch: 1639170002
           uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+          configUuid: 5F71DCE6-F22A-4E05-B011-5B91D3912332
           capacity: 10
           standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
           alerts:
@@ -2367,6 +2378,7 @@ components:
           format: Dadant
           epoch: 1639170002
           uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+          configUuid: 5F71DCE6-F22A-4E05-B011-5B91D3912332
           capacity: 10
           standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
           alerts:
@@ -2693,6 +2705,7 @@ components:
           format: Dadant
           epoch: 1639170002
           uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+          configUuid: 5F71DCE6-F22A-4E05-B011-5B91D3912332
           capacity: 10
           standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
           alerts:
@@ -2708,6 +2721,7 @@ components:
           format: Dadant
           epoch: 1639170002
           uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+          configUuid: 5F71DCE6-F22A-4E05-B011-5B91D3912332
           capacity: 10
           standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
           alerts:
@@ -2798,6 +2812,7 @@ components:
         format: Dadant
         epoch: 1639170002
         uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+        configUuid: 5F71DCE6-F22A-4E05-B011-5B91D3912332
         capacity: 10
         standUuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
         alerts:
@@ -2863,7 +2878,8 @@ components:
           type: array
           x-protobuf-index: 9
         bboxId:
-          description: The ID of beehive electronics (bbox).
+          description: The ID of beehive electronics (bbox) - deprecated. Use the
+            configUuid instead.
           example: 829898a53801
           maxLength: 256
           type: string
@@ -2886,6 +2902,12 @@ components:
           example: true
           type: boolean
           x-protobuf-index: 13
+        configUuid:
+          description: The uuid of beehive electronics (bbox).
+          example: 5F71DCE6-F22A-4E05-B011-5B91D3912332
+          maxLength: 256
+          type: string
+          x-protobuf-index: 14
       required:
       - name
       - standUuid

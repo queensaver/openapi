@@ -47,7 +47,7 @@ export interface Hive {
     frames?: number;
     alerts?: Array<Alerts>;
     /**
-     * The ID of beehive electronics (bbox).
+     * The ID of beehive electronics (bbox) - deprecated. Use the configUuid instead.
      */
     bboxId?: string;
     /**
@@ -62,6 +62,10 @@ export interface Hive {
      * if set to true, the hive has been deleted at this epoch.
      */
     deleted?: boolean;
+    /**
+     * The uuid of beehive electronics (bbox).
+     */
+    configUuid?: string;
 }
 export namespace Hive {
     export type FormatEnum = 'Zander' | 'Dadant';

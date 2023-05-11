@@ -36,15 +36,3 @@ func AssertTemperatureRequired(obj Temperature) error {
 
 	return nil
 }
-
-// AssertRecurseTemperatureRequired recursively checks if required fields are not zero-ed in a nested slice.
-// Accepts only nested slice of Temperature (e.g. [][]Temperature), otherwise ErrTypeAssertionError is thrown.
-func AssertRecurseTemperatureRequired(objSlice interface{}) error {
-	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
-		aTemperature, ok := obj.(Temperature)
-		if !ok {
-			return ErrTypeAssertionError
-		}
-		return AssertTemperatureRequired(aTemperature)
-	})
-}
