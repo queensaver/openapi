@@ -61,7 +61,7 @@ type DefaultApiRouter interface {
 type DefaultApiServicer interface { 
 	AuthenticateRegistrationIdPost(context.Context, RegistrationId) (ImplResponse, error)
 	BboxesGet(context.Context) (ImplResponse, error)
-	ConfigsBboxAssociatePost(context.Context, string, string, int64) (ImplResponse, error)
+	ConfigsBboxAssociatePost(context.Context, string, string, string, int64) (ImplResponse, error)
 	ConfigsBboxDelete(context.Context, string, string, string, int64) (ImplResponse, error)
 	ConfigsBboxGet(context.Context, string, string, string, int64) (ImplResponse, error)
 	ConfigsBboxPost(context.Context, string, string, int64, Bbox) (ImplResponse, error)

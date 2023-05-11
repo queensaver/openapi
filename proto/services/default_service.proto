@@ -114,12 +114,14 @@ message BboxesGetResponse {
 }
 
 message ConfigsBboxAssociatePostRequest {
-  // The Mac Address of the bBox.
-  string bboxId = 1;
+  // The uuid the device.
+  string configUuid = 1;
+  // The Mac Address of the bBox. Deprecated. use configUuid instead.
+  string bboxId = 2;
   // Unique Identifier for this hive
-  string hiveUuid = 2;
+  string hiveUuid = 3;
   // The UserID is set internally and can not set or be overridden with the API request. Please ignore.
-  int64 userId = 3;
+  int64 userId = 4;
 
 }
 

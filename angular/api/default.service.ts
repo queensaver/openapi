@@ -289,16 +289,20 @@ export class DefaultService {
     /**
      * associate bbox and its sensors to a logical hive
      * This connects a bbox with a hive so all telemetry data will be associate with the hive. If the hiveUuid is empty, we disassociate that bhive (it\&#39;s no longer connected to any hives)
-     * @param bboxId The Mac Address of the bBox.
+     * @param configUuid The uuid the device.
+     * @param bboxId The Mac Address of the bBox. Deprecated. use configUuid instead.
      * @param hiveUuid Unique Identifier for this hive
      * @param userId The UserID is set internally and can not set or be overridden with the API request. Please ignore.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public configsBboxAssociatePost(bboxId: string, hiveUuid: string, userId?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<GenericPostResponse>;
-    public configsBboxAssociatePost(bboxId: string, hiveUuid: string, userId?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<GenericPostResponse>>;
-    public configsBboxAssociatePost(bboxId: string, hiveUuid: string, userId?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<GenericPostResponse>>;
-    public configsBboxAssociatePost(bboxId: string, hiveUuid: string, userId?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+    public configsBboxAssociatePost(configUuid: string, bboxId: string, hiveUuid: string, userId?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<GenericPostResponse>;
+    public configsBboxAssociatePost(configUuid: string, bboxId: string, hiveUuid: string, userId?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<GenericPostResponse>>;
+    public configsBboxAssociatePost(configUuid: string, bboxId: string, hiveUuid: string, userId?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<GenericPostResponse>>;
+    public configsBboxAssociatePost(configUuid: string, bboxId: string, hiveUuid: string, userId?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+        if (configUuid === null || configUuid === undefined) {
+            throw new Error('Required parameter configUuid was null or undefined when calling configsBboxAssociatePost.');
+        }
         if (bboxId === null || bboxId === undefined) {
             throw new Error('Required parameter bboxId was null or undefined when calling configsBboxAssociatePost.');
         }
@@ -310,6 +314,10 @@ export class DefaultService {
         if (userId !== undefined && userId !== null) {
           localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
             <any>userId, 'userId');
+        }
+        if (configUuid !== undefined && configUuid !== null) {
+          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+            <any>configUuid, 'configUuid');
         }
         if (bboxId !== undefined && bboxId !== null) {
           localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,

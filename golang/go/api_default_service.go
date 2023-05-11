@@ -61,7 +61,7 @@ func (s *DefaultApiService) BboxesGet(ctx context.Context) (ImplResponse, error)
 }
 
 // ConfigsBboxAssociatePost - associate bbox and its sensors to a logical hive
-func (s *DefaultApiService) ConfigsBboxAssociatePost(ctx context.Context, bboxId string, hiveUuid string, userId int64) (ImplResponse, error) {
+func (s *DefaultApiService) ConfigsBboxAssociatePost(ctx context.Context, configUuid string, bboxId string, hiveUuid string, userId int64) (ImplResponse, error) {
 	// TODO - update ConfigsBboxAssociatePost with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 

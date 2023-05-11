@@ -339,9 +339,16 @@ paths:
         schema:
           type: integer
           format: int64
+      - name: configUuid
+        in: query
+        description: The uuid the device.
+        required: true
+        example: e157989c-a435-432b-9826-70a06f192fb5
+        schema:
+          type: string
       - name: bboxId
         in: query
-        description: The Mac Address of the bBox.
+        description: The Mac Address of the bBox. Deprecated. use configUuid instead.
         required: true
         example: 829898a53801
         schema:
