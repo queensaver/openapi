@@ -46,7 +46,7 @@ type DefaultServiceClient interface {
 	StandsPost(ctx context.Context, in *StandsPostRequest, opts ...grpc.CallOption) (*models.PostStandsResponse, error)
 	StandsPut(ctx context.Context, in *StandsPutRequest, opts ...grpc.CallOption) (*models.PutStandResponse, error)
 	TelemetryGet(ctx context.Context, in *TelemetryGetRequest, opts ...grpc.CallOption) (*models.TelemetryResponse, error)
-	TelemetryPost(ctx context.Context, in *TelemetryPostRequest, opts ...grpc.CallOption) (*models.GenericPostResponse, error)
+	TelemetryPost(ctx context.Context, in *TelemetryPostRequest, opts ...grpc.CallOption) (*models.BboxConfigResponse, error)
 	TemperatureGet(ctx context.Context, in *TemperatureGetRequest, opts ...grpc.CallOption) (*models.GetTemperatureResponse, error)
 	TemperaturePost(ctx context.Context, in *TemperaturePostRequest, opts ...grpc.CallOption) (*models.GenericPostResponse, error)
 	UserPost(ctx context.Context, in *UserPostRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -262,8 +262,8 @@ func (c *defaultServiceClient) TelemetryGet(ctx context.Context, in *TelemetryGe
 	return out, nil
 }
 
-func (c *defaultServiceClient) TelemetryPost(ctx context.Context, in *TelemetryPostRequest, opts ...grpc.CallOption) (*models.GenericPostResponse, error) {
-	out := new(models.GenericPostResponse)
+func (c *defaultServiceClient) TelemetryPost(ctx context.Context, in *TelemetryPostRequest, opts ...grpc.CallOption) (*models.BboxConfigResponse, error) {
+	out := new(models.BboxConfigResponse)
 	err := c.cc.Invoke(ctx, "/openapi.services.defaultservice.DefaultService/TelemetryPost", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -360,7 +360,7 @@ type DefaultServiceServer interface {
 	StandsPost(context.Context, *StandsPostRequest) (*models.PostStandsResponse, error)
 	StandsPut(context.Context, *StandsPutRequest) (*models.PutStandResponse, error)
 	TelemetryGet(context.Context, *TelemetryGetRequest) (*models.TelemetryResponse, error)
-	TelemetryPost(context.Context, *TelemetryPostRequest) (*models.GenericPostResponse, error)
+	TelemetryPost(context.Context, *TelemetryPostRequest) (*models.BboxConfigResponse, error)
 	TemperatureGet(context.Context, *TemperatureGetRequest) (*models.GetTemperatureResponse, error)
 	TemperaturePost(context.Context, *TemperaturePostRequest) (*models.GenericPostResponse, error)
 	UserPost(context.Context, *UserPostRequest) (*emptypb.Empty, error)
@@ -441,7 +441,7 @@ func (UnimplementedDefaultServiceServer) StandsPut(context.Context, *StandsPutRe
 func (UnimplementedDefaultServiceServer) TelemetryGet(context.Context, *TelemetryGetRequest) (*models.TelemetryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TelemetryGet not implemented")
 }
-func (UnimplementedDefaultServiceServer) TelemetryPost(context.Context, *TelemetryPostRequest) (*models.GenericPostResponse, error) {
+func (UnimplementedDefaultServiceServer) TelemetryPost(context.Context, *TelemetryPostRequest) (*models.BboxConfigResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TelemetryPost not implemented")
 }
 func (UnimplementedDefaultServiceServer) TemperatureGet(context.Context, *TemperatureGetRequest) (*models.GetTemperatureResponse, error) {
