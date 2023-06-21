@@ -42,4 +42,7 @@ message Telemetry {
   // latitude of the system
   float la = 9;
 
+  // Humidity in percent
+  float h = 10;
+
 }

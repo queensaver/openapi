@@ -9,12 +9,26 @@
 
 package openapi
 
+
+import (
+	"encoding/json"
+)
+
+
+
 type GetTemperatureResponse struct {
 
 	Temperatures []Temperature `json:"temperatures,omitempty"`
 
 	// HTTP response code. Used for internal purposes, will be sent out at the API.
 	HttpResponseCode int32 `json:"httpResponseCode,omitempty"`
+}
+
+// UnmarshalJSON sets *m to a copy of data while respecting defaults if specified.
+func (m *GetTemperatureResponse) UnmarshalJSON(data []byte) error {
+
+	type Alias GetTemperatureResponse // To avoid infinite recursion
+    return json.Unmarshal(data, (*Alias)(m))
 }
 
 // AssertGetTemperatureResponseRequired checks if the required fields are not zero-ed
@@ -24,5 +38,10 @@ func AssertGetTemperatureResponseRequired(obj GetTemperatureResponse) error {
 			return err
 		}
 	}
+	return nil
+}
+
+// AssertGetTemperatureResponseConstraints checks if the values respects the defined constraints
+func AssertGetTemperatureResponseConstraints(obj GetTemperatureResponse) error {
 	return nil
 }

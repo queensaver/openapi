@@ -940,7 +940,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/generic-post-response"
+                $ref: "#/components/schemas/bbox-config-response"
         "400":
           description: "Generic Response object"
           content:
@@ -1930,7 +1930,12 @@ components:
           description: "latitude of the system"
           example: "-45.136822"
           x-protobuf-index: 9
-
+        h:
+          type: number
+          format: float
+          description: "Humidity in percent"
+          example: 12.2345
+          x-protobuf-index: 10
 
 
 

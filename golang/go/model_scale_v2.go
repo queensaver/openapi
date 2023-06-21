@@ -9,6 +9,13 @@
 
 package openapi
 
+
+import (
+	"encoding/json"
+)
+
+
+
 type ScaleV2 struct {
 
 	// The mac address of the scale
@@ -21,7 +28,19 @@ type ScaleV2 struct {
 	Epoch int64 `json:"epoch,omitempty"`
 }
 
+// UnmarshalJSON sets *m to a copy of data while respecting defaults if specified.
+func (m *ScaleV2) UnmarshalJSON(data []byte) error {
+
+	type Alias ScaleV2 // To avoid infinite recursion
+    return json.Unmarshal(data, (*Alias)(m))
+}
+
 // AssertScaleV2Required checks if the required fields are not zero-ed
 func AssertScaleV2Required(obj ScaleV2) error {
+	return nil
+}
+
+// AssertScaleV2Constraints checks if the values respects the defined constraints
+func AssertScaleV2Constraints(obj ScaleV2) error {
 	return nil
 }

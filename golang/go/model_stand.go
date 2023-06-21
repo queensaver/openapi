@@ -9,6 +9,13 @@
 
 package openapi
 
+
+import (
+	"encoding/json"
+)
+
+
+
 type Stand struct {
 
 	// A stand can have many hives. However, when sending POST or PUT requests you can only update the stand metadata, any hives attached to this array will be ignored. You will have to do the /hives API call instead to create / update hives with the correct stand UUID. This array will only be populated with GET requests.
@@ -36,6 +43,13 @@ type Stand struct {
 	Deleted bool `json:"deleted,omitempty"`
 }
 
+// UnmarshalJSON sets *m to a copy of data while respecting defaults if specified.
+func (m *Stand) UnmarshalJSON(data []byte) error {
+
+	type Alias Stand // To avoid infinite recursion
+    return json.Unmarshal(data, (*Alias)(m))
+}
+
 // AssertStandRequired checks if the required fields are not zero-ed
 func AssertStandRequired(obj Stand) error {
 	elements := map[string]interface{}{
@@ -52,5 +66,10 @@ func AssertStandRequired(obj Stand) error {
 			return err
 		}
 	}
+	return nil
+}
+
+// AssertStandConstraints checks if the values respects the defined constraints
+func AssertStandConstraints(obj Stand) error {
 	return nil
 }

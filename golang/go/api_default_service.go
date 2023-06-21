@@ -15,19 +15,19 @@ import (
 	"errors"
 )
 
-// DefaultApiService is a service that implements the logic for the DefaultApiServicer
-// This service should implement the business logic for every endpoint for the DefaultApi API.
+// DefaultAPIService is a service that implements the logic for the DefaultAPIServicer
+// This service should implement the business logic for every endpoint for the DefaultAPI API.
 // Include any external packages or services that will be required by this service.
-type DefaultApiService struct {
+type DefaultAPIService struct {
 }
 
-// NewDefaultApiService creates a default api service
-func NewDefaultApiService() DefaultApiServicer {
-	return &DefaultApiService{}
+// NewDefaultAPIService creates a default api service
+func NewDefaultAPIService() DefaultAPIServicer {
+	return &DefaultAPIService{}
 }
 
 // AuthenticateRegistrationIdPost - authenticate against the internal authentication service with a registrationId.
-func (s *DefaultApiService) AuthenticateRegistrationIdPost(ctx context.Context, registrationId RegistrationId) (ImplResponse, error) {
+func (s *DefaultAPIService) AuthenticateRegistrationIdPost(ctx context.Context, registrationId RegistrationId) (ImplResponse, error) {
 	// TODO - update AuthenticateRegistrationIdPost with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
@@ -44,7 +44,7 @@ func (s *DefaultApiService) AuthenticateRegistrationIdPost(ctx context.Context, 
 }
 
 // BboxesGet - Get QBox metadata
-func (s *DefaultApiService) BboxesGet(ctx context.Context) (ImplResponse, error) {
+func (s *DefaultAPIService) BboxesGet(ctx context.Context) (ImplResponse, error) {
 	// TODO - update BboxesGet with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
@@ -61,7 +61,7 @@ func (s *DefaultApiService) BboxesGet(ctx context.Context) (ImplResponse, error)
 }
 
 // ConfigsBboxAssociatePost - associate bbox and its sensors to a logical hive
-func (s *DefaultApiService) ConfigsBboxAssociatePost(ctx context.Context, configUuid string, bboxId string, hiveUuid string, userId int64) (ImplResponse, error) {
+func (s *DefaultAPIService) ConfigsBboxAssociatePost(ctx context.Context, configUuid string, bboxId string, hiveUuid string, userId int64) (ImplResponse, error) {
 	// TODO - update ConfigsBboxAssociatePost with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
@@ -78,7 +78,7 @@ func (s *DefaultApiService) ConfigsBboxAssociatePost(ctx context.Context, config
 }
 
 // ConfigsBboxDelete - Delete a bbox
-func (s *DefaultApiService) ConfigsBboxDelete(ctx context.Context, qToken string, uuid string, token string, userId int64) (ImplResponse, error) {
+func (s *DefaultAPIService) ConfigsBboxDelete(ctx context.Context, qToken string, uuid string, token string, userId int64) (ImplResponse, error) {
 	// TODO - update ConfigsBboxDelete with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
@@ -95,7 +95,7 @@ func (s *DefaultApiService) ConfigsBboxDelete(ctx context.Context, qToken string
 }
 
 // ConfigsBboxGet - Get Config metadata of bboxes
-func (s *DefaultApiService) ConfigsBboxGet(ctx context.Context, qToken string, token string, uuid string, userId int64) (ImplResponse, error) {
+func (s *DefaultAPIService) ConfigsBboxGet(ctx context.Context, qToken string, token string, uuid string, userId int64) (ImplResponse, error) {
 	// TODO - update ConfigsBboxGet with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
@@ -112,7 +112,7 @@ func (s *DefaultApiService) ConfigsBboxGet(ctx context.Context, qToken string, t
 }
 
 // ConfigsBboxPost - Create bbox
-func (s *DefaultApiService) ConfigsBboxPost(ctx context.Context, qToken string, token string, userId int64, bbox Bbox) (ImplResponse, error) {
+func (s *DefaultAPIService) ConfigsBboxPost(ctx context.Context, qToken string, token string, userId int64, bbox Bbox) (ImplResponse, error) {
 	// TODO - update ConfigsBboxPost with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
@@ -129,7 +129,7 @@ func (s *DefaultApiService) ConfigsBboxPost(ctx context.Context, qToken string, 
 }
 
 // ConfigsBboxPut - Update bbox metadata
-func (s *DefaultApiService) ConfigsBboxPut(ctx context.Context, qToken string, uuid string, token string, userId int64, bbox Bbox) (ImplResponse, error) {
+func (s *DefaultAPIService) ConfigsBboxPut(ctx context.Context, qToken string, uuid string, token string, userId int64, bbox Bbox) (ImplResponse, error) {
 	// TODO - update ConfigsBboxPut with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
@@ -146,7 +146,7 @@ func (s *DefaultApiService) ConfigsBboxPut(ctx context.Context, qToken string, u
 }
 
 // ConfigsBboxRegisterPost - register bbox
-func (s *DefaultApiService) ConfigsBboxRegisterPost(ctx context.Context, registrationId string, userId int64, bbox Bbox) (ImplResponse, error) {
+func (s *DefaultAPIService) ConfigsBboxRegisterPost(ctx context.Context, registrationId string, userId int64, bbox Bbox) (ImplResponse, error) {
 	// TODO - update ConfigsBboxRegisterPost with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
@@ -163,7 +163,7 @@ func (s *DefaultApiService) ConfigsBboxRegisterPost(ctx context.Context, registr
 }
 
 // HivesDelete - Delete a Hive
-func (s *DefaultApiService) HivesDelete(ctx context.Context, qToken string, uuid string, token string, userId int64) (ImplResponse, error) {
+func (s *DefaultAPIService) HivesDelete(ctx context.Context, qToken string, uuid string, token string, userId int64) (ImplResponse, error) {
 	// TODO - update HivesDelete with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
@@ -180,7 +180,7 @@ func (s *DefaultApiService) HivesDelete(ctx context.Context, qToken string, uuid
 }
 
 // HivesGet - Get Hive metadata
-func (s *DefaultApiService) HivesGet(ctx context.Context, epoch int64, secondsInThePast int64, uuid string, userId int64) (ImplResponse, error) {
+func (s *DefaultAPIService) HivesGet(ctx context.Context, epoch int64, secondsInThePast int64, uuid string, userId int64) (ImplResponse, error) {
 	// TODO - update HivesGet with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
@@ -197,7 +197,7 @@ func (s *DefaultApiService) HivesGet(ctx context.Context, epoch int64, secondsIn
 }
 
 // HivesPost - Create Hive metadata
-func (s *DefaultApiService) HivesPost(ctx context.Context, qToken string, token string, userId int64, hive Hive) (ImplResponse, error) {
+func (s *DefaultAPIService) HivesPost(ctx context.Context, qToken string, token string, userId int64, hive Hive) (ImplResponse, error) {
 	// TODO - update HivesPost with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
@@ -214,7 +214,7 @@ func (s *DefaultApiService) HivesPost(ctx context.Context, qToken string, token 
 }
 
 // HivesPut - Update Hive metadata
-func (s *DefaultApiService) HivesPut(ctx context.Context, qToken string, token string, userId int64, hive Hive) (ImplResponse, error) {
+func (s *DefaultAPIService) HivesPut(ctx context.Context, qToken string, token string, userId int64, hive Hive) (ImplResponse, error) {
 	// TODO - update HivesPut with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
@@ -231,7 +231,7 @@ func (s *DefaultApiService) HivesPut(ctx context.Context, qToken string, token s
 }
 
 // LoginPost - Authenticate a user against the system.
-func (s *DefaultApiService) LoginPost(ctx context.Context, username string, password string) (ImplResponse, error) {
+func (s *DefaultAPIService) LoginPost(ctx context.Context, username string, password string) (ImplResponse, error) {
 	// TODO - update LoginPost with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
@@ -246,7 +246,7 @@ func (s *DefaultApiService) LoginPost(ctx context.Context, username string, pass
 
 // ScaleGet - Get Scale values
 // Deprecated
-func (s *DefaultApiService) ScaleGet(ctx context.Context, bhiveId string, epoch int64, secondsInThePast int64, qToken string, token string) (ImplResponse, error) {
+func (s *DefaultAPIService) ScaleGet(ctx context.Context, bhiveId string, epoch int64, secondsInThePast int64, qToken string, token string) (ImplResponse, error) {
 	// TODO - update ScaleGet with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
@@ -263,7 +263,7 @@ func (s *DefaultApiService) ScaleGet(ctx context.Context, bhiveId string, epoch 
 }
 
 // ScaleGetV2 - Get Scale values
-func (s *DefaultApiService) ScaleGetV2(ctx context.Context, epoch int64, secondsInThePast int64, qToken string, token string, hiveUuid string, macAddress string, userId int64) (ImplResponse, error) {
+func (s *DefaultAPIService) ScaleGetV2(ctx context.Context, epoch int64, secondsInThePast int64, qToken string, token string, hiveUuid string, macAddress string, userId int64) (ImplResponse, error) {
 	// TODO - update ScaleGetV2 with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
@@ -280,7 +280,7 @@ func (s *DefaultApiService) ScaleGetV2(ctx context.Context, epoch int64, seconds
 }
 
 // ScalePost - Post Scale values
-func (s *DefaultApiService) ScalePost(ctx context.Context, registrationId string, qToken string, token string, userId int64, weight Weight) (ImplResponse, error) {
+func (s *DefaultAPIService) ScalePost(ctx context.Context, registrationId string, qToken string, token string, userId int64, weight Weight) (ImplResponse, error) {
 	// TODO - update ScalePost with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
@@ -297,7 +297,7 @@ func (s *DefaultApiService) ScalePost(ctx context.Context, registrationId string
 }
 
 // ScalePostV2 - Post Scale values
-func (s *DefaultApiService) ScalePostV2(ctx context.Context, registrationId string, userId int64, scaleV2 ScaleV2) (ImplResponse, error) {
+func (s *DefaultAPIService) ScalePostV2(ctx context.Context, registrationId string, userId int64, scaleV2 ScaleV2) (ImplResponse, error) {
 	// TODO - update ScalePostV2 with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
@@ -314,7 +314,7 @@ func (s *DefaultApiService) ScalePostV2(ctx context.Context, registrationId stri
 }
 
 // StandsDelete - Delete a stand
-func (s *DefaultApiService) StandsDelete(ctx context.Context, qToken string, uuid string, token string, userId int64) (ImplResponse, error) {
+func (s *DefaultAPIService) StandsDelete(ctx context.Context, qToken string, uuid string, token string, userId int64) (ImplResponse, error) {
 	// TODO - update StandsDelete with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
@@ -331,7 +331,7 @@ func (s *DefaultApiService) StandsDelete(ctx context.Context, qToken string, uui
 }
 
 // StandsGet - Get Stand metadata
-func (s *DefaultApiService) StandsGet(ctx context.Context, qToken string, epoch int64, secondsInThePast int64, token string, uuid string, userId int64) (ImplResponse, error) {
+func (s *DefaultAPIService) StandsGet(ctx context.Context, qToken string, epoch int64, secondsInThePast int64, token string, uuid string, userId int64) (ImplResponse, error) {
 	// TODO - update StandsGet with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
@@ -348,7 +348,7 @@ func (s *DefaultApiService) StandsGet(ctx context.Context, qToken string, epoch 
 }
 
 // StandsPost - Create stand metadata
-func (s *DefaultApiService) StandsPost(ctx context.Context, qToken string, token string, userId int64, stand Stand) (ImplResponse, error) {
+func (s *DefaultAPIService) StandsPost(ctx context.Context, qToken string, token string, userId int64, stand Stand) (ImplResponse, error) {
 	// TODO - update StandsPost with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
@@ -365,7 +365,7 @@ func (s *DefaultApiService) StandsPost(ctx context.Context, qToken string, token
 }
 
 // StandsPut - Update stand metadata
-func (s *DefaultApiService) StandsPut(ctx context.Context, qToken string, token string, userId int64, stand Stand) (ImplResponse, error) {
+func (s *DefaultAPIService) StandsPut(ctx context.Context, qToken string, token string, userId int64, stand Stand) (ImplResponse, error) {
 	// TODO - update StandsPut with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
@@ -382,7 +382,7 @@ func (s *DefaultApiService) StandsPut(ctx context.Context, qToken string, token 
 }
 
 // TelemetryGet - Get telemetry values
-func (s *DefaultApiService) TelemetryGet(ctx context.Context, epoch int64, secondsInThePast int64, qToken string, token string, hiveUuid string, macAddress string, userId int64) (ImplResponse, error) {
+func (s *DefaultAPIService) TelemetryGet(ctx context.Context, epoch int64, secondsInThePast int64, qToken string, token string, hiveUuid string, macAddress string, userId int64) (ImplResponse, error) {
 	// TODO - update TelemetryGet with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
@@ -399,12 +399,12 @@ func (s *DefaultApiService) TelemetryGet(ctx context.Context, epoch int64, secon
 }
 
 // TelemetryPost - Post Scale values and other telemetry
-func (s *DefaultApiService) TelemetryPost(ctx context.Context, registrationId string, userId int64, telemetryValues TelemetryValues) (ImplResponse, error) {
+func (s *DefaultAPIService) TelemetryPost(ctx context.Context, registrationId string, userId int64, telemetryValues TelemetryValues) (ImplResponse, error) {
 	// TODO - update TelemetryPost with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
-	// TODO: Uncomment the next line to return response Response(200, GenericPostResponse{}) or use other options such as http.Ok ...
-	// return Response(200, GenericPostResponse{}), nil
+	// TODO: Uncomment the next line to return response Response(200, BboxConfigResponse{}) or use other options such as http.Ok ...
+	// return Response(200, BboxConfigResponse{}), nil
 
 	// TODO: Uncomment the next line to return response Response(400, GenericPostResponse{}) or use other options such as http.Ok ...
 	// return Response(400, GenericPostResponse{}), nil
@@ -416,7 +416,7 @@ func (s *DefaultApiService) TelemetryPost(ctx context.Context, registrationId st
 }
 
 // TemperatureGet - Get Temperature values
-func (s *DefaultApiService) TemperatureGet(ctx context.Context, qToken string, bhiveId string, epoch int64, secondsInThePast int64, token string, userId int64) (ImplResponse, error) {
+func (s *DefaultAPIService) TemperatureGet(ctx context.Context, qToken string, bhiveId string, epoch int64, secondsInThePast int64, token string, userId int64) (ImplResponse, error) {
 	// TODO - update TemperatureGet with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
@@ -433,7 +433,7 @@ func (s *DefaultApiService) TemperatureGet(ctx context.Context, qToken string, b
 }
 
 // TemperaturePost - Save a new temperature measurement
-func (s *DefaultApiService) TemperaturePost(ctx context.Context, userId int64, temperature Temperature) (ImplResponse, error) {
+func (s *DefaultAPIService) TemperaturePost(ctx context.Context, userId int64, temperature Temperature) (ImplResponse, error) {
 	// TODO - update TemperaturePost with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
@@ -450,7 +450,7 @@ func (s *DefaultApiService) TemperaturePost(ctx context.Context, userId int64, t
 }
 
 // UserPost - Create a user
-func (s *DefaultApiService) UserPost(ctx context.Context, user User) (ImplResponse, error) {
+func (s *DefaultAPIService) UserPost(ctx context.Context, user User) (ImplResponse, error) {
 	// TODO - update UserPost with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
@@ -464,7 +464,7 @@ func (s *DefaultApiService) UserPost(ctx context.Context, user User) (ImplRespon
 }
 
 // VarroaScanGet - Get Varroa Scan images and metadata
-func (s *DefaultApiService) VarroaScanGet(ctx context.Context, qToken string, token string, bhiveId string, epoch int64, uuid string, hiveUuid string, userId int64, secondsInThePast int64) (ImplResponse, error) {
+func (s *DefaultAPIService) VarroaScanGet(ctx context.Context, qToken string, token string, bhiveId string, epoch int64, uuid string, hiveUuid string, userId int64, secondsInThePast int64) (ImplResponse, error) {
 	// TODO - update VarroaScanGet with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
@@ -481,7 +481,7 @@ func (s *DefaultApiService) VarroaScanGet(ctx context.Context, qToken string, to
 }
 
 // VarroaScanImageAssociate - Associate a varroa scan with a bee hive
-func (s *DefaultApiService) VarroaScanImageAssociate(ctx context.Context, varroaScanImageUuid string, hiveUuid string, userId int64) (ImplResponse, error) {
+func (s *DefaultAPIService) VarroaScanImageAssociate(ctx context.Context, varroaScanImageUuid string, hiveUuid string, userId int64) (ImplResponse, error) {
 	// TODO - update VarroaScanImageAssociate with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
@@ -498,7 +498,7 @@ func (s *DefaultApiService) VarroaScanImageAssociate(ctx context.Context, varroa
 }
 
 // VarroaScanImagePost - Save Varroa Scan image
-func (s *DefaultApiService) VarroaScanImagePost(ctx context.Context, qToken string, token string, userId int64, bhiveId string, hiveUuid string, epoch int64, scan string) (ImplResponse, error) {
+func (s *DefaultAPIService) VarroaScanImagePost(ctx context.Context, qToken string, token string, userId int64, bhiveId string, hiveUuid string, epoch int64, scan string) (ImplResponse, error) {
 	// TODO - update VarroaScanImagePost with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
@@ -515,7 +515,7 @@ func (s *DefaultApiService) VarroaScanImagePost(ctx context.Context, qToken stri
 }
 
 // VarroaScanPost - Save Varroa Scan metadata
-func (s *DefaultApiService) VarroaScanPost(ctx context.Context, userId int64, varroaScan VarroaScan) (ImplResponse, error) {
+func (s *DefaultAPIService) VarroaScanPost(ctx context.Context, userId int64, varroaScan VarroaScan) (ImplResponse, error) {
 	// TODO - update VarroaScanPost with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 

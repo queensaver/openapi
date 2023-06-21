@@ -9,6 +9,13 @@
 
 package openapi
 
+
+import (
+	"encoding/json"
+)
+
+
+
 type Weight struct {
 
 	// bhiveId to identify the data source.
@@ -21,7 +28,19 @@ type Weight struct {
 	Epoch int64 `json:"epoch,omitempty"`
 }
 
+// UnmarshalJSON sets *m to a copy of data while respecting defaults if specified.
+func (m *Weight) UnmarshalJSON(data []byte) error {
+
+	type Alias Weight // To avoid infinite recursion
+    return json.Unmarshal(data, (*Alias)(m))
+}
+
 // AssertWeightRequired checks if the required fields are not zero-ed
 func AssertWeightRequired(obj Weight) error {
+	return nil
+}
+
+// AssertWeightConstraints checks if the values respects the defined constraints
+func AssertWeightConstraints(obj Weight) error {
 	return nil
 }

@@ -9,6 +9,14 @@
 
 package openapi
 
+
+import (
+	"encoding/json"
+	"errors"
+)
+
+
+
 type Hive struct {
 
 	// Name of the hive. Can be chosen by the user.
@@ -53,6 +61,13 @@ type Hive struct {
 	ConfigUuid string `json:"configUuid,omitempty"`
 }
 
+// UnmarshalJSON sets *m to a copy of data while respecting defaults if specified.
+func (m *Hive) UnmarshalJSON(data []byte) error {
+
+	type Alias Hive // To avoid infinite recursion
+    return json.Unmarshal(data, (*Alias)(m))
+}
+
 // AssertHiveRequired checks if the required fields are not zero-ed
 func AssertHiveRequired(obj Hive) error {
 	elements := map[string]interface{}{
@@ -69,6 +84,17 @@ func AssertHiveRequired(obj Hive) error {
 		if err := AssertAlertsRequired(el); err != nil {
 			return err
 		}
+	}
+	return nil
+}
+
+// AssertHiveConstraints checks if the values respects the defined constraints
+func AssertHiveConstraints(obj Hive) error {
+	if obj.Capacity < 1 {
+		return &ParsingError{Err: errors.New(errMsgMinValueConstraint)}
+	}
+	if obj.Capacity > 50 {
+		return &ParsingError{Err: errors.New(errMsgMaxValueConstraint)}
 	}
 	return nil
 }

@@ -9,6 +9,13 @@
 
 package openapi
 
+
+import (
+	"encoding/json"
+)
+
+
+
 type TelemetryValues struct {
 
 	// HTTP response code. Used for internal purposes, will be let out at the API level.
@@ -18,6 +25,13 @@ type TelemetryValues struct {
 	Values []Telemetry `json:"values,omitempty"`
 }
 
+// UnmarshalJSON sets *m to a copy of data while respecting defaults if specified.
+func (m *TelemetryValues) UnmarshalJSON(data []byte) error {
+
+	type Alias TelemetryValues // To avoid infinite recursion
+    return json.Unmarshal(data, (*Alias)(m))
+}
+
 // AssertTelemetryValuesRequired checks if the required fields are not zero-ed
 func AssertTelemetryValuesRequired(obj TelemetryValues) error {
 	for _, el := range obj.Values {
@@ -25,5 +39,10 @@ func AssertTelemetryValuesRequired(obj TelemetryValues) error {
 			return err
 		}
 	}
+	return nil
+}
+
+// AssertTelemetryValuesConstraints checks if the values respects the defined constraints
+func AssertTelemetryValuesConstraints(obj TelemetryValues) error {
 	return nil
 }

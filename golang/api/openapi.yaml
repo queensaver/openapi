@@ -1205,7 +1205,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/generic-post-response'
+                $ref: '#/components/schemas/bbox-config-response'
           description: Generic Response object
         "400":
           content:
@@ -2476,6 +2476,7 @@ components:
           e: 1639169129
           la: -45.136822
           w: 53.2345
+          h: 12.2345
           m: 829898a53801
         - a: 12.2345
           b: 12.2345
@@ -2485,6 +2486,7 @@ components:
           e: 1639169129
           la: -45.136822
           w: 53.2345
+          h: 12.2345
           m: 829898a53801
         httpResponseCode: 409
       properties:
@@ -2550,6 +2552,7 @@ components:
         e: 1639169129
         la: -45.136822
         w: 53.2345
+        h: 12.2345
         m: 829898a53801
       properties:
         m:
@@ -2606,6 +2609,12 @@ components:
           format: float
           type: number
           x-protobuf-index: 9
+        h:
+          description: Humidity in percent
+          example: 12.2345
+          format: float
+          type: number
+          x-protobuf-index: 10
       type: object
     scaleV2:
       example:

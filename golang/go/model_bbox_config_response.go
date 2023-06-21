@@ -9,6 +9,13 @@
 
 package openapi
 
+
+import (
+	"encoding/json"
+)
+
+
+
 type BboxConfigResponse struct {
 
 	// HTTP response code.
@@ -24,7 +31,19 @@ type BboxConfigResponse struct {
 	Gps int32 `json:"gps,omitempty"`
 }
 
+// UnmarshalJSON sets *m to a copy of data while respecting defaults if specified.
+func (m *BboxConfigResponse) UnmarshalJSON(data []byte) error {
+
+	type Alias BboxConfigResponse // To avoid infinite recursion
+    return json.Unmarshal(data, (*Alias)(m))
+}
+
 // AssertBboxConfigResponseRequired checks if the required fields are not zero-ed
 func AssertBboxConfigResponseRequired(obj BboxConfigResponse) error {
+	return nil
+}
+
+// AssertBboxConfigResponseConstraints checks if the values respects the defined constraints
+func AssertBboxConfigResponseConstraints(obj BboxConfigResponse) error {
 	return nil
 }

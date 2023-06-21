@@ -9,6 +9,13 @@
 
 package openapi
 
+
+import (
+	"encoding/json"
+)
+
+
+
 type PostHivesResponse struct {
 
 	// HTTP response code. Used for internal purposes, will be sent out at the API.
@@ -17,10 +24,22 @@ type PostHivesResponse struct {
 	Hive Hive `json:"hive,omitempty"`
 }
 
+// UnmarshalJSON sets *m to a copy of data while respecting defaults if specified.
+func (m *PostHivesResponse) UnmarshalJSON(data []byte) error {
+
+	type Alias PostHivesResponse // To avoid infinite recursion
+    return json.Unmarshal(data, (*Alias)(m))
+}
+
 // AssertPostHivesResponseRequired checks if the required fields are not zero-ed
 func AssertPostHivesResponseRequired(obj PostHivesResponse) error {
 	if err := AssertHiveRequired(obj.Hive); err != nil {
 		return err
 	}
+	return nil
+}
+
+// AssertPostHivesResponseConstraints checks if the values respects the defined constraints
+func AssertPostHivesResponseConstraints(obj PostHivesResponse) error {
 	return nil
 }

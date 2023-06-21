@@ -9,10 +9,24 @@
 
 package openapi
 
+
+import (
+	"encoding/json"
+)
+
+
+
 type Alerts struct {
 
 	// Various alerts a bee hive can have.
 	AlertType string `json:"alertType"`
+}
+
+// UnmarshalJSON sets *m to a copy of data while respecting defaults if specified.
+func (m *Alerts) UnmarshalJSON(data []byte) error {
+
+	type Alias Alerts // To avoid infinite recursion
+    return json.Unmarshal(data, (*Alias)(m))
 }
 
 // AssertAlertsRequired checks if the required fields are not zero-ed
@@ -26,5 +40,10 @@ func AssertAlertsRequired(obj Alerts) error {
 		}
 	}
 
+	return nil
+}
+
+// AssertAlertsConstraints checks if the values respects the defined constraints
+func AssertAlertsConstraints(obj Alerts) error {
 	return nil
 }

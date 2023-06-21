@@ -48,5 +48,9 @@ export interface Telemetry {
      * latitude of the system
      */
     la?: number;
+    /**
+     * Humidity in percent
+     */
+    h?: number;
 }
 

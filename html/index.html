@@ -1460,6 +1460,13 @@ ul.nav-tabs {
       "format" : "float",
       "example" : -45.136822,
       "x-protobuf-index" : 9
+    },
+    "h" : {
+      "type" : "number",
+      "description" : "Humidity in percent",
+      "format" : "float",
+      "example" : 12.2345,
+      "x-protobuf-index" : 10
     }
   }
 };
@@ -13542,7 +13549,7 @@ public class DefaultApiExample {
         TelemetryValues telemetryValues = ; // TelemetryValues | 
 
         try {
-            generic-post-response result = apiInstance.telemetryPost(registrationId, userId, telemetryValues);
+            bbox-config-response result = apiInstance.telemetryPost(registrationId, userId, telemetryValues);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#telemetryPost");
@@ -13564,7 +13571,7 @@ public class DefaultApiExample {
         TelemetryValues telemetryValues = ; // TelemetryValues | 
 
         try {
-            generic-post-response result = apiInstance.telemetryPost(registrationId, userId, telemetryValues);
+            bbox-config-response result = apiInstance.telemetryPost(registrationId, userId, telemetryValues);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#telemetryPost");
@@ -13596,7 +13603,7 @@ TelemetryValues *telemetryValues = ; //  (optional)
 [apiInstance telemetryPostWith:registrationId
     userId:userId
     telemetryValues:telemetryValues
-              completionHandler: ^(generic-post-response output, NSError* error) {
+              completionHandler: ^(bbox-config-response output, NSError* error) {
     if (output) {
         NSLog(@"%@", output);
     }
@@ -13665,7 +13672,7 @@ namespace Example
 
             try {
                 // Post Scale values and other telemetry
-                generic-post-response result = apiInstance.telemetryPost(registrationId, userId, telemetryValues);
+                bbox-config-response result = apiInstance.telemetryPost(registrationId, userId, telemetryValues);
                 Debug.WriteLine(result);
             } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.telemetryPost: " + e.Message );
@@ -13921,7 +13928,7 @@ The User ID. This is used internally and will be overwritten if you send it to t
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/generic-post-response"
+        "$ref" : "#/components/schemas/bbox-config-response"
       }
     }
   }

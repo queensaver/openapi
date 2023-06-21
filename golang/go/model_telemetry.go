@@ -9,6 +9,13 @@
 
 package openapi
 
+
+import (
+	"encoding/json"
+)
+
+
+
 type Telemetry struct {
 
 	// The mac address of the scale
@@ -37,9 +44,24 @@ type Telemetry struct {
 
 	// latitude of the system
 	La float32 `json:"la,omitempty"`
+
+	// Humidity in percent
+	H float32 `json:"h,omitempty"`
+}
+
+// UnmarshalJSON sets *m to a copy of data while respecting defaults if specified.
+func (m *Telemetry) UnmarshalJSON(data []byte) error {
+
+	type Alias Telemetry // To avoid infinite recursion
+    return json.Unmarshal(data, (*Alias)(m))
 }
 
 // AssertTelemetryRequired checks if the required fields are not zero-ed
 func AssertTelemetryRequired(obj Telemetry) error {
+	return nil
+}
+
+// AssertTelemetryConstraints checks if the values respects the defined constraints
+func AssertTelemetryConstraints(obj Telemetry) error {
 	return nil
 }

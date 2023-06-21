@@ -9,10 +9,24 @@
 
 package openapi
 
+
+import (
+	"encoding/json"
+)
+
+
+
 type RegistrationId struct {
 
 	// Registration ID, in the form of the unique identifier
 	RegistrationId string `json:"registrationId"`
+}
+
+// UnmarshalJSON sets *m to a copy of data while respecting defaults if specified.
+func (m *RegistrationId) UnmarshalJSON(data []byte) error {
+
+	type Alias RegistrationId // To avoid infinite recursion
+    return json.Unmarshal(data, (*Alias)(m))
 }
 
 // AssertRegistrationIdRequired checks if the required fields are not zero-ed
@@ -26,5 +40,10 @@ func AssertRegistrationIdRequired(obj RegistrationId) error {
 		}
 	}
 
+	return nil
+}
+
+// AssertRegistrationIdConstraints checks if the values respects the defined constraints
+func AssertRegistrationIdConstraints(obj RegistrationId) error {
 	return nil
 }

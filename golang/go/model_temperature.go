@@ -9,6 +9,13 @@
 
 package openapi
 
+
+import (
+	"encoding/json"
+)
+
+
+
 type Temperature struct {
 
 	// bhiveId to identify the data source. Might become empty in a future iteration as it's redundant with the query parameter.
@@ -19,6 +26,13 @@ type Temperature struct {
 
 	// timestamp of the measurement on one second precision
 	Epoch int64 `json:"epoch"`
+}
+
+// UnmarshalJSON sets *m to a copy of data while respecting defaults if specified.
+func (m *Temperature) UnmarshalJSON(data []byte) error {
+
+	type Alias Temperature // To avoid infinite recursion
+    return json.Unmarshal(data, (*Alias)(m))
 }
 
 // AssertTemperatureRequired checks if the required fields are not zero-ed
@@ -34,5 +48,10 @@ func AssertTemperatureRequired(obj Temperature) error {
 		}
 	}
 
+	return nil
+}
+
+// AssertTemperatureConstraints checks if the values respects the defined constraints
+func AssertTemperatureConstraints(obj Temperature) error {
 	return nil
 }

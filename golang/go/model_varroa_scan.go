@@ -9,6 +9,13 @@
 
 package openapi
 
+
+import (
+	"encoding/json"
+)
+
+
+
 type VarroaScan struct {
 
 	// bhiveId to identify the data source. Might become empty in a future iteration as it's redundant with the query parameter.
@@ -35,6 +42,13 @@ type VarroaScan struct {
 	Uuid string `json:"uuid,omitempty"`
 }
 
+// UnmarshalJSON sets *m to a copy of data while respecting defaults if specified.
+func (m *VarroaScan) UnmarshalJSON(data []byte) error {
+
+	type Alias VarroaScan // To avoid infinite recursion
+    return json.Unmarshal(data, (*Alias)(m))
+}
+
 // AssertVarroaScanRequired checks if the required fields are not zero-ed
 func AssertVarroaScanRequired(obj VarroaScan) error {
 	for _, el := range obj.Metadata {
@@ -42,5 +56,10 @@ func AssertVarroaScanRequired(obj VarroaScan) error {
 			return err
 		}
 	}
+	return nil
+}
+
+// AssertVarroaScanConstraints checks if the values respects the defined constraints
+func AssertVarroaScanConstraints(obj VarroaScan) error {
 	return nil
 }

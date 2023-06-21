@@ -9,6 +9,13 @@
 
 package openapi
 
+
+import (
+	"encoding/json"
+)
+
+
+
 type Bbox struct {
 
 	// The ID of the bbox electronix (QBox). Is usually a mac address of a network interface.
@@ -41,6 +48,13 @@ type Bbox struct {
 	HiveUuid string `json:"hiveUuid,omitempty"`
 }
 
+// UnmarshalJSON sets *m to a copy of data while respecting defaults if specified.
+func (m *Bbox) UnmarshalJSON(data []byte) error {
+
+	type Alias Bbox // To avoid infinite recursion
+    return json.Unmarshal(data, (*Alias)(m))
+}
+
 // AssertBboxRequired checks if the required fields are not zero-ed
 func AssertBboxRequired(obj Bbox) error {
 	for _, el := range obj.Bhives {
@@ -48,5 +62,10 @@ func AssertBboxRequired(obj Bbox) error {
 			return err
 		}
 	}
+	return nil
+}
+
+// AssertBboxConstraints checks if the values respects the defined constraints
+func AssertBboxConstraints(obj Bbox) error {
 	return nil
 }

@@ -9,6 +9,13 @@
 
 package openapi
 
+
+import (
+	"encoding/json"
+)
+
+
+
 type PutStandResponse struct {
 
 	// HTTP response code. Used for internal purposes, will be sent out at the API.
@@ -17,10 +24,22 @@ type PutStandResponse struct {
 	Stand Stand `json:"stand,omitempty"`
 }
 
+// UnmarshalJSON sets *m to a copy of data while respecting defaults if specified.
+func (m *PutStandResponse) UnmarshalJSON(data []byte) error {
+
+	type Alias PutStandResponse // To avoid infinite recursion
+    return json.Unmarshal(data, (*Alias)(m))
+}
+
 // AssertPutStandResponseRequired checks if the required fields are not zero-ed
 func AssertPutStandResponseRequired(obj PutStandResponse) error {
 	if err := AssertStandRequired(obj.Stand); err != nil {
 		return err
 	}
+	return nil
+}
+
+// AssertPutStandResponseConstraints checks if the values respects the defined constraints
+func AssertPutStandResponseConstraints(obj PutStandResponse) error {
 	return nil
 }

@@ -9,6 +9,13 @@
 
 package openapi
 
+
+import (
+	"encoding/json"
+)
+
+
+
 type ScaleV2Response struct {
 
 	// HTTP response code. Used for internal purposes, will be let out at the API level.
@@ -18,6 +25,13 @@ type ScaleV2Response struct {
 	Values []ScaleV2 `json:"values,omitempty"`
 }
 
+// UnmarshalJSON sets *m to a copy of data while respecting defaults if specified.
+func (m *ScaleV2Response) UnmarshalJSON(data []byte) error {
+
+	type Alias ScaleV2Response // To avoid infinite recursion
+    return json.Unmarshal(data, (*Alias)(m))
+}
+
 // AssertScaleV2ResponseRequired checks if the required fields are not zero-ed
 func AssertScaleV2ResponseRequired(obj ScaleV2Response) error {
 	for _, el := range obj.Values {
@@ -25,5 +39,10 @@ func AssertScaleV2ResponseRequired(obj ScaleV2Response) error {
 			return err
 		}
 	}
+	return nil
+}
+
+// AssertScaleV2ResponseConstraints checks if the values respects the defined constraints
+func AssertScaleV2ResponseConstraints(obj ScaleV2Response) error {
 	return nil
 }

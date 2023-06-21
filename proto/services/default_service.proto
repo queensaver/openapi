@@ -86,7 +86,7 @@ service DefaultService {
 
   rpc TelemetryGet (TelemetryGetRequest) returns (TelemetryResponse);
 
-  rpc TelemetryPost (TelemetryPostRequest) returns (GenericPostResponse);
+  rpc TelemetryPost (TelemetryPostRequest) returns (BboxConfigResponse);
 
   rpc TemperatureGet (TemperatureGetRequest) returns (GetTemperatureResponse);
 

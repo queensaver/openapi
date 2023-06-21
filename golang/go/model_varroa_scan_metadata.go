@@ -9,6 +9,13 @@
 
 package openapi
 
+
+import (
+	"encoding/json"
+)
+
+
+
 type VarroaScanMetadata struct {
 
 	// classification of the object - we currently support: bee_leg,bee,mite,bee_wing,ant,wax_moth_droppings,wax_platelets,pollen,bee_droppings,cell_cover_grist
@@ -30,7 +37,19 @@ type VarroaScanMetadata struct {
 	Height float64 `json:"height,omitempty"`
 }
 
+// UnmarshalJSON sets *m to a copy of data while respecting defaults if specified.
+func (m *VarroaScanMetadata) UnmarshalJSON(data []byte) error {
+
+	type Alias VarroaScanMetadata // To avoid infinite recursion
+    return json.Unmarshal(data, (*Alias)(m))
+}
+
 // AssertVarroaScanMetadataRequired checks if the required fields are not zero-ed
 func AssertVarroaScanMetadataRequired(obj VarroaScanMetadata) error {
+	return nil
+}
+
+// AssertVarroaScanMetadataConstraints checks if the values respects the defined constraints
+func AssertVarroaScanMetadataConstraints(obj VarroaScanMetadata) error {
 	return nil
 }

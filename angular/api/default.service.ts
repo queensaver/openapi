@@ -2089,9 +2089,9 @@ export class DefaultService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public telemetryPost(registrationId: string, userId?: number, telemetryValues?: TelemetryValues, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<GenericPostResponse>;
-    public telemetryPost(registrationId: string, userId?: number, telemetryValues?: TelemetryValues, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<GenericPostResponse>>;
-    public telemetryPost(registrationId: string, userId?: number, telemetryValues?: TelemetryValues, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<GenericPostResponse>>;
+    public telemetryPost(registrationId: string, userId?: number, telemetryValues?: TelemetryValues, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<BboxConfigResponse>;
+    public telemetryPost(registrationId: string, userId?: number, telemetryValues?: TelemetryValues, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<BboxConfigResponse>>;
+    public telemetryPost(registrationId: string, userId?: number, telemetryValues?: TelemetryValues, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<BboxConfigResponse>>;
     public telemetryPost(registrationId: string, userId?: number, telemetryValues?: TelemetryValues, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
         if (registrationId === null || registrationId === undefined) {
             throw new Error('Required parameter registrationId was null or undefined when calling telemetryPost.');
@@ -2153,7 +2153,7 @@ export class DefaultService {
         }
 
         let localVarPath = `/v1/telemetry`;
-        return this.httpClient.request<GenericPostResponse>('post', `${this.configuration.basePath}${localVarPath}`,
+        return this.httpClient.request<BboxConfigResponse>('post', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 body: telemetryValues,

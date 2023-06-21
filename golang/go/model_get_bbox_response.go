@@ -9,12 +9,26 @@
 
 package openapi
 
+
+import (
+	"encoding/json"
+)
+
+
+
 type GetBboxResponse struct {
 
 	Bboxes []Bbox `json:"bboxes,omitempty"`
 
 	// HTTP response code. Used for internal purposes, will be sent out at the API.
 	HttpResponseCode int32 `json:"httpResponseCode,omitempty"`
+}
+
+// UnmarshalJSON sets *m to a copy of data while respecting defaults if specified.
+func (m *GetBboxResponse) UnmarshalJSON(data []byte) error {
+
+	type Alias GetBboxResponse // To avoid infinite recursion
+    return json.Unmarshal(data, (*Alias)(m))
 }
 
 // AssertGetBboxResponseRequired checks if the required fields are not zero-ed
@@ -24,5 +38,10 @@ func AssertGetBboxResponseRequired(obj GetBboxResponse) error {
 			return err
 		}
 	}
+	return nil
+}
+
+// AssertGetBboxResponseConstraints checks if the values respects the defined constraints
+func AssertGetBboxResponseConstraints(obj GetBboxResponse) error {
 	return nil
 }

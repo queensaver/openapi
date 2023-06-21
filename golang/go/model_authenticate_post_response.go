@@ -9,6 +9,13 @@
 
 package openapi
 
+
+import (
+	"encoding/json"
+)
+
+
+
 type AuthenticatePostResponse struct {
 
 	// HTTP response code.
@@ -18,7 +25,19 @@ type AuthenticatePostResponse struct {
 	UserId int64 `json:"userId,omitempty"`
 }
 
+// UnmarshalJSON sets *m to a copy of data while respecting defaults if specified.
+func (m *AuthenticatePostResponse) UnmarshalJSON(data []byte) error {
+
+	type Alias AuthenticatePostResponse // To avoid infinite recursion
+    return json.Unmarshal(data, (*Alias)(m))
+}
+
 // AssertAuthenticatePostResponseRequired checks if the required fields are not zero-ed
 func AssertAuthenticatePostResponseRequired(obj AuthenticatePostResponse) error {
+	return nil
+}
+
+// AssertAuthenticatePostResponseConstraints checks if the values respects the defined constraints
+func AssertAuthenticatePostResponseConstraints(obj AuthenticatePostResponse) error {
 	return nil
 }

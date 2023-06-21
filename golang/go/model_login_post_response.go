@@ -9,6 +9,13 @@
 
 package openapi
 
+
+import (
+	"encoding/json"
+)
+
+
+
 type LoginPostResponse struct {
 
 	// HTTP response code.
@@ -18,7 +25,19 @@ type LoginPostResponse struct {
 	Token string `json:"token,omitempty"`
 }
 
+// UnmarshalJSON sets *m to a copy of data while respecting defaults if specified.
+func (m *LoginPostResponse) UnmarshalJSON(data []byte) error {
+
+	type Alias LoginPostResponse // To avoid infinite recursion
+    return json.Unmarshal(data, (*Alias)(m))
+}
+
 // AssertLoginPostResponseRequired checks if the required fields are not zero-ed
 func AssertLoginPostResponseRequired(obj LoginPostResponse) error {
+	return nil
+}
+
+// AssertLoginPostResponseConstraints checks if the values respects the defined constraints
+func AssertLoginPostResponseConstraints(obj LoginPostResponse) error {
 	return nil
 }
